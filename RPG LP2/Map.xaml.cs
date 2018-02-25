@@ -14,24 +14,21 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x416
+// O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace RPG_LP2
 {
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class BlankPage1 : Page
     {
-        public MainPage()
+        public BlankPage1()
         {
             this.InitializeComponent();
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
-            
         }
-
-
 
         double PosY, PosX;
         bool up, down, right, left;
@@ -48,7 +45,7 @@ namespace RPG_LP2
 
         private void Timer_Tick(object sender, object e)
         {
-            //Character Animation goes here
+            //Animação do personagem ficará aqui
         }
 
         private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
@@ -79,6 +76,7 @@ namespace RPG_LP2
                 left = true;
             }
         }
+
 
         private void CoreWindow_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
