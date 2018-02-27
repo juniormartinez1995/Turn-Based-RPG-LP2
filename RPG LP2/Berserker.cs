@@ -8,6 +8,7 @@ namespace RPG_LP2
 {
     class Berserker : Characters
     {
+        
         private void createBerseker()
         {
             this.life = 250;
@@ -26,9 +27,15 @@ namespace RPG_LP2
                 this.currentXP = 0;
                 this.Level += 1;
                 return true;
-
+                
             }
             return false;
+        }
+
+        public bool isDead()
+        {
+            if (this.life <= 0) return true;
+            else return false;
         }
 
         public bool countCritic()
