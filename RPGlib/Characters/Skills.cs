@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPG_LP2
+namespace RPGlib.Characters
 {
-    abstract class Skills
+    abstract public class Skills
     {
         public abstract int SkillB();
         public abstract int Skill2();

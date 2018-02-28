@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPG_LP2
+namespace RPGlib.Characters
 {
-    class Berserker : Characters
+    public class Berserker : Character
     {
         
-        private void createBerseker()
+        public void createBerseker()
         {
-            this.life = 250;
+            this.currentHP = 250;
             this.mana = 100;
             this.currentXP = 0;
             this.Level = 0;
@@ -34,7 +34,7 @@ namespace RPG_LP2
 
         public bool isDead()
         {
-            if (this.life <= 0) return true;
+            if (this.currentHP <= 0) return true;
             else return false;
         }
 
@@ -49,5 +49,6 @@ namespace RPG_LP2
             }
             else return false;
         }
+
     }
 }

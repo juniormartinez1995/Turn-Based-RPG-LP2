@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPG_LP2
+namespace RPGlib.Characters
 {
-    abstract class Characters
+    abstract public class Character
     {
-        protected String name { get; set; }
-        protected int life { get; set; }
+        public String name { get; set; }
+        public int currentHP { get; set; }
+        private int maxHealth { get; set; }
+        protected int manaMax { get; set; }
         protected int mana { get; set; }
         protected int armor { get; set; }
         protected int evasion { get; set; }
