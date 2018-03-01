@@ -115,14 +115,17 @@
     <Content Include="Assets\btn_close.png" />
     <Content Include="Assets\btn_start.png" />
     <Content Include="Assets\florest_animated.gif" />
-    <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\upAnimation\Cima1.png" />
+    <Content Include="Assets\upAnimation\Cima2.png" />
+    <Content Include="Assets\upAnimation\Cima3.png" />
+    <Content Include="Assets\upAnimation\Cima4.png" />
+    <Content Include="Assets\upAnimation\Cima5.png" />
+    <Content Include="Assets\upAnimation\Cima6.png" />
+    <Content Include="Assets\upAnimation\Cima7.png" />
+    <Content Include="Assets\upAnimation\Cima8.png" />
+    <Content Include="Assets\upAnimation\paradoCima.png" />
+    <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

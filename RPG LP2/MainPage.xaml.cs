@@ -34,7 +34,7 @@ namespace RPG_LP2
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BlankPage1));
+            this.Frame.Navigate(typeof(Map));
         }
 
         private void Image_Tapped_1(object sender, TappedRoutedEventArgs e)

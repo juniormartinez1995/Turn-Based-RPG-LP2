@@ -22,9 +22,9 @@ namespace RPG_LP2
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
-    public sealed partial class BlankPage1 : Page
+    public sealed partial class Map : Page
     {
-        public BlankPage1()
+        public Map()
         {
             this.InitializeComponent();
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
@@ -34,20 +34,27 @@ namespace RPG_LP2
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
-        int Aux = 0;
+        
         double PosY, PosX;
-        int up = 0, down = 0, right = 0, left = 0;
+        int up = 0, down = 0, right = 0, left = 0, Aux = 0, contador = 0;
 
         DispatcherTimer timer = new DispatcherTimer();
-        BitmapImage[] test1 = new BitmapImage[] {
-            new BitmapImage(new Uri(@"ms-appx:///Assets/StoreLogo.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/base10.jpg"))
+        BitmapImage[] upMoviment = new BitmapImage[] {
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima1.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima2.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima3.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima4.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima5.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima6.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima7.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima8.png"))
+
         };
 
         private void startAnimation() // Método para configuração e inicialização do timer da animação
         {
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 180);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 210);
             timer.Start();
         }
 
@@ -60,14 +67,14 @@ namespace RPG_LP2
         private void Timer_Tick(object sender, object e)
         {
 
-            if (Aux == 0)
+            if (Aux < 8)
             {
-                Person1.Source = test1[0];
+                Person1.Source = upMoviment[Aux];
                 Aux++;
             }
             else
             {
-                Person1.Source = test1[1];
+                Person1.Source = upMoviment[1];
                 Aux = 0;
             }
         }
@@ -76,11 +83,16 @@ namespace RPG_LP2
         {
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
-
+            
             if (args.VirtualKey == Windows.System.VirtualKey.Up && PosY > 0) 
             {
                 moveUp();
-                startAnimation();
+
+                if(contador == 0)
+                {
+                    startAnimation();
+                    contador ++;
+                }
 
                 up = 1;
             }
@@ -106,7 +118,8 @@ namespace RPG_LP2
         {
             if (up == 1)
             {
-
+                stopAnimation();
+                contador --;
                 up = 0;
 
             }
@@ -126,22 +139,22 @@ namespace RPG_LP2
 
         private void moveUp() //Método que realiza a movimentação da imagem para cima
         {
-            Person1.SetValue(Canvas.TopProperty, PosY - 5);
+            Person1.SetValue(Canvas.TopProperty, PosY - 3);
         }
 
         private void moveDown() //Método que realiza a movimentação da imagem para baixo
         {
-            Person1.SetValue(Canvas.TopProperty, PosY + 5);
+            Person1.SetValue(Canvas.TopProperty, PosY + 3);
         }
 
         private void moveLeft() //Método que realiza a movimentação da imagem para esquerda
         {
-            Person1.SetValue(Canvas.LeftProperty, PosX - 5);
+            Person1.SetValue(Canvas.LeftProperty, PosX - 3);
         }
 
         private void moveRight() //Método que realiza a movimentação da imagem para direita
         {
-            Person1.SetValue(Canvas.LeftProperty, PosX + 5);
+            Person1.SetValue(Canvas.LeftProperty, PosX + 3);
         }
 
     }
