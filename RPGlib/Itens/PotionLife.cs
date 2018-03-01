@@ -20,13 +20,13 @@ namespace RPGlib.Itens
 
         public override void Efeito(Character person)
         {
-            if (person.vidaAtual + this.Life > person.maxHealth)
+            if (person.currentHP + this.Life > person.maxHealth)
             {
-                person.vidaAtual = person.maxHealth;
+                person.currentHP = person.maxHealth;
             }
             else
             {
-                person.vidaAtual = person.vidaAtual + this.Life;
+                person.currentHP = person.currentHP + this.Life;
             }
         }
     }

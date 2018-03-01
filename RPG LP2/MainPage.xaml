@@ -5,22 +5,22 @@
     xmlns:local="using:RPG_LP2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Width="1492">
+        mc:Ignorable="d" Width="800" Height="600">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RenderTransformOrigin="0.52,0.496" HorizontalAlignment="Left" Width="1492" Margin="0,0,0,12" UseLayoutRounding="True">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RenderTransformOrigin="0.52,0.496" HorizontalAlignment="Left" Width="800" Margin="0,0,0,12" UseLayoutRounding="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="125*"/>
             <RowDefinition Height="122*"/>
         </Grid.RowDefinitions>
-        <Image HorizontalAlignment="Left" Height="988" Margin="4,8,0,-8" VerticalAlignment="Top" Width="1488" Grid.RowSpan="2"/>
+        <Image HorizontalAlignment="Left" Height="800" Margin="4,8,0,-8" VerticalAlignment="Top" Width="600" Grid.RowSpan="2"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="436,4,0,0" VerticalAlignment="Top" Width="100" Grid.Row="1"/>
-        <Image HorizontalAlignment="Left" Height="960" Margin="4,8,-8,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="1496"/>
+        <Image HorizontalAlignment="Left" Height="800" Margin="4,8,-8,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="600"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="464,420,0,-520" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
-        <Image HorizontalAlignment="Left" Height="1084" Margin="0,4,-12,-1088" Grid.RowSpan="2" VerticalAlignment="Top" Width="1504" Source="Assets/florest_animated.gif" Stretch="UniformToFill" AllowDrop="False" RequestedTheme="Default" ManipulationMode="None"/>
-        <TextBlock HorizontalAlignment="Left" Margin="528,144,0,-296" Grid.RowSpan="2" Text="Dungeon Whip" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Adobe Garamond Pro Bold"/>
+        <Image HorizontalAlignment="Left"  Grid.RowSpan="2"  Width="800" Source="Assets/florest_animated.gif" Stretch="UniformToFill" AllowDrop="False" RequestedTheme="Default" ManipulationMode="None" Margin="0,0,0,-2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="170,25,0,-111" Grid.RowSpan="2" Text="Dungeon Whip" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Adobe Garamond Pro Bold"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="704,744,0,-844" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
-        <Image HorizontalAlignment="Left" Height="180" Margin="552,468,0,-648" Grid.RowSpan="2" VerticalAlignment="Top" Source="Assets/btn_start.png" Stretch="UniformToFill" Tapped="Image_Tapped" Width="280"/>
-        <Image HorizontalAlignment="Left" Height="116" Margin="64,868,0,-984" Grid.RowSpan="2" VerticalAlignment="Top" Width="180" Source="Assets/btn_close.png" Stretch="UniformToFill" Tapped="Image_Tapped_1"/>
+        <Image HorizontalAlignment="Left" Width="50" Height="30" Margin="34,504,0,-534" Grid.RowSpan="2" VerticalAlignment="Top" Source="Assets/btn_start.png" Stretch="UniformToFill" Tapped="Image_Tapped"/>
+        <Image HorizontalAlignment="Left" Height="32" Margin="109,504,0,-536" Grid.RowSpan="2" VerticalAlignment="Top" Width="50" Source="Assets/btn_close.png" Stretch="UniformToFill" Tapped="Image_Tapped_1"/>
 
     </Grid>
 </Page>

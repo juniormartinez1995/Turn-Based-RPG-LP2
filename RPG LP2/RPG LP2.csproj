@@ -110,6 +110,7 @@
     <None Include="RPG LP2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\base10.jpg" />
     <Content Include="Assets\berseker_Front.png" />
     <Content Include="Assets\btn_close.png" />
     <Content Include="Assets\btn_start.png" />

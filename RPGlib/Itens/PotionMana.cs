@@ -18,18 +18,18 @@ namespace RPGlib.Itens
             CaminhoImagem = "";
         }
 
-        /*public override void Efeito(Character personagem)
+        public override void Efeito(Character personagem)
         {
-            if (personagem.manaAtual + this.Mana >= personagem.manaMax) //verifica de a soma da mana atual do personagem
+            if (personagem.currentMana + this.Mana >= personagem.maxMana) //verifica de a soma da mana atual do personagem
             {// mais a mana fornecida for maior ou igual a mana maxima do personagem, se sim:
 
-                personagem.manaAtual = personagem.manaMax;// a mana atual va ser igual a mana maxima
+                personagem.currentMana = personagem.maxMana;// a mana atual va ser igual a mana maxima
             }
             else//se nao:
             {
-                personagem.manaAtual = personagem.manaAtual + this.Mana; // a mana atual do personagem vai ser igual a mana
+                personagem.currentMana = personagem.currentMana + this.Mana; // a mana atual do personagem vai ser igual a mana
                 //atual mais a mana fornecida
             }
-        }*/
+        }
     }
 }

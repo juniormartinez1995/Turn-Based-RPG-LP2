@@ -10,15 +10,15 @@ namespace RPGlib.Characters
     {
         public String name { get; set; }
         public int currentHP { get; set; }
-        private int maxHealth { get; set; }
-        protected int manaMax { get; set; }
-        protected int mana { get; set; }
-        protected int armor { get; set; }
-        protected int evasion { get; set; }
-        protected int critic { get; set; }
-        protected int currentXP { get; set; }
-        protected int gainedXP { get; set; }
-        protected int Level { get; set; }
+        public int maxHealth { get; set; }
+        public int maxMana { get; set; }
+        public int currentMana { get; set; }
+        public int currentArmor { get; set; }
+        public int evasionRate { get; set; }
+        public int criticRate { get; set; }
+        public int currentXP { get; set; }
+        public int gainedXP { get; set; }
+        public int Level { get; set; }
 
     }
 }

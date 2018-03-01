@@ -12,12 +12,12 @@ namespace RPGlib.Characters
         public void createBerseker()
         {
             this.currentHP = 250;
-            this.mana = 100;
+            this.currentMana = 100;
             this.currentXP = 0;
             this.Level = 0;
-            this.critic = 15;
-            this.evasion = 5;
-            this.armor = 20;
+            this.criticRate = 15;
+            this.evasionRate = 5;
+            this.currentArmor = 20;
         }
 
         public bool upLevel()
@@ -43,7 +43,7 @@ namespace RPGlib.Characters
 
             Random random = new Random();
             int criticCalc = random.Next(0, 100);
-            if (criticCalc <= this.critic)
+            if (criticCalc <= this.criticRate)
             {
                 return true;
             }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,24 +29,47 @@ namespace RPG_LP2
             this.InitializeComponent();
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
+
+            ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
+        int Aux = 0;
         double PosY, PosX;
-        bool up, down, right, left;
+        int up = 0, down = 0, right = 0, left = 0;
 
-        BitmapImage test1 = new BitmapImage(new Uri(@"ms-appx:///Assets/StoreLogo.png"));
+        DispatcherTimer timer = new DispatcherTimer();
+        BitmapImage[] test1 = new BitmapImage[] {
+            new BitmapImage(new Uri(@"ms-appx:///Assets/StoreLogo.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/base10.jpg"))
+        };
 
-        private void startTimer1() // Método para configuração e inicialização do timer da animação
+        private void startAnimation() // Método para configuração e inicialização do timer da animação
         {
-            DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 180);
             timer.Start();
         }
 
+        private void stopAnimation()
+        {
+            timer.Stop();
+        }
+
+
         private void Timer_Tick(object sender, object e)
         {
-            //Animação do personagem ficará aqui
+
+            if (Aux == 0)
+            {
+                Person1.Source = test1[0];
+                Aux++;
+            }
+            else
+            {
+                Person1.Source = test1[1];
+                Aux = 0;
+            }
         }
 
         private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
@@ -53,48 +77,50 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            if (args.VirtualKey == Windows.System.VirtualKey.Up)
+            if (args.VirtualKey == Windows.System.VirtualKey.Up && PosY > 0) 
             {
                 moveUp();
-                up = true;
+                startAnimation();
 
-                Person1.Source = test1;
+                up = 1;
             }
-            if (args.VirtualKey == Windows.System.VirtualKey.Down)
+            if (args.VirtualKey == Windows.System.VirtualKey.Down && PosY < 570)
             {
                 moveDown();
-                down = true;
+                down = 1;
             }
-            if (args.VirtualKey == Windows.System.VirtualKey.Right)
+            if (args.VirtualKey == Windows.System.VirtualKey.Right && PosX < 770)
             {
                 moveRight();
-                right = true;
+                right = 1;
             }
-            if (args.VirtualKey == Windows.System.VirtualKey.Left)
+            if (args.VirtualKey == Windows.System.VirtualKey.Left && PosX > 0)
             {
                 moveLeft();
-                left = true;
+                left = 1;
             }
         }
 
 
         private void CoreWindow_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
-            if (up)
+            if (up == 1)
             {
-                up = false;
+
+                up = 0;
+
             }
-            if (down)
+            if (down == 1)
             {
-                down = false;
+                down = 0;
             }
-            if (left)
+            if (left == 1)
             {
-                left = false;
+                left = 0;
             }
-            if (right)
+            if (right == 1)
             {
-                right = false;
+                right = 0;
             }
         }
 
