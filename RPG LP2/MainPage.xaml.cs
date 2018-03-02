@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
+
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x416
 
 namespace RPG_LP2
@@ -34,7 +35,7 @@ namespace RPG_LP2
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Map));
+            this.Frame.Navigate(typeof(SelecClass));
         }
 
         private void Image_Tapped_1(object sender, TappedRoutedEventArgs e)

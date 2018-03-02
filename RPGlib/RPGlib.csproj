@@ -120,7 +120,12 @@
       <Version>6.0.6</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\RPG LP2\RPG LP2.csproj">
+      <Project>{81f0b3e0-fba9-4a33-bf8f-dfe445c72fe0}</Project>
+      <Name>RPG LP2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
