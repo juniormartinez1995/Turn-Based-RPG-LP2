@@ -11,23 +11,28 @@ namespace RPGlib.Itens
     {
         public int Mana { get; set; }
 
+        //Description = descricao da acao do item
+        //LocalImage = caminho da imagem q representa o item
+
         public PotionMana(int qntMana)
         {
             this.Mana = qntMana;
             Description = "";
-            CaminhoImagem = "";
+            LocalImage = "";
         }
-
-        public override void Efeito(Character personagem)
+        //person = personagem
+        //correnMana = mana atual do personagem
+        //maxMana = mana maxima do personagem
+        public override void Effect(Character person)
         {
-            if (personagem.currentMana + this.Mana >= personagem.maxMana) //verifica de a soma da mana atual do personagem
+            if (person.currentMana + this.Mana >= person.maxMana) //verifica se a soma da mana atual do personagem
             {// mais a mana fornecida for maior ou igual a mana maxima do personagem, se sim:
 
-                personagem.currentMana = personagem.maxMana;// a mana atual va ser igual a mana maxima
+                person.currentMana = person.maxMana;// a mana atual va ser igual a mana maxima
             }
             else//se nao:
             {
-                personagem.currentMana = personagem.currentMana + this.Mana; // a mana atual do personagem vai ser igual a mana
+                person.currentMana = person.currentMana + this.Mana; // a mana atual do personagem vai ser igual a mana
                 //atual mais a mana fornecida
             }
         }

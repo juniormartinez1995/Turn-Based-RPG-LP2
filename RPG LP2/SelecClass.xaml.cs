@@ -15,13 +15,12 @@ namespace RPG_LP2
         public SelecClass()
         {
             this.InitializeComponent();
-
         }
-
+        //ao user clickar nesse buttom, cria o personagem berserker 
         private void B_Berserker_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Berserker p1 = new Berserker();
-            this.Frame.Navigate(typeof(Map));
+            Berserker p1 = new Berserker();//cria o obj berserker
+            this.Frame.Navigate(typeof(Map)); //vai para proxima tela
         }
     }
 }

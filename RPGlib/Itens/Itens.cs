@@ -11,9 +11,9 @@ namespace RPGlib.Itens
     abstract public class Item //class generica de itens
     {
         public string Description; //descricao de cada item
-        public string CaminhoImagem; //caminho (pasta) da imagem atribuida a cada item
+        public string LocalImage; //caminho (pasta) da imagem atribuida a cada item
 
-        abstract public void Efeito(Character Person); //funcao que possibilita usar o item
+        abstract public void Effect(Character Person); //funcao que possibilita usar o item
 
         //passa personagem como parametro para possibilitar acesso aos seus atributos (?)
     }

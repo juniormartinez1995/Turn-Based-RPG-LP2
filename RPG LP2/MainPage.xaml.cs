@@ -32,15 +32,15 @@ namespace RPG_LP2
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
         }
-
+        //funcao buttom de start do jogo
         private void B_Start_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SelecClass));
+            this.Frame.Navigate(typeof(SelecClass));//proxima tela
         }
-
+        //funcao buttom de quit do jogo
         private void B_Quit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            Application.Current.Exit();//fecha o programa
         }
     }
 }
