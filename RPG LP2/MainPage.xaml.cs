@@ -33,12 +33,12 @@ namespace RPG_LP2
 
         }
 
-        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        private void B_Start_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(SelecClass));
         }
 
-        private void Image_Tapped_1(object sender, TappedRoutedEventArgs e)
+        private void B_Quit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
         }

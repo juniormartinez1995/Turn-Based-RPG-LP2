@@ -19,8 +19,8 @@
         <Image HorizontalAlignment="Left"  Grid.RowSpan="2"  Width="800" Source="Assets/florest_animated.gif" Stretch="UniformToFill" AllowDrop="False" RequestedTheme="Default" ManipulationMode="None" Margin="0,0,0,-2"/>
         <TextBlock HorizontalAlignment="Left" Margin="170,25,0,-111" Grid.RowSpan="2" Text="Dungeon Whip" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Adobe Garamond Pro Bold"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="704,744,0,-844" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
-        <Image HorizontalAlignment="Left" Width="50" Height="30" Margin="34,504,0,-534" Grid.RowSpan="2" VerticalAlignment="Top" Source="Assets/btn_start.png" Stretch="UniformToFill" Tapped="Image_Tapped"/>
-        <Image HorizontalAlignment="Left" Height="32" Margin="109,504,0,-536" Grid.RowSpan="2" VerticalAlignment="Top" Width="50" Source="Assets/btn_close.png" Stretch="UniformToFill" Tapped="Image_Tapped_1"/>
+        <Button x:Name="B_Start" Content="START" HorizontalAlignment="Left" Margin="34,504,0,-534" Grid.RowSpan="2" VerticalAlignment="Top" Click="B_Start_Click" Background="#3317FF00"/>
+        <Button x:Name="B_Quit" Content="QUIT" HorizontalAlignment="Left" Margin="109,504,0,-536" Grid.RowSpan="2" VerticalAlignment="Top" Background="#33EA0000" Click="B_Quit_Click"/>
 
     </Grid>
 </Page>

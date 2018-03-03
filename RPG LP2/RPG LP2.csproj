@@ -115,8 +115,8 @@
   <ItemGroup>
     <Content Include="Assets\base10.jpg" />
     <Content Include="Assets\berseker_Front.png" />
-    <Content Include="Assets\btn_close.png" />
-    <Content Include="Assets\btn_start.png" />
+    <Content Include="Assets\Buttom_Close.png" />
+    <Content Include="Assets\Buttom_Start.png" />
     <Content Include="Assets\florest_animated.gif" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\upAnimation\Cima1.png" />
@@ -153,6 +153,12 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.6</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RPGlib\RPGlib.csproj">
+      <Project>{eb2941b0-e397-47f4-86ff-f173059f711a}</Project>
+      <Name>RPGlib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

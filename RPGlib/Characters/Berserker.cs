@@ -8,7 +8,7 @@ namespace RPGlib.Characters
 {
     public class Berserker : Character
     {
-        
+
         public void createBerseker()
         {
             this.currentHP = 250;
@@ -27,7 +27,7 @@ namespace RPGlib.Characters
                 this.currentXP = 0;
                 this.Level += 1;
                 return true;
-                
+
             }
             return false;
         }
