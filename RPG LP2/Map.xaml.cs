@@ -29,53 +29,114 @@ namespace RPG_LP2
             this.InitializeComponent();
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
-
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
         
         double PosY, PosX;
-        int up = 0, down = 0, right = 0, left = 0, Aux = 0, contador = 0;
+        bool Up, Down, Right, Left, Contador = true;
+        int Aux = 1;
 
         DispatcherTimer timer = new DispatcherTimer();
         BitmapImage[] upMoviment = new BitmapImage[] {
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima1.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima2.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima3.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima4.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima5.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima6.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima7.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/Cima8.png"))
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/1.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/2.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/3.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/4.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/5.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/6.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/7.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/8.png"))
 
-        };
+        }; // Imagens para o movimento para cima
+        BitmapImage[] downMoviment = new BitmapImage[] {
+            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/1.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/2.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/3.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/4.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/5.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/6.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/7.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/8.png"))
 
-        private void startAnimation() // Método para configuração e inicialização do timer da animação
+        };  // Imagens para o movimento para baixo
+        BitmapImage[] rightMoviment = new BitmapImage[] {
+            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/1.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/2.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/3.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/4.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/5.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/6.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/7.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/8.png"))
+
+        };  // Imagens para o movimento para direita
+        BitmapImage[] leftMoviment = new BitmapImage[] {
+            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/0.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/1.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/2.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/3.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/4.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/5.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/6.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/7.png")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/8.png"))
+
+        };  // Imagens para o movimento para esquerda
+
+        private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {
-            timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 210);
-            timer.Start();
+            if (!timer.IsEnabled)
+            {
+                timer.Tick += AnimationEvent;
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 110);
+                timer.Start();
+            }
+
         }
 
-        private void stopAnimation()
+        private void StopAnimation() //Método para parar a animação do movimento
         {
             timer.Stop();
         }
 
 
-        private void Timer_Tick(object sender, object e)
-        {
+        private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
+        {                                                    // A cada 110 milisegundos       
 
-            if (Aux < 8)
+            if (Up)
             {
-                Person1.Source = upMoviment[Aux];
+                PaintAnimation(upMoviment);
+            }
+            if (Down)
+            {
+                PaintAnimation(downMoviment);
+            }
+            if (Left)
+            {
+                PaintAnimation(leftMoviment);
+            }
+            if (Right)
+            {
+                PaintAnimation(rightMoviment);
+            }
+        }
+
+        public void PaintAnimation(BitmapImage[] MovimentArray) // Método de recebe como parametro um vetor de Bitmap
+        {                                                       // e realiza a animação do movimento
+            if (Aux < 9)
+            {
+                Person1.Source = MovimentArray[Aux];
                 Aux++;
             }
             else
             {
-                Person1.Source = upMoviment[1];
-                Aux = 0;
+                Person1.Source = MovimentArray[1];
+                Aux = 1;
             }
         }
 
@@ -86,75 +147,83 @@ namespace RPG_LP2
             
             if (args.VirtualKey == Windows.System.VirtualKey.Up && PosY > 0) 
             {
-                moveUp();
+                Up = true;
+                MoveUp();
+                StartAnimation();
 
-                if(contador == 0)
-                {
-                    startAnimation();
-                    contador ++;
-                }
 
-                up = 1;
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Down && PosY < 570)
             {
-                moveDown();
-                down = 1;
+                Down = true;
+                MoveDown();
+                StartAnimation();
+
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Right && PosX < 770)
             {
-                moveRight();
-                right = 1;
+                Right = true;
+                MoveRight();
+                StartAnimation();
+
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Left && PosX > 0)
             {
-                moveLeft();
-                left = 1;
+                Left = true;
+                MoveLeft();
+                StartAnimation();
+
             }
         }
 
 
         private void CoreWindow_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
-            if (up == 1)
+            if (Up)
             {
-                stopAnimation();
-                contador --;
-                up = 0;
+                StopAnimation();
+                Person1.Source = upMoviment[0];
+                Up = false;
 
             }
-            if (down == 1)
+            if (Down)
             {
-                down = 0;
+                StopAnimation();
+                Person1.Source = downMoviment[0];
+                Down = false;
             }
-            if (left == 1)
+            if (Left)
             {
-                left = 0;
+                StopAnimation();
+                Person1.Source = leftMoviment[0];
+                Left = false;
             }
-            if (right == 1)
+            if (Right)
             {
-                right = 0;
+                StopAnimation();
+                Person1.Source = rightMoviment[0];
+                Right = false;
             }
         }
 
-        private void moveUp() //Método que realiza a movimentação da imagem para cima
+        private void MoveUp() //Método que realiza a movimentação da imagem para cima
         {
-            Person1.SetValue(Canvas.TopProperty, PosY - 3);
+            Person1.SetValue(Canvas.TopProperty, PosY - 2);
         }
 
-        private void moveDown() //Método que realiza a movimentação da imagem para baixo
+        private void MoveDown() //Método que realiza a movimentação da imagem para baixo
         {
-            Person1.SetValue(Canvas.TopProperty, PosY + 3);
+            Person1.SetValue(Canvas.TopProperty, PosY + 2);
         }
 
-        private void moveLeft() //Método que realiza a movimentação da imagem para esquerda
+        private void MoveLeft() //Método que realiza a movimentação da imagem para esquerda
         {
-            Person1.SetValue(Canvas.LeftProperty, PosX - 3);
+            Person1.SetValue(Canvas.LeftProperty, PosX - 2);
         }
 
-        private void moveRight() //Método que realiza a movimentação da imagem para direita
+        private void MoveRight() //Método que realiza a movimentação da imagem para direita
         {
-            Person1.SetValue(Canvas.LeftProperty, PosX + 3);
+            Person1.SetValue(Canvas.LeftProperty, PosX + 2);
         }
 
     }
