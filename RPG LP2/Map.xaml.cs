@@ -40,53 +40,20 @@ namespace RPG_LP2
 
         DispatcherTimer timer = new DispatcherTimer();
         BitmapImage[] upMoviment = new BitmapImage[] {
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/1.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/2.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/3.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/4.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/5.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/6.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/7.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/8.png"))
+            new BitmapImage(new Uri(@"ms-appx:///Assets/baixogif.gif")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/cimagif.gif")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/dirgif.gif")),
+            new BitmapImage(new Uri(@"ms-appx:///Assets/esqgif.gif")),
+        };
 
-        }; // Imagens para o movimento para cima
-        BitmapImage[] downMoviment = new BitmapImage[] {
-            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/1.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/2.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/3.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/4.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/5.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/6.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/7.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/8.png"))
+        BitmapImage[] parado = new BitmapImage[]
+        {
+             new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png")),
+             new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png")),
+             new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/0.png")),
+             new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png")),
 
-        };  // Imagens para o movimento para baixo
-        BitmapImage[] rightMoviment = new BitmapImage[] {
-            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/1.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/2.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/3.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/4.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/5.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/6.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/7.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/8.png"))
-
-        };  // Imagens para o movimento para direita
-        BitmapImage[] leftMoviment = new BitmapImage[] {
-            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/0.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/1.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/2.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/3.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/4.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/5.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/6.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/7.png")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/8.png"))
-
-        };  // Imagens para o movimento para esquerda
+        };
 
         private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {
@@ -110,69 +77,82 @@ namespace RPG_LP2
 
             if (Up)
             {
-                PaintAnimation(upMoviment);
+                PaintAnimation(upMoviment, 1);
             }
             if (Down)
             {
-                PaintAnimation(downMoviment);
+                PaintAnimation(upMoviment, 0);
             }
             if (Left)
             {
-                PaintAnimation(leftMoviment);
+                PaintAnimation(upMoviment, 3);
             }
             if (Right)
             {
-                PaintAnimation(rightMoviment);
+                PaintAnimation(upMoviment, 2);
             }
         }
 
-        public void PaintAnimation(BitmapImage[] MovimentArray) // Método de recebe como parametro um vetor de Bitmap
+        public void PaintAnimation(BitmapImage[] MovimentArray, int i) // Método de recebe como parametro um vetor de Bitmap
         {                                                       // e realiza a animação do movimento
-            if (Aux < 9)
-            {
-                Person1.Source = MovimentArray[Aux];
-                Aux++;
-            }
-            else
-            {
-                Person1.Source = MovimentArray[1];
-                Aux = 1;
-            }
+            Person1.Source = MovimentArray[i];
         }
 
         private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
-            
+
+            Item.Source = parado[0];
             if (args.VirtualKey == Windows.System.VirtualKey.Up && PosY > 0) 
             {
+                StartAnimation();
+                if (timer.IsEnabled)
+                {
                 Up = true;
                 MoveUp();
-                StartAnimation();
+
+                }
 
 
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Down && PosY < 570)
             {
-                Down = true;
-                MoveDown();
                 StartAnimation();
 
+                if (timer.IsEnabled)
+                {
+                Down = true;
+                MoveDown();
+
+
+                }
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Right && PosX < 770)
             {
+                StartAnimation();
+                if (IsPlayerOverItem(Item))
+                {
+                    Application.Current.Exit();
+                }
+                if (timer.IsEnabled)
+                {
+
                 Right = true;
                 MoveRight();
-                StartAnimation();
-
+                }
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Left && PosX > 0)
             {
-                Left = true;
-                MoveLeft();
                 StartAnimation();
 
+                if (timer.IsEnabled)
+                {
+
+                Left = true;
+                MoveLeft();
+
+                }
             }
         }
 
@@ -182,28 +162,46 @@ namespace RPG_LP2
             if (Up)
             {
                 StopAnimation();
-                Person1.Source = upMoviment[0];
+                Person1.Source = parado[1];
                 Up = false;
 
             }
             if (Down)
             {
                 StopAnimation();
-                Person1.Source = downMoviment[0];
+                Person1.Source = parado[0];
                 Down = false;
             }
             if (Left)
             {
                 StopAnimation();
-                Person1.Source = leftMoviment[0];
+                Person1.Source = parado[2];
                 Left = false;
             }
             if (Right)
             {
                 StopAnimation();
-                Person1.Source = rightMoviment[0];
+                Person1.Source = parado[3];
                 Right = false;
             }
+        }
+        
+
+        /// <summary>
+        /// Checa se o player caminha sobre um item no mapa
+        /// </summary>
+        /// <param name="_item"></param>
+        /// <returns></returns>
+        public bool IsPlayerOverItem(Image _item)
+        {                                         
+
+            if (PosX + Person1.Width >= Canvas.GetLeft(_item) && 
+                PosX <= Canvas.GetLeft(_item) + _item.Width &&
+                PosY + Person1.Height >= Canvas.GetTop(_item) &&
+                Canvas.GetTop(_item) <= Canvas.GetTop(_item) + _item.Height
+                ) return true;
+
+            else return false;
         }
 
         private void MoveUp() //Método que realiza a movimentação da imagem para cima
