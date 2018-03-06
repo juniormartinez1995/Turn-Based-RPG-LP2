@@ -108,7 +108,11 @@
   <ItemGroup>
     <Compile Include="Characters\Berserker.cs" />
     <Compile Include="Characters\Character.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="Itens\Chest.cs" />
     <Compile Include="Itens\Itens.cs" />
+    <Compile Include="Itens\RandomElement.cs" />
+    <Compile Include="MapElement.cs" />
     <Compile Include="Itens\PotionLife.cs" />
     <Compile Include="Itens\PotionMana.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
