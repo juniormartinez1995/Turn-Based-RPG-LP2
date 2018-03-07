@@ -33,7 +33,7 @@ namespace RPG_LP2
 
         }
         //funcao buttom de start do jogo
-        private void B_Start_Click(object sender, RoutedEventArgs e)
+        /*private void B_Start_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(SelecClass));//proxima tela
         }
@@ -41,6 +41,20 @@ namespace RPG_LP2
         private void B_Quit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();//fecha o programa
+        }*/
+
+
+        
+      
+        //funcao buttom de quit do jogo
+        private void btn_Close_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Application.Current.Exit();//fecha o programa
+        }
+        //funcao buttom de start do jogo
+        private void btn_Start_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SelecClass));//proxima tela
         }
     }
 }
