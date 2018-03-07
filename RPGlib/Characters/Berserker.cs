@@ -11,6 +11,7 @@ namespace RPGlib.Characters
 
         public Berserker()
         {
+            this.name = name;
             this.currentHP = 250;
             this.currentMana = 100;
             this.currentXP = 0;
@@ -18,6 +19,7 @@ namespace RPGlib.Characters
             this.criticRate = 15;
             this.evasionRate = 5;
             this.currentArmor = 20;
+            this.Damage = 30;
         }
 
         public bool upLevel()

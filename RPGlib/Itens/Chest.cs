@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace RPGlib.Itens
 {
-    public class Chest : MapElement
+    public class Chest
     {
-        public Chest(int var_x, int var_y)
-        {
-            this.x = var_x;
-            this.y = var_y;
-        }
-
 
     }
 }

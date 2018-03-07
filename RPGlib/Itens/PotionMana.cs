@@ -9,7 +9,6 @@ namespace RPGlib.Itens
 {
     public class PotionMana : Item
     {
-        public int Mana { get; set; }
 
         //Description = descricao da acao do item
         //LocalImage = caminho da imagem q representa o item
@@ -17,8 +16,14 @@ namespace RPGlib.Itens
         public PotionMana(int qntMana)
         {
             this.Mana = qntMana;
-            Description = "";
-            LocalImage = "";
+            this.itemName = "Poção de Mana";
+            this.Description = "bufa " + this.Mana + ".";
+            this.LocalImage = "";
+            this.Health = 0;
+            this.Armor = 0;
+            this.criticalRate = 0;
+            this.evasionRate = 0;
+            this.Damage = 0;
         }
         //person = personagem
         //correnMana = mana atual do personagem

@@ -8,18 +8,58 @@ namespace RPGlib.Itens
 {
     public class Inventory
     {
-        //SE LIGUE NESSA POHAAAA
-        List<Item> inventory = new List<Item>();
-        
 
-        public void Add_Item(Item item_add)
+        Item[] inventory = new Item[6];
+        List<PotionLife> inventoryPotionLife = new List<PotionLife>();
+        List<PotionMana> iventoryPotionMana = new List<PotionMana>();
+
+        private string Add_Item(Item item_add)
         {
-            inventory.Add(item_add);
+            if(searchInventory() == -1)
+            {
+                return "Iventario cheio";
+            }
+            else
+            {
+                inventory[searchInventory()] = item_add;
+                return "Item adicionado";
+            }
         }
 
-        public void Remover_Item(Item item_removed)
+        private void Remover_Item(int id)
         {
-            inventory.Remove(item_removed);
+            inventory[id] = null;
+        }
+
+        private int searchInventory()
+        {
+            for(int i=0;i<inventory.Length;i++)
+            {
+                if (inventory[i]==null)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        
+        private void removeOrUsePotion(Item Potion)
+        {
+            if (Potion.GetType() == typeof(PotionLife))
+            {
+                PotionLife p = Potion as PotionLife;
+                inventoryPotionLife.Remove(p);
+            }
+            else if (Potion.GetType() == typeof(PotionMana))
+            {
+                PotionMana p = Potion as PotionMana;
+                iventoryPotionMana.Remove(p);
+            }
+            else
+            {
+
+            }
+            
         }
     }
 }
