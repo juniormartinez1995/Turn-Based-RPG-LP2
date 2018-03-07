@@ -110,12 +110,18 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Assets\Imagens\Camera Roll\desktop.ini" />
+    <None Include="Assets\Imagens\desktop.ini" />
+    <None Include="Assets\Imagens\Imagens da Câmera\desktop.ini" />
+    <None Include="Assets\Imagens\Saved Pictures\desktop.ini" />
     <None Include="RPG LP2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\baixogif.gif" />
     <Content Include="Assets\base10.jpg" />
     <Content Include="Assets\berseker_Front.png" />
+    <Content Include="Assets\btn_closeCUTTED.png" />
+    <Content Include="Assets\btn_startCUTTED.png" />
     <Content Include="Assets\Buttom_Close.png" />
     <Content Include="Assets\Buttom_Start.png" />
     <Content Include="Assets\cimagif.gif" />
@@ -131,6 +137,7 @@
     <Content Include="Assets\downAnimation\8.png" />
     <Content Include="Assets\esqgif.gif" />
     <Content Include="Assets\florest_animated.gif" />
+    <Content Include="Assets\logo_back.png" />
     <Content Include="Assets\leftAnimation\0.png" />
     <Content Include="Assets\leftAnimation\1.png" />
     <Content Include="Assets\leftAnimation\2.png" />
@@ -140,6 +147,7 @@
     <Content Include="Assets\leftAnimation\6.png" />
     <Content Include="Assets\leftAnimation\7.png" />
     <Content Include="Assets\leftAnimation\8.png" />
+    <Content Include="Assets\logo_back_smal.png" />
     <Content Include="Assets\rightAnimation\0.png" />
     <Content Include="Assets\rightAnimation\1.png" />
     <Content Include="Assets\rightAnimation\2.png" />
@@ -150,6 +158,8 @@
     <Content Include="Assets\rightAnimation\7.png" />
     <Content Include="Assets\rightAnimation\8.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\trademarkCUTTED.png" />
+    <Content Include="Assets\trademarkkCUTTED.png" />
     <Content Include="Assets\upAnimation\0.png" />
     <Content Include="Assets\upAnimation\1.png" />
     <Content Include="Assets\upAnimation\2.png" />
@@ -191,6 +201,9 @@
       <Project>{eb2941b0-e397-47f4-86ff-f173059f711a}</Project>
       <Name>RPGlib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Imagens\Uplay\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

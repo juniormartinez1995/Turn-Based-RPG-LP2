@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" Width="800" Height="600">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RenderTransformOrigin="0.52,0.496" HorizontalAlignment="Left" Width="800" Margin="0,0,0,12" UseLayoutRounding="True">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  RenderTransformOrigin="0.52,0.496" HorizontalAlignment="Left" Width="800" Margin="0,0,0,12" UseLayoutRounding="True" >
         <Grid.RowDefinitions>
             <RowDefinition Height="125*"/>
             <RowDefinition Height="122*"/>
@@ -17,10 +17,18 @@
         <Image HorizontalAlignment="Left" Height="800" Margin="4,8,-8,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="600"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="464,420,0,-520" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
         <Image HorizontalAlignment="Left"  Grid.RowSpan="2"  Width="800" Source="Assets/florest_animated.gif" Stretch="UniformToFill" AllowDrop="False" RequestedTheme="Default" ManipulationMode="None" Margin="0,0,0,-2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="170,25,0,-111" Grid.RowSpan="2" Text="Dungeon Whip" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Adobe Garamond Pro Bold"/>
+        <TextBlock Visibility="Collapsed" HorizontalAlignment="Left" Margin="170,25,0,-111" Grid.RowSpan="2" Text="Dungeon Whip" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Adobe Garamond Pro Bold"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="704,744,0,-844" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="B_Start" Content="START" HorizontalAlignment="Left" Margin="34,504,0,-534" Grid.RowSpan="2" VerticalAlignment="Top" Click="B_Start_Click" Background="#3317FF00"/>
-        <Button x:Name="B_Quit" Content="QUIT" HorizontalAlignment="Left" Margin="109,504,0,-536" Grid.RowSpan="2" VerticalAlignment="Top" Background="#33EA0000" Click="B_Quit_Click"/>
+        
+        <Button x:Name="B_Start" Visibility="Collapsed" Content="START" HorizontalAlignment="Left" Margin="34,504,0,-534" Grid.RowSpan="2" VerticalAlignment="Top" Background="#3317FF00"/>
+        <Button x:Name="B_Quit" Visibility="Collapsed" Content="QUIT" HorizontalAlignment="Left" Margin="109,504,0,-536" Grid.RowSpan="2" VerticalAlignment="Top" Background="#33EA0000"/>
+        
+        <Image x:Name="lbl_Title" Source="Assets/logo_back_smal.png" Width="600" Grid.RowSpan="2" VerticalAlignment="Top" Margin="0,50,0,0"/>
+        <Image x:Name="btn_Close" HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Bottom" Width="100" Source="Assets/btn_closeCUTTED.png" Margin="10,0,0,10" Tapped="btn_Close_Tapped"/>
+        <Image x:Name="btn_Start" Height="250" Grid.RowSpan="2" VerticalAlignment="Center" Source="Assets/btn_startCUTTED.png" Margin="0,100,0,0" Width="200" Tapped="btn_Start_Tapped"/>
+        <Image x:Name="trademark" Height="100" Grid.RowSpan="2" VerticalAlignment="Bottom" Source="Assets/trademarkkCUTTED.png" Width="400"/>
+
+
 
     </Grid>
 </Page>

@@ -35,8 +35,8 @@ namespace RPG_LP2
 
         
         double PosY, PosX;
-        bool Up, Down, Right, Left, Contador = true;
-        int Aux = 1;
+        bool Up, Down, Right, Left;
+        int Velocity = 2;
 
         DispatcherTimer timer = new DispatcherTimer();
         BitmapImage[] upMoviment = new BitmapImage[] {
@@ -75,22 +75,11 @@ namespace RPG_LP2
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
         {                                                    // A cada 110 milisegundos       
 
-            if (Up)
-            {
-                PaintAnimation(upMoviment, 1);
-            }
-            if (Down)
-            {
-                PaintAnimation(upMoviment, 0);
-            }
-            if (Left)
-            {
-                PaintAnimation(upMoviment, 3);
-            }
-            if (Right)
-            {
-                PaintAnimation(upMoviment, 2);
-            }
+            if (Up) PaintAnimation(upMoviment, 1);
+            if (Down) PaintAnimation(upMoviment, 0);
+            if (Left) PaintAnimation(upMoviment, 3);
+            if (Right) PaintAnimation(upMoviment, 2);
+
         }
 
         public void PaintAnimation(BitmapImage[] MovimentArray, int i) // Método de recebe como parametro um vetor de Bitmap
@@ -107,52 +96,50 @@ namespace RPG_LP2
             if (args.VirtualKey == Windows.System.VirtualKey.Up && PosY > 0) 
             {
                 StartAnimation();
-                if (timer.IsEnabled)
+
+                if (!IsPlayerOverItem(Item, Up))
                 {
-                Up = true;
-                MoveUp();
 
+                    MoveUp();
+                    Up = true;
                 }
-
 
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Down && PosY < 570)
             {
                 StartAnimation();
 
-                if (timer.IsEnabled)
+                if (!IsPlayerOverItem(Item, Down))
                 {
-                Down = true;
-                MoveDown();
 
+                    MoveDown();
+                    Down = true;
 
                 }
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Right && PosX < 770)
             {
                 StartAnimation();
-                if (IsPlayerOverItem(Item))
+                if (!IsPlayerOverItem(Item, Right))
                 {
-                    Application.Current.Exit();
+                    MoveRight();
+                    Right = true;
                 }
-                if (timer.IsEnabled)
-                {
 
-                Right = true;
-                MoveRight();
-                }
+
+
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Left && PosX > 0)
             {
                 StartAnimation();
 
-                if (timer.IsEnabled)
+                if (!IsPlayerOverItem(Item, Left))
                 {
 
-                Left = true;
-                MoveLeft();
-
+                    MoveLeft();
+                    Left = true;
                 }
+
             }
         }
 
@@ -192,36 +179,40 @@ namespace RPG_LP2
         /// </summary>
         /// <param name="_item"></param>
         /// <returns></returns>
-        public bool IsPlayerOverItem(Image _item)
-        {                                         
+        public bool IsPlayerOverItem(Image _item, bool key)
+        {
 
-            if (PosX + Person1.Width >= Canvas.GetLeft(_item) && 
+            if (PosX + Person1.Width >= Canvas.GetLeft(_item) &&
                 PosX <= Canvas.GetLeft(_item) + _item.Width &&
                 PosY + Person1.Height >= Canvas.GetTop(_item) &&
-                Canvas.GetTop(_item) <= Canvas.GetTop(_item) + _item.Height
-                ) return true;
+                PosY <= Canvas.GetTop(_item) + _item.Height
+                )
+            {
+                if (key) return true;
+                else return false;
 
+            }
             else return false;
         }
 
         private void MoveUp() //Método que realiza a movimentação da imagem para cima
         {
-            Person1.SetValue(Canvas.TopProperty, PosY - 2);
+            Person1.SetValue(Canvas.TopProperty, PosY - Velocity);
         }
 
         private void MoveDown() //Método que realiza a movimentação da imagem para baixo
         {
-            Person1.SetValue(Canvas.TopProperty, PosY + 2);
+            Person1.SetValue(Canvas.TopProperty, PosY + Velocity);
         }
 
         private void MoveLeft() //Método que realiza a movimentação da imagem para esquerda
         {
-            Person1.SetValue(Canvas.LeftProperty, PosX - 2);
+            Person1.SetValue(Canvas.LeftProperty, PosX - Velocity);
         }
 
         private void MoveRight() //Método que realiza a movimentação da imagem para direita
         {
-            Person1.SetValue(Canvas.LeftProperty, PosX + 2);
+            Person1.SetValue(Canvas.LeftProperty, PosX + Velocity);
         }
 
     }
