@@ -9,8 +9,9 @@ namespace RPGlib.Characters
     public class Berserker : Character
     {
 
-        public void createBerseker()
+        public Berserker()
         {
+            this.name = name;
             this.currentHP = 250;
             this.currentMana = 100;
             this.currentXP = 0;
@@ -18,6 +19,7 @@ namespace RPGlib.Characters
             this.criticRate = 15;
             this.evasionRate = 5;
             this.currentArmor = 20;
+            this.Damage = 30;
         }
 
         public bool upLevel()
@@ -32,13 +34,13 @@ namespace RPGlib.Characters
             return false;
         }
 
-        public bool isDead()
+        public bool IsDead()
         {
             if (this.currentHP <= 0) return true;
             else return false;
         }
 
-        public bool countCritic()
+        public bool CountCritic()
         {
 
             Random random = new Random();

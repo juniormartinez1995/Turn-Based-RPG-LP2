@@ -19,6 +19,7 @@ namespace RPGlib.Characters
         public int currentXP { get; set; }
         public int gainedXP { get; set; }
         public int Level { get; set; }
+        public int Damage { get; set; }
 
     }
 }
