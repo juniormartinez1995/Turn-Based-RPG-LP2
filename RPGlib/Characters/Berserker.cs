@@ -34,13 +34,13 @@ namespace RPGlib.Characters
             return false;
         }
 
-        public bool isDead()
+        public bool IsDead()
         {
             if (this.currentHP <= 0) return true;
             else return false;
         }
 
-        public bool countCritic()
+        public bool CountCritic()
         {
 
             Random random = new Random();
