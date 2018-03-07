@@ -12,7 +12,7 @@ namespace RPGlib.Itens
 
         public static int Limiter(int MinimumValue, int MaximumValue)
         {
-            return Aleatory.Next(MinimumValue, MaximumValue);
+            return Aleatory.Next(MinimumValue, MaximumValue+1);
         }
     }
 }

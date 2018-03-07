@@ -11,7 +11,7 @@ namespace RPGlib.Itens
 
         Item[] inventory = new Item[6];
         List<PotionLife> inventoryPotionLife = new List<PotionLife>();
-        List<PotionMana> iventoryPotionMana = new List<PotionMana>();
+        List<PotionMana> inventoryPotionMana = new List<PotionMana>();
 
         private string Add_Item(Item item_add)
         {
@@ -43,23 +43,37 @@ namespace RPGlib.Itens
             return -1;
         }
         
+        private void AddPotion(Item Potion)
+        {
+            
+            if (Potion is PotionLife)
+            {
+                PotionLife p = Potion as PotionLife;
+                inventoryPotionLife.Add(p);
+            }
+            else if (Potion is PotionMana)
+            {
+                PotionMana p = Potion as PotionMana;
+                inventoryPotionMana.Add(p);
+            }
+        }
         private void removeOrUsePotion(Item Potion)
         {
-            if (Potion.GetType() == typeof(PotionLife))
+            if (Potion is PotionLife)
             {
                 PotionLife p = Potion as PotionLife;
                 inventoryPotionLife.Remove(p);
             }
-            else if (Potion.GetType() == typeof(PotionMana))
+            else if (Potion is PotionMana)
             {
                 PotionMana p = Potion as PotionMana;
-                iventoryPotionMana.Remove(p);
-            }
-            else
-            {
-
+                inventoryPotionMana.Remove(p);
             }
             
         }
+        /*private void quantityPotion()
+        {
+
+        }*/
     }
 }
