@@ -9,7 +9,7 @@ namespace RPGlib.Characters
     public class Berserker : Character
     {
 
-        public void createBerseker()
+        public Berserker()
         {
             this.currentHP = 250;
             this.currentMana = 100;

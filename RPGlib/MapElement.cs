@@ -12,7 +12,5 @@ namespace RPGlib.Itens
         public int x;
         public int y;
 
-
-
     }
 }

@@ -17,6 +17,7 @@ namespace RPGlib.Itens
             
             this.Life = gainedHP;
             Description = "bufa " + this.Life + ".";
+
         }
         //person = personagem
         //correntHP = vida atual do personagem
