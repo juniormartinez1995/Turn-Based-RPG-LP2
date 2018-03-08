@@ -36,7 +36,7 @@ namespace RPG_LP2
         
         double PosY, PosX;
         bool Up, Down, Right, Left;
-        int Velocity = 2;
+        int Velocity = 3;
 
         DispatcherTimer timer = new DispatcherTimer();
         BitmapImage[] upMoviment = new BitmapImage[] {
@@ -60,7 +60,7 @@ namespace RPG_LP2
             if (!timer.IsEnabled)
             {
                 timer.Tick += AnimationEvent;
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 110);
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
                 timer.Start();
             }
 
@@ -75,10 +75,48 @@ namespace RPG_LP2
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
         {                                                    // A cada 110 milisegundos       
 
-            if (Up) PaintAnimation(upMoviment, 1);
-            if (Down) PaintAnimation(upMoviment, 0);
-            if (Left) PaintAnimation(upMoviment, 3);
-            if (Right) PaintAnimation(upMoviment, 2);
+            if (Up && PosY > 0)
+            {
+
+                if (!IsPlayerOverItem(Item, Up)) {
+                MoveUp();
+                PaintAnimation(upMoviment, 1);
+
+                }
+
+                else PosY += Velocity * 3;
+            }
+            if (Down && PosY < 570)
+            {
+
+                if(!IsPlayerOverItem(Item, Down))
+                {
+                MoveDown();
+                PaintAnimation(upMoviment, 0);
+
+                }
+                else PosY -= Velocity * 2;
+            }
+            if (Left && PosX > 0)
+            {
+                if (!IsPlayerOverItem(Item, Left))
+                {
+
+                    MoveLeft();
+                    PaintAnimation(upMoviment, 3);
+                }
+            else PosX += Velocity * 2;
+            }
+            if (Right && PosX < 770)
+            {
+                if (!IsPlayerOverItem(Item, Right))
+                {
+                    MoveRight();
+                    PaintAnimation(upMoviment, 2);
+                }
+                else PosX -= Velocity * 2;
+            }
+
 
         }
 
@@ -93,53 +131,26 @@ namespace RPG_LP2
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
             Item.Source = parado[0];
-            if (args.VirtualKey == Windows.System.VirtualKey.Up && PosY > 0) 
+            if (args.VirtualKey == Windows.System.VirtualKey.Up) 
             {
                 StartAnimation();
-
-                if (!IsPlayerOverItem(Item, Up))
-                {
-
-                    MoveUp();
-                    Up = true;
-                }
+                Up = true;
+            }
+            if (args.VirtualKey == Windows.System.VirtualKey.Down)
+            {
+                StartAnimation();
+                Down = true;
 
             }
-            if (args.VirtualKey == Windows.System.VirtualKey.Down && PosY < 570)
+            if (args.VirtualKey == Windows.System.VirtualKey.Right)
             {
                 StartAnimation();
-
-                if (!IsPlayerOverItem(Item, Down))
-                {
-
-                    MoveDown();
-                    Down = true;
-
-                }
+                Right = true;
             }
-            if (args.VirtualKey == Windows.System.VirtualKey.Right && PosX < 770)
+            if (args.VirtualKey == Windows.System.VirtualKey.Left)
             {
                 StartAnimation();
-                if (!IsPlayerOverItem(Item, Right))
-                {
-                    MoveRight();
-                    Right = true;
-                }
-
-
-
-            }
-            if (args.VirtualKey == Windows.System.VirtualKey.Left && PosX > 0)
-            {
-                StartAnimation();
-
-                if (!IsPlayerOverItem(Item, Left))
-                {
-
-                    MoveLeft();
-                    Left = true;
-                }
-
+                Left = true;
             }
         }
 
@@ -150,6 +161,7 @@ namespace RPG_LP2
             {
                 StopAnimation();
                 Person1.Source = parado[1];
+                MoveDown(3);
                 Up = false;
 
             }
@@ -157,19 +169,24 @@ namespace RPG_LP2
             {
                 StopAnimation();
                 Person1.Source = parado[0];
+                MoveUp(3);
                 Down = false;
             }
             if (Left)
             {
                 StopAnimation();
                 Person1.Source = parado[2];
+                MoveRight(3);
                 Left = false;
             }
             if (Right)
             {
                 StopAnimation();
                 Person1.Source = parado[3];
+                MoveLeft(3);
+
                 Right = false;
+
             }
         }
         
@@ -195,24 +212,24 @@ namespace RPG_LP2
             else return false;
         }
 
-        private void MoveUp() //Método que realiza a movimentação da imagem para cima
+        private void MoveUp(int Increment = 0) //Método que realiza a movimentação da imagem para cima
         {
-            Person1.SetValue(Canvas.TopProperty, PosY - Velocity);
+            Person1.SetValue(Canvas.TopProperty, PosY - Velocity + Increment);
         }
 
-        private void MoveDown() //Método que realiza a movimentação da imagem para baixo
+        private void MoveDown(int Increment = 0) //Método que realiza a movimentação da imagem para baixo
         {
-            Person1.SetValue(Canvas.TopProperty, PosY + Velocity);
+            Person1.SetValue(Canvas.TopProperty, PosY + Velocity - Increment);
         }
 
-        private void MoveLeft() //Método que realiza a movimentação da imagem para esquerda
+        private void MoveLeft(int Increment = 0) //Método que realiza a movimentação da imagem para esquerda
         {
-            Person1.SetValue(Canvas.LeftProperty, PosX - Velocity);
+            Person1.SetValue(Canvas.LeftProperty, PosX - Velocity + Increment);
         }
 
-        private void MoveRight() //Método que realiza a movimentação da imagem para direita
+        private void MoveRight(int Increment = 0) //Método que realiza a movimentação da imagem para direita
         {
-            Person1.SetValue(Canvas.LeftProperty, PosX + Velocity);
+            Person1.SetValue(Canvas.LeftProperty, PosX + Velocity - Increment);
         }
 
     }
