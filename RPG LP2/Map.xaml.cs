@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using RPGlib.Characters;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -36,25 +37,30 @@ namespace RPG_LP2
         
         double PosY, PosX;
         bool Up, Down, Right, Left;
-        int Velocity = 3;
+        int Velocity = 4;
 
         DispatcherTimer timer = new DispatcherTimer();
-        BitmapImage[] upMoviment = new BitmapImage[] {
-            new BitmapImage(new Uri(@"ms-appx:///Assets/baixogif.gif")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/cimagif.gif")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/dirgif.gif")),
-            new BitmapImage(new Uri(@"ms-appx:///Assets/esqgif.gif")),
-        };
+        public BitmapImage RightMoviment, LeftMoviment, UpMoviment, DownMoviment, IdleRight, IdleLeft, 
+            IdleUp, IdleDown;
 
-        BitmapImage[] parado = new BitmapImage[]
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-             new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png")),
-             new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png")),
-             new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/0.png")),
-             new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png")),
+            Berserker p1 = (Berserker)e.Parameter;
 
-        };
+            RightMoviment = p1.RightMoviment;
+            LeftMoviment = p1.LeftMoviment;
+            UpMoviment = p1.UpMoviment;
+            DownMoviment = p1.DownMoviment;
 
+            IdleRight = p1.IdleRight;
+            IdleLeft = p1.IdleLeft;
+            IdleDown = p1.IdleDown;
+            IdleUp = p1.IdleUp;
+        }
+
+        
         private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {
             if (!timer.IsEnabled)
@@ -75,44 +81,39 @@ namespace RPG_LP2
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
         {                                                    // A cada 110 milisegundos       
 
-            if (Up && PosY > 0)
+            if (Up && PosY > 0)  //Movimento, checagem e animação para cima
             {
-
                 if (!IsPlayerOverItem(Item, Up)) {
                 MoveUp();
-                PaintAnimation(upMoviment, 1);
-
+                PaintAnimation(UpMoviment);
                 }
-
                 else PosY += Velocity * 3;
             }
-            if (Down && PosY < 570)
+            if (Down && PosY < 570) //Movimento, checagem e animação para baixo
             {
 
                 if(!IsPlayerOverItem(Item, Down))
                 {
                 MoveDown();
-                PaintAnimation(upMoviment, 0);
-
+                PaintAnimation(DownMoviment);
                 }
                 else PosY -= Velocity * 2;
             }
-            if (Left && PosX > 0)
+            if (Left && PosX > 0) //Movimento, checagem e animação para esquerda
             {
                 if (!IsPlayerOverItem(Item, Left))
                 {
-
                     MoveLeft();
-                    PaintAnimation(upMoviment, 3);
+                    PaintAnimation(LeftMoviment);
                 }
-            else PosX += Velocity * 2;
+                else PosX += Velocity * 2;
             }
-            if (Right && PosX < 770)
+            if (Right && PosX < 770) //Movimento, checagem e animação para direita
             {
                 if (!IsPlayerOverItem(Item, Right))
                 {
                     MoveRight();
-                    PaintAnimation(upMoviment, 2);
+                    PaintAnimation(RightMoviment);
                 }
                 else PosX -= Velocity * 2;
             }
@@ -120,9 +121,12 @@ namespace RPG_LP2
 
         }
 
-        public void PaintAnimation(BitmapImage[] MovimentArray, int i) // Método de recebe como parametro um vetor de Bitmap
+        public void PaintAnimation( BitmapImage Moviment) // Método de recebe como parametro um vetor de Bitmap
         {                                                       // e realiza a animação do movimento
-            Person1.Source = MovimentArray[i];
+            if (Right) Person1.Source = Moviment;
+            if (Left) Person1.Source = Moviment;
+            if (Up) Person1.Source = Moviment;
+            if (Down) Person1.Source = Moviment;
         }
 
         private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
@@ -130,7 +134,7 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            Item.Source = parado[0];
+            Item.Source = IdleDown;
             if (args.VirtualKey == Windows.System.VirtualKey.Up) 
             {
                 StartAnimation();
@@ -160,30 +164,30 @@ namespace RPG_LP2
             if (Up)
             {
                 StopAnimation();
-                Person1.Source = parado[1];
-                MoveDown(3);
+                Person1.Source = IdleUp;
+                MoveDown(Velocity);
                 Up = false;
 
             }
             if (Down)
             {
                 StopAnimation();
-                Person1.Source = parado[0];
-                MoveUp(3);
+                Person1.Source = IdleDown;
+                MoveUp(Velocity);
                 Down = false;
             }
             if (Left)
             {
                 StopAnimation();
-                Person1.Source = parado[2];
-                MoveRight(3);
+                Person1.Source = IdleLeft;
+                MoveRight(Velocity);
                 Left = false;
             }
             if (Right)
             {
                 StopAnimation();
-                Person1.Source = parado[3];
-                MoveLeft(3);
+                Person1.Source = IdleRight;
+                MoveLeft(Velocity);
 
                 Right = false;
 

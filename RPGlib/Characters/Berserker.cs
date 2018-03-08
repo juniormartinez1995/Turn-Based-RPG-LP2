@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace RPGlib.Characters
 {
@@ -20,6 +21,15 @@ namespace RPGlib.Characters
             this.evasionRate = 5;
             this.currentArmor = 20;
             this.Damage = 30;
+            UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/cimagif.gif"));
+            DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/baixogif.gif"));
+            RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/dirgif.gif"));
+            LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/esqgif.gif"));
+
+            IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png"));
+            IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png"));
+            IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/0.png"));
+            IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png"));
         }
 
         public bool upLevel()
