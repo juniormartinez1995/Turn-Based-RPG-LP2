@@ -62,5 +62,12 @@ namespace RPGlib.Characters
             else return false;
         }
 
+        public float SacrificeBlood()
+        {
+            int hp_faltante = this.maxHealth - this.currentHP;
+            float multiplier = (100 * hp_faltante) / this.maxHealth;
+
+            return multiplier;
+        }
     }
 }
