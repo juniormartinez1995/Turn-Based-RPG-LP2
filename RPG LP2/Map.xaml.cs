@@ -32,6 +32,7 @@ namespace RPG_LP2
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            SetCollision();
         }
 
         
@@ -42,8 +43,27 @@ namespace RPG_LP2
         DispatcherTimer timer = new DispatcherTimer();
         public BitmapImage RightMoviment, LeftMoviment, UpMoviment, DownMoviment, IdleRight, IdleLeft, 
             IdleUp, IdleDown;
+        public Image[] Collision = new Image[5];
 
 
+        public void SetCollision()
+        {
+            Collision[0] = Collision0;
+            Collision[1] = Collision1;
+            Collision[2] = Collision2;
+            Collision[3] = Collision3;
+            Collision[4] = Collision4;
+
+        }
+
+        public bool IsPlayerColliding( bool key)
+        {
+            for(int i = 0; i < Collision.Length; i++)
+            {
+                if(IsPlayerOverItem(Collision, key, i)) return true;
+            }
+            return false;
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -81,36 +101,36 @@ namespace RPG_LP2
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
         {                                                    // A cada 110 milisegundos       
 
-            if (Up && PosY > 0)  //Movimento, checagem e animação para cima
+            if (Up && PosY > 140)  //Movimento, checagem e animação para cima
             {
-                if (!IsPlayerOverItem(Item, Up)) {
+                if (!IsPlayerColliding(Up)) {
                 MoveUp();
                 PaintAnimation(UpMoviment);
                 }
                 else PosY += Velocity * 3;
             }
-            if (Down && PosY < 570) //Movimento, checagem e animação para baixo
+            if (Down && PosY < 470) //Movimento, checagem e animação para baixo
             {
 
-                if(!IsPlayerOverItem(Item, Down))
+                if(!IsPlayerColliding(Down))
                 {
                 MoveDown();
                 PaintAnimation(DownMoviment);
                 }
                 else PosY -= Velocity * 2;
             }
-            if (Left && PosX > 0) //Movimento, checagem e animação para esquerda
+            if (Left && PosX > 70) //Movimento, checagem e animação para esquerda
             {
-                if (!IsPlayerOverItem(Item, Left))
+                if (!IsPlayerColliding(Left))
                 {
                     MoveLeft();
                     PaintAnimation(LeftMoviment);
                 }
                 else PosX += Velocity * 2;
             }
-            if (Right && PosX < 770) //Movimento, checagem e animação para direita
+            if (Right && PosX < 690) //Movimento, checagem e animação para direita
             {
-                if (!IsPlayerOverItem(Item, Right))
+                if (!IsPlayerColliding(Right))
                 {
                     MoveRight();
                     PaintAnimation(RightMoviment);
@@ -200,13 +220,13 @@ namespace RPG_LP2
         /// </summary>
         /// <param name="_item"></param>
         /// <returns></returns>
-        public bool IsPlayerOverItem(Image _item, bool key)
+        public bool IsPlayerOverItem(Image[] _item, bool key, int j)
         {
 
-            if (PosX + Person1.Width >= Canvas.GetLeft(_item) &&
-                PosX <= Canvas.GetLeft(_item) + _item.Width &&
-                PosY + Person1.Height >= Canvas.GetTop(_item) &&
-                PosY <= Canvas.GetTop(_item) + _item.Height
+            if (PosX + Person1.Width >= Canvas.GetLeft(_item[j]) &&
+                PosX <= Canvas.GetLeft(_item[j]) + _item[j].Width &&
+                PosY + Person1.Height >= Canvas.GetTop(_item[j]) &&
+                PosY <= Canvas.GetTop(_item[j]) + _item[j].Height
                 )
             {
                 if (key) return true;

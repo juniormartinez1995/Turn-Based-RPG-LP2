@@ -7,9 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Height="600" Width="797" MaxHeight="600" MaxWidth="800" MinWidth="800" MinHeight="600" ManipulationMode="None" FontFamily="Segoe UI">
     <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
-        <Image Height="600" Canvas.Left="3" Canvas.Top="0" Width="800" Source="Assets/base10.jpg" Stretch="UniformToFill"/>
-        <Image x:Name="Person1" Height="30" Width="30" Canvas.Left="0" Canvas.Top="0" />
-        <Image x:Name="Item" Height="30" Canvas.Left="391" Canvas.Top="285" Width="30"/>
+        <Image x:Name="MainDungeon" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/MainDungeon.gif" Stretch="Fill"/>
+        <Image x:Name="Person1" Height="40" Width="40" Canvas.Left="690" Canvas.Top="470" />
+        <Image x:Name="Item" Height="30" Width="30" Canvas.Left="331" Canvas.Top="300" />
+        <Image x:Name="Collision0" Height="72" Canvas.Left="598" Canvas.Top="344" Width="40"/>
+        <Image x:Name="Collision1" Height="47" Canvas.Left="226" Canvas.Top="235" Width="23"/>
+        <Image x:Name="Collision2" Height="52" Canvas.Left="601" Canvas.Top="245" Width="35"/>
+        <Image x:Name="Collision3" Height="49" Canvas.Left="224" Canvas.Top="347" Width="25"/>
+        <Image x:Name="Collision4" Height="36" Canvas.Left="140" Canvas.Top="415" Width="21"/>
 
     </Canvas>
 
