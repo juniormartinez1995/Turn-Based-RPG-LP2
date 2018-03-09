@@ -17,7 +17,7 @@ namespace RPGlib.Itens
         {
             if(searchInventory() == -1)
             {
-                return "Iventario cheio";
+                return "Inventario cheio";
             }
             else
             {

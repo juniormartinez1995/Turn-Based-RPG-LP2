@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPGlib.Itens;
+using RPGlib.Characters;
+
 
 namespace RPGlib.Itens
 {
    public class CrimsomVanguard : Item
     {
-        public CrimsomVanguard()
+        public  CrimsomVanguard()
         {
 
            // this.LocalImage;
@@ -21,6 +24,14 @@ namespace RPGlib.Itens
             this.Mana = 0;
             this.Description = "HP = 100\nArmor = 10";
             
+        }
+        public override void Effect(Character person)
+        {
+           
+            person.currentArmor += this.Armor;
+            person.currentHP += this.Health;
+
+
         }
     }
 }
