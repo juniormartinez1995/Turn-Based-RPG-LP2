@@ -14,37 +14,29 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.Media;
+using Windows.Media.Playback;
+using Windows.Media.Core;
+using Windows.Storage;
 
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x416
 
 namespace RPG_LP2
 {
-    /// <summary>
-    /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
-    /// </summary>
+   
     public sealed partial class MainPage : Page
     {
+
+       
         public MainPage()
         {
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            Play();
 
         }
-        //funcao buttom de start do jogo
-        /*private void B_Start_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(SelecClass));//proxima tela
-        }
-        //funcao buttom de quit do jogo
-        private void B_Quit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();//fecha o programa
-        }*/
-
-
-        
       
         //funcao buttom de quit do jogo
         private void btn_Close_Tapped(object sender, TappedRoutedEventArgs e)
@@ -56,5 +48,20 @@ namespace RPG_LP2
         {
             this.Frame.Navigate(typeof(SelecClass));//proxima tela
         }
-    }
-}
+
+         
+           public async void Play()
+            {
+            MediaElement PlayMusic = new MediaElement();
+           
+            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Folder = await Folder.GetFolderAsync("Assets");
+            StorageFile sf = await Folder.GetFileAsync("Som2.mp3");
+            PlayMusic.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
+            PlayMusic.Play();
+        }
+            }
+        }
+        
+    
+

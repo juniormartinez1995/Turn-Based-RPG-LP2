@@ -149,6 +149,8 @@
     <Content Include="Assets\leftAnimation\7.png" />
     <Content Include="Assets\leftAnimation\8.png" />
     <Content Include="Assets\logo_back_smal.png" />
+    <Content Include="Assets\Som2.mp3" />
+    <Content Include="Assets\Som1.wav" />
     <Content Include="Assets\rightAnimation\0.png" />
     <Content Include="Assets\rightAnimation\1.png" />
     <Content Include="Assets\rightAnimation\2.png" />
@@ -205,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Imagens\Uplay\" />
+    <Folder Include="Assets\Sons\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
