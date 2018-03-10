@@ -117,6 +117,7 @@
     <None Include="RPG LP2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3" />
     <Content Include="Assets\baixogif.gif" />
     <Content Include="Assets\base10.jpg" />
     <Content Include="Assets\berseker_Front.png" />
@@ -149,6 +150,8 @@
     <Content Include="Assets\leftAnimation\7.png" />
     <Content Include="Assets\leftAnimation\8.png" />
     <Content Include="Assets\logo_back_smal.png" />
+    <Content Include="Assets\Lullaby of Woe A Night to Remember song.mp3" />
+    <Content Include="Assets\Silver For Monsters HQ Extended.mp3" />
     <Content Include="Assets\Som2.mp3" />
     <Content Include="Assets\Som1.wav" />
     <Content Include="Assets\rightAnimation\0.png" />

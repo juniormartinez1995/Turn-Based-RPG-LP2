@@ -23,6 +23,7 @@ namespace RPGlib.Itens
             this.evasionRate = 0;
             this.Damage = 0;
             this.Mana = 0;
+            //VELOCIDADE DO PERSONAGEM
         }
 
         public override void Effect(Character person) { }

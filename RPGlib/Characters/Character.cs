@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGlib.Itens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,8 @@ namespace RPGlib.Characters
         public int gainedXP { get; set; }
         public int Level { get; set; }
         public int Damage { get; set; }
+
+
         public BitmapImage RightMoviment { get; set; }
         public BitmapImage LeftMoviment { get; set; }
         public BitmapImage UpMoviment { get; set; }
@@ -30,5 +33,11 @@ namespace RPGlib.Characters
         public BitmapImage IdleUp { get; set; }
         public BitmapImage IdleDown { get; set; }
 
+        Inventory inventory;
+
+        static public void OpenChest(Chest chest)
+        {
+
+        }
     }
 }

@@ -24,11 +24,11 @@ using Windows.Storage;
 
 namespace RPG_LP2
 {
-   
+
     public sealed partial class MainPage : Page
     {
 
-       
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -37,7 +37,7 @@ namespace RPG_LP2
             Play();
 
         }
-      
+
         //funcao buttom de quit do jogo
         private void btn_Close_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -49,19 +49,19 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(SelecClass));//proxima tela
         }
 
-         
-           public async void Play()
-            {
+
+        public async void Play()
+        {
             MediaElement PlayMusic = new MediaElement();
-           
+
             StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync("Som2.mp3");
+            StorageFile sf = await Folder.GetFileAsync("1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3");
             PlayMusic.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
             PlayMusic.Play();
         }
-            }
-        }
-        
-    
+    }
+}
+
+
 

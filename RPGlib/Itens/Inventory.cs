@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGlib.Characters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace RPGlib.Itens
         List<PotionLife> inventoryPotionLife = new List<PotionLife>();
         List<PotionMana> inventoryPotionMana = new List<PotionMana>();
 
+
+        //PENSAR UM POUCO AQUI
         private string Add_Item(Item item_add)
         {
             if(searchInventory() == -1)
@@ -26,9 +29,16 @@ namespace RPGlib.Itens
             }
         }
 
-        private void Remover_Item(int id)
+        private void Remover_Item(int id, Character person)
         {
+            person.criticRate -= inventory[id].criticalRate;
+            person.currentArmor -= inventory[id].Armor;
+            person.currentHP -= inventory[id].Health;
+            person.currentMana -= inventory[id].Mana;
+            person.evasionRate -= inventory[id].evasionRate;
+            //VELOCIDADE DO PERSONAGEM
             inventory[id] = null;
+
         }
 
         private int searchInventory()
@@ -71,9 +81,6 @@ namespace RPGlib.Itens
             }
             
         }
-        /*private void quantityPotion()
-        {
 
-        }*/
     }
 }

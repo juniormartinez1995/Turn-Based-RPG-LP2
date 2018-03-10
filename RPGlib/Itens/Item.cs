@@ -19,7 +19,7 @@ namespace RPGlib.Itens
         public int criticalRate { get; set; }
         public int evasionRate { get; set; }
         public int Mana { get; set; }
-
+        //VELOCIDADE DO PERSONAGEM
 
         abstract public void Effect(Character Person); //funcao que possibilita usar o item
 

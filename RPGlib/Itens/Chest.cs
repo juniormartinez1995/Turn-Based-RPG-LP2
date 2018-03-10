@@ -9,6 +9,11 @@ namespace RPGlib.Itens
     public class Chest
     {
         public Item item1, item2;
+
+        public void Open()
+        {
+              
+        }
         
     }
 }

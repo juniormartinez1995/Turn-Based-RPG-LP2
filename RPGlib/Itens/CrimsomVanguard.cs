@@ -23,14 +23,12 @@ namespace RPGlib.Itens
             this.Health = 100;
             this.Mana = 0;
             this.Description = "HP = 100\nArmor = 10";
-            
         }
+
         public override void Effect(Character person)
         {
-           
             person.currentArmor += this.Armor;
             person.currentHP += this.Health;
-
 
         }
     }

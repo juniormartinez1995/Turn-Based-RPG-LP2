@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGlib.Itens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace RPGlib.Characters
 {
     public class Berserker : Character
     {
-
+        
         public Berserker()
         {
             this.name = name;
@@ -52,9 +53,7 @@ namespace RPGlib.Characters
 
         public bool CountCritic()
         {
-
-            Random random = new Random();
-            int criticCalc = random.Next(0, 100);
+            int criticCalc = RandomElement.Limiter(0, 100);
             if (criticCalc <= this.criticRate)
             {
                 return true;
