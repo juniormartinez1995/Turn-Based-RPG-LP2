@@ -25,10 +25,10 @@ namespace RPGlib.Itens
             /*
              * 1 = Pocao de vida
              * 2 = pocao de mana
-             * 
+             * 3 = CrisomVanguard
              */
             int qnt_item = RandomElement.Limiter(0, 2);
-            int typeItem = RandomElement.Limiter(1, 2);
+            int typeItem = RandomElement.Limiter(1, 3);
 
             if (qnt_item == 0)
             {
@@ -47,6 +47,10 @@ namespace RPGlib.Itens
                 {
                     c.item2 = GeneratePotionManaAleatory();
                 }
+                if(typeItem == 3)
+                {
+                    c.item2 = new CrimsomVanguard(RandomElement.Limiter(5,10),RandomElement.Limiter(50,100));
+                }
 
             }
             else
@@ -59,8 +63,12 @@ namespace RPGlib.Itens
                 {
                     c.item1 = GeneratePotionManaAleatory();
                 }
+                if (typeItem == 3)
+                {
+                    c.item2 = new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100));
+                }
 
-                int typeItem2 = RandomElement.Limiter(0, 2);
+                int typeItem2 = RandomElement.Limiter(1, 3);
 
                 if (typeItem2 == 1)
                 {
@@ -69,6 +77,10 @@ namespace RPGlib.Itens
                 if (typeItem2 == 2)
                 {
                     c.item2 = GeneratePotionManaAleatory();
+                }
+                if (typeItem2 == 3)
+                {
+                    c.item2 = new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100));
                 }
             }
 

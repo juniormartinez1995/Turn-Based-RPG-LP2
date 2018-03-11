@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGlib.Itens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,8 +53,7 @@ namespace RPGlib.Characters
         public bool CountCritic()
         {
 
-            Random random = new Random();
-            int criticCalc = random.Next(0, 100);
+            int criticCalc = RandomElement.Limiter(0, 100);
             if (criticCalc <= this.criticRate)
             {
                 return true;
@@ -63,8 +63,8 @@ namespace RPGlib.Characters
 
         public int Multicast() //Retorna um inteiro que será o multiplicador de quantas vezes a skill será castada
         {
-            Random multi = new Random();
-            int multicastchance = multi.Next(0, 10);
+       
+            int multicastchance = RandomElement.Limiter(0, 100);
             if(multicastchance <= 5)
             {
                 return 5;

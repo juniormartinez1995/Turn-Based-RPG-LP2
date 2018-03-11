@@ -32,12 +32,14 @@ namespace RPGlib.Characters
         public BitmapImage IdleLeft { get; set; }
         public BitmapImage IdleUp { get; set; }
         public BitmapImage IdleDown { get; set; }
+        
+        //tem algo estranho aki
+        public Inventory inventory = new Inventory();
 
-        Inventory inventory;
-
-        static public void OpenChest(Chest chest)
+        public void OpenChest(Chest chest)
         {
-
+            inventory.AddVerification(chest.item1);
+            inventory.AddVerification(chest.item2);
         }
     }
 }

@@ -11,16 +11,16 @@ namespace RPGlib.Itens
 {
    public class CrimsomVanguard : Item
     {
-        public  CrimsomVanguard()
+        public  CrimsomVanguard(int armor, int health)
         {
 
            // this.LocalImage;
             this.itemName = "Crimsom Vanguard";
-            this.Armor = 10;
+            this.Armor = armor;
             this.criticalRate = 0;
             this.Damage = 0;
             this.evasionRate = 0;
-            this.Health = 100;
+            this.Health = Health;
             this.Mana = 0;
             this.Description = "HP = 100\nArmor = 10";
         }

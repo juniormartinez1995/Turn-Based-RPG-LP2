@@ -10,13 +10,13 @@ namespace RPGlib.Itens
     public class Inventory
     {
 
-        Item[] inventory = new Item[6];
-        List<PotionLife> inventoryPotionLife = new List<PotionLife>();
-        List<PotionMana> inventoryPotionMana = new List<PotionMana>();
+        public Item[] inventory = new Item[6];
+        public List<PotionLife> inventoryPotionLife = new List<PotionLife>();
+        public List<PotionMana> inventoryPotionMana = new List<PotionMana>();
 
 
         //PENSAR UM POUCO AQUI
-        private string Add_Item(Item item_add)
+        public string Add_Item(Item item_add)
         {
             if(searchInventory() == -1)
             {
@@ -29,7 +29,7 @@ namespace RPGlib.Itens
             }
         }
 
-        private void Remover_Item(int id, Character person)
+        public void Remover_Item(int id, Character person)
         {
             person.criticRate -= inventory[id].criticalRate;
             person.currentArmor -= inventory[id].Armor;
@@ -52,22 +52,26 @@ namespace RPGlib.Itens
             }
             return -1;
         }
-        
-        private void AddPotion(Item Potion)
+
+        public Boolean AddPotion(Item Potion)
         {
             
             if (Potion is PotionLife)
             {
                 PotionLife p = Potion as PotionLife;
                 inventoryPotionLife.Add(p);
+                return true;
             }
             else if (Potion is PotionMana)
             {
                 PotionMana p = Potion as PotionMana;
                 inventoryPotionMana.Add(p);
+                return true;
             }
+            return false;
         }
-        private void removeOrUsePotion(Item Potion)
+
+        public void removeOrUsePotion(Item Potion)
         {
             if (Potion is PotionLife)
             {
@@ -82,5 +86,15 @@ namespace RPGlib.Itens
             
         }
 
+        public void AddVerification(Item item)
+        {
+            Boolean var = AddPotion(item);
+
+            if (!var)
+            {
+                Add_Item(item);
+            }
+        }
+        
     }
 }
