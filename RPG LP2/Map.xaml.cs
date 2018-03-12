@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using RPGlib.Characters;
 using Windows.UI.Core;
+using RPGlib.Itens;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,36 +30,58 @@ namespace RPG_LP2
         public Map()
         {
             this.InitializeComponent();
+
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            SetCollision();
+
+            SetCollision(); //Inicialização das colisões pré-definidas
+            SetChetsInMap(); //Inicialização dos baús pré-definidos
+
+            Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
         }
 
 
-        double PosY, PosX;
-        bool IsKeyPressed, Up, Down, Right, Left;
-        int Velocity = 4;
+        double PosY, PosX; //Posição X e Y do personagem no mapa
+        bool IsKeyPressed, Up, Down, Right, Left; //Checagem da direção que o personagem está indo
+        int Velocity = 4; //Velocidade do personagem
+        
+        DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
+        List<Image> Collision = new List<Image>(); //Lista de colisões no mapa
+        List<Image> LockedChests = new List<Image>(); //Lista de baús no mapa
+        Character player; //Personagem que estará no mapa
+        Chest ChestControl = new Chest(); //Gerenciamento do baú
 
-        DispatcherTimer timer = new DispatcherTimer();
-        public Image[] Collision = new Image[5];
-        Character player;
+        //Método para setar os baús no mapa
+        public void SetChetsInMap()
+        {
+            LockedChests.Add(Chest0);
+        }
 
-
+        //Método para setar as colisões no mapa
         public void SetCollision()
         {
-            Collision[0] = Collision0;
-            Collision[1] = Collision1;
-            Collision[2] = Collision2;
-            Collision[3] = Collision3;
-            Collision[4] = Collision4;
+            Collision.Add(Collision0);
+            Collision.Add(Collision1);
+            Collision.Add(Collision2);
+            Collision.Add(Collision3);
 
         }
 
-        public bool IsPlayerColliding(bool key)
+        public bool IsPlayerOverChest(bool key) //Checa se o personagem encontrou um baú no mapa
         {
-            for (int i = 0; i < Collision.Length; i++)
+            foreach(Image vault in LockedChests)
+            {
+                if (IsPlayerOverItem(LockedChests, key, LockedChests.Count)) return true;
+            }
+
+            return false;
+        }
+
+        public bool IsPlayerColliding(bool key) //Checa se o personagem colide com algum objeto e/ou personagem
+        {
+            for (int i = 0; i < Collision.Count; i++)
             {
                 if (IsPlayerOverItem(Collision, key, i)) return true;
             }
@@ -75,7 +98,7 @@ namespace RPG_LP2
 
         private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {
-            if (!timer.IsEnabled)
+            if (!timer.IsEnabled) //O timer só iniciará se ele estiver desligado
             {
                 timer.Tick += AnimationEvent;
                 timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -126,7 +149,7 @@ namespace RPG_LP2
                 }
                 else PosX -= Velocity * 2;
             }
-
+            else if (IsPlayerOverChest(Up)) Application.Current.Exit();
         }
 
         public void PaintAnimation(Character Person) // Método de recebe como parametro um vetor de Bitmap
@@ -142,7 +165,7 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            Item.Source = player.IdleDown;
+            Item.Source = player.IdleDown; //Posição padrao do personagem
 
             if (!IsKeyPressed)
             {
@@ -170,7 +193,7 @@ namespace RPG_LP2
 
         private void CoreWindow_KeyUp(CoreWindow sender, KeyEventArgs args)
         {
-
+            //Método para checar quando a tecla é levantada, e cancelar a animação que acontecia
             switch (args.VirtualKey)
             {
                 case Windows.System.VirtualKey.Up:
@@ -198,12 +221,8 @@ namespace RPG_LP2
             IsKeyPressed = false;
         }
 
-        /// <summary>
-        /// Checa se o player caminha sobre um item no mapa
-        /// </summary>
-        /// <param name="_item"></param>
-        /// <returns></returns>
-        public bool IsPlayerOverItem(Image[] _item, bool key, int j)
+        //Método geral para checar se o personagem está sobre qualquer objeto
+        public bool IsPlayerOverItem(List<Image> _item, bool key, int j)
         {
 
             if (PosX + Person1.Width >= Canvas.GetLeft(_item[j]) &&

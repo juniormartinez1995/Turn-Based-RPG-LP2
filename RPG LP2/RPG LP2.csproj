@@ -180,7 +180,9 @@
     <Content Include="Assets\upAnimation\8.png" />
     <Content Include="Assets\class_Highlight_Berserker.png" />
     <Content Include="Assets\V35BBN0.png" />
-    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Properties\Default.rd.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
