@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGlib.Itens
 {
-    static class Generator
+    public static class Generator
     {
 
         public static PotionLife GeneratePotionLifeAleatory()

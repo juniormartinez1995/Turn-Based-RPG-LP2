@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using RPGlib.Characters;
+using RPGlib.Itens;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,6 +34,8 @@ namespace RPG_LP2
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             SetCollision();
+            Generator.ChestPopulate(chest);
+
         }
 
         
@@ -43,6 +46,8 @@ namespace RPG_LP2
         DispatcherTimer timer = new DispatcherTimer();
         public Image[] Collision = new Image[5];
         Character player;
+        Chest chest = new Chest();
+        
 
 
         public void SetCollision()
@@ -51,7 +56,7 @@ namespace RPG_LP2
             Collision[1] = Collision1;
             Collision[2] = Collision2;
             Collision[3] = Collision3;
-            Collision[4] = Collision4;
+
 
         }
 
