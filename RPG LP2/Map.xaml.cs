@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using RPGlib.Characters;
+using Windows.UI.Core;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -35,9 +36,9 @@ namespace RPG_LP2
             SetCollision();
         }
 
-        
+
         double PosY, PosX;
-        bool Up, Down, Right, Left;
+        bool IsKeyPressed, Up, Down, Right, Left;
         int Velocity = 4;
 
         DispatcherTimer timer = new DispatcherTimer();
@@ -55,11 +56,11 @@ namespace RPG_LP2
 
         }
 
-        public bool IsPlayerColliding( bool key)
+        public bool IsPlayerColliding(bool key)
         {
-            for(int i = 0; i < Collision.Length; i++)
+            for (int i = 0; i < Collision.Length; i++)
             {
-                if(IsPlayerOverItem(Collision, key, i)) return true;
+                if (IsPlayerOverItem(Collision, key, i)) return true;
             }
             return false;
         }
@@ -71,7 +72,7 @@ namespace RPG_LP2
 
         }
 
-        
+
         private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {
             if (!timer.IsEnabled)
@@ -90,19 +91,20 @@ namespace RPG_LP2
 
             if (Up && PosY > 140)  //Movimento, checagem e animação para cima
             {
-                if (!IsPlayerColliding(Up)) {
-                MoveUp();
-                PaintAnimation(player);
+                if (!IsPlayerColliding(Up))
+                {
+                    MoveUp();
+                    PaintAnimation(player);
                 }
                 else PosY += Velocity * 3;
             }
             if (Down && PosY < 470) //Movimento, checagem e animação para baixo
             {
 
-                if(!IsPlayerColliding(Down))
+                if (!IsPlayerColliding(Down))
                 {
-                MoveDown();
-                PaintAnimation(player);
+                    MoveDown();
+                    PaintAnimation(player);
                 }
                 else PosY -= Velocity * 2;
             }
@@ -125,7 +127,6 @@ namespace RPG_LP2
                 else PosX -= Velocity * 2;
             }
 
-
         }
 
         public void PaintAnimation(Character Person) // Método de recebe como parametro um vetor de Bitmap
@@ -136,34 +137,38 @@ namespace RPG_LP2
             if (Down) Person1.Source = Person.DownMoviment;
         }
 
-        private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
+        private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
             Item.Source = player.IdleDown;
 
-            switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
+            if (!IsKeyPressed)
             {
-                case Windows.System.VirtualKey.Up:
-                    Up = true;
-                    break;
-                case Windows.System.VirtualKey.Down:
-                    Down = true;
-                    break;
-                case Windows.System.VirtualKey.Left:
-                    Left = true;
-                    break;
-                case Windows.System.VirtualKey.Right:
-                    Right = true;
-                    break;              
+                switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
+                {
+                    case Windows.System.VirtualKey.Up:
+                        Up = true;
+                        break;
+                    case Windows.System.VirtualKey.Down:
+                        Down = true;
+                        break;
+                    case Windows.System.VirtualKey.Left:
+                        Left = true;
+                        break;
+                    case Windows.System.VirtualKey.Right:
+                        Right = true;
+                        break;
+                }
+                IsKeyPressed = true;
             }
 
             StartAnimation();
         }
 
 
-        private void CoreWindow_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
+        private void CoreWindow_KeyUp(CoreWindow sender, KeyEventArgs args)
         {
 
             switch (args.VirtualKey)
@@ -190,9 +195,8 @@ namespace RPG_LP2
                     break;
             }
             timer.Stop();
-
+            IsKeyPressed = false;
         }
-        
 
         /// <summary>
         /// Checa se o player caminha sobre um item no mapa
