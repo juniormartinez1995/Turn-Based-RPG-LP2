@@ -68,5 +68,7 @@ namespace RPGlib.Characters
 
             return multiplier;
         }
+
+        public new void OpenChest(Chest chest) { }
     }
 }

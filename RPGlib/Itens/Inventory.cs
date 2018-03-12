@@ -36,7 +36,7 @@ namespace RPGlib.Itens
             person.currentHP -= inventory[id].Health;
             person.currentMana -= inventory[id].Mana;
             person.evasionRate -= inventory[id].evasionRate;
-            //VELOCIDADE DO PERSONAGEM
+            //REMOVE DO PERSONAGEM
             inventory[id] = null;
 
         }

@@ -235,5 +235,6 @@ namespace RPG_LP2
             Person1.SetValue(Canvas.LeftProperty, PosX + Velocity - Increment);
         }
 
+
     }
 }
