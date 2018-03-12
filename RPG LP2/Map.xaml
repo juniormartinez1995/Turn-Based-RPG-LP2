@@ -14,7 +14,7 @@
         <Image x:Name="Collision1" Height="47" Canvas.Left="226" Canvas.Top="235" Width="23"/>
         <Image x:Name="Collision2" Height="52" Canvas.Left="601" Canvas.Top="245" Width="35"/>
         <Image x:Name="Collision3" Height="49" Canvas.Left="224" Canvas.Top="347" Width="25"/>
-        <Image x:Name="Collision4" Height="36" Canvas.Left="140" Canvas.Top="415" Width="21"/>
+        <Image x:Name="ChestMap" Height="36" Canvas.Left="140" Canvas.Top="415" Width="21"/>
 
     </Canvas>
 

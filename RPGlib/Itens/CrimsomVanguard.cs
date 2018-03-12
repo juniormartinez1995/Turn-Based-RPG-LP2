@@ -29,7 +29,6 @@ namespace RPGlib.Itens
         {
             person.currentArmor += this.Armor;
             person.currentHP += this.Health;
-
         }
     }
 }
