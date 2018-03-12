@@ -41,9 +41,8 @@ namespace RPG_LP2
         int Velocity = 4;
 
         DispatcherTimer timer = new DispatcherTimer();
-        public BitmapImage RightMoviment, LeftMoviment, UpMoviment, DownMoviment, IdleRight, IdleLeft, 
-            IdleUp, IdleDown;
         public Image[] Collision = new Image[5];
+        Character player;
 
 
         public void SetCollision()
@@ -68,16 +67,8 @@ namespace RPG_LP2
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Berserker p1 = (Berserker)e.Parameter;
+            player = p1;
 
-            RightMoviment = p1.RightMoviment;
-            LeftMoviment = p1.LeftMoviment;
-            UpMoviment = p1.UpMoviment;
-            DownMoviment = p1.DownMoviment;
-
-            IdleRight = p1.IdleRight;
-            IdleLeft = p1.IdleLeft;
-            IdleDown = p1.IdleDown;
-            IdleUp = p1.IdleUp;
         }
 
         
@@ -92,10 +83,6 @@ namespace RPG_LP2
 
         }
 
-        private void StopAnimation() //Método para parar a animação do movimento
-        {
-            timer.Stop();
-        }
 
 
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
@@ -105,7 +92,7 @@ namespace RPG_LP2
             {
                 if (!IsPlayerColliding(Up)) {
                 MoveUp();
-                PaintAnimation(UpMoviment);
+                PaintAnimation(player);
                 }
                 else PosY += Velocity * 3;
             }
@@ -115,7 +102,7 @@ namespace RPG_LP2
                 if(!IsPlayerColliding(Down))
                 {
                 MoveDown();
-                PaintAnimation(DownMoviment);
+                PaintAnimation(player);
                 }
                 else PosY -= Velocity * 2;
             }
@@ -124,7 +111,7 @@ namespace RPG_LP2
                 if (!IsPlayerColliding(Left))
                 {
                     MoveLeft();
-                    PaintAnimation(LeftMoviment);
+                    PaintAnimation(player);
                 }
                 else PosX += Velocity * 2;
             }
@@ -133,7 +120,7 @@ namespace RPG_LP2
                 if (!IsPlayerColliding(Right))
                 {
                     MoveRight();
-                    PaintAnimation(RightMoviment);
+                    PaintAnimation(player);
                 }
                 else PosX -= Velocity * 2;
             }
@@ -141,12 +128,12 @@ namespace RPG_LP2
 
         }
 
-        public void PaintAnimation( BitmapImage Moviment) // Método de recebe como parametro um vetor de Bitmap
+        public void PaintAnimation(Character Person) // Método de recebe como parametro um vetor de Bitmap
         {                                                       // e realiza a animação do movimento
-            if (Right) Person1.Source = Moviment;
-            if (Left) Person1.Source = Moviment;
-            if (Up) Person1.Source = Moviment;
-            if (Down) Person1.Source = Moviment;
+            if (Right) Person1.Source = Person.RightMoviment;
+            if (Left) Person1.Source = Person.LeftMoviment;
+            if (Up) Person1.Source = Person.UpMoviment;
+            if (Down) Person1.Source = Person.DownMoviment;
         }
 
         private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
@@ -154,64 +141,56 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            Item.Source = IdleDown;
-            if (args.VirtualKey == Windows.System.VirtualKey.Up) 
-            {
-                StartAnimation();
-                Up = true;
-            }
-            if (args.VirtualKey == Windows.System.VirtualKey.Down)
-            {
-                StartAnimation();
-                Down = true;
+            Item.Source = player.IdleDown;
 
-            }
-            if (args.VirtualKey == Windows.System.VirtualKey.Right)
+            switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
             {
-                StartAnimation();
-                Right = true;
+                case Windows.System.VirtualKey.Up:
+                    Up = true;
+                    break;
+                case Windows.System.VirtualKey.Down:
+                    Down = true;
+                    break;
+                case Windows.System.VirtualKey.Left:
+                    Left = true;
+                    break;
+                case Windows.System.VirtualKey.Right:
+                    Right = true;
+                    break;              
             }
-            if (args.VirtualKey == Windows.System.VirtualKey.Left)
-            {
-                StartAnimation();
-                Left = true;
-            }
+
+            StartAnimation();
         }
 
 
         private void CoreWindow_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
-            if (Up)
-            {
-                StopAnimation();
-                Person1.Source = IdleUp;
-                MoveDown(Velocity);
-                Up = false;
 
-            }
-            if (Down)
+            switch (args.VirtualKey)
             {
-                StopAnimation();
-                Person1.Source = IdleDown;
-                MoveUp(Velocity);
-                Down = false;
+                case Windows.System.VirtualKey.Up:
+                    Person1.Source = player.IdleUp;
+                    MoveDown(Velocity);
+                    Up = false;
+                    break;
+                case Windows.System.VirtualKey.Down:
+                    Person1.Source = player.IdleDown;
+                    MoveUp(Velocity);
+                    Down = false;
+                    break;
+                case Windows.System.VirtualKey.Left:
+                    Person1.Source = player.IdleLeft;
+                    MoveRight(Velocity);
+                    Left = false;
+                    break;
+                case Windows.System.VirtualKey.Right:
+                    Person1.Source = player.IdleRight;
+                    MoveLeft(Velocity);
+                    Right = false;
+                    break;
             }
-            if (Left)
-            {
-                StopAnimation();
-                Person1.Source = IdleLeft;
-                MoveRight(Velocity);
-                Left = false;
-            }
-            if (Right)
-            {
-                StopAnimation();
-                Person1.Source = IdleRight;
-                MoveLeft(Velocity);
+            timer.Stop();
 
-                Right = false;
-
-            }
         }
         
 
