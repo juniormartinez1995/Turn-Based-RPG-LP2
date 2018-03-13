@@ -73,7 +73,7 @@ namespace RPG_LP2
         {
             foreach(Image vault in LockedChests)
             {
-                if (IsPlayerOverItem(LockedChests, key, LockedChests.Count)) return true;
+                if (IsPlayerOverItem(vault, key)) return true;
             }
 
             return false;
@@ -81,9 +81,10 @@ namespace RPG_LP2
 
         public bool IsPlayerColliding(bool key) //Checa se o personagem colide com algum objeto e/ou personagem
         {
-            for (int i = 0; i < Collision.Count; i++)
+
+            foreach(Image wall in Collision)
             {
-                if (IsPlayerOverItem(Collision, key, i)) return true;
+                if (IsPlayerOverItem(wall, key)) return true;
             }
             return false;
         }
@@ -222,17 +223,16 @@ namespace RPG_LP2
         }
 
         //Método geral para checar se o personagem está sobre qualquer objeto
-        public bool IsPlayerOverItem(List<Image> _item, bool key, int j)
+        public bool IsPlayerOverItem(Image _item, bool key)
         {
 
-            if (PosX + Person1.Width >= Canvas.GetLeft(_item[j]) &&
-                PosX <= Canvas.GetLeft(_item[j]) + _item[j].Width &&
-                PosY + Person1.Height >= Canvas.GetTop(_item[j]) &&
-                PosY <= Canvas.GetTop(_item[j]) + _item[j].Height
+            if (PosX + Person1.Width >= Canvas.GetLeft(_item) &&
+                PosX <= Canvas.GetLeft(_item) + _item.Width &&
+                PosY + Person1.Height >= Canvas.GetTop(_item) &&
+                PosY <= Canvas.GetTop(_item) + _item.Height
                 )
             {
-                if (key) return true;
-                else return false;
+                return key;
 
             }
             else return false;
