@@ -32,24 +32,24 @@ namespace RPGlib.Itens
 
             if (qnt_item == 0)
             {
-                c.item1 = new Stone();
-                c.item2 = new Stone();
+                c.ItemChest.Add(new Stone());
+                c.ItemChest.Add(new Stone());
             }
             else if (qnt_item == 1)
             {
-                c.item1 = new Stone();
+                c.ItemChest.Add(new Stone());
 
                 if (typeItem == 1)
                 {
-                    c.item2 = GeneratePotionLifeAleatory();
+                    c.ItemChest.Add(GeneratePotionLifeAleatory());
                 }
                 if (typeItem == 2)
                 {
-                    c.item2 = GeneratePotionManaAleatory();
+                    c.ItemChest.Add(GeneratePotionManaAleatory());
                 }
                 if(typeItem == 3)
                 {
-                    c.item2 = new CrimsomVanguard(RandomElement.Limiter(5,10),RandomElement.Limiter(50,100));
+                    c.ItemChest.Add(new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100)));
                 }
 
             }
@@ -57,30 +57,30 @@ namespace RPGlib.Itens
             {
                 if (typeItem == 1)
                 {
-                    c.item1 = GeneratePotionLifeAleatory();
+                    c.ItemChest.Add(GeneratePotionLifeAleatory());
                 }
                 if (typeItem == 2)
                 {
-                    c.item1 = GeneratePotionManaAleatory();
+                    c.ItemChest.Add(GeneratePotionManaAleatory());
                 }
                 if (typeItem == 3)
                 {
-                    c.item2 = new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100));
+                    c.ItemChest.Add(new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100)));
                 }
 
                 int typeItem2 = RandomElement.Limiter(1, 3);
 
                 if (typeItem2 == 1)
                 {
-                    c.item2 = GeneratePotionLifeAleatory();
+                    c.ItemChest.Add(GeneratePotionLifeAleatory());
                 }
                 if (typeItem2 == 2)
                 {
-                    c.item2 = GeneratePotionManaAleatory();
+                    c.ItemChest.Add(GeneratePotionManaAleatory());
                 }
                 if (typeItem2 == 3)
                 {
-                    c.item2 = new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100));
+                    c.ItemChest.Add(new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100)));
                 }
             }
 

@@ -16,7 +16,7 @@ namespace RPGlib.Itens
             this.Health = gainedHP;
             this.itemName = "Poção de Vida";
             this.Description = "bufa " + this.Health + ".";
-            this.LocalImage = "";
+            this.ImageItem= null;
 
             //---------------------------------------------
 

@@ -14,7 +14,7 @@ namespace RPGlib.Itens
         public  CrimsomVanguard(int armor, int health)
         {
 
-           // this.LocalImage;
+            this.ImageItem = null;
             this.itemName = "Crimsom Vanguard";
             this.Armor = armor;
             this.criticalRate = 0;

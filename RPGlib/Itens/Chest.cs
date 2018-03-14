@@ -9,10 +9,8 @@ namespace RPGlib.Itens
 {
     public class Chest
     {
-        public Item item1, item2;
+        public List<Item> ItemChest = new List<Item>();
         public BitmapImage chest1 { get; set; }
-
-        public Chest() { }
         
     }
 }

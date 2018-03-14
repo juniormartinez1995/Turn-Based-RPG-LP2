@@ -16,16 +16,17 @@ namespace RPGlib.Itens
 
 
         //PENSAR UM POUCO AQUI
-        public string Add_Item(Item item_add)
+        public Boolean Add_Item(Item item_add)
         {
             if(searchInventory() == -1)
             {
-                return "Inventario cheio";
+                return false;
             }
             else
             {
                 inventory[searchInventory()] = item_add;
-                return "Item adicionado";
+                return true;
+
             }
         }
 
@@ -86,14 +87,16 @@ namespace RPGlib.Itens
             
         }
 
-        public void AddVerification(Item item)
+        public Boolean AddVerification(Item item)
         {
             Boolean var = AddPotion(item);
 
             if (!var)
             {
-                Add_Item(item);
+              return Add_Item(item);
+               
             }
+            return true;
         }
         
     }
