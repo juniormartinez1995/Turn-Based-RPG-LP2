@@ -19,7 +19,7 @@ namespace RPGlib
         {
             Berserker p1 = new Berserker();
         }
-
+        
         private void Play()
         {
             MediaElement PlayMusic = new MediaElement();
@@ -34,7 +34,7 @@ namespace RPGlib
 
         }
         Thread play = new Thread(Play());
-
+        
     }
 }
 

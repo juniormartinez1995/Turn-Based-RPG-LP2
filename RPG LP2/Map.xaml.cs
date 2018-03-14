@@ -39,14 +39,15 @@ namespace RPG_LP2
 
             SetCollision(); //Inicialização das colisões pré-definidas
             SetChetsInMap(); //Inicialização dos baús pré-definidos
+            StartAnimation();
 
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
         }
 
 
         double PosY, PosX; //Posição X e Y do personagem no mapa
-        bool IsKeyPressed, Up, Down, Right, Left; //Checagem da direção que o personagem está indo
-        int Velocity = 4; //Velocidade do personagem
+        bool IsKeyPressed, Up , Down, Right, Left; //Checagem da direção que o personagem está indo
+        int Velocity = 3; //Velocidade do personagem
         
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
         List<Image> Collision = new List<Image>(); //Lista de colisões no mapa
@@ -113,6 +114,8 @@ namespace RPG_LP2
 
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
         {                                                    // A cada 110 milisegundos       
+            PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
+            PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
             if (Up && PosY > 140)  //Movimento, checagem e animação para cima
             {
@@ -169,13 +172,13 @@ namespace RPG_LP2
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
-            PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
-            PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
             Item.Source = player.IdleDown; //Posição padrao do personagem
 
+
             if (!IsKeyPressed)
             {
+
                 switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
                 {
                     case Windows.System.VirtualKey.Up:
@@ -191,10 +194,10 @@ namespace RPG_LP2
                         Right = true;
                         break;
                 }
+
                 IsKeyPressed = true;
             }
 
-            StartAnimation();
         }
 
 
@@ -224,8 +227,8 @@ namespace RPG_LP2
                     Right = false;
                     break;
             }
-            timer.Stop();
             IsKeyPressed = false;
+
         }
 
         

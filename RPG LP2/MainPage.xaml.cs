@@ -34,7 +34,7 @@ namespace RPG_LP2
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            Play();
+
 
         }
 
