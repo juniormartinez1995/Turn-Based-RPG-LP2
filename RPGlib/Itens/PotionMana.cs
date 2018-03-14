@@ -18,7 +18,7 @@ namespace RPGlib.Itens
             this.Mana = qntMana;
             this.itemName = "Poção de Mana";
             this.Description = "bufa " + this.Mana + ".";
-            this.LocalImage = "";
+            this.ImageItem =null;
             this.Health = 0;
             this.Armor = 0;
             this.criticalRate = 0;

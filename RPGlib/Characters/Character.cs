@@ -32,14 +32,25 @@ namespace RPGlib.Characters
         public BitmapImage IdleLeft { get; set; }
         public BitmapImage IdleUp { get; set; }
         public BitmapImage IdleDown { get; set; }
-        
-        //tem algo estranho aki
+
         public Inventory inventory = new Inventory();
 
         public void OpenChest(Chest chest)
         {
-            inventory.AddVerification(chest.item1);
-            inventory.AddVerification(chest.item2);
+            for (int x=0;x<chest.ItemChest.Count();x++)
+            {
+                if (inventory.AddVerification(chest.ItemChest.ElementAt(x)))
+                {
+                    chest.ItemChest.RemoveAt(x);
+                }
+                else
+                {
+                    break;
+                }
+            }
+               
         }
     }
 }
+
+//verificar espaco inventario possibilidade de entrar apenas 1 item

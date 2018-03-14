@@ -151,7 +151,12 @@ namespace RPG_LP2
                 }
                 else PosX -= Velocity * 2;
             }
-            else if (IsPlayerOverChest(Up)) Application.Current.Exit();
+            else if (IsPlayerOverChest(Up))
+            {
+                //player.OpenChest(ChestControl);
+                ImageStone.Source = new Stone().ImageItem;
+                ImageStone.Opacity = 100;
+            }
         }
 
         public void PaintAnimation(Character Person) // Método de recebe como parametro um vetor de Bitmap
@@ -223,6 +228,8 @@ namespace RPG_LP2
             IsKeyPressed = false;
         }
 
+        
+
         //Método geral para checar se o personagem está sobre qualquer objeto
         public bool IsPlayerOverItem(Image _item, bool key)
         {
@@ -258,6 +265,8 @@ namespace RPG_LP2
         {
             Person1.SetValue(Canvas.LeftProperty, PosX + Velocity - Increment);
         }
+
+
 
     }
 }
