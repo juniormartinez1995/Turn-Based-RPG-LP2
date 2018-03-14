@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="RPG_LP2.Map"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,7 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Height="600" Width="797" MaxHeight="600" MaxWidth="800" MinWidth="800" MinHeight="600" ManipulationMode="None" FontFamily="Segoe UI">
+
+
     <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
+
         <Image x:Name="MainDungeon" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/MainDungeon.gif" Stretch="Fill"/>
         <Image x:Name="Person1" Height="40" Width="40" Canvas.Left="690" Canvas.Top="470" />
         <Image x:Name="Item" Height="30" Width="30" Canvas.Left="331" Canvas.Top="300" />
@@ -18,6 +21,38 @@
       
         <Image x:Name="ImageStone" Height="100" Canvas.Left="303" Canvas.Top="249" Width="100" Opacity="0"/>
 
+        
+        <Rectangle Height="50" Canvas.Left="56" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.5" >
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Height="50" Canvas.Left="108" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Height="50" Canvas.Left="160" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Height="50" Canvas.Left="212" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.5">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Height="50" Canvas.Left="264" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.51">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Height="50" Canvas.Left="316" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" Opacity="0.5" Visibility="Visible" RequestedTheme="Default" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Image x:Name="mochila" Height="50" Width="50" Canvas.Top="547" Canvas.Left="2" />
     </Canvas>
 
 </Page>
