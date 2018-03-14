@@ -122,7 +122,6 @@
   <ItemGroup>
     <Content Include="Assets\1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3" />
     <Content Include="Assets\baixogif.gif" />
-    <Content Include="Assets\base10.jpg" />
     <Content Include="Assets\berseker_Front.png" />
     <Content Include="Assets\btn_closeCUTTED.png" />
     <Content Include="Assets\btn_startCUTTED.png" />

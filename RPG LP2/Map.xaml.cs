@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using RPGlib.Characters;
 using Windows.UI.Core;
 using RPGlib.Itens;
+using System.Diagnostics;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -73,7 +74,7 @@ namespace RPG_LP2
         {
             foreach(Image vault in LockedChests)
             {
-                if (IsPlayerOverItem(vault, key)) return true;
+                if (IsPlayerOverItem(vault, key)) return true; 
             }
 
             return false;
