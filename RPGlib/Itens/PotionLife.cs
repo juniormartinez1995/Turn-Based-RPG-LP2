@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using RPGlib.Characters;
 using RPGlib.Itens;
+using Windows.UI.Xaml.Media.Imaging;
+
 namespace RPGlib.Itens
 {
     public class PotionLife : Item
@@ -16,7 +18,7 @@ namespace RPGlib.Itens
             this.Health = gainedHP;
             this.itemName = "Poção de Vida";
             this.Description = "bufa " + this.Health + ".";
-            this.ImageItem= null;
+            this.ImageItem= new BitmapImage(new Uri(@"ms-appx:///Assets/potion_life.png")); ;
 
             //---------------------------------------------
 

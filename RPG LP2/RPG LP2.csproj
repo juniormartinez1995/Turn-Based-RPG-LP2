@@ -121,6 +121,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3" />
+    <Content Include="Assets\backpack.png" />
+    <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\baixogif.gif" />
     <Content Include="Assets\berseker_Front.png" />
     <Content Include="Assets\btn_closeCUTTED.png" />
@@ -128,6 +130,7 @@
     <Content Include="Assets\Buttom_Close.png" />
     <Content Include="Assets\Buttom_Start.png" />
     <Content Include="Assets\cimagif.gif" />
+    <Content Include="Assets\crimson_vanguard.png" />
     <Content Include="Assets\dirgif.gif" />
     <Content Include="Assets\downAnimation\0.png" />
     <Content Include="Assets\downAnimation\1.png" />
@@ -154,6 +157,8 @@
     <Content Include="Assets\logo_back_smal.png" />
     <Content Include="Assets\Lullaby of Woe A Night to Remember song.mp3" />
     <Content Include="Assets\pedrona.png" />
+    <Content Include="Assets\potion_life.png" />
+    <Content Include="Assets\potion_mana.png" />
     <Content Include="Assets\Silver For Monsters HQ Extended.mp3" />
     <Content Include="Assets\Som2.mp3" />
     <Content Include="Assets\Som1.wav" />

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RPGlib.Itens;
 using RPGlib.Characters;
-
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace RPGlib.Itens
 {
@@ -14,7 +14,7 @@ namespace RPGlib.Itens
         public  CrimsomVanguard(int armor, int health)
         {
 
-            this.ImageItem = null;
+            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/crimson_vanguard.png")); ;
             this.itemName = "Crimsom Vanguard";
             this.Armor = armor;
             this.criticalRate = 0;

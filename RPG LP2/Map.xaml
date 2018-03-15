@@ -18,41 +18,88 @@
         <Image x:Name="Collision2" Height="52" Canvas.Left="601" Canvas.Top="245" Width="35"/>
         <Image x:Name="Collision3" Height="49" Canvas.Left="224" Canvas.Top="347" Width="25"/>
         <Image x:Name="Chest0" Height="36" Canvas.Left="140" Canvas.Top="415" Width="21"/>
-      
+
         <Image x:Name="ImageStone" Height="100" Canvas.Left="303" Canvas.Top="249" Width="100" Opacity="0"/>
 
-        
+
+        <!--Seção dos retângulos-->
+
+        <!--56x, 547y-->
         <Rectangle Height="50" Canvas.Left="56" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.5" >
             <Rectangle.RenderTransform>
                 <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
             </Rectangle.RenderTransform>
         </Rectangle>
+
+        <!--108x, 547y-->
         <Rectangle Height="50" Canvas.Left="108" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.5">
             <Rectangle.RenderTransform>
                 <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
             </Rectangle.RenderTransform>
         </Rectangle>
+
+        <!--160x, 547y-->
         <Rectangle Height="50" Canvas.Left="160" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.5">
             <Rectangle.RenderTransform>
                 <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
             </Rectangle.RenderTransform>
         </Rectangle>
+
+        <!--212x, 547y-->
         <Rectangle Height="50" Canvas.Left="212" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.5">
             <Rectangle.RenderTransform>
                 <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
             </Rectangle.RenderTransform>
         </Rectangle>
+
+        <!--264x, 547y-->
         <Rectangle Height="50" Canvas.Left="264" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.51">
             <Rectangle.RenderTransform>
                 <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
             </Rectangle.RenderTransform>
         </Rectangle>
+
+        <!--316x, 547y-->
         <Rectangle Height="50" Canvas.Left="316" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" Opacity="0.5" Visibility="Visible" RequestedTheme="Default" UseLayoutRounding="False" d:LayoutRounding="Auto" >
             <Rectangle.RenderTransform>
                 <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Image x:Name="mochila" Height="50" Width="50" Canvas.Top="547" Canvas.Left="2" />
+
+        <!--Retângulos LIFE and MANA-->
+
+        <!--380x, 547y-->
+        <Rectangle Height="50" Canvas.Left="380" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" Opacity="0.5" Visibility="Visible" RequestedTheme="Default" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <!--432x, 547y-->
+        <Rectangle Height="50" Canvas.Left="432" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" Opacity="0.5" Visibility="Visible" RequestedTheme="Default" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="0.101" TranslateY="0.02" TranslateX="-0.005"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <!--Imagem da mochila-->
+        <Image x:Name="mochila" Height="50" Width="50" Canvas.Top="547" Canvas.Left="2" Source="Assets/backpack_cutted.png" />
+
+        <!--Imagens por cima dos retângulos-->
+        <Image x:Name="Item1" Canvas.Left="56" Canvas.Top="547" Width="50" Height="50" Tag="0"/>
+        <Image x:Name="Item2" Canvas.Left="108" Canvas.Top="547" Width="50" Height="50" Tag="1"/>
+        <Image x:Name="Item3" Canvas.Left="160" Canvas.Top="547" Width="50" Height="50" Tag="2"/>
+        <Image x:Name="Item4" Canvas.Left="212" Canvas.Top="547" Width="50" Height="50" Tag="3"/>
+        <Image x:Name="Item5" Canvas.Left="264" Canvas.Top="547" Width="50" Height="50" Tag="4"/>
+        <Image x:Name="Item6" Canvas.Left="316" Canvas.Top="547" Width="50" Height="50" Tag="5"/>
+        <!--Potes de LIFE and MANA-->
+        <Image x:Name="life_pot" Canvas.Left="380" Canvas.Top="547" Width="50" Height="50" Source="Assets/potion_life.png" />
+        <Image x:Name="life_mana" Canvas.Left="432" Canvas.Top="547" Width="50" Height="50" Source="Assets/potion_mana.png" />
+
+        <!--Quantidade dos Potes LIFE and MANA-->
+        <TextBlock x:Name="qt_lifePot" Canvas.Left="418" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"  />
+        <TextBlock x:Name="qt_lifeMana" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
+
     </Canvas>
 
 </Page>

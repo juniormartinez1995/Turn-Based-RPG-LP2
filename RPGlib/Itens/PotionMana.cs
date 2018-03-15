@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RPGlib.Characters;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace RPGlib.Itens
 {
@@ -18,7 +19,7 @@ namespace RPGlib.Itens
             this.Mana = qntMana;
             this.itemName = "Poção de Mana";
             this.Description = "bufa " + this.Mana + ".";
-            this.ImageItem =null;
+            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/potion_mana.png")); ;
             this.Health = 0;
             this.Armor = 0;
             this.criticalRate = 0;

@@ -40,6 +40,7 @@ namespace RPG_LP2
             SetCollision(); //Inicialização das colisões pré-definidas
             SetChetsInMap(); //Inicialização dos baús pré-definidos
             StartAnimation();
+            addImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
 
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
         }
@@ -52,6 +53,8 @@ namespace RPG_LP2
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
         List<Image> Collision = new List<Image>(); //Lista de colisões no mapa
         List<Image> LockedChests = new List<Image>(); //Lista de baús no mapa
+        List<BitmapImage> InventoryImage = new List<BitmapImage>(); //Lista das Imagens de Inventário
+        List<Image> InventoryMap = new List<Image>();
         Character player; //Personagem que estará no mapa
         Chest ChestControl = new Chest(); //Gerenciamento do baú
 
@@ -72,7 +75,9 @@ namespace RPG_LP2
         }
 
         public bool IsPlayerOverChest(bool key) //Checa se o personagem encontrou um baú no mapa
-        {
+        {   
+
+
             foreach(Image vault in LockedChests)
             {
                 if (IsPlayerOverItem(vault, key)) return true; 
@@ -98,6 +103,17 @@ namespace RPG_LP2
 
         }
 
+        private void addImageOnList() 
+        {
+            InventoryMap.Add(Item1);
+            InventoryMap.Add(Item2);
+            InventoryMap.Add(Item3);
+            InventoryMap.Add(Item4);
+            InventoryMap.Add(Item5);
+            InventoryMap.Add(Item6);
+
+        }
+
 
         private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {
@@ -109,8 +125,6 @@ namespace RPG_LP2
             }
 
         }
-
-
 
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
         {                                                    // A cada 110 milisegundos       
@@ -154,11 +168,28 @@ namespace RPG_LP2
                 }
                 else PosX -= Velocity * 2;
             }
-            else if (IsPlayerOverChest(Up))
+            else if (IsPlayerOverChest(Up)) //CORE
             {
-                //player.OpenChest(ChestControl);
-                ImageStone.Source = new Stone().ImageItem;
-                ImageStone.Opacity = 100;
+                player.OpenChest(ChestControl);//Abre o baú e adiciona os itens ao inventário
+
+                for(int x=0; x<6; x++) 
+                {   
+                    if(player.inventory.inventory[x] != null) //Checa se está na posição do item
+                    {
+                        InventoryImage.Add(player.inventory.inventory[x].ImageItem); //Pega o BitmapImage do Item e adiciona a um List
+                    }
+                   
+                }
+
+                for (int x = 0; x < InventoryImage.Count; x++) 
+                {
+                    InventoryMap[x].Source = InventoryImage[x];
+                }
+
+
+                //ChestControl.ItemChest;
+                //ImageStone.Source = new Stone().ImageItem;
+                //ImageStone.Opacity = 100;
             }
         }
 
