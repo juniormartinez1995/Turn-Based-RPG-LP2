@@ -26,8 +26,6 @@ namespace RPGlib.Itens
             this.Damage = 0;
             this.Mana = 0;
             
-            
-
         }
         //person = personagem
         //correntHP = vida atual do personagem

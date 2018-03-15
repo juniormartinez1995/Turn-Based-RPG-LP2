@@ -10,7 +10,7 @@ namespace RPGlib.Characters
 {
     abstract public class Character
     {
-        public String name { get; set; }
+        public String name = "Caio";
         public int currentHP { get; set; }
         public int maxHealth { get; set; }
         public int maxMana { get; set; }
@@ -22,7 +22,7 @@ namespace RPGlib.Characters
         public int gainedXP { get; set; }
         public int Level { get; set; }
         public int Damage { get; set; }
-
+        
 
         public BitmapImage RightMoviment { get; set; }
         public BitmapImage LeftMoviment { get; set; }

@@ -13,7 +13,6 @@ namespace RPGlib.Characters
         
         public Berserker()
         {
-            this.name = name;
             this.currentHP = 250;
             this.currentMana = 100;
             this.currentXP = 0;
@@ -63,8 +62,8 @@ namespace RPGlib.Characters
 
         public float SacrificeBlood()
         {
-            int hp_faltante = this.maxHealth - this.currentHP;
-            float multiplier = (100 * hp_faltante) / this.maxHealth;
+            int hp_missing = this.maxHealth - this.currentHP;
+            float multiplier = (100 * hp_missing) / this.maxHealth;
 
             return multiplier;
         }
