@@ -170,23 +170,24 @@ namespace RPG_LP2
             }
             else if (IsPlayerOverChest(Up)) //CORE
             {
-                player.OpenChest(ChestControl);//Abre o baú e adiciona os itens ao inventário
-
-                for(int x=0; x<6; x++) 
-                {   
-                    if(player.inventory.inventory[x] != null) //Checa se está na posição do item
-                    {
-                        InventoryImage.Add(player.inventory.inventory[x].ImageItem); //Pega o BitmapImage do Item e adiciona a um List
-                    }
-                   
-                }
-
-                for (int x = 0; x < InventoryImage.Count; x++) 
+                if (player.OpenChest(ChestControl)) //Abre o baú e adiciona os itens ao inventário
                 {
-                    InventoryMap[x].Source = InventoryImage[x];
+
+                    for (int x = 0; x < 6; x++) 
+                    {
+                        if (player.inventory.inventory[x] != null) //Checa se está na posição do item
+                        {
+                            InventoryImage.Add(player.inventory.inventory[x].ImageItem); //Pega o BitmapImage do Item e adiciona a um List
+                        }
+
+                    }
+
+                    for (int y = 0; y < InventoryImage.Count(); y++) //Coloca os Bitmaps das Imagens na lista de Imagens visuais
+                    {
+                        InventoryMap[y].Source = InventoryImage[y];
+                    }
+
                 }
-
-
                 //ChestControl.ItemChest;
                 //ImageStone.Source = new Stone().ImageItem;
                 //ImageStone.Opacity = 100;

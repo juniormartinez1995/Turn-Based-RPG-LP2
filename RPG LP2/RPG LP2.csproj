@@ -173,6 +173,7 @@
     <Content Include="Assets\rightAnimation\7.png" />
     <Content Include="Assets\rightAnimation\8.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\stone.png" />
     <Content Include="Assets\trademarkCUTTED.png" />
     <Content Include="Assets\trademarkkCUTTED.png" />
     <Content Include="Assets\upAnimation\0.png" />

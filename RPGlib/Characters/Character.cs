@@ -35,20 +35,23 @@ namespace RPGlib.Characters
 
         public Inventory inventory = new Inventory();
 
-        public void OpenChest(Chest chest)
+        public bool OpenChest(Chest chest)
         {
             for (int x=0;x<chest.ItemChest.Count();x++)
             {
                 if (inventory.AddVerification(chest.ItemChest.ElementAt(x)))
                 {
                     chest.ItemChest.RemoveAt(x);
+                    return true;
+
                 }
                 else
                 {
-                    break;
+                    return false;
                 }
             }
-               
+            return false;
+
         }
     }
 }

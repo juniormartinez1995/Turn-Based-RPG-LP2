@@ -17,7 +17,7 @@ namespace RPGlib.Itens
             this.Health = 0;
             this.itemName = "Pedra";
             this.Description = "Tem uma pedra no seu caminho.";
-            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/pedrona.png")); 
+            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/stone.png")); 
 
             //---------------------------------------------
 
