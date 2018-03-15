@@ -144,6 +144,7 @@
     <Content Include="Assets\Dungeons\MainDungeon.gif" />
     <Content Include="Assets\esqgif.gif" />
     <Content Include="Assets\florest_animated.gif" />
+    <Content Include="Assets\Jynx.gif" />
     <Content Include="Assets\logo_back.png" />
     <Content Include="Assets\leftAnimation\0.png" />
     <Content Include="Assets\leftAnimation\1.png" />

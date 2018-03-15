@@ -30,7 +30,7 @@ namespace RPGlib.Itens
             }
         }
 
-        public void Remover_Item(int id, Character person)
+        public void Remove_Item(int id, Character person)
         {
             person.criticRate -= inventory[id].criticalRate;
             person.currentArmor -= inventory[id].Armor;
