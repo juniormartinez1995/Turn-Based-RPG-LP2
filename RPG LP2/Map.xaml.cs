@@ -173,6 +173,9 @@ namespace RPG_LP2
                 if (player.OpenChest(ChestControl)) //Abre o baú e adiciona os itens ao inventário
                 {
 
+                    qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
+                    qt_manaPot.Text = player.inventory.inventoryPotionLife.Count().ToString();
+
                     for (int x = 0; x < 6; x++) 
                     {
                         if (player.inventory.inventory[x] != null) //Checa se está na posição do item

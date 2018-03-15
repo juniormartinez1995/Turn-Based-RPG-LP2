@@ -98,7 +98,7 @@
 
         <!--Quantidade dos Potes LIFE and MANA-->
         <TextBlock x:Name="qt_lifePot" Canvas.Left="418" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"  />
-        <TextBlock x:Name="qt_lifeMana" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
+        <TextBlock x:Name="qt_manaPot" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
 
     </Canvas>
 
