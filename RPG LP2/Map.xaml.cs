@@ -18,6 +18,7 @@ using RPGlib.Characters;
 using Windows.UI.Core;
 using RPGlib.Itens;
 using System.Diagnostics;
+using RPGlib;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -40,7 +41,7 @@ namespace RPG_LP2
             SetCollision(); //Inicialização das colisões pré-definidas
             SetChetsInMap(); //Inicialização dos baús pré-definidos
             StartAnimation();
-            addImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
+            AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
 
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
         }
@@ -74,28 +75,6 @@ namespace RPG_LP2
 
         }
 
-        public bool IsPlayerOverChest(bool key) //Checa se o personagem encontrou um baú no mapa
-        {   
-
-
-            foreach(Image vault in LockedChests)
-            {
-                if (IsPlayerOverItem(vault, key)) return true; 
-            }
-
-            return false;
-        }
-
-        public bool IsPlayerColliding(bool key) //Checa se o personagem colide com algum objeto e/ou personagem
-        {
-
-            foreach(Image wall in Collision)
-            {
-                if (IsPlayerOverItem(wall, key)) return true;
-            }
-            return false;
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Berserker p1 = (Berserker)e.Parameter;
@@ -103,7 +82,7 @@ namespace RPG_LP2
 
         }
 
-        private void addImageOnList() 
+        private void AddImageOnList() 
         {
             InventoryMap.Add(Item1);
             InventoryMap.Add(Item2);
@@ -131,85 +110,53 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            if (Up && PosY > 140)  //Movimento, checagem e animação para cima
+            if (Up && PosY > 140 && !ControllerGame.IsPlayerOverChest(Person1, LockedChests, Up))  //Movimento, checagem e animação para cima
             {
-                if (!IsPlayerColliding(Up))
+                if (!ControllerGame.IsPlayerColliding(Person1, Collision, Up))
                 {
-                    MoveUp();
-                    PaintAnimation(player);
+                    ControllerGame.MoveUp(Person1, Velocity);
+                    ControllerGame.PaintAnimation(Person1, player, Right, Left, Up, Down);
                 }
                 else PosY += Velocity * 3;
             }
-            if (Down && PosY < 470) //Movimento, checagem e animação para baixo
+            if (Down && PosY < 470 && !ControllerGame.IsPlayerOverChest(Person1, LockedChests ,Down)) //Movimento, checagem e animação para baixo
             {
 
-                if (!IsPlayerColliding(Down))
+                if (!ControllerGame.IsPlayerColliding(Person1, Collision, Down))
                 {
-                    MoveDown();
-                    PaintAnimation(player);
+                    ControllerGame.MoveDown(Person1, Velocity);
+                    ControllerGame.PaintAnimation(Person1, player, Right, Left, Up, Down);
                 }
                 else PosY -= Velocity * 2;
             }
-            if (Left && PosX > 70) //Movimento, checagem e animação para esquerda
+            if (Left && PosX > 70 && !ControllerGame.IsPlayerOverChest(Person1, LockedChests, Left)) //Movimento, checagem e animação para esquerda
             {
-                if (!IsPlayerColliding(Left))
+                if (!ControllerGame.IsPlayerColliding(Person1, Collision, Left))
                 {
-                    MoveLeft();
-                    PaintAnimation(player);
+                    ControllerGame.MoveLeft(Person1, Velocity);
+                    ControllerGame.PaintAnimation(Person1, player, Right, Left, Up, Down);
                 }
                 else PosX += Velocity * 2;
             }
-            if (Right && PosX < 690) //Movimento, checagem e animação para direita
+            if (Right && PosX < 690 && !ControllerGame.IsPlayerOverChest(Person1, LockedChests, Right)) //Movimento, checagem e animação para direita
             {
-                if (!IsPlayerColliding(Right))
+                if (!ControllerGame.IsPlayerColliding(Person1, Collision, Right))
                 {
-                    MoveRight();
-                    PaintAnimation(player);
+                    ControllerGame.MoveRight(Person1, Velocity);
+                    ControllerGame.PaintAnimation(Person1, player, Right, Left, Up, Down);
                 }
                 else PosX -= Velocity * 2;
             }
-            else if (IsPlayerOverChest(Up)) //CORE
+            else if (ControllerGame.IsPlayerOverChest(Person1, LockedChests, Up)) //CORE
             {
-                if (player.OpenChest(ChestControl)) //Abre o baú e adiciona os itens ao inventário
-                {
-
-                    qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
-                    qt_manaPot.Text = player.inventory.inventoryPotionLife.Count().ToString();
-
-                    for (int x = 0; x < 6; x++) 
-                    {
-                        if (player.inventory.inventory[x] != null) //Checa se está na posição do item
-                        {
-                            InventoryImage.Add(player.inventory.inventory[x].ImageItem); //Pega o BitmapImage do Item e adiciona a um List
-                        }
-
-                    }
-
-                    for (int y = 0; y < InventoryImage.Count(); y++) //Coloca os Bitmaps das Imagens na lista de Imagens visuais
-                    {
-                        InventoryMap[y].Source = InventoryImage[y];
-                    }
-
-                }
-                //ChestControl.ItemChest;
-                //ImageStone.Source = new Stone().ImageItem;
-                //ImageStone.Opacity = 100;
+                ControllerGame.LootVault(player, ChestControl, qt_lifePot, qt_manaPot, InventoryImage, InventoryMap);
+                
             }
         }
 
-        public void PaintAnimation(Character Person) // Método de recebe como parametro um vetor de Bitmap
-        {                                                       // e realiza a animação do movimento
-            if (Right) Person1.Source = Person.RightMoviment;
-            if (Left) Person1.Source = Person.LeftMoviment;
-            if (Up) Person1.Source = Person.UpMoviment;
-            if (Down) Person1.Source = Person.DownMoviment;
-        }
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
-
-            Item.Source = player.IdleDown; //Posição padrao do personagem
-
 
             if (!IsKeyPressed)
             {
@@ -243,68 +190,28 @@ namespace RPG_LP2
             {
                 case Windows.System.VirtualKey.Up:
                     Person1.Source = player.IdleUp;
-                    MoveDown(Velocity);
+                    ControllerGame.MoveDown(Person1, Velocity);
                     Up = false;
                     break;
                 case Windows.System.VirtualKey.Down:
                     Person1.Source = player.IdleDown;
-                    MoveUp(Velocity);
+                    ControllerGame.MoveUp(Person1 ,Velocity);
                     Down = false;
                     break;
                 case Windows.System.VirtualKey.Left:
                     Person1.Source = player.IdleLeft;
-                    MoveRight(Velocity);
+                    ControllerGame.MoveRight(Person1, Velocity);
                     Left = false;
                     break;
                 case Windows.System.VirtualKey.Right:
                     Person1.Source = player.IdleRight;
-                    MoveLeft(Velocity);
+                    ControllerGame.MoveLeft(Person1 , Velocity);
                     Right = false;
                     break;
             }
             IsKeyPressed = false;
 
         }
-
-        
-
-        //Método geral para checar se o personagem está sobre qualquer objeto
-        public bool IsPlayerOverItem(Image _item, bool key)
-        {
-
-            if (PosX + Person1.Width >= Canvas.GetLeft(_item) &&
-                PosX <= Canvas.GetLeft(_item) + _item.Width &&
-                PosY + Person1.Height >= Canvas.GetTop(_item) &&
-                PosY <= Canvas.GetTop(_item) + _item.Height
-                )
-            {
-                return key;
-
-            }
-            else return false;
-        }
-
-        private void MoveUp(int Increment = 0) //Método que realiza a movimentação da imagem para cima
-        {
-            Person1.SetValue(Canvas.TopProperty, PosY - Velocity + Increment);
-        }
-
-        private void MoveDown(int Increment = 0) //Método que realiza a movimentação da imagem para baixo
-        {
-            Person1.SetValue(Canvas.TopProperty, PosY + Velocity - Increment);
-        }
-
-        private void MoveLeft(int Increment = 0) //Método que realiza a movimentação da imagem para esquerda
-        {
-            Person1.SetValue(Canvas.LeftProperty, PosX - Velocity + Increment);
-        }
-
-        private void MoveRight(int Increment = 0) //Método que realiza a movimentação da imagem para direita
-        {
-            Person1.SetValue(Canvas.LeftProperty, PosX + Velocity - Increment);
-        }
-
-
 
     }
 }
