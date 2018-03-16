@@ -73,19 +73,15 @@ namespace RPGlib
 
         public static void LootVault(Character player, Chest ChestControl, TextBlock qt_lifePot, TextBlock qt_manaPot, List<BitmapImage> InventoryImage, List<Image> InventoryMap)
         {
-            if (player.OpenChest(ChestControl)) //Abre o baú e adiciona os itens ao inventário
+            if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário
             {
-
+                player.OpenChest(ChestControl);
                 qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
-                qt_manaPot.Text = player.inventory.inventoryPotionLife.Count().ToString();
+                qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString(); //LEO SEU BURRO FDP CHUPETINHA
 
-                for (int x = 0; x < 6; x++)
+                foreach (Item item in player.inventory.inventoryList)
                 {
-                    if (player.inventory.inventory[x] != null) //Checa se está na posição do item
-                    {
-                        InventoryImage.Add(player.inventory.inventory[x].ImageItem); //Pega o BitmapImage do Item e adiciona a um List
-                    }
-
+                    InventoryImage.Add(item.ImageItem);
                 }
 
                 for (int y = 0; y < InventoryImage.Count(); y++) //Coloca os Bitmaps das Imagens na lista de Imagens visuais
@@ -93,8 +89,11 @@ namespace RPGlib
                     InventoryMap[y].Source = InventoryImage[y];
                 }
 
+
+
             }
         }
+    
 
         public static void MoveUp(Image Person1, int Velocity, int Increment = 0) //Método que realiza a movimentação da imagem para cima
         {

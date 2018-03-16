@@ -1,102 +1,102 @@
-﻿using RPGlib.Characters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿      using RPGlib.Characters;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace RPGlib.Itens
-{
-    public class Inventory
+    namespace RPGlib.Itens
     {
-
-        public List<Item> inventoryList = new List<Item>();
-        public List<PotionLife> inventoryPotionLife = new List<PotionLife>();
-        public List<PotionMana> inventoryPotionMana = new List<PotionMana>();
-
-
-        //PENSAR UM POUCO AQUI
-        public Boolean Add_Item(Item item_add)
+        public class Inventory
         {
-            if(inventoryList.Count() == 6)
+
+            public List<Item> inventoryList = new List<Item>();
+            public List<PotionLife> inventoryPotionLife = new List<PotionLife>();
+            public List<PotionMana> inventoryPotionMana = new List<PotionMana>();
+
+
+            //PENSAR UM POUCO AQUI
+            public Boolean Add_Item(Item item_add)
             {
-                return false;
-            }
-            else
-            {
-                inventoryList.Add(item_add);
-                return true;
-
-            }
-        }
-
-        public void Remove_Item(Item item, Character person)
-        {
-            person.criticRate -= item.criticalRate;
-            person.currentArmor -= item.Armor;
-            person.currentHP -= item.Health;
-            person.currentMana -= item.Mana;
-            person.evasionRate -= item.evasionRate;
-            //REMOVE DO PERSONAGEM
-            inventoryList.Remove(item);
-
-        }
-
-        /*private int searchInventory()
-        {
-            for(int i=0;i<inventory.Length;i++)
-            {
-                if (inventory[i]==null)
+                if (inventoryList.Count() == 6)
                 {
-                    return i;
+                    return false;
+                }
+                else
+                {
+                    inventoryList.Add(item_add);
+                    return true;
+
                 }
             }
-            return -1;
-        }*/
 
-        public Boolean AddPotion(Item Potion)
-        {
-            
-            if (Potion is PotionLife)
+            public void Remove_Item(Item item, Character person)
             {
-                PotionLife p = Potion as PotionLife;
-                inventoryPotionLife.Add(p);
+                person.criticRate -= item.criticalRate;
+                person.currentArmor -= item.Armor;
+                person.currentHP -= item.Health;
+                person.currentMana -= item.Mana;
+                person.evasionRate -= item.evasionRate;
+                //REMOVE DO PERSONAGEM
+                inventoryList.Remove(item);
+
+            }
+
+            /*private int searchInventory()
+            {
+                for(int i=0;i<inventory.Length;i++)
+                {
+                    if (inventory[i]==null)
+                    {
+                        return i;
+                    }
+                }
+                return -1;
+            }*/
+
+            public Boolean AddPotion(Item Potion)
+            {
+
+                if (Potion is PotionLife)
+                {
+                    PotionLife p = Potion as PotionLife;
+                    inventoryPotionLife.Add(p);
+                    return true;
+                }
+                else if (Potion is PotionMana)
+                {
+                    PotionMana p = Potion as PotionMana;
+                    inventoryPotionMana.Add(p);
+                    return true;
+                }
+                return false;
+            }
+
+            public void removeOrUsePotion(Item Potion)
+            {
+                if (Potion is PotionLife)
+                {
+                    PotionLife p = Potion as PotionLife;
+                    inventoryPotionLife.Remove(p);
+                }
+                else if (Potion is PotionMana)
+                {
+                    PotionMana p = Potion as PotionMana;
+                    inventoryPotionMana.Remove(p);
+                }
+
+            }
+
+            public Boolean AddVerification(Item item)
+            {
+                Boolean var = AddPotion(item);
+
+                if (!var)
+                {
+                    return Add_Item(item);
+                }
                 return true;
             }
-            else if (Potion is PotionMana)
-            {
-                PotionMana p = Potion as PotionMana;
-                inventoryPotionMana.Add(p);
-                return true;
-            }
-            return false;
-        }
 
-        public void removeOrUsePotion(Item Potion)
-        {
-            if (Potion is PotionLife)
-            {
-                PotionLife p = Potion as PotionLife;
-                inventoryPotionLife.Remove(p);
-            }
-            else if (Potion is PotionMana)
-            {
-                PotionMana p = Potion as PotionMana;
-                inventoryPotionMana.Remove(p);
-            }
-            
         }
-
-        public Boolean AddVerification(Item item)
-        {
-            Boolean var = AddPotion(item);
-
-            if (!var)
-            {
-              return Add_Item(item);
-            }
-            return true;
-        }
-        
     }
-}

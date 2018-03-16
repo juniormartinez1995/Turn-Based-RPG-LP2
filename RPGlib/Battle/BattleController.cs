@@ -11,15 +11,16 @@ namespace RPGlib.Battle
     public class BattleController
     {
 
-      /*  //public void TurnPlayer(Character p1, Mob mob)
-        {
+        /*  //public void TurnPlayer(Character p1, Mob mob)
+          {
 
-        }
-        //public void TurnMob(Character p1,Mob mob)
-        {
+          }
+          //public void TurnMob(Character p1,Mob mob)
+          {
 
-        }
+          }
+      }
+  }
+  */
     }
-}
-*/
 }

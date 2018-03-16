@@ -37,15 +37,15 @@ namespace RPGlib.Characters
 
         public void OpenChest(Chest chest)
         {
-            for (int x=chest.ItemChest.Count()-1; x>=0;x--)
+            for (int x = chest.ItemChest.Count() - 1; x >= 0; x--)
             {
                 if (inventory.AddVerification(chest.ItemChest.ElementAt(x)))
                 {
                     chest.ItemChest.RemoveAt(x);
-                       
+
 
                 }
-                
+
             }
             if (chest.ItemChest.Count() == 0)
                 chest.isOpen = true;

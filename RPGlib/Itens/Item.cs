@@ -21,7 +21,7 @@ namespace RPGlib.Itens
         public int evasionRate { get; set; }
         public int Mana { get; set; }
         //VELOCIDADE DO PERSONAGEM
-        
+
         abstract public void Effect(Character Person); //funcao que possibilita usar o item
 
         //passa personagem como parametro para possibilitar acesso aos seus atributos (?)

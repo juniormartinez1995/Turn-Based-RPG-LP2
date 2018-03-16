@@ -18,7 +18,7 @@ namespace RPGlib.Itens
             this.Health = 50;
             this.itemName = "Poção de Vida";
             this.Description = "bufa " + this.Health + ".";
-            this.ImageItem= new BitmapImage(new Uri(@"ms-appx:///Assets/potion_life.png")); ;
+            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/potion_life.png")); ;
 
             //---------------------------------------------
 
@@ -27,7 +27,7 @@ namespace RPGlib.Itens
             this.evasionRate = 0;
             this.Damage = 0;
             this.Mana = 0;
-            
+
         }
         //person = personagem
         //correntHP = vida atual do personagem

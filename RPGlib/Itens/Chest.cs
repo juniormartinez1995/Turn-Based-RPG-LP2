@@ -15,7 +15,3 @@ namespace RPGlib.Itens
         public Boolean isOpen = false;
     }
 }
-
-
-
-

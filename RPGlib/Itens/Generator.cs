@@ -12,9 +12,7 @@ namespace RPGlib.Itens
         /*public static PotionLife GeneratePotionLifeAleatory()
         {
             return new PotionLife(RandomElement.Limiter(10, 50));
-
         }
-
         public static PotionMana GeneratePotionManaAleatory()
         {
             return new PotionMana(RandomElement.Limiter(10, 50));
@@ -29,7 +27,6 @@ namespace RPGlib.Itens
              */
             /*int qnt_item = RandomElement.Limiter(0, 2);
             int typeItem = RandomElement.Limiter(1, 3);
-
             if (qnt_item == 0)
             {
                 c.ItemChest.Add(new Stone());
@@ -38,7 +35,6 @@ namespace RPGlib.Itens
             else if (qnt_item == 1)
             {
                 c.ItemChest.Add(new Stone());
-
                 if (typeItem == 1)
                 {
                     c.ItemChest.Add(GeneratePotionLifeAleatory());
@@ -51,7 +47,6 @@ namespace RPGlib.Itens
                 {
                     c.ItemChest.Add(new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100)));
                 }
-
             }
             else
             {
@@ -67,9 +62,7 @@ namespace RPGlib.Itens
                 {
                     c.ItemChest.Add(new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100)));
                 }
-
                 int typeItem2 = RandomElement.Limiter(1, 3);
-
                 if (typeItem2 == 1)
                 {
                     c.ItemChest.Add(GeneratePotionLifeAleatory());
@@ -83,7 +76,7 @@ namespace RPGlib.Itens
                     c.ItemChest.Add(new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100)));
                 }
             }*/
-            int numRandom = RandomElement.Limiter(1,4);
+            int numRandom = RandomElement.Limiter(1, 4);
 
             switch (numRandom)
             {

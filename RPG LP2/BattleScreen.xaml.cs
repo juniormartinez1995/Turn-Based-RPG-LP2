@@ -36,14 +36,15 @@ namespace RPG_LP2
         int cont = 0;
         Character p1;
         Mob mob;
-      
+      /*
         private bool ButtonSkillBasic(object sender, TappedRoutedEventArgs e)
         {
             cont++;
-            CheckTurn();
+
+            //CheckTurn();
             return  true;
         }
-
+        /*
         public void CheckTurn() // checa se é o turno do mob ou do player
         {
             if (cont % 2 == 0)
@@ -57,9 +58,11 @@ namespace RPG_LP2
             }
     
         }
+        */
+        /*
         public void TurnPlayer(Character p1, Mob mob)
         {
-            if (ButtonSkillBasicClicked == true) // se o botão clicado foi o Ataque básico
+            if (ButtonSkillBasic == true) // se o botão clicado foi o Ataque básico
             {
               if (p1 is Berserker b1)
                 {
@@ -68,6 +71,7 @@ namespace RPG_LP2
                 }
             }
         }
+        */
         public void TurnMob(Character p1,Mob mob)
         {
 
