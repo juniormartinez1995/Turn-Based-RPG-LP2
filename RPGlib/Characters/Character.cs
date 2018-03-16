@@ -22,7 +22,7 @@ namespace RPGlib.Characters
         public int gainedXP { get; set; }
         public int Level { get; set; }
         public int Damage { get; set; }
-        
+
 
         public BitmapImage RightMoviment { get; set; }
         public BitmapImage LeftMoviment { get; set; }
@@ -35,22 +35,20 @@ namespace RPGlib.Characters
 
         public Inventory inventory = new Inventory();
 
-        public bool OpenChest(Chest chest)
+        public void OpenChest(Chest chest)
         {
-            for (int x=0;x<chest.ItemChest.Count();x++)
+            for (int x=chest.ItemChest.Count()-1; x>=0;x--)
             {
                 if (inventory.AddVerification(chest.ItemChest.ElementAt(x)))
                 {
                     chest.ItemChest.RemoveAt(x);
-                    return true;
+                       
 
                 }
-                else
-                {
-                    return false;
-                }
+                
             }
-            return false;
+            if (chest.ItemChest.Count() == 0)
+                chest.isOpen = true;
 
         }
     }

@@ -34,7 +34,7 @@ namespace RPG_LP2
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
+            //Play();
 
         }
 
@@ -50,7 +50,7 @@ namespace RPG_LP2
         }
         
         
-        /*public private void Play()
+        public async void Play()
         {
             MediaElement PlayMusic = new MediaElement();
 
@@ -62,7 +62,7 @@ namespace RPG_LP2
             PlayMusic.Play();
         
          
-        }*/
+        }
     }
 }
 

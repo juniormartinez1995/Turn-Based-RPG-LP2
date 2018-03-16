@@ -10,7 +10,7 @@ namespace RPGlib.Itens
     public class Inventory
     {
 
-        public Item[] inventory = new Item[6];
+        public List<Item> inventoryList = new List<Item>();
         public List<PotionLife> inventoryPotionLife = new List<PotionLife>();
         public List<PotionMana> inventoryPotionMana = new List<PotionMana>();
 
@@ -18,31 +18,31 @@ namespace RPGlib.Itens
         //PENSAR UM POUCO AQUI
         public Boolean Add_Item(Item item_add)
         {
-            if(searchInventory() == -1)
+            if(inventoryList.Count() == 6)
             {
                 return false;
             }
             else
             {
-                inventory[searchInventory()] = item_add;
+                inventoryList.Add(item_add);
                 return true;
 
             }
         }
 
-        public void Remove_Item(int id, Character person)
+        public void Remove_Item(Item item, Character person)
         {
-            person.criticRate -= inventory[id].criticalRate;
-            person.currentArmor -= inventory[id].Armor;
-            person.currentHP -= inventory[id].Health;
-            person.currentMana -= inventory[id].Mana;
-            person.evasionRate -= inventory[id].evasionRate;
+            person.criticRate -= item.criticalRate;
+            person.currentArmor -= item.Armor;
+            person.currentHP -= item.Health;
+            person.currentMana -= item.Mana;
+            person.evasionRate -= item.evasionRate;
             //REMOVE DO PERSONAGEM
-            inventory[id] = null;
+            inventoryList.Remove(item);
 
         }
 
-        private int searchInventory()
+        /*private int searchInventory()
         {
             for(int i=0;i<inventory.Length;i++)
             {
@@ -52,7 +52,7 @@ namespace RPGlib.Itens
                 }
             }
             return -1;
-        }
+        }*/
 
         public Boolean AddPotion(Item Potion)
         {
@@ -94,7 +94,6 @@ namespace RPGlib.Itens
             if (!var)
             {
               return Add_Item(item);
-               
             }
             return true;
         }

@@ -18,6 +18,7 @@ using RPGlib.Characters;
 using Windows.UI.Core;
 using RPGlib.Itens;
 using System.Diagnostics;
+using Windows.Storage;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -42,7 +43,8 @@ namespace RPG_LP2
             StartAnimation();
             addImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
 
-            Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
+            Generator.ChestPopulate(ChestControl);
+            //Play();//Método para gerar os itens randomicamente dentro do baú
         }
 
 
@@ -111,7 +113,6 @@ namespace RPG_LP2
             InventoryMap.Add(Item4);
             InventoryMap.Add(Item5);
             InventoryMap.Add(Item6);
-
         }
 
 
@@ -170,25 +171,31 @@ namespace RPG_LP2
             }
             else if (IsPlayerOverChest(Up)) //CORE
             {
-                if (player.OpenChest(ChestControl)) //Abre o baú e adiciona os itens ao inventário
+                if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário
                 {
-
+                    player.OpenChest(ChestControl);
                     qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
-                    qt_manaPot.Text = player.inventory.inventoryPotionLife.Count().ToString();
+                    qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString(); //LEO SEU BURRO FDP CHUPETINHA
 
-                    for (int x = 0; x < 6; x++) 
+                    /*for (int x = 0; x < 6; x++) 
                     {
                         if (player.inventory.inventory[x] != null) //Checa se está na posição do item
                         {
                             InventoryImage.Add(player.inventory.inventory[x].ImageItem); //Pega o BitmapImage do Item e adiciona a um List
                         }
 
+                    }*/
+                    foreach (Item item in player.inventory.inventoryList)
+                    {
+                        InventoryImage.Add(item.ImageItem);
                     }
 
                     for (int y = 0; y < InventoryImage.Count(); y++) //Coloca os Bitmaps das Imagens na lista de Imagens visuais
                     {
                         InventoryMap[y].Source = InventoryImage[y];
                     }
+
+                    
 
                 }
                 //ChestControl.ItemChest;
@@ -266,8 +273,20 @@ namespace RPG_LP2
 
         }
 
-        
 
+        public async void Play()
+        {
+            MediaElement PlayMusic = new MediaElement();
+
+            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Folder = await Folder.GetFolderAsync("Assets");
+            StorageFile sf = await Folder.GetFileAsync("1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3");
+            PlayMusic.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
+            PlayMusic.IsLooping = true;
+            PlayMusic.Play();
+
+
+        }
         //Método geral para checar se o personagem está sobre qualquer objeto
         public bool IsPlayerOverItem(Image _item, bool key)
         {
