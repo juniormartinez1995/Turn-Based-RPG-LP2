@@ -9,7 +9,7 @@ namespace RPGlib.Itens
     public static class Generator
     {
 
-        public static PotionLife GeneratePotionLifeAleatory()
+        /*public static PotionLife GeneratePotionLifeAleatory()
         {
             return new PotionLife(RandomElement.Limiter(10, 50));
 
@@ -18,7 +18,7 @@ namespace RPGlib.Itens
         public static PotionMana GeneratePotionManaAleatory()
         {
             return new PotionMana(RandomElement.Limiter(10, 50));
-        }
+        }*/
 
         public static void ChestPopulate(Chest c)
         {
@@ -27,7 +27,7 @@ namespace RPGlib.Itens
              * 2 = pocao de mana
              * 3 = CrisomVanguard
              */
-            int qnt_item = RandomElement.Limiter(0, 2);
+            /*int qnt_item = RandomElement.Limiter(0, 2);
             int typeItem = RandomElement.Limiter(1, 3);
 
             if (qnt_item == 0)
@@ -82,8 +82,41 @@ namespace RPGlib.Itens
                 {
                     c.ItemChest.Add(new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100)));
                 }
-            }
+            }*/
+            int numRandom = RandomElement.Limiter(1,4);
 
+            switch (numRandom)
+            {
+                case 1:
+                    c.ItemChest.Add(new Stone());
+                    break;
+                case 2:
+                    c.ItemChest.Add(new PotionLife());
+                    break;
+                case 3:
+                    c.ItemChest.Add(new PotionMana());
+                    break;
+                case 4:
+                    c.ItemChest.Add(new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100)));
+                    break;
+            }
+            int numRandom2 = RandomElement.Limiter(1, 4);
+
+            switch (numRandom2)
+            {
+                case 1:
+                    c.ItemChest.Add(new Stone());
+                    break;
+                case 2:
+                    c.ItemChest.Add(new PotionLife());
+                    break;
+                case 3:
+                    c.ItemChest.Add(new PotionMana());
+                    break;
+                case 4:
+                    c.ItemChest.Add(new CrimsomVanguard(RandomElement.Limiter(5, 10), RandomElement.Limiter(50, 100)));
+                    break;
+            }
         }
 
     }

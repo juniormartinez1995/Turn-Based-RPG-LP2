@@ -13,9 +13,9 @@ namespace RPGlib.Itens
     {
         //Description = descricao da acao do item
         //LocalImage = caminho da imagem q representa o item
-        public PotionLife(int gainedHP)
+        public PotionLife()
         {
-            this.Health = gainedHP;
+            this.Health = 50;
             this.itemName = "Poção de Vida";
             this.Description = "bufa " + this.Health + ".";
             this.ImageItem= new BitmapImage(new Uri(@"ms-appx:///Assets/potion_life.png")); ;
