@@ -67,6 +67,10 @@ namespace RPGlib.Characters
 
             return multiplier;
         }
+        public int SkillB()
+        {
+            return this.Damage;
+        }
 
         public new void OpenChest(Chest chest) { }
     }
