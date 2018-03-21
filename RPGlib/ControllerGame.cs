@@ -31,8 +31,14 @@ namespace RPGlib
             if (Down) Person1.Source = Person.DownMoviment;
         }
 
+        //Checa se o movimento é permitido, se nao enconsta em um bau, enimigo ou obstaculo
+        public static bool IsMovimentAllowed(Image Person1, List<Image> LockedChests, List<Image> Enemies, List<Image> Collision, bool key)
+        {
+            return !IsPlayerOverChest(Person1, LockedChests, key) && !IsPlayerColliding(Person1, Enemies, key) && !IsPlayerColliding(Person1, Collision, key);
+        }
 
-        public static bool IsPlayerOverChest(Image Person1, List<Image> LockedChests , bool key) //Checa se o personagem encontrou um baú no mapa
+
+        public static bool IsPlayerOverChest(Image Person1, List<Image> LockedChests, bool key) //Checa se o personagem encontrou um baú no mapa
         {
 
 
@@ -93,7 +99,7 @@ namespace RPGlib
 
             }
         }
-    
+
 
         public static void MoveUp(Image Person1, int Velocity, int Increment = 0) //Método que realiza a movimentação da imagem para cima
         {
