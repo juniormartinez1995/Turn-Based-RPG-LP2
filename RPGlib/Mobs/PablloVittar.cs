@@ -22,11 +22,6 @@ namespace RPGlib.Mobs
             this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/Jynx.gif"));
         }
 
-        public override void Skill_Basic()
-        {
-
-        }
-
         public override void Skill_Normal()
         {
             

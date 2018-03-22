@@ -120,6 +120,7 @@
     <Compile Include="Itens\PotionMana.cs" />
     <Compile Include="Mobs\Boss.cs" />
     <Compile Include="Mobs\Mob.cs" />
+    <Compile Include="Mobs\Ninja.cs" />
     <Compile Include="Mobs\PablloVittar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Characters\Skills.cs" />

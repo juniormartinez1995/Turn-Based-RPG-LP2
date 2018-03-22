@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGlib.Itens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,22 @@ namespace RPGlib.Mobs
         public BitmapImage UpMoviment { get; set; }
         public BitmapImage DownMoviment { get; set; }
 
-        abstract public void Skill_Basic();
+        public bool CountCritic()
+        {
+            int criticCalc = RandomElement.Limiter(0, 100);
+
+            return criticCalc <= criticRate;
+
+        }
+
+        public int SkillBasic()
+        {
+            if (CountCritic())
+            {
+                return 2 * Damage;
+            }
+            return Damage;
+
+        }
     }
 }
