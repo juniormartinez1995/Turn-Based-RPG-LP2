@@ -1,21 +1,41 @@
 ﻿using RPGlib.Characters;
+using RPGlib.Itens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Threading;
-using Windows.UI.Xaml.Controls;
 using Windows.Storage;
-using RPGlib.Itens;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace RPGlib
+namespace RPG_LP2
 {
-
     public static class ControllerGame
     {
 
+        public static void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
+        {
+            switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
+            {
+                case Windows.System.VirtualKey.Up:
+                    Debug.WriteLine("Controller Up");
+                    break;
+                case Windows.System.VirtualKey.Down:
+                    Debug.WriteLine("Controller Down");
+                    break;
+                case Windows.System.VirtualKey.Left:
+                    Debug.WriteLine("Controller Left");
+                    break;
+                case Windows.System.VirtualKey.Right:
+                    Debug.WriteLine("Controller Right");
+                    break;
+            }
+
+
+        }
 
         public static void createBerserker()
         {
@@ -121,6 +141,16 @@ namespace RPGlib
             Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) + Velocity + Increment);
         }
 
+        public static async void PlayMusic(string nomeMusic)
+        {
+            MediaElement Music = new MediaElement();
+
+            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Folder = await Folder.GetFolderAsync("Assets");
+            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
+           Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
+            Music.IsLooping = true;
+            Music.Play();
+        }
     }
 }
-

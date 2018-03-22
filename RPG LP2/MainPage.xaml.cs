@@ -34,8 +34,7 @@ namespace RPG_LP2
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            //Play();
-
+            ControllerGame.PlayMusic("1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3");
         }
 
         //funcao buttom de quit do jogo
@@ -48,9 +47,9 @@ namespace RPG_LP2
         {
             this.Frame.Navigate(typeof(SelecClass));//proxima tela
         }
-        
-        
-        public async void Play()
+
+
+        /*public async void Play()
         {
             MediaElement PlayMusic = new MediaElement();
 
@@ -60,9 +59,9 @@ namespace RPG_LP2
             PlayMusic.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
             PlayMusic.IsLooping = true;
             PlayMusic.Play();
-        
-         
-        }
+
+
+        }*/
     }
 }
 

@@ -95,9 +95,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controller\BattleController.cs" />
     <Compile Include="BattleScreen.xaml.cs">
       <DependentUpon>BattleScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controller\ControllerGame.cs" />
     <Compile Include="Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>

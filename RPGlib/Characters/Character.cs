@@ -42,14 +42,30 @@ namespace RPGlib.Characters
                 if (inventory.AddVerification(chest.ItemChest.ElementAt(x)))
                 {
                     chest.ItemChest.RemoveAt(x);
-
-
                 }
 
             }
             if (chest.ItemChest.Count() == 0)
                 chest.isOpen = true;
 
+        }
+
+        public bool CountCritic()
+        {
+            int criticCalc = RandomElement.Limiter(0, 100);
+
+            return criticCalc <= criticRate;
+
+        }
+
+        public int SkillBasic()
+        {
+            if (CountCritic())
+            {
+                return 2 * Damage;
+            }
+            return Damage;
+           
         }
     }
 }

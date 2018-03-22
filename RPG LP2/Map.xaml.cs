@@ -32,9 +32,10 @@ namespace RPG_LP2
         public Map()
         {
             this.InitializeComponent();
-
+            
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
+            Window.Current.CoreWindow.KeyDown += ControllerGame.CoreWindow_KeyDown;
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 

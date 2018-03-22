@@ -12,7 +12,7 @@ namespace RPGlib.Characters
 
         public Dicer()
         {
-            this.name = name;
+            
             this.currentHP = 100;
             this.currentMana = 200;
             this.currentXP = 0;
@@ -46,18 +46,7 @@ namespace RPGlib.Characters
 
         public bool IsDead()
         {
-            if (this.currentHP <= 0) return true;
-            else return false;
-        }
-
-        public bool CountCritic()
-        {
-
-            int criticCalc = RandomElement.Limiter(0, 100);
-            if (criticCalc <= this.criticRate)
-            {
-                return true;
-            }
+            if (currentHP <= 0) return true;
             else return false;
         }
 
@@ -65,18 +54,22 @@ namespace RPGlib.Characters
         {
        
             int multicastchance = RandomElement.Limiter(0, 100);
-            if(multicastchance <= 5)
+
+            if (multicastchance <= 5)
             {
                 return 5;
             }
+
             if(multicastchance<= 10)
             {
                 return 4;
             }
+
             if (multicastchance <= 15)
             {
                 return 3;
             }
+
             if (multicastchance <= 20)
             {
                 return 2;
@@ -84,6 +77,8 @@ namespace RPGlib.Characters
 
             return 1;
         }
+
+  
     }
 }
 

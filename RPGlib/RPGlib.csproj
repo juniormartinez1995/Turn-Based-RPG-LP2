@@ -106,11 +106,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Battle\BattleController.cs" />
     <Compile Include="Characters\Berserker.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\Dicer.cs" />
-    <Compile Include="ControllerGame.cs" />
     <Compile Include="Itens\Chest.cs" />
     <Compile Include="Itens\CrimsomVanguard.cs" />
     <Compile Include="Itens\Generator.cs" />

@@ -50,16 +50,6 @@ namespace RPGlib.Characters
             else return false;
         }
 
-        public bool CountCritic()
-        {
-            int criticCalc = RandomElement.Limiter(0, 100);
-            if (criticCalc <= this.criticRate)
-            {
-                return true;
-            }
-            else return false;
-        }
-
         public float SacrificeBlood()
         {
             int hp_missing = this.maxHealth - this.currentHP;
@@ -67,11 +57,6 @@ namespace RPGlib.Characters
 
             return multiplier;
         }
-        public int SkillB()
-        {
-            return this.Damage;
-        }
-
-        public new void OpenChest(Chest chest) { }
+    
     }
 }
