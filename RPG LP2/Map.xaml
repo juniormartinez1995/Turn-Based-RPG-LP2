@@ -19,7 +19,7 @@
         <Image x:Name="Enemy1" Height="27" Canvas.Left="226" Canvas.Top="235" Width="23"/>
 
 
-        <!--Seção dos retângulos-->
+        <!--SeÃ§Ã£o dos retÃ¢ngulos-->
 
         <!--56x, 547y-->
         <Rectangle Height="50" Canvas.Left="56" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" UseLayoutRounding="False" d:LayoutRounding="Auto" Opacity="0.5" >
@@ -63,7 +63,7 @@
             </Rectangle.RenderTransform>
         </Rectangle>
 
-        <!--Retângulos LIFE and MANA-->
+        <!--RetÃ¢ngulos LIFE and MANA-->
 
         <!--380x, 547y-->
         <Rectangle Height="50" Canvas.Left="380" Canvas.Top="547" Width="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Fill="#FFD7A99F" Style="{StaticResource ColorPickerBorderStyle}" RenderTransformOrigin="0.72,0.56" RadiusX="12.114" RadiusY="12.114" Opacity="0.5" Visibility="Visible" RequestedTheme="Default" UseLayoutRounding="False" d:LayoutRounding="Auto" >
@@ -82,7 +82,7 @@
         <!--Imagem da mochila-->
         <Image x:Name="mochila" Height="50" Width="50" Canvas.Top="547" Canvas.Left="2" Source="Assets/backpack_cutted.png" />
 
-        <!--Imagens por cima dos retângulos-->
+        <!--Imagens por cima dos retÃ¢ngulos-->
         <Image x:Name="Item1" Canvas.Left="56" Canvas.Top="547" Width="50" Height="50" Tag="0"/>
         <Image x:Name="Item2" Canvas.Left="108" Canvas.Top="547" Width="50" Height="50" Tag="1"/>
         <Image x:Name="Item3" Canvas.Left="160" Canvas.Top="547" Width="50" Height="50" Tag="2"/>
@@ -96,7 +96,38 @@
         <!--Quantidade dos Potes LIFE and MANA-->
         <TextBlock x:Name="qt_lifePot" Canvas.Left="418" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"  />
         <TextBlock x:Name="qt_manaPot" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
+        
+        <!--BotÃ£o de status-->
+        <Image x:Name="ButtonStatus"  Source="Assets/btn_status.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="showStatus">
+            <FlyoutBase.AttachedFlyout>
+                <Flyout>
+                    <!--<Image x:Name="statusBar" Source="Assets/lbl_status.png" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.2" />-->
+                    
+                    <!--Text Block Status-->
+                    
+                    
+                    
+                    <Flyout.FlyoutPresenterStyle>
+                        <Style TargetType="FlyoutPresenter">
+                            <Setter Property="Height" Value="200"/>
+                            <Setter Property="Width"  Value="100"/>
+                            <Setter Property="Background" Value="#b35900"/>
+                            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+                            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+                            <Setter Property="IsTabStop" Value="True"/>
+                            <Setter Property="TabNavigation" Value="Cycle"/>
+                           
+                        </Style>
+                    </Flyout.FlyoutPresenterStyle>
+                    <TextBlock TextWrapping="Wrap" Text="Caio mendes chupeta"/>
+                    
 
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
+        </Image>
+
+        <!--Barra de status-->
+        
     </Canvas>
 
 </Page>
