@@ -24,10 +24,10 @@ namespace RPGlib.Characters
             this.currentArmor = 20;
             this.Damage = 30;
 
-            UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/cimagif.gif"));
-            DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/baixogif.gif"));
-            RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/dirgif.gif"));
-            LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/esqgif.gif"));
+            UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/cimagif.gif"));
+            DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/baixogif.gif"));
+            RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dirgif.gif"));
+            LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/esqgif.gif"));
 
             IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png"));
             IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png"));

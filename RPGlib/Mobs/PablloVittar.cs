@@ -15,7 +15,6 @@ namespace RPGlib.Mobs
             this.name = "Pabllo Vittar";
             this.HP = 100;
             this.Mana = 100;
-            this.criticRate = 15;
             this.evasionRate = 5;
             this.currentArmor = 20;
             this.Damage = 30;
