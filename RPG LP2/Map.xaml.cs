@@ -122,7 +122,12 @@ namespace RPG_LP2
             }
 
         }
-
+        
+        private void ShowStatus(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+        }
+        
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
         {                                                    // A cada 110 milisegundos       
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
