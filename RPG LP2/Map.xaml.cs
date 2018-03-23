@@ -123,7 +123,7 @@ namespace RPG_LP2
 
         }
         
-        private void ShowStatus(object sender, TappedRoutedEventArgs e)
+        private void showStatus(object sender, TappedRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
         }

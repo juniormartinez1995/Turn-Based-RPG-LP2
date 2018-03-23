@@ -14,6 +14,8 @@ namespace RPGlib.Characters
         {
             
             this.currentHP = 100;
+            this.maxHealth = 100;
+            this.maxHealth = 200;
             this.currentMana = 200;
             this.currentXP = 0;
             this.Level = 0;
@@ -26,29 +28,12 @@ namespace RPGlib.Characters
            // RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/dirgif.gif"));
             //LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/esqgif.gif"));
 
-           // IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png"));
-           // IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png"));
-           // IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/0.png"));
-          //  IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png"));
+            // IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png"));
+            // IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png"));
+            // IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/0.png"));
+            // IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png"));
         }
 
-        public bool upLevel()
-        {
-            if ((this.currentXP + this.gainedXP) > 100)
-            {
-                this.currentXP = 0;
-                this.Level += 1;
-                return true;
-
-            }
-            return false;
-        }
-
-        public bool IsDead()
-        {
-            if (currentHP <= 0) return true;
-            else return false;
-        }
 
         public int Multicast() //Retorna um inteiro que será o multiplicador de quantas vezes a skill será castada
         {

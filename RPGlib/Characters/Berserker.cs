@@ -14,6 +14,8 @@ namespace RPGlib.Characters
         public Berserker()
         {
             this.currentHP = 250;
+            this.maxHealth = 250;
+            this.maxMana = 100;
             this.currentMana = 100;
             this.currentXP = 0;
             this.Level = 0;
@@ -21,6 +23,7 @@ namespace RPGlib.Characters
             this.evasionRate = 5;
             this.currentArmor = 20;
             this.Damage = 30;
+
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/cimagif.gif"));
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/baixogif.gif"));
             RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/dirgif.gif"));
@@ -32,23 +35,6 @@ namespace RPGlib.Characters
             IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png"));
         }
 
-        public bool upLevel()
-        {
-            if ((this.currentXP + this.gainedXP) > 100)
-            {
-                this.currentXP = 0;
-                this.Level += 1;
-                return true;
-
-            }
-            return false;
-        }
-
-        public bool IsDead()
-        {
-            if (this.currentHP <= 0) return true;
-            else return false;
-        }
 
         public float SacrificeBlood()
         {

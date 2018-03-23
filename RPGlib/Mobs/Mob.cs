@@ -15,7 +15,6 @@ namespace RPGlib.Mobs
         public int Mana { get; set; }
         public int currentArmor { get; set; }
         public int evasionRate { get; set; }
-        public int criticRate { get; set; }
         public int Damage { get; set; }
         public BitmapImage GifBattle { get; set; }
         public BitmapImage RightMoviment { get; set; }
@@ -23,22 +22,17 @@ namespace RPGlib.Mobs
         public BitmapImage UpMoviment { get; set; }
         public BitmapImage DownMoviment { get; set; }
 
-        public bool CountCritic()
+        public bool IsDead()
         {
-            int criticCalc = RandomElement.Limiter(0, 100);
-
-            return criticCalc <= criticRate;
-
+            if (this.HP <= 0) return true;
+            else return false;
         }
 
         public int SkillBasic()
         {
-            if (CountCritic())
-            {
-                return 2 * Damage;
-            }
             return Damage;
-
         }
+
+        
     }
 }

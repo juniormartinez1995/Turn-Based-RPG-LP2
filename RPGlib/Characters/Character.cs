@@ -67,6 +67,24 @@ namespace RPGlib.Characters
             return Damage;
            
         }
+
+        public bool upLevel()
+        {
+            if ((this.currentXP + this.gainedXP) > 100)
+            {
+                this.currentXP = 0;
+                this.Level += 1;
+                return true;
+
+            }
+            return false;
+        }
+
+        public bool IsDead()
+        {
+            if (this.currentHP <= 0) return true;
+            else return false;
+        }
     }
 }
 
