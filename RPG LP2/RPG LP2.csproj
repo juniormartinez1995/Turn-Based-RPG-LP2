@@ -129,6 +129,7 @@
     <Content Include="Assets\berseker_Front.png" />
     <Content Include="Assets\btn_closeCUTTED.png" />
     <Content Include="Assets\btn_startCUTTED.png" />
+    <Content Include="Assets\btn_status2.png" />
     <Content Include="Assets\Buttom_Close.png" />
     <Content Include="Assets\Buttom_Start.png" />
     <Content Include="Assets\cimagif.gif" />

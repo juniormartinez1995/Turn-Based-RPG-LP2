@@ -107,6 +107,10 @@ namespace RPG_LP2
 
         }
 
+        private void ShowStatus(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+        }
 
         private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {

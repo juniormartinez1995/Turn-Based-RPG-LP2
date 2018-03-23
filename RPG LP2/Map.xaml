@@ -98,14 +98,12 @@
         <TextBlock x:Name="qt_manaPot" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
         
         <!--Botão de status-->
-        <Image x:Name="ButtonStatus"  Source="Assets/btn_status.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="showStatus">
+        <Image x:Name="ButtonStatus"  Source="Assets/btn_status2.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="ShowStatus">
             <FlyoutBase.AttachedFlyout>
                 <Flyout>
                     <!--<Image x:Name="statusBar" Source="Assets/lbl_status.png" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.2" />-->
                     
                     <!--Text Block Status-->
-                    
-                    
                     
                     <Flyout.FlyoutPresenterStyle>
                         <Style TargetType="FlyoutPresenter">
@@ -119,8 +117,7 @@
                            
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
-                    <TextBlock TextWrapping="Wrap" Text="Caio mendes chupeta"/>
-                    
+                    <TextBlock TextWrapping="Wrap" Text="LAPA GOD"/>
 
                 </Flyout>
             </FlyoutBase.AttachedFlyout>

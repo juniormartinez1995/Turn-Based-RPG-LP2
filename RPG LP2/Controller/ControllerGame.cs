@@ -148,7 +148,7 @@ namespace RPG_LP2
             StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             Folder = await Folder.GetFolderAsync("Assets");
             StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-           Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
+            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
             Music.IsLooping = true;
             Music.Play();
         }
