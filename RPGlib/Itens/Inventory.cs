@@ -18,7 +18,7 @@
             //PENSAR UM POUCO AQUI
             public Boolean Add_Item(Item item_add)
             {
-                if (inventoryList.Count() == 6)
+                if (inventoryList.Count() >= 6)
                 {
                     return false;
                 }

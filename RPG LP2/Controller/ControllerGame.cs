@@ -104,8 +104,8 @@ namespace RPG_LP2
                 {
                     InventoryImage.Add(item.ImageItem);
                 }
-
-                for (int y = 0; y < InventoryImage.Count(); y++) //Coloca os Bitmaps das Imagens na lista de Imagens visuais
+                if(InventoryImage.Count()<=6)
+                for (int y = InventoryImage.Count()-1; y >=0 ; y--) //Coloca os Bitmaps das Imagens na lista de Imagens visuais
                 {
                     InventoryMap[y].Source = InventoryImage[y];
                 }

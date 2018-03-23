@@ -13,7 +13,6 @@ namespace RPGlib.Mobs
             this.name = "Ninja Ninja";
             this.HP = 100;
             this.Mana = 50;
-            this.criticRate = 20;
             this.evasionRate = 20;
             this.currentArmor = 10;
             this.Damage = 30;
