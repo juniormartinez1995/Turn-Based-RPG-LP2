@@ -126,6 +126,7 @@
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\baixogif.gif" />
+    <Content Include="Assets\BattleAnimations\NinjaServa.gif" />
     <Content Include="Assets\berseker_Front.png" />
     <Content Include="Assets\btn_closeCUTTED.png" />
     <Content Include="Assets\btn_startCUTTED.png" />
@@ -160,6 +161,7 @@
     <Content Include="Assets\leftAnimation\8.png" />
     <Content Include="Assets\logo_back_smal.png" />
     <Content Include="Assets\Lullaby of Woe A Night to Remember song.mp3" />
+    <Content Include="Assets\MapsBackground\BattleScreen.png" />
     <Content Include="Assets\pedrona.png" />
     <Content Include="Assets\potion_life.png" />
     <Content Include="Assets\potion_mana.png" />

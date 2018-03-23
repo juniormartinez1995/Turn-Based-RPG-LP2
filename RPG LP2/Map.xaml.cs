@@ -81,6 +81,8 @@ namespace RPG_LP2
         {
             Collision.Add(Collision0);
             Collision.Add(Collision1);
+            Collision.Add(Collision2);
+            Collision.Add(Collision3);
 
         }
 
@@ -123,7 +125,7 @@ namespace RPG_LP2
 
         }
         
-        private void ShowStatus(object sender, TappedRoutedEventArgs e)
+        private void showStatus(object sender, TappedRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
         }

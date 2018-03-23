@@ -17,6 +17,7 @@ using RPGlib;
 using RPG_LP2;
 
 using RPGlib.Mobs;
+using Windows.UI.Xaml.Media.Imaging;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,25 +28,43 @@ namespace RPG_LP2
     /// </summary>
     public sealed partial class BattleScreen : Page
     {
-       public Button MeuButão
-        {
-            get { return ButtonSkillBasic; }
-        }
         public BattleScreen()
         {
             this.InitializeComponent();
             BattleController.TelaAtual = this;
-            ButtonSkillBasic.Click += BattleController.ButtonSkillBasic_Click;
-
-          
+            BattleAnimation();
+            Mob1.Source = Ninja;
         }
 
-       
+        Character BattlePlayer;
+        DispatcherTimer Timer = new DispatcherTimer();
+        BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
 
-        private void ButtonSkillBasic_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
- 
 
+            BattlePlayer = e.Parameter as Character;
+
+        }
+
+        //Sem uso por enquanto
+        public void BattleAnimation()
+        {
+            Timer.Tick += Timer_Tick;
+            Timer.Interval = new TimeSpan(0, 0, 0, 50);
+            Timer.Start();
+        }
+
+        //Sem uso por enquanto
+        private void Timer_Tick(object sender, object e)
+        {
+            Mob1.Source = Ninja;
+
+        }
+
+        private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Map), BattlePlayer);
         }
     }
 }

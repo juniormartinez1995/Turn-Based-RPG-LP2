@@ -12,11 +12,20 @@
 
         <Image x:Name="MainDungeon" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/MainDungeon.gif" Stretch="Fill"/>
         <Image x:Name="Person1" Height="42" Width="42" Canvas.Left="82" Canvas.Top="310" Source="Assets/rightAnimation/0.png" />
-        <Image x:Name="Collision0" Height="47" Canvas.Left="598" Canvas.Top="344" Width="39"/>
-        <Image x:Name="Collision1" Height="53" Canvas.Left="596" Canvas.Top="227" Width="36"/>
+
+        <!-- Lista de colisão  -->
+        <Image x:Name="Collision0" Height="47" Canvas.Left="598" Canvas.Top="344" Width="32"/>
+        <Image x:Name="Collision1" Height="47" Canvas.Left="596" Canvas.Top="232" Width="32"/>
+        <Image x:Name="Collision2" Height="32" Canvas.Left="261" Canvas.Top="129" Width="23"/>
+        <Image x:Name="Collision3" Height="32" Canvas.Left="376" Canvas.Top="128" Width="23"/>
+
+        <!-- Lista de baús  -->
         <Image x:Name="Chest0" Height="36" Canvas.Left="140" Canvas.Top="415" Width="21"/>
-        <Image x:Name="Enemy0" Height="32" Canvas.Left="228" Canvas.Top="347" Width="22"/>
-        <Image x:Name="Enemy1" Height="27" Canvas.Left="226" Canvas.Top="235" Width="23"/>
+
+        <!-- Lista de inimigos  -->
+        <Image x:Name="Enemy0" Height="28" Canvas.Left="228" Canvas.Top="347" Width="22"/>
+        <Image x:Name="Enemy1" Height="27" Canvas.Left="228" Canvas.Top="235" Width="21"/>
+
 
 
         <!--Seção dos retângulos-->
@@ -96,15 +105,15 @@
         <!--Quantidade dos Potes LIFE and MANA-->
         <TextBlock x:Name="qt_lifePot" Canvas.Left="418" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"  />
         <TextBlock x:Name="qt_manaPot" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
-        
+
         <!--Botão de status-->
         <Image x:Name="ButtonStatus"  Source="Assets/btn_status2.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="ShowStatus">
             <FlyoutBase.AttachedFlyout>
                 <Flyout>
                     <!--<Image x:Name="statusBar" Source="Assets/lbl_status.png" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.2" />-->
-                    
+
                     <!--Text Block Status-->
-                    
+
                     <Flyout.FlyoutPresenterStyle>
                         <Style TargetType="FlyoutPresenter">
                             <Setter Property="Height" Value="200"/>
@@ -114,7 +123,7 @@
                             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
                             <Setter Property="IsTabStop" Value="True"/>
                             <Setter Property="TabNavigation" Value="Cycle"/>
-                           
+
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
                     <TextBlock TextWrapping="Wrap" Text="LAPA GOD"/>
@@ -124,7 +133,7 @@
         </Image>
 
         <!--Barra de status-->
-        
+
     </Canvas>
 
 </Page>
