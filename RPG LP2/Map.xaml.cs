@@ -39,12 +39,13 @@ namespace RPG_LP2
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+
+            StartAnimation(); //Startar a animação
             SetCollision(); //Inicialização das colisões pré-definidas
             SetChetsInMap(); //Inicialização dos baús pré-definidos
-            StartAnimation(); //Startar a animação
             AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
-
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
         }
 
@@ -58,7 +59,7 @@ namespace RPG_LP2
         Chest ChestControl = new Chest(); //Gerenciamento do baú
 
         double PosY, PosX; //Posição X e Y do personagem no mapa
-        bool IsKeyPressed, Up, Down, Right, Left; //Checagem da direção que o personagem está indo
+        bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
         int Velocity = 3; //Velocidade do personagem
 
 
@@ -90,12 +91,10 @@ namespace RPG_LP2
         {
 
             Player = e.Parameter as Character;
+            IsAnotherPage = false;
 
-            /*
-            Berserker p1 = (Berserker)e.Parameter;
-            Player = p1;
-            */
-
+            //Seta a ultima posição do personagem antes de trocar de tela
+            //ControllerGame.SetCharInMapPosition(Person1, Player.CurrentPosX, Player.CurrentPosY); 
         }
 
         private void AddImageOnList()
@@ -109,6 +108,20 @@ namespace RPG_LP2
 
         }
 
+
+        // Ainda estou implementando essa bagaça aqui
+
+        //private void ButtonStatus_PointerEntered(object sender, PointerRoutedEventArgs e)
+        //{
+        //    FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        //    Debug.WriteLine("Mouse entrou");
+        //}
+
+        //private void ButtonStatus_PointerExited(object sender, PointerRoutedEventArgs e)
+        //{
+        //    Debug.WriteLine("Mouse saiu");
+        //}
+
         private void ShowStatus(object sender, TappedRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
@@ -121,19 +134,21 @@ namespace RPG_LP2
                 timer.Tick += AnimationEvent;
                 timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
                 timer.Start();
+                
             }
 
         }
         
-        private void showStatus(object sender, TappedRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
-        }
         
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
         {                                                    // A cada 110 milisegundos       
+            if (IsAnotherPage) return;
+
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
+
+            Player.CurrentPosY = PosY;
+            Player.CurrentPosX = PosX;
 
             if (Up && PosY > 140 && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Up))  //Movimento, checagem e animação para cima
             {
@@ -171,6 +186,7 @@ namespace RPG_LP2
             //Checa se o player se encontra de frente com o mob, se sim, iniciará a tela de batalha
             else if (ControllerGame.IsPlayerColliding(Person1, Enemies, Up))
             {
+                IsAnotherPage = true;
                 this.Frame.Navigate(typeof(BattleScreen), Player); //Irá para a tela de batalha
             }
         }
@@ -178,6 +194,7 @@ namespace RPG_LP2
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
+            if (IsAnotherPage) return;
 
             if (!IsKeyPressed)
             {

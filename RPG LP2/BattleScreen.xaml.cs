@@ -63,7 +63,7 @@ namespace RPG_LP2
         }
 
         private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
-        {
+        { 
             this.Frame.Navigate(typeof(Map), BattlePlayer);
         }
     }

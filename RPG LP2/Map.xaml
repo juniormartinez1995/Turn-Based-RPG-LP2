@@ -11,7 +11,7 @@
     <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
 
         <Image x:Name="MainDungeon" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/MainDungeon.gif" Stretch="Fill"/>
-        <Image x:Name="Person1" Height="42" Width="42" Canvas.Left="82" Canvas.Top="310" Source="Assets/rightAnimation/0.png" />
+        <Image x:Name="Person1" Height="42" Width="42" Canvas.Left="80" Canvas.Top="310" Source="Assets/rightAnimation/0.png" />
 
         <!-- Lista de colisão  -->
         <Image x:Name="Collision0" Height="47" Canvas.Left="598" Canvas.Top="344" Width="32"/>
@@ -107,9 +107,9 @@
         <TextBlock x:Name="qt_manaPot" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
 
         <!--Botão de status-->
-        <Image x:Name="ButtonStatus"  Source="Assets/btn_status2.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="ShowStatus">
+        <Image x:Name="ButtonStatus"  Source="Assets/btn_status2.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="ShowStatus" >
             <FlyoutBase.AttachedFlyout>
-                <Flyout>
+                <Flyout x:Name="StatusFlyout">
                     <!--<Image x:Name="statusBar" Source="Assets/lbl_status.png" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.2" />-->
 
                     <!--Text Block Status-->

@@ -11,6 +11,8 @@ namespace RPGlib.Characters
     abstract public class Character
     {
         public String name = "Caio";
+        public double CurrentPosX { get; set; }
+        public double CurrentPosY { get; set; }
         public int currentHP { get; set; }
         public int maxHealth { get; set; }
         public int maxMana { get; set; }
