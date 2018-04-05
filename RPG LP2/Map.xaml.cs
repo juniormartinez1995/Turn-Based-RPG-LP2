@@ -53,8 +53,11 @@ namespace RPG_LP2
         List<Image> Collision = new List<Image>(); //Lista de colisões no mapa
         List<Image> LockedChests = new List<Image>(); //Lista de baús no mapa
         List<Image> Enemies = new List<Image>(); //Lista de enimigos no mapa
-        List<BitmapImage> InventoryImage = new List<BitmapImage>(); //Lista das Imagens de Inventário
-        List<Image> InventoryMap = new List<Image>();
+        
+        //MUDEI AQUI, N SEI SE ESTA CERTO
+        List<InventoryBitImage> ListInvetoryImage = new List<InventoryBitImage>(); //Lista das Imagens de Inventário
+
+
         Character Player; //Personagem que estará no mapa
         Chest ChestControl = new Chest(); //Gerenciamento do baú
 
@@ -97,16 +100,16 @@ namespace RPG_LP2
             //ControllerGame.SetCharInMapPosition(Person1, Player.CurrentPosX, Player.CurrentPosY); 
         }
 
-        private void AddImageOnList()
+        /*private void AddImageOnList()
         {
-            InventoryMap.Add(Item1);
+            ListInvetoryImage.Add();
             InventoryMap.Add(Item2);
             InventoryMap.Add(Item3);
             InventoryMap.Add(Item4);
             InventoryMap.Add(Item5);
             InventoryMap.Add(Item6);
 
-        }
+        }*/
 
 
         // Ainda estou implementando essa bagaça aqui
@@ -180,7 +183,7 @@ namespace RPG_LP2
             //Checa se o player está na frente do bau, para poder lootear
             else if (ControllerGame.IsPlayerOverChest(Person1, LockedChests, Up))
             {
-                ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, InventoryImage, InventoryMap);
+                ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);
 
             }
             //Checa se o player se encontra de frente com o mob, se sim, iniciará a tela de batalha

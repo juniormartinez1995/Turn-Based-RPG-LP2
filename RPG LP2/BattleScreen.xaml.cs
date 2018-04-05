@@ -44,7 +44,9 @@ namespace RPG_LP2
         {
 
             BattlePlayer = e.Parameter as Character;
-
+            hpBarCharacter.Maximum = BattlePlayer.maxHealth;
+            hpBarCharacter.Value = 100;
+          
         }
 
         //Sem uso por enquanto
@@ -62,9 +64,20 @@ namespace RPG_LP2
 
         }
 
+        
+
         private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
         { 
             this.Frame.Navigate(typeof(Map), BattlePlayer);
+        }
+
+        public void btnSkillBasic_Click(object sender, RoutedEventArgs e)
+        {
+            btnSkillBasicClicked();
+        }
+        public int btnSkillBasicClicked()
+        {
+            return 1;
         }
     }
 }

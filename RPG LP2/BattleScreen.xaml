@@ -21,6 +21,9 @@
             </Image.RenderTransform>
         </Image>
         <Button x:Name="LeaveBtn" Content="Run" Canvas.Left="10" Canvas.Top="10" Tapped="LeaveBtn_Tapped"/>
+        <Image Height="63" Canvas.Left="-7" Canvas.Top="457" Width="179" Source="Assets/i agem png barra.png"/>
+        <ProgressBar x:Name="hpBarCharacter" Height="22" Canvas.Left="37" Canvas.Top="485" Width="109" RequestedTheme="Default" LargeChange="89"/>
+        <Button x:Name="btnSkillBasic" Content="Skill Basic" Canvas.Left="213" Canvas.Top="475" Height="33" Width="72" FontSize="12" BorderThickness="2,2,2,2" Click="btnSkillBasic_Click"/>
     </Canvas>
 
 </Page>

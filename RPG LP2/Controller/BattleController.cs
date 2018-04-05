@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
+using RPGlib;
+using RPG_LP2;
 namespace RPG_LP2
 {
     public static class BattleController
@@ -35,17 +36,18 @@ namespace RPG_LP2
             }
 
         }
-
+        BattleScreen battlescreen;
         public static void TurnPlayer(Character person, Mob mob)
         {
-            if (true) // OLHA ISSO AQUI
+            if (battlescreen.btnSkillBasicClicked() == 1) // OLHA ISSO AQUI
             {
                 mob.HP -= person.SkillBasic();
             }
         }
 
-        public static void TurnMob(Character p1, Mob mob)
+        public static void TurnMob(Character person, Mob mob)
         {
+            person.currentHP -= mob.SkillBasic();
 
         }
 

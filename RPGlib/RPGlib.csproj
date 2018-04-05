@@ -114,6 +114,7 @@
     <Compile Include="Itens\Generator.cs" />
     <Compile Include="Itens\Inventory.cs" />
     <Compile Include="Itens\Item.cs" />
+    <Compile Include="Itens\InventoryBitImage.cs" />
     <Compile Include="Itens\Stone.cs" />
     <Compile Include="Itens\RandomElement.cs" />
     <Compile Include="Itens\PotionLife.cs" />
