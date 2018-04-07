@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
+using RPGlib;
 
 namespace RPGlib.Characters
 {
@@ -21,6 +22,7 @@ namespace RPGlib.Characters
         public int evasionRate { get; set; }
         public int criticRate { get; set; }
         public int currentXP { get; set; }
+        public int maxXP { get; set; } = 100;
         public int gainedXP { get; set; }
         public int Level { get; set; }
         public int Damage { get; set; }
@@ -70,16 +72,27 @@ namespace RPGlib.Characters
            
         }
 
-        public bool upLevel()
+
+        //public delegate void upLevelHandler(object sender, EventArgs e);
+        //public event upLevelHandler upLevel;
+
+        public bool upLevel(int xpGain)
         {
-            if ((this.currentXP + this.gainedXP) > 100)
+            while ((this.currentXP += xpGain) > maxXP)
             {
-                this.currentXP = 0;
+                this.currentXP -= maxXP;
                 this.Level += 1;
+                minimunXPlevel();
                 return true;
 
             }
             return false;
+        }
+        
+        public void minimunXPlevel()
+        {
+            maxXP += (10*this.Level);
+            
         }
 
         public bool IsDead()
@@ -87,6 +100,8 @@ namespace RPGlib.Characters
             if (this.currentHP <= 0) return true;
             else return false;
         }
+
+
     }
 }
 

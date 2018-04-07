@@ -44,7 +44,7 @@ namespace RPG_LP2
             StartAnimation(); //Startar a animação
             SetCollision(); //Inicialização das colisões pré-definidas
             SetChetsInMap(); //Inicialização dos baús pré-definidos
-            AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
+            //AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
         }
