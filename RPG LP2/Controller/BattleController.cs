@@ -11,41 +11,48 @@ using Windows.UI.Xaml.Controls;
 using RPGlib;
 using RPG_LP2;
 
+
+
 namespace RPG_LP2
 {
     public static class BattleController
     {
-        public static Page TelaAtual { get; set; }
-
-
-        public static void CheckTurn(Character person, Mob mob, BattleScreen battlescreen) // checa se é o turno do mob ou do player
+        // public static Page TelaAtual { get; set; }
+      
+        public static void InicializeBattle2(Character person, Mob mob)
+        {
+            CheckTurn(person,mob);
+        }
+       // BattleScreen screen;
+        public static void CheckTurn(Character person, Mob mob) // checa se é o turno do mob ou do player
         {
             int cont = 0;
 
             if (cont % 2 == 0)
             {
-                TurnMob(person, mob, battlescreen);
+                TurnPlayer(person,mob);
                 cont++;
             }
 
             else
             {
-                TurnPlayer(person, mob, battlescreen);
+                TurnMob(person,mob);
                 cont++;
             }
 
         }
 
-        public static void TurnPlayer(Character person, Mob mob, BattleScreen battlescreen)
+        public static void TurnPlayer(Character person, Mob mob)
         {
-            if (battlescreen.btnSkillBasicClicked() == 1) // OLHA ISSO AQUI
+
+            if (true) // OLHA ISSO AQUI
             {
                 mob.HP -= person.SkillBasic();
                 Debug.WriteLine(mob.HP);
             }
         }
 
-        public static void TurnMob(Character person, Mob mob, BattleScreen battlescreen)
+        public static void TurnMob(Character person, Mob mob)
         {
             person.currentHP -= mob.SkillBasic();
 
@@ -53,7 +60,7 @@ namespace RPG_LP2
 
         public static bool FinishBattle(Character person, Mob mob)
         {
-           
+
             if (mob.IsDead())
             {
                 int xpGain = 0;
@@ -85,15 +92,19 @@ namespace RPG_LP2
 
         public static void WinBattle(Character person, Mob mob)
         {
-           
+            Debug.WriteLine("Voce venceu !!!");
+            
 
         }
 
         public static void LoseBattle(Character person, Mob mob)
         {
-            
+
         }
     }
 }
+
+    
+
 
     

@@ -30,22 +30,33 @@ namespace RPG_LP2
     {
         public BattleScreen()
         {
+         
             this.InitializeComponent();
-            BattleController.TelaAtual = this;
+            inicializateBattle();
+            // BattleController.TelaAtual = this;           
             BattleAnimation();
             Mob1.Source = Ninja;
+ 
+          
         }
 
         Character BattlePlayer;
+        Mob mob;
         DispatcherTimer Timer = new DispatcherTimer();
         BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
+    
+
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
             BattlePlayer = e.Parameter as Character;
+            mob = e.Parameter as Mob;
+
             hpBarCharacter.Maximum = BattlePlayer.maxHealth;
             hpBarCharacter.Value = 100;
+            
           
         }
 
@@ -79,5 +90,11 @@ namespace RPG_LP2
         {
             return 1;
         }
+        public void inicializateBattle()
+        {
+           
+            BattleController.InicializeBattle2(BattlePlayer,mob);
+        }
     }
+   
 }

@@ -19,6 +19,8 @@ using Windows.UI.Core;
 using RPGlib.Itens;
 using System.Diagnostics;
 using RPGlib;
+using RPGlib.Mobs;
+
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,7 +34,7 @@ namespace RPG_LP2
         public Map()
         {
             this.InitializeComponent();
-            
+           
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
             Window.Current.CoreWindow.KeyDown += ControllerGame.CoreWindow_KeyDown;
@@ -59,7 +61,10 @@ namespace RPG_LP2
 
 
         Character Player; //Personagem que estará no mapa
+        Mob mob;
         Chest ChestControl = new Chest(); //Gerenciamento do baú
+       
+
 
         double PosY, PosX; //Posição X e Y do personagem no mapa
         bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
@@ -191,8 +196,10 @@ namespace RPG_LP2
             {
                 IsAnotherPage = true;
                 this.Frame.Navigate(typeof(BattleScreen), Player); //Irá para a tela de batalha
+             
             }
         }
+       
 
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
