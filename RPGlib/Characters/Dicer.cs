@@ -63,7 +63,11 @@ namespace RPGlib.Characters
             return 1;
         }
 
-  
+        public override int SkillBasic()
+        {
+            return 1;
+        }
+
     }
 }
 

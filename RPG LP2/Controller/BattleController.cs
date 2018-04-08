@@ -47,8 +47,10 @@ namespace RPG_LP2
 
             if (true) // OLHA ISSO AQUI
             {
+                Debug.WriteLine("Entrei aqui");
                 mob.HP -= person.SkillBasic();
                 Debug.WriteLine(mob.HP);
+
             }
         }
 

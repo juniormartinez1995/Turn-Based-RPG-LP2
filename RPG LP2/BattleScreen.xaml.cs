@@ -18,6 +18,7 @@ using RPG_LP2;
 
 using RPGlib.Mobs;
 using Windows.UI.Xaml.Media.Imaging;
+using System.Diagnostics;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,7 +33,6 @@ namespace RPG_LP2
         {
          
             this.InitializeComponent();
-            inicializateBattle();
             // BattleController.TelaAtual = this;           
             BattleAnimation();
             Mob1.Source = Ninja;
@@ -41,6 +41,7 @@ namespace RPG_LP2
         }
 
         Character BattlePlayer;
+        Ninja ninja = new Ninja();
         Mob mob;
         DispatcherTimer Timer = new DispatcherTimer();
         BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
@@ -52,11 +53,15 @@ namespace RPG_LP2
         {
 
             BattlePlayer = e.Parameter as Character;
-            mob = e.Parameter as Mob;
+
+            Debug.WriteLine( "TO AQUIII" + BattlePlayer.SkillBasic());
+
+            Debug.WriteLine("UPEI OU NAO:" +BattlePlayer.upLevel(15));
 
             hpBarCharacter.Maximum = BattlePlayer.maxHealth;
             hpBarCharacter.Value = 100;
             
+            inicializateBattle();
           
         }
 
@@ -92,7 +97,8 @@ namespace RPG_LP2
         }
         public void inicializateBattle()
         {
-           
+            mob = ninja as Mob;
+            Debug.WriteLine(mob.HP);
             BattleController.InicializeBattle2(BattlePlayer,mob);
         }
     }

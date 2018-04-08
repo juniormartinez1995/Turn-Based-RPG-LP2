@@ -49,6 +49,7 @@ namespace RPG_LP2
             //AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
+            
         }
 
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
@@ -61,7 +62,6 @@ namespace RPG_LP2
 
 
         Character Player; //Personagem que estará no mapa
-        Mob mob;
         Chest ChestControl = new Chest(); //Gerenciamento do baú
        
 
@@ -101,8 +101,6 @@ namespace RPG_LP2
             Player = e.Parameter as Character;
             IsAnotherPage = false;
 
-            //Seta a ultima posição do personagem antes de trocar de tela
-            //ControllerGame.SetCharInMapPosition(Person1, Player.CurrentPosX, Player.CurrentPosY); 
         }
 
         /*private void AddImageOnList()

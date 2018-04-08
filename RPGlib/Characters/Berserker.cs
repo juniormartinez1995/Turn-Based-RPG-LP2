@@ -10,7 +10,7 @@ namespace RPGlib.Characters
 {
     public class Berserker : Character
     {
-        
+
         public Berserker()
         {
             this.currentHP = 250;
@@ -43,6 +43,14 @@ namespace RPGlib.Characters
 
             return multiplier;
         }
-    
+        public override int SkillBasic()
+        {
+
+            if (CountCritic())
+            {
+                return 2 * Damage;
+            }
+            return Damage;
+        }
     }
 }

@@ -62,15 +62,7 @@ namespace RPGlib.Characters
 
         }
 
-        public int SkillBasic()
-        {
-            if (CountCritic())
-            {
-                return 2 * Damage;
-            }
-            return Damage;
-           
-        }
+        public abstract int SkillBasic();
 
 
         //public delegate void upLevelHandler(object sender, EventArgs e);
@@ -88,11 +80,11 @@ namespace RPGlib.Characters
             }
             return false;
         }
-        
+
         public void minimunXPlevel()
         {
-            maxXP += (10*this.Level);
-            
+            maxXP += (10 * this.Level);
+
         }
 
         public bool IsDead()
