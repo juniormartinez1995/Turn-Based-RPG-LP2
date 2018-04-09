@@ -26,19 +26,22 @@ namespace RPG_LP2
        // BattleScreen screen;
         public static void CheckTurn(Character person, Mob mob) // checa se é o turno do mob ou do player
         {
-            int cont = 0;
+            int turn = 0;
 
-            if (cont % 2 == 0)
-            {
-                PlayerTurn(person,mob);
-                cont++;
+            while (FinishBattle(person, mob)) {
+
+                if (turn % 2 == 0) {
+                    PlayerTurn(person, mob);
+                    turn++;
+                }
+
+                else {
+                    MobTurn(person, mob);
+                    turn++;
+                }
+
             }
 
-            else
-            {
-                MobTurn(person,mob);
-                cont++;
-            }
 
         }
 
@@ -68,27 +71,24 @@ namespace RPG_LP2
                 if (mob is Boss)
                 {
                     xpGain = 50;
-                    //person.currentXP += 50;
-
                 }
                 else
                 {
-                    xpGain = 30;
-                    //person.currentXP += 30;
+                    xpGain = 30; 
                 }
                 person.LevelUp(xpGain);
-                return true;
-                //person.upLevel(mob, new EventArgs()) += person.Level;
+                return false;
+                
                 // chama musicazona, chama run 
             }
 
             if (person.IsDead())
             {
                 Debug.WriteLine("hey b0ss");
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         public static void WinBattle(Character person, Mob mob)

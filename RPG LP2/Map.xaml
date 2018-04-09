@@ -127,8 +127,6 @@
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
                     <TextBlock Name="status" FontSize="15"/>
-                    
-                    
 
                 </Flyout>
             </FlyoutBase.AttachedFlyout>
