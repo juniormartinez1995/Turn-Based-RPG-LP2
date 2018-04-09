@@ -32,11 +32,11 @@
 
             public void Remove_Item(Item item, Character person)
             {
-                person.criticRate -= item.criticalRate;
-                person.currentArmor -= item.Armor;
-                person.currentHP -= item.Health;
-                person.currentMana -= item.Mana;
-                person.evasionRate -= item.evasionRate;
+                person.CriticRate -= item.CriticalRate;
+                person.CurrentArmor -= item.Armor;
+                person.CurrentHP -= item.Health;
+                person.CurrentMana -= item.Mana;
+                person.EvasionRate -= item.EvasionRate;
                 //REMOVE DO PERSONAGEM
                 inventoryList.Remove(item);
 

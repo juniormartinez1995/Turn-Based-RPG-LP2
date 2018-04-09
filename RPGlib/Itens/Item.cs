@@ -13,12 +13,12 @@ namespace RPGlib.Itens
     {
         public string Description; //descricao de cada item
         public BitmapImage ImageItem { get; set; } //caminho (pasta) da imagem atribuida a cada item
-        public string itemName { get; set; }
+        public string ItemName { get; set; }
         public int Damage { get; set; }
         public int Armor { get; set; }
         public int Health { get; set; }
-        public int criticalRate { get; set; }
-        public int evasionRate { get; set; }
+        public int CriticalRate { get; set; }
+        public int EvasionRate { get; set; }
         public int Mana { get; set; }
         //VELOCIDADE DO PERSONAGEM
 

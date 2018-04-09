@@ -13,15 +13,15 @@ namespace RPGlib.Characters
         public Dicer()
         {
             
-            this.currentHP = 100;
-            this.maxHealth = 100;
-            this.maxHealth = 200;
-            this.currentMana = 200;
-            this.currentXP = 0;
+            this.CurrentHP = 100;
+            this.MaxHealth = 100;
+            this.MaxHealth = 200;
+            this.CurrentMana = 200;
+            this.CurrentXP = 0;
             this.Level = 0;
-            this.criticRate = 10;
-            this.evasionRate = 5;
-            this.currentArmor = 10;
+            this.CriticRate = 10;
+            this.EvasionRate = 5;
+            this.CurrentArmor = 10;
             this.Damage = 15;
             //UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/cimagif.gif"));  //Achar o img do dicer
            // DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/baixogif.gif"));
@@ -63,7 +63,7 @@ namespace RPGlib.Characters
             return 1;
         }
 
-        public override int SkillBasic()
+        public override int BasicSkill()
         {
             return 1;
         }

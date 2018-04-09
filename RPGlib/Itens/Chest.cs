@@ -10,7 +10,7 @@ namespace RPGlib.Itens
     public class Chest
     {
         public List<Item> ItemChest = new List<Item>();
-        public BitmapImage chestImage { get; set; }
+        public BitmapImage ChestImage { get; set; }
 
         public Boolean isOpen = false;
     }

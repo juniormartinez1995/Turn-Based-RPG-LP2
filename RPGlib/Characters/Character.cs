@@ -11,19 +11,19 @@ namespace RPGlib.Characters
 {
     abstract public class Character
     {
-        public String name = "Caio";
+        public String Name = "Caio";
         public double CurrentPosX { get; set; }
         public double CurrentPosY { get; set; }
-        public int currentHP { get; set; }
-        public int maxHealth { get; set; }
-        public int maxMana { get; set; }
-        public int currentMana { get; set; }
-        public int currentArmor { get; set; }
-        public int evasionRate { get; set; }
-        public int criticRate { get; set; }
-        public int currentXP { get; set; }
-        public int maxXP { get; set; } = 100;
-        public int gainedXP { get; set; }
+        public int CurrentHP { get; set; }
+        public int MaxHealth { get; set; }
+        public int MaxMana { get; set; }
+        public int CurrentMana { get; set; }
+        public int CurrentArmor { get; set; }
+        public int EvasionRate { get; set; }
+        public int CriticRate { get; set; }
+        public int CurrentXP { get; set; }
+        public int MaxXP { get; set; } = 100;
+        public int GainedXP { get; set; }
         public int Level { get; set; }
         public int Damage { get; set; }
 
@@ -49,8 +49,7 @@ namespace RPGlib.Characters
                 }
 
             }
-            if (chest.ItemChest.Count() == 0)
-                chest.isOpen = true;
+            if (chest.ItemChest.Count() == 0) chest.isOpen = true;
 
         }
 
@@ -58,39 +57,38 @@ namespace RPGlib.Characters
         {
             int criticCalc = RandomElement.Limiter(0, 100);
 
-            return criticCalc <= criticRate;
+            return criticCalc <= CriticRate;
 
         }
 
-        public abstract int SkillBasic();
+        public abstract int BasicSkill();
 
 
         //public delegate void upLevelHandler(object sender, EventArgs e);
         //public event upLevelHandler upLevel;
 
-        public bool upLevel(int xpGain)
+        public bool LevelUp(int xpGain)
         {
-            while ((this.currentXP += xpGain) > maxXP)
+            while ((this.CurrentXP += xpGain) > MaxXP)
             {
-                this.currentXP -= maxXP;
+                this.CurrentXP -= MaxXP;
                 this.Level += 1;
-                minimunXPlevel();
+                MinimunXPlevel();
                 return true;
 
             }
             return false;
         }
 
-        public void minimunXPlevel()
+        public void MinimunXPlevel()
         {
-            maxXP += (10 * this.Level);
+            MaxXP += (10 * this.Level);
 
         }
 
         public bool IsDead()
         {
-            if (this.currentHP <= 0) return true;
-            else return false;
+            return this.CurrentHP <= 0;
         }
 
 

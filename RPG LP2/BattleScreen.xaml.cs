@@ -36,7 +36,7 @@ namespace RPG_LP2
             // BattleController.TelaAtual = this;           
             BattleAnimation();
             Mob1.Source = Ninja;
- 
+            mob = ninja as Mob;
           
         }
 
@@ -45,8 +45,6 @@ namespace RPG_LP2
         Mob mob;
         DispatcherTimer Timer = new DispatcherTimer();
         BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
-    
-
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -54,15 +52,11 @@ namespace RPG_LP2
 
             BattlePlayer = e.Parameter as Character;
 
-            Debug.WriteLine( "TO AQUIII" + BattlePlayer.SkillBasic());
+            hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
+            hpBarCharacter.Value = BattlePlayer.CurrentHP;
 
-            Debug.WriteLine("UPEI OU NAO:" +BattlePlayer.upLevel(15));
+            BattleController.InicializeBattle(BattlePlayer, mob);
 
-            hpBarCharacter.Maximum = BattlePlayer.maxHealth;
-            hpBarCharacter.Value = 100;
-            
-            inicializateBattle();
-          
         }
 
         //Sem uso por enquanto
@@ -87,20 +81,15 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(Map), BattlePlayer);
         }
 
-        public void btnSkillBasic_Click(object sender, RoutedEventArgs e)
+        public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
         {
-            btnSkillBasicClicked();
+            BtnBasicSkillClicked();
         }
-        public int btnSkillBasicClicked()
+        public int BtnBasicSkillClicked()
         {
             return 1;
         }
-        public void inicializateBattle()
-        {
-            mob = ninja as Mob;
-            Debug.WriteLine(mob.HP);
-            BattleController.InicializeBattle2(BattlePlayer,mob);
-        }
+
     }
    
 }

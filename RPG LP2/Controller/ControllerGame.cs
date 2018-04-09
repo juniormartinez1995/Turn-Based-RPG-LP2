@@ -119,12 +119,6 @@ namespace RPG_LP2
             }
         }
 
-        public static void SetCharInMapPosition(Image Person1, double PosX, double PosY)
-        {
-            Person1.SetValue(Canvas.TopProperty, PosY);
-            Person1.SetValue(Canvas.LeftProperty, PosX);
-        }
-
         public static void MoveUp(Image Person1, int Velocity, int Increment = 0) //Método que realiza a movimentação da imagem para cima
         {
             Person1.SetValue(Canvas.TopProperty, Canvas.GetTop(Person1) - Velocity - Increment);

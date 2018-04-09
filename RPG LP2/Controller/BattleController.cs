@@ -19,7 +19,7 @@ namespace RPG_LP2
     {
         // public static Page TelaAtual { get; set; }
       
-        public static void InicializeBattle2(Character person, Mob mob)
+        public static void InicializeBattle(Character person, Mob mob)
         {
             CheckTurn(person,mob);
         }
@@ -30,33 +30,33 @@ namespace RPG_LP2
 
             if (cont % 2 == 0)
             {
-                TurnPlayer(person,mob);
+                PlayerTurn(person,mob);
                 cont++;
             }
 
             else
             {
-                TurnMob(person,mob);
+                MobTurn(person,mob);
                 cont++;
             }
 
         }
 
-        public static void TurnPlayer(Character person, Mob mob)
+        public static void PlayerTurn(Character person, Mob mob)
         {
 
             if (true) // OLHA ISSO AQUI
             {
                 Debug.WriteLine("Entrei aqui");
-                mob.HP -= person.SkillBasic();
+                mob.HP -= person.BasicSkill();
                 Debug.WriteLine(mob.HP);
 
             }
         }
 
-        public static void TurnMob(Character person, Mob mob)
+        public static void MobTurn(Character person, Mob mob)
         {
-            person.currentHP -= mob.SkillBasic();
+            person.CurrentHP -= mob.SkillBasic();
 
         }
 
@@ -77,7 +77,7 @@ namespace RPG_LP2
                     xpGain = 30;
                     //person.currentXP += 30;
                 }
-                person.upLevel(xpGain);
+                person.LevelUp(xpGain);
                 return true;
                 //person.upLevel(mob, new EventArgs()) += person.Level;
                 // chama musicazona, chama run 

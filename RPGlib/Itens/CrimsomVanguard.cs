@@ -15,11 +15,11 @@ namespace RPGlib.Itens
         {
 
             this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/crimson_vanguard.png")); ;
-            this.itemName = "Crimsom Vanguard";
+            this.ItemName = "Crimsom Vanguard";
             this.Armor = armor;
-            this.criticalRate = 0;
+            this.CriticalRate = 0;
             this.Damage = 0;
-            this.evasionRate = 0;
+            this.EvasionRate = 0;
             this.Health = Health;
             this.Mana = 0;
             this.Description = "HP = 100\nArmor = 10";
@@ -27,8 +27,8 @@ namespace RPGlib.Itens
 
         public override void Effect(Character person)
         {
-            person.currentArmor += this.Armor;
-            person.currentHP += this.Health;
+            person.CurrentArmor += this.Armor;
+            person.CurrentHP += this.Health;
         }
     }
 }

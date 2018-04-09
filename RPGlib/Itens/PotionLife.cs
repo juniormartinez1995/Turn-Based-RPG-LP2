@@ -16,15 +16,15 @@ namespace RPGlib.Itens
         public PotionLife()
         {
             this.Health = 50;
-            this.itemName = "Poção de Vida";
+            this.ItemName = "Poção de Vida";
             this.Description = "bufa " + this.Health + ".";
             this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/potion_life.png")); ;
 
             //---------------------------------------------
 
             this.Armor = 0;
-            this.criticalRate = 0;
-            this.evasionRate = 0;
+            this.CriticalRate = 0;
+            this.EvasionRate = 0;
             this.Damage = 0;
             this.Mana = 0;
 
@@ -35,14 +35,14 @@ namespace RPGlib.Itens
 
         public override void Effect(Character person)
         {
-            if (person.currentHP + Health > person.maxHealth)//verifica se a soma da vida atual do personagem
+            if (person.CurrentHP + Health > person.MaxHealth)//verifica se a soma da vida atual do personagem
             {// mais a vida fornecida for maior ou igual a mana maxima do personagem, se sim:
 
-                person.currentHP = person.maxHealth; // a vida atual vai ser igual a vida maxima
+                person.CurrentHP = person.MaxHealth; // a vida atual vai ser igual a vida maxima
             }
             else //se nao:
             {
-                person.currentHP = person.currentHP + Health;// a vida atual do personagem vai ser igual a vida
+                person.CurrentHP = person.CurrentHP + Health;// a vida atual do personagem vai ser igual a vida
                 //atual mais a vida fornecida
             }
         }
