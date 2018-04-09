@@ -30,7 +30,7 @@ namespace RPGlib.Itens
 
         }
         //person = personagem
-        //correntHP = vida atual do personagem
+        //currentHP = vida atual do personagem
         //maxHearth = vida maxima do personagem
 
         public override void Effect(Character person)

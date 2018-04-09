@@ -23,7 +23,7 @@ namespace RPGlib.Itens
             /*
              * 1 = Pocao de vida
              * 2 = pocao de mana
-             * 3 = CrisomVanguard
+             * 3 = CrimsomVanguard
              */
             /*int qnt_item = RandomElement.Limiter(0, 2);
             int typeItem = RandomElement.Limiter(1, 3);

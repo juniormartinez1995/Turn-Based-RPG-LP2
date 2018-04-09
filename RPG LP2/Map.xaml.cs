@@ -26,9 +26,7 @@ using RPGlib.Mobs;
 
 namespace RPG_LP2
 {
-    /// <summary>
-    /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
-    /// </summary>
+   
     public sealed partial class Map : Page
     {
         public Map()
@@ -49,7 +47,7 @@ namespace RPG_LP2
             //AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
-            
+                     
         }
 
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
@@ -70,6 +68,7 @@ namespace RPG_LP2
         bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
         int Velocity = 3; //Velocidade do personagem
 
+      
 
         //Método para setar os baús no mapa
         public void SetChetsInMap()
@@ -131,7 +130,11 @@ namespace RPG_LP2
         private void ShowStatus(object sender, TappedRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+            status.Text = "HP = " + Player.CurrentHP.ToString() + "\n" + "MP = " + Player.CurrentMana.ToString() + "\n" + "Damage = " + Player.Damage.ToString() + "\n" + "Evasion = " + Player.EvasionRate.ToString()+"%" + "\n"
+             + "Critical = "   + Player.CriticRate.ToString() + "%" + "\n" +"XP = " + Player.CurrentXP.ToString() ;
         }
+
+        
 
         private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {

@@ -46,7 +46,7 @@ namespace RPG_LP2
             if (Down) Person1.Source = Person.DownMoviment;
         }
 
-        //Checa se o movimento é permitido, se nao enconsta em um bau, enimigo ou obstaculo
+        //Checa se o movimento é permitido, se nao enconsta em um bau, inimigo ou obstaculo
         public static bool IsMovimentAllowed(Image Person1, List<Image> LockedChests, List<Image> Enemies, List<Image> Collision, bool key)
         {
             return !IsPlayerOverChest(Person1, LockedChests, key) && !IsPlayerColliding(Person1, Enemies, key) && !IsPlayerColliding(Person1, Collision, key);
