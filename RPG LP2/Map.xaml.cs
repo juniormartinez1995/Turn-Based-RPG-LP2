@@ -94,6 +94,42 @@ namespace RPG_LP2
 
         }
 
+        private void ShowItemStatus1(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+            ItemStatus1.Text = Player.inventory.inventoryList[0].ItemName;
+        }
+
+        private void ShowItemStatus2(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus2.Text = Player.inventory.inventoryList[1].ItemName;
+        }
+
+        private void ShowItemStatus3(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus3.Text = Player.inventory.inventoryList[2].ItemName;
+        }
+
+        private void ShowItemStatus4(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus4.Text = Player.inventory.inventoryList[3].ItemName;
+        }
+
+        private void ShowItemStatus5(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus5.Text = Player.inventory.inventoryList[4].ItemName;
+        }
+
+        private void ShowItemStatus6(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus6.Text = Player.inventory.inventoryList[5].ItemName;
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
@@ -130,8 +166,14 @@ namespace RPG_LP2
         private void ShowStatus(object sender, TappedRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
-            status.Text = "HP = " + Player.CurrentHP.ToString() + "\n" + "MP = " + Player.CurrentMana.ToString() + "\n" + "Damage = " + Player.Damage.ToString() + "\n" + "Evasion = " + Player.EvasionRate.ToString()+"%" + "\n"
-             + "Critical = "   + Player.CriticRate.ToString() + "%" + "\n" +"XP = " + Player.CurrentXP.ToString() ;
+            status.Text = 
+            "HP = " + Player.CurrentHP.ToString() + "\n" + 
+            "MP = " + Player.CurrentMana.ToString() + "\n" + 
+            "Damage = " + Player.Damage.ToString() + "\n" + 
+            "Evasion = " + Player.EvasionRate.ToString()+"%" + "\n"+ 
+            "Critical = "   + Player.CriticRate.ToString() + "%" + "\n" +
+            "XP = " + Player.CurrentXP.ToString() + "\n" + 
+            "Level = " + Player.Level.ToString();
         }
 
         

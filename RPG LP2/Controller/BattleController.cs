@@ -77,23 +77,22 @@ namespace RPG_LP2
             public static bool FinishBattle(Character person, Mob mob)
             {
 
-                if (mob.IsDead())
+            if (mob.IsDead())
+            {
+                int xpGain = 0;
+                if (mob is Boss)
                 {
-                Debug.WriteLine("Person ganhou!!!");
-                    int xpGain = 0;
-                    if (mob is Boss)
-                    {
-                        xpGain = 50;
-                    }
-                    else
-                    {
-                        xpGain = 30;
-                    }
-                    person.LevelUp(xpGain);
-                    return false;
-
-                    // chama musicazona, chama run 
+                    xpGain = 50;
                 }
+                else
+                {
+                    xpGain = 30; 
+                }
+                person.LevelUp(xpGain);
+                return false;
+                
+                // chama musicazona, chama run 
+            }
 
                 if (person.IsDead())
                 {
@@ -111,12 +110,12 @@ namespace RPG_LP2
 
             }
 
-            public static void LoseBattle(Character person, Mob mob)
-            {
+        public static void LoseBattle(Character person, Mob mob)
+        {
 
-            }
         }
     }
+}
 
 
     
