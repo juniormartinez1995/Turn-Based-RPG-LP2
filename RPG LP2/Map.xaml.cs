@@ -130,8 +130,14 @@ namespace RPG_LP2
         private void ShowStatus(object sender, TappedRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
-            status.Text = "HP = " + Player.CurrentHP.ToString() + "\n" + "MP = " + Player.CurrentMana.ToString() + "\n" + "Damage = " + Player.Damage.ToString() + "\n" + "Evasion = " + Player.EvasionRate.ToString()+"%" + "\n"
-             + "Critical = "   + Player.CriticRate.ToString() + "%" + "\n" +"XP = " + Player.CurrentXP.ToString() ;
+            status.Text = 
+            "HP = " + Player.CurrentHP.ToString() + "\n" + 
+            "MP = " + Player.CurrentMana.ToString() + "\n" + 
+            "Damage = " + Player.Damage.ToString() + "\n" + 
+            "Evasion = " + Player.EvasionRate.ToString()+"%" + "\n"+ 
+            "Critical = "   + Player.CriticRate.ToString() + "%" + "\n" +
+            "XP = " + Player.CurrentXP.ToString() + "\n" + 
+            "Level = " + Player.Level.ToString();
         }
 
         

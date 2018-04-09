@@ -71,6 +71,7 @@ namespace RPG_LP2
                 if (mob is Boss)
                 {
                     xpGain = 50;
+
                 }
                 else
                 {
@@ -100,7 +101,7 @@ namespace RPG_LP2
 
         public static void LoseBattle(Character person, Mob mob)
         {
-
+            //SERVA  = SERVO
         }
     }
 }
