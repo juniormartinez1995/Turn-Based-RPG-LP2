@@ -126,7 +126,7 @@
 
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
-                    <TextBlock TextWrapping="Wrap" Text="LAPA GOD"/>
+                    <TextBlock TextWrapping="Wrap" Text="TESTE"/>
 
                 </Flyout>
             </FlyoutBase.AttachedFlyout>
