@@ -61,7 +61,15 @@ namespace RPGlib.Characters
 
         }
 
-        public abstract int BasicSkill();
+        public  int BasicSkill()
+        {
+
+            if (CountCritic())
+            {
+                return 2 * Damage;
+            }
+            return Damage;
+        }
 
 
         //public delegate void upLevelHandler(object sender, EventArgs e);

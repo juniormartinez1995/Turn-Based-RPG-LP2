@@ -34,16 +34,17 @@ namespace RPG_LP2
          
             this.InitializeComponent();
             // BattleController.TelaAtual = this;           
-            BattleAnimation();
+
             Mob1.Source = Ninja;
             mob = ninja as Mob;
+            StartTimer();
           
         }
 
         Character BattlePlayer;
         Ninja ninja = new Ninja();
         Mob mob;
-        DispatcherTimer Timer = new DispatcherTimer();
+        DispatcherTimer timer = new DispatcherTimer();
         BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
 
 
@@ -54,27 +55,28 @@ namespace RPG_LP2
 
             hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
             hpBarCharacter.Value = BattlePlayer.CurrentHP;
+            mpBarCharacter.Maximum = BattlePlayer.MaxMana;
+            mpBarCharacter.Value = BattlePlayer.CurrentMana;
 
             BattleController.InicializeBattle(BattlePlayer, mob);
-
+            
         }
 
-        //Sem uso por enquanto
-        public void BattleAnimation()
+        public void StartTimer()
         {
-            Timer.Tick += Timer_Tick;
-            Timer.Interval = new TimeSpan(0, 0, 0, 50);
-            Timer.Start();
+            if (!timer.IsEnabled)
+            {
+                timer.Tick += Timer_Tick;
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                timer.Start();
+            }
         }
 
-        //Sem uso por enquanto
         private void Timer_Tick(object sender, object e)
         {
-            Mob1.Source = Ninja;
-
+            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value -= 5;
+            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value -= 5;
         }
-
-        
 
         private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
         { 

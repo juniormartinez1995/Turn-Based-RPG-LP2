@@ -13,7 +13,7 @@ namespace RPGlib.Characters
 
         public Berserker()
         {
-            this.CurrentHP = 200;
+            this.CurrentHP = 250;
             this.MaxHealth = 250;
             this.MaxMana = 100;
             this.CurrentMana = 100;
@@ -22,7 +22,7 @@ namespace RPGlib.Characters
             this.CriticRate = 15;
             this.EvasionRate = 5;
             this.CurrentArmor = 20;
-            this.Damage = 30;
+            this.Damage = 30 * SacrificeBlood();
 
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/cimagif.gif"));
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/baixogif.gif"));
@@ -36,21 +36,19 @@ namespace RPGlib.Characters
         }
 
 
-        public float SacrificeBlood()
+        public int SacrificeBlood()
         {
+            
             int hp_missing = this.MaxHealth - this.CurrentHP;
-            float multiplier = (100 * hp_missing) / this.MaxHealth;
+
+            if (hp_missing == 0)  //Caso a vida estiver cheia
+            {
+                return 1;
+            }
+
+            int multiplier = (10 * hp_missing) / this.MaxHealth;
 
             return multiplier;
-        }
-        public override int BasicSkill()
-        {
-
-            if (CountCritic())
-            {
-                return 2 * Damage;
-            }
-            return Damage;
         }
     }
 }

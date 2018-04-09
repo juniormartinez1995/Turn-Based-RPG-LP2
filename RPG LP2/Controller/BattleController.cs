@@ -49,7 +49,6 @@ namespace RPG_LP2
             {
                 Debug.WriteLine("Entrei aqui");
                 mob.HP -= person.BasicSkill();
-                Debug.WriteLine(mob.HP);
 
             }
         }

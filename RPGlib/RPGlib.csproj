@@ -110,11 +110,13 @@
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\Dicer.cs" />
     <Compile Include="Itens\Chest.cs" />
+    <Compile Include="Itens\DemonicRapier.cs" />
     <Compile Include="Itens\CrimsomVanguard.cs" />
     <Compile Include="Itens\Generator.cs" />
     <Compile Include="Itens\Inventory.cs" />
     <Compile Include="Itens\Item.cs" />
     <Compile Include="Itens\InventoryBitImage.cs" />
+    <Compile Include="Itens\RabbitFeet.cs" />
     <Compile Include="Itens\Stone.cs" />
     <Compile Include="Itens\RandomElement.cs" />
     <Compile Include="Itens\PotionLife.cs" />
