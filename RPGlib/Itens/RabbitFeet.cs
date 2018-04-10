@@ -14,7 +14,7 @@ namespace RPGlib.Itens
         public RabbitFeet(int critical)
         {
 
-            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/crimson_vanguard.png")); //ADICIONAR IMAGEM DE UM PÉ DE COELHO
+            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/rabbit_feet.png")); //ADICIONAR IMAGEM DE UM PÉ DE COELHO
             this.ItemName = "Rabbit's Feet";
             this.Armor = 0;
             this.CriticalRate = critical;

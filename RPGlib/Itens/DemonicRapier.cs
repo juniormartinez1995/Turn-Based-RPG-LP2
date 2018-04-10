@@ -14,7 +14,7 @@ namespace RPGlib.Itens
         public DemonicRapier(int damage)
         {
        
-            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/crimson_vanguard.png")); ; //ADICIONAR IMAGEM DE ESPADA
+            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/demonic_rapier.png")); ; //ADICIONAR IMAGEM DE ESPADA
             this.ItemName = "Demonic Rapier";
             this.Armor = 0;
             this.CriticalRate = 0;

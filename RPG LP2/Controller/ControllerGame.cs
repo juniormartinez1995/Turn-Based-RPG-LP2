@@ -93,28 +93,23 @@ namespace RPG_LP2
         }
 
         public static void LootVault(Character player, Chest ChestControl, TextBlock qt_lifePot, TextBlock qt_manaPot, List<InventoryBitImage>ListImage)
-        {
+        {   
             if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário
             {
                 player.OpenChest(ChestControl);
                 qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
                 qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString(); //CAIO SEU BURRO FDP CHUPETINHA
 
+                int countItem = 0;
                 foreach (Item item in player.inventory.inventoryList)
                 {
-
+                    ListImage[countItem].BitImage = item.ImageItem;
+                    countItem++;
                 }
-               /* foreach (Item item in player.inventory.inventoryList)
+                foreach (InventoryBitImage BitmapImage in ListImage) 
                 {
-                    InventoryImage.Add(item.ImageItem);
+                    BitmapImage.ImageMap.Source = BitmapImage.BitImage;
                 }
-                if(InventoryImage.Count()<=6)
-                for (int y = InventoryImage.Count()-1; y >=0 ; y--) //Coloca os Bitmaps das Imagens na lista de Imagens visuais
-                {
-                    InventoryMap[y].Source = InventoryImage[y];
-                }*/
-
-
 
             }
         }

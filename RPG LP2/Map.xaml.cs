@@ -44,7 +44,7 @@ namespace RPG_LP2
             StartAnimation(); //Startar a animação
             SetCollision(); //Inicialização das colisões pré-definidas
             SetChetsInMap(); //Inicialização dos baús pré-definidos
-            //AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
+            AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
                      
@@ -57,7 +57,7 @@ namespace RPG_LP2
         
         //MUDEI AQUI, N SEI SE ESTA CERTO
         List<InventoryBitImage> ListInvetoryImage = new List<InventoryBitImage>(); //Lista das Imagens de Inventário
-
+        
 
         Character Player; //Personagem que estará no mapa
         Chest ChestControl = new Chest(); //Gerenciamento do baú
@@ -102,17 +102,16 @@ namespace RPG_LP2
 
         }
 
-        /*private void AddImageOnList()
+        private void AddImageOnList()
         {
-            ListInvetoryImage.Add();
-            InventoryMap.Add(Item2);
-            InventoryMap.Add(Item3);
-            InventoryMap.Add(Item4);
-            InventoryMap.Add(Item5);
-            InventoryMap.Add(Item6);
+            ListInvetoryImage.Add(new InventoryBitImage(Item1, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item2, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item3, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item4, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item5, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item6, null));
 
-        }*/
-
+        }
 
         // Ainda estou implementando essa bagaça aqui
 

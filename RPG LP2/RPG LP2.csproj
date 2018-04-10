@@ -125,6 +125,7 @@
     <Content Include="Assets\1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3" />
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
+    <Content Include="Assets\demonic _rapier.png" />
     <Content Include="Assets\downAnimation\baixogif.gif" />
     <Content Include="Assets\BattleAnimations\NinjaServa.gif" />
     <Content Include="Assets\berseker_Front.png" />
@@ -135,6 +136,7 @@
     <Content Include="Assets\Buttom_Start.png" />
     <Content Include="Assets\i agem png barra.png" />
     <Content Include="Assets\imagem progress bar.gif" />
+    <Content Include="Assets\rabbit_feet.png" />
     <Content Include="Assets\upAnimation\cimagif.gif" />
     <Content Include="Assets\crimson_vanguard.png" />
     <Content Include="Assets\rightAnimation\dirgif.gif" />
