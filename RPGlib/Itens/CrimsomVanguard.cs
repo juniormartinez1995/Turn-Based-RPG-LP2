@@ -21,13 +21,13 @@ namespace RPGlib.Itens
             this.EvasionRate = 0;
             this.Health = health;
             this.Mana = 0;
-            this.Description = "HP = " + health +"\nArmor = " + armor;
+            this.Description = "HP + " + health +"\nArmor + " + armor;
         }
 
         public override void Effect(Character person)
         {
             person.CurrentArmor += this.Armor;
-            person.CurrentHP += this.Health;
+            person.MaxHealth += this.Health;
         }
     }
 }

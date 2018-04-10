@@ -178,10 +178,10 @@ namespace RPG_LP2
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
             status.Text = 
-            "HP = " + Player.CurrentHP + "\n" + 
-            "MP = " + Player.CurrentMana.ToString() + "\n" + 
-            "Damage = " + Player.Damage.ToString() + "\n" + 
-            "Armor = " + Player.CurrentArmor + "\n" +
+            "HP = " + Player.CurrentHP.ToString() + "/"+  Player.MaxHealth.ToString() + "\n" + 
+            "MP = " + Player.CurrentMana.ToString() + "/" + Player.MaxMana.ToString() + "\n" + 
+            "Damage = " + Player.Damage.ToString() + "\n" +
+            "Armor = " + Player.CurrentArmor.ToString() + "\n" +
             "Evasion = " + Player.EvasionRate.ToString()+"%" + "\n"+ 
             "Critical = "   + Player.CriticRate.ToString() + "%" + "\n" +
             "XP = " + Player.CurrentXP.ToString() + "\n" + 
