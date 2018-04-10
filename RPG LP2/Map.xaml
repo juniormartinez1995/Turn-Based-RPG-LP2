@@ -90,14 +90,129 @@
 
         <!--Imagem da mochila-->
         <Image x:Name="mochila" Height="50" Width="50" Canvas.Top="547" Canvas.Left="2" Source="Assets/backpack_cutted.png" />
+        <!--IMAGEM DOS ITENS COM SEUS FLYOUTS DE STATUS-->
+        <Image x:Name="Item1" Canvas.Left="56" Canvas.Top="547" Width="50" Height="50" Tag="0" Tapped="ShowItemStatus1">
+            <!--Flyout item 1-->
+            <FlyoutBase.AttachedFlyout>
+                <Flyout x:Name="Item1Flyout">
+                    <Flyout.FlyoutPresenterStyle>
+                        <Style TargetType="FlyoutPresenter">
+                            <Setter Property="Height" Value="200"/>
+                            <Setter Property="Width"  Value="100"/>
+                            <Setter Property="Background" Value="#b35900"/>
+                            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+                            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+                            <Setter Property="IsTabStop" Value="True"/>
+                            <Setter Property="TabNavigation" Value="Cycle"/>
 
-        <!--Imagens por cima dos retângulos-->
-        <Image x:Name="Item1" Canvas.Left="56" Canvas.Top="547" Width="50" Height="50" Tag="0"/>
-        <Image x:Name="Item2" Canvas.Left="108" Canvas.Top="547" Width="50" Height="50" Tag="1"/>
-        <Image x:Name="Item3" Canvas.Left="160" Canvas.Top="547" Width="50" Height="50" Tag="2"/>
-        <Image x:Name="Item4" Canvas.Left="212" Canvas.Top="547" Width="50" Height="50" Tag="3"/>
-        <Image x:Name="Item5" Canvas.Left="264" Canvas.Top="547" Width="50" Height="50" Tag="4"/>
-        <Image x:Name="Item6" Canvas.Left="316" Canvas.Top="547" Width="50" Height="50" Tag="5"/>
+                        </Style>
+                    </Flyout.FlyoutPresenterStyle>
+                    <TextBlock Name="ItemStatus1" FontSize="15"/>
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
+        </Image>
+
+        <Image x:Name="Item2" Canvas.Left="108" Canvas.Top="547" Width="50" Height="50" Tag="1" Tapped="ShowItemStatus2">
+        <!--Flyout item 2-->
+        <FlyoutBase.AttachedFlyout>
+            <Flyout x:Name="Item2Flyout">
+                <Flyout.FlyoutPresenterStyle>
+                    <Style TargetType="FlyoutPresenter">
+                        <Setter Property="Height" Value="200"/>
+                        <Setter Property="Width"  Value="100"/>
+                        <Setter Property="Background" Value="#b35900"/>
+                        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+                        <Setter Property="IsTabStop" Value="True"/>
+                        <Setter Property="TabNavigation" Value="Cycle"/>
+
+                    </Style>
+                </Flyout.FlyoutPresenterStyle>
+                <TextBlock Name="ItemStatus2" FontSize="15"/>
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>
+        </Image>
+
+        <Image x:Name="Item3" Canvas.Left="160" Canvas.Top="547" Width="50" Height="50" Tag="2" Tapped="ShowItemStatus3">
+                <!--Flyout item 3-->
+        <FlyoutBase.AttachedFlyout>
+            <Flyout x:Name="Item3Flyout">
+                <Flyout.FlyoutPresenterStyle>
+                    <Style TargetType="FlyoutPresenter">
+                        <Setter Property="Height" Value="200"/>
+                        <Setter Property="Width"  Value="100"/>
+                        <Setter Property="Background" Value="#b35900"/>
+                        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+                        <Setter Property="IsTabStop" Value="True"/>
+                        <Setter Property="TabNavigation" Value="Cycle"/>
+
+                    </Style>
+                </Flyout.FlyoutPresenterStyle>
+                <TextBlock Name="ItemStatus3" FontSize="15"/>
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>
+        </Image>
+        <Image x:Name="Item4" Canvas.Left="212" Canvas.Top="547" Width="50" Height="50" Tag="3" Tapped="ShowItemStatus4">
+                <!--Flyout item 4-->
+        <FlyoutBase.AttachedFlyout>
+            <Flyout x:Name="Item4Flyout">
+                <Flyout.FlyoutPresenterStyle>
+                    <Style TargetType="FlyoutPresenter">
+                        <Setter Property="Height" Value="200"/>
+                        <Setter Property="Width"  Value="100"/>
+                        <Setter Property="Background" Value="#b35900"/>
+                        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+                        <Setter Property="IsTabStop" Value="True"/>
+                        <Setter Property="TabNavigation" Value="Cycle"/>
+
+                    </Style>
+                </Flyout.FlyoutPresenterStyle>
+                <TextBlock Name="ItemStatus4" FontSize="15"/>
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>
+        </Image>
+        <Image x:Name="Item5" Canvas.Left="264" Canvas.Top="547" Width="50" Height="50" Tag="4" Tapped="ShowItemStatus5">
+                <!--Flyout item 5-->
+        <FlyoutBase.AttachedFlyout>
+            <Flyout x:Name="Item5Flyout">
+                <Flyout.FlyoutPresenterStyle>
+                    <Style TargetType="FlyoutPresenter">
+                        <Setter Property="Height" Value="200"/>
+                        <Setter Property="Width"  Value="100"/>
+                        <Setter Property="Background" Value="#b35900"/>
+                        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+                        <Setter Property="IsTabStop" Value="True"/>
+                        <Setter Property="TabNavigation" Value="Cycle"/>
+
+                    </Style>
+                </Flyout.FlyoutPresenterStyle>
+                <TextBlock Name="ItemStatus5" FontSize="15"/>
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>
+        </Image>
+        <Image x:Name="Item6" Canvas.Left="316" Canvas.Top="547" Width="50" Height="50" Tag="5" Tapped="ShowItemStatus6">
+                <!--Flyout item 6-->
+        <FlyoutBase.AttachedFlyout>
+            <Flyout x:Name="Item6Flyout">
+                <Flyout.FlyoutPresenterStyle>
+                    <Style TargetType="FlyoutPresenter">
+                        <Setter Property="Height" Value="200"/>
+                        <Setter Property="Width"  Value="100"/>
+                        <Setter Property="Background" Value="#b35900"/>
+                        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+                        <Setter Property="IsTabStop" Value="True"/>
+                        <Setter Property="TabNavigation" Value="Cycle"/>
+
+                    </Style>
+                </Flyout.FlyoutPresenterStyle>
+                <TextBlock Name="ItemStatus6" FontSize="15"/>
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>
+        </Image>
         <!--Potes de LIFE and MANA-->
         <Image x:Name="life_pot" Canvas.Left="380" Canvas.Top="547" Width="50" Height="50" Source="Assets/potion_life.png" />
         <Image x:Name="life_mana" Canvas.Left="432" Canvas.Top="547" Width="50" Height="50" Source="Assets/potion_mana.png" />
@@ -110,8 +225,7 @@
         <Image x:Name="ButtonStatus"  Source="Assets/btn_status2.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="ShowStatus" >
             <FlyoutBase.AttachedFlyout>
                 <Flyout x:Name="StatusFlyout">
-                    <!--<Image x:Name="statusBar" Source="Assets/lbl_status.png" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.2" />-->
-
+                    
                     <!--Text Block Status-->
 
                     <Flyout.FlyoutPresenterStyle>
@@ -131,6 +245,7 @@
                 </Flyout>
             </FlyoutBase.AttachedFlyout>
         </Image>
+
 
     </Canvas>
 

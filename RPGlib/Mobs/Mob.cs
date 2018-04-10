@@ -28,11 +28,21 @@ namespace RPGlib.Mobs
             else return false;
         }
 
-        public int SkillBasic()
+        public int Skills()
         {
-            return Damage;
-        }
+            {
+                int RandomSkill = RandomElement.Limiter(0, 1);
+                if (RandomSkill == 0)
+                {
+                    return Damage;
+                }
+                else
+                {
+                    return 2 * Damage;
+                }
+            }
 
-        
+
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace RPG_LP2
 
         }
 
+        //CAIO CHUPETA
 
         public static void PaintAnimation(Image Person1, Character Person, bool Right, bool Left, bool Up, bool Down) // Método de recebe como parametro um vetor de Bitmap
         {                                                       // e realiza a animação do movimento
