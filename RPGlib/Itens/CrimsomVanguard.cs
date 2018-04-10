@@ -20,15 +20,15 @@ namespace RPGlib.Itens
             this.CriticalRate = 0;
             this.Damage = 0;
             this.EvasionRate = 0;
-            this.Health = Health;
+            this.Health = health;
             this.Mana = 0;
-            this.Description = "HP = " + health +"\nArmor = " + armor;
+            this.Description = "HP + " + health +"\nArmor + " + armor;
         }
 
         public override void Effect(Character person)
         {
             person.CurrentArmor += this.Armor;
-            person.CurrentHP += this.Health;
+            person.MaxHealth += this.Health;
         }
     }
 }
