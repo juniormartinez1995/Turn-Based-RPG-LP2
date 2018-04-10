@@ -20,7 +20,7 @@ namespace RPGlib.Itens
              * 6 - RabbitFeet
              **/
 
-            int numRandom = RandomElement.Limiter(1, 6);
+            int numRandom = 4; // RandomElement.Limiter(1, 6);
             switch (numRandom)
             {
                 case 1:
@@ -43,7 +43,7 @@ namespace RPGlib.Itens
                     break;
             }
 
-            int numRandom2 = RandomElement.Limiter(1, 6);
+            int numRandom2 = 4; // RandomElement.Limiter(1, 6);
             switch (numRandom2)
             {
                 case 1:

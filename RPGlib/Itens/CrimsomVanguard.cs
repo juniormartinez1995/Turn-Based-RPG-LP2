@@ -13,14 +13,13 @@ namespace RPGlib.Itens
     {
         public  CrimsomVanguard(int armor, int health)
         {
-
             this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/crimson_vanguard.png")); 
             this.ItemName = "Crimsom Vanguard";
             this.Armor = armor;
             this.CriticalRate = 0;
             this.Damage = 0;
             this.EvasionRate = 0;
-            this.Health = Health;
+            this.Health = health;
             this.Mana = 0;
             this.Description = "HP = " + health +"\nArmor = " + armor;
         }
