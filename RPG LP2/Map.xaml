@@ -225,7 +225,7 @@
         <Image x:Name="ButtonStatus"  Source="Assets/btn_status2.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="ShowStatus" >
             <FlyoutBase.AttachedFlyout>
                 <Flyout x:Name="StatusFlyout">
-                    
+
                     <!--Text Block Status-->
 
                     <Flyout.FlyoutPresenterStyle>
@@ -245,8 +245,6 @@
                 </Flyout>
             </FlyoutBase.AttachedFlyout>
         </Image>
-
-
     </Canvas>
 
 </Page>
