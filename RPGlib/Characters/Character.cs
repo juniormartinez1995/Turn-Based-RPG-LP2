@@ -43,7 +43,7 @@ namespace RPGlib.Characters
         {
             for (int x = chest.ItemChest.Count() - 1; x >= 0; x--)
             {
-                if (inventory.AddVerification(chest.ItemChest.ElementAt(x)))
+                if (inventory.AddVerification(chest.ItemChest.ElementAt(x), this))
                 {
                     chest.ItemChest.RemoveAt(x);
                 }

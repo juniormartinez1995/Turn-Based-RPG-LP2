@@ -15,8 +15,8 @@
             public List<PotionMana> inventoryPotionMana = new List<PotionMana>();
 
 
-            //PENSAR UM POUCO AQUI
-            public Boolean Add_Item(Item item_add)
+        //PENSAR UM POUCO AQUI
+            public Boolean Add_Item(Item item_current, Character player)
             {
                 if (inventoryList.Count() >= 6)
                 {
@@ -24,9 +24,9 @@
                 }
                 else
                 {
-                    inventoryList.Add(item_add);
+                    item_current.Effect(player);
+                    inventoryList.Add(item_current);
                     return true;
-
                 }
             }
 
@@ -87,13 +87,13 @@
 
             }
 
-            public Boolean AddVerification(Item item)
+            public Boolean AddVerification(Item item, Character player)
             {
                 Boolean var = AddPotion(item);
 
                 if (!var)
                 {
-                    return Add_Item(item);
+                    return Add_Item(item, player);
                 }
                 return true;
             }

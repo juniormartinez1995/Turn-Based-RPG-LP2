@@ -14,7 +14,7 @@ namespace RPGlib.Itens
         public DemonicRapier(int damage)
         {
        
-            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/demonic_rapier.png")); ; //ADICIONAR IMAGEM DE ESPADA
+            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/demonic_rapier.png"));  //ADICIONAR IMAGEM DE ESPADA
             this.ItemName = "Demonic Rapier";
             this.Armor = 0;
             this.CriticalRate = 0;
@@ -22,7 +22,7 @@ namespace RPGlib.Itens
             this.EvasionRate = 0;
             this.Health = 0;
             this.Mana = 0;
-            this.Description = "Damage = 30";
+            this.Description = "Damage = " + damage;
         }
 
         public override void Effect(Character person)

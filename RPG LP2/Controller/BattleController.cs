@@ -28,45 +28,38 @@ namespace RPG_LP2
    
         public static void CheckTurn(Character person, Mob mob,int turn) // checa se é o turno do mob ou do player
         {
-        
-           
-            while (FinishBattle(person, mob)) {
+            while (FinishBattle(person, mob)) 
+            {
 
-                if (turn % 2 == 0) {
+                if (turn % 2 == 0) 
+                {
                     turn++;
                     PlayerTurn(person, mob,turn);
-                  
                 }
 
-                else {
+                else 
+                {
                     turn++;
-                    MobTurn(person, mob, turn);
-                    
+                    MobTurn(person, mob, turn);    
                 }
 
             }
-
 
         }
 
         public static void PlayerTurn(Character person, Mob mob,int turn)
         {
-
            // if (true) // OLHA ISSO AQUI
           //  {
-                Debug.WriteLine("Life Mob");
-                mob.HP -= person.BasicSkill();
+            Debug.WriteLine("Life Mob");
+            mob.HP -= person.BasicSkill();
             Debug.WriteLine(mob.HP);
-                CheckTurn(person,mob,turn);
-
-
-
+            CheckTurn(person,mob,turn);
           //  }
         }
 
         public static void MobTurn(Character person, Mob mob, int turn)
         {
-
             Debug.WriteLine("Life person");
             person.CurrentHP -= mob.Skills();
             Debug.WriteLine(person.CurrentHP);
@@ -74,8 +67,8 @@ namespace RPG_LP2
         }
             
 
-            public static bool FinishBattle(Character person, Mob mob)
-            {
+        public static bool FinishBattle(Character person, Mob mob)
+        {
 
             if (mob.IsDead())
             {
@@ -94,21 +87,21 @@ namespace RPG_LP2
                 // chama musicazona, chama run 
             }
 
-                if (person.IsDead())
-                {
-                    Debug.WriteLine("Mob ganhou!!!");
-                    return false;
-                }
-
-                return true;
+            if (person.IsDead())
+            {
+                Debug.WriteLine("Mob ganhou!!!");
+                return false;
             }
 
-            public static void WinBattle(Character person, Mob mob)
-            {
+            return true;
+        }
+
+        public static void WinBattle(Character person, Mob mob)
+        {
                
 
 
-            }
+        }
 
         public static void LoseBattle(Character person, Mob mob)
         {
