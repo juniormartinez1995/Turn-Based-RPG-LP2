@@ -61,7 +61,7 @@ namespace RPGlib.Characters
 
         }
 
-        public  int BasicSkill()
+        public int BasicSkill()
         {
 
             if (CountCritic())
@@ -99,7 +99,16 @@ namespace RPGlib.Characters
             return this.CurrentHP <= 0;
         }
 
-
+        public bool ManaCountDown(int currentSkill)
+        {
+            if (CurrentMana < currentSkill)
+                return false; //NAO PODE USAR A SKILL
+            else
+            {
+                CurrentMana -= currentSkill;
+                return true; //CAIO USOU A SKILL
+            }
+        }
     }
 }
 

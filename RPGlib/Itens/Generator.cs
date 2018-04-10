@@ -20,7 +20,7 @@ namespace RPGlib.Itens
              * 6 - RabbitFeet
              **/
 
-            int numRandom = 4;
+            int numRandom = 5;
             switch (numRandom)
             {
                 case 1:
@@ -43,7 +43,7 @@ namespace RPGlib.Itens
                     break;
             }
 
-            int numRandom2 = 4;
+            int numRandom2 = 5;
             switch (numRandom2)
             {
                 case 1:
