@@ -19,8 +19,8 @@ namespace RPGlib.Itens
              * 5 - DemonicRapier
              * 6 - RabbitFeet
              **/
-
-            int numRandom = 5;
+             
+            int numRandom = RandomElement.Limiter(1, 6);
             switch (numRandom)
             {
                 case 1:
@@ -43,7 +43,7 @@ namespace RPGlib.Itens
                     break;
             }
 
-            int numRandom2 = 5;
+            int numRandom2 = RandomElement.Limiter(1, 6);
             switch (numRandom2)
             {
                 case 1:
