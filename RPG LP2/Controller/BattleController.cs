@@ -19,59 +19,60 @@ namespace RPG_LP2
     {
         // public static Page TelaAtual { get; set; }
 
-        public static void InicializeBattle(Character person, Mob mob, int button)
+        public static void InicializeBattle(Character person, Mob mob, int button, TextBlock ScreenWinBattle, Button ButtonContinueWinBattle)
         {
             int turn = 0;
-            CheckTurn(person, mob,turn,button);
+            CheckTurn(person, mob, turn, button, ScreenWinBattle, ButtonContinueWinBattle);
         }
         // BattleScreen screen;
-   
-        public static void CheckTurn(Character person, Mob mob,int turn, int button) // checa se é o turno do mob ou do player
+
+        public static void CheckTurn(Character person, Mob mob, int turn, int button, TextBlock ScreenWinBattle, Button ButtonContinueWinBattle) // checa se é o turno do mob ou do player
         {
-            while (FinishBattle(person, mob,button)) 
+            while (FinishBattle(person, mob, button, ScreenWinBattle, ButtonContinueWinBattle))
             {
 
-                if (turn % 2 == 0) 
+                if (turn % 2 == 0)
                 {
                     turn++;
-                    PlayerTurn(person, mob,turn,button);
+                    PlayerTurn(person, mob, turn, button, ScreenWinBattle, ButtonContinueWinBattle);
                 }
 
-                else 
+                else
                 {
                     turn++;
-                    MobTurn(person, mob, turn,button);    
+                    MobTurn(person, mob, turn, button, ScreenWinBattle, ButtonContinueWinBattle);
                 }
 
             }
 
         }
 
-        public static void PlayerTurn(Character person, Mob mob,int turn, int button)
+        public static void PlayerTurn(Character person, Mob mob, int turn, int button, TextBlock ScreenWinBattle, Button ButtonContinueWinBattle)
         {
-            if (button == 1) // OLHA ISSO AQUI
-            {
-            Debug.WriteLine("Life Mob");
-            mob.HP -= person.BasicSkill();
-            Debug.WriteLine(mob.HP);
-            CheckTurn(person,mob,turn,button);
-            }
-        }
 
-        public static void MobTurn(Character person, Mob mob, int turn, int button)
+         //   if (button == 1) // OLHA ISSO AQUI
+          //  {
+                Debug.WriteLine("Life Mob");
+                mob.HP -= person.BasicSkill();
+                Debug.WriteLine(mob.HP);
+                CheckTurn(person, mob, turn, button, ScreenWinBattle, ButtonContinueWinBattle);
+         //   }
+        }
+         static void MobTurn(Character person, Mob mob, int turn, int button, TextBlock ScreenWinBattle, Button ButtonContinueWinBattle)
         {
             Debug.WriteLine("Life person");
             person.CurrentHP -= mob.Skills();
             Debug.WriteLine(person.CurrentHP);
-            CheckTurn(person, mob,turn,button);
+            CheckTurn(person, mob, turn, button, ScreenWinBattle, ButtonContinueWinBattle);
         }
-            
 
-        public static bool FinishBattle(Character person, Mob mob, int button)
+
+        public static bool FinishBattle(Character person, Mob mob, int button, TextBlock ScreenWinBattle, Button ButtonContinueWinBattle)
         {
 
             if (mob.IsDead())
             {
+                WinBattle(person, mob, ScreenWinBattle, ButtonContinueWinBattle);
                 int xpGain = 0;
                 if (mob is Boss)
                 {
@@ -79,11 +80,11 @@ namespace RPG_LP2
                 }
                 else
                 {
-                    xpGain = 30; 
+                    xpGain = 30;
                 }
                 person.LevelUp(xpGain);
                 return false;
-                
+
                 // chama musicazona, chama run 
             }
 
@@ -96,22 +97,21 @@ namespace RPG_LP2
             return true;
         }
 
-        public static void WinBattle(Character person, Mob mob)
+        public static void WinBattle(Character person, Mob mob, TextBlock ScreenWinBattle, Button ButtonContinueWinBattle)
         {
-               
-
+      
 
         }
 
         public static void LoseBattle(Character person, Mob mob)
         {
-
+            //metodo para matar todas as variáveis e resetar o jogo.
         }
     }
 }
 
 
-    
 
 
-    
+
+

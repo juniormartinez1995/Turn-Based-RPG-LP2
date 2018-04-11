@@ -31,17 +31,27 @@ namespace RPG_LP2
     {
         public BattleScreen()
         {
-         
+
             this.InitializeComponent();
             // BattleController.TelaAtual = this;           
 
             Mob1.Source = Ninja;
             mob = ninja as Mob;
             StartTimer();
-           
-          
+
+            mob.MobDead += Mob_MobDead;
+
+
         }
+
+        private void Mob_MobDead(object sender, EventArgs args)
+        {
+            ScreenWinBattle.Opacity = 100;
+            ButtonContinueWinBattle.Opacity = 100;
+        }
+
         int button = 0;
+        
         Character BattlePlayer;
         Ninja ninja = new Ninja();
         Mob mob;
@@ -59,8 +69,8 @@ namespace RPG_LP2
             mpBarCharacter.Maximum = BattlePlayer.MaxMana;
             mpBarCharacter.Value = BattlePlayer.CurrentMana;
 
-            BattleController.InicializeBattle(BattlePlayer, mob, button);
-            
+            BattleController.InicializeBattle(BattlePlayer, mob, button, ScreenWinBattle, ButtonContinueWinBattle);
+
         }
 
         public void StartTimer()
@@ -80,7 +90,7 @@ namespace RPG_LP2
         }
 
         private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
-        { 
+        {
             this.Frame.Navigate(typeof(Map), BattlePlayer);
         }
 
@@ -89,10 +99,10 @@ namespace RPG_LP2
             button = 1;
             return;
         }
-        
+
+
+
+
 
     }
-
-
- 
 }

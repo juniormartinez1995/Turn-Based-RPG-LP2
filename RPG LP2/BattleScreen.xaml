@@ -26,6 +26,9 @@
         <Button x:Name="btnSkillBasic" Content="Basic Skill" Canvas.Left="213" Canvas.Top="475" Height="33" Width="72" FontSize="12" BorderThickness="2,2,2,2" Click="BtnBasicSkill_Click"/>
         <Image Height="63" Canvas.Left="-7" Canvas.Top="506" Width="179" Source="Assets/i agem png barra.png"/>
         <ProgressBar x:Name="mpBarCharacter" Height="22" Canvas.Left="37" Background="DarkBlue" Foreground="Blue" Canvas.Top="533" Width="109" RequestedTheme="Default" LargeChange="89"/>
+       
+        <Button x:Name="ButtonContinueWinBattle" Content="Continue" Canvas.Left="339" Canvas.Top="351"  Opacity ="0" FontSize="18"/>
+        <TextBlock x:Name = "ScreenWinBattle" Canvas.Left="227" Canvas.Top="283" Text="Você venceu !!!" TextWrapping="Wrap" Height="110" Width="327" FontSize="48" Opacity =" 0" />
     </Canvas>
 
 </Page>
