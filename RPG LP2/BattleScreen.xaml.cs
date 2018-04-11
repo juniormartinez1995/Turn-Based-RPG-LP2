@@ -31,18 +31,27 @@ namespace RPG_LP2
     {
         public BattleScreen()
         {
-         
+
             this.InitializeComponent();
             // BattleController.TelaAtual = this;           
 
             Mob1.Source = Ninja;
             mob = ninja as Mob;
             StartTimer();
-           
-          
+
+            mob.MobDead += Mob_MobDead;
+
+
         }
+
+        private void Mob_MobDead(object sender, EventArgs args)
+        {
+            ScreenWinBattle.Opacity = 100;
+            ButtonContinueWinBattle.Opacity = 100;
+        }
+
         int button = 0;
-        int turn;
+        
         Character BattlePlayer;
         Ninja ninja = new Ninja();
         Mob mob;
@@ -59,11 +68,9 @@ namespace RPG_LP2
             hpBarCharacter.Value = BattlePlayer.CurrentHP;
             mpBarCharacter.Maximum = BattlePlayer.MaxMana;
             mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            hpBarMob.Maximum = mob.HP;
-            hpBarMob.Value = mob.HP;
 
-            turn = BattleController.InicializeBattle(BattlePlayer, mob, button);
-            
+            BattleController.InicializeBattle(BattlePlayer, mob, button, ScreenWinBattle, ButtonContinueWinBattle);
+
         }
 
         public void StartTimer()
@@ -78,27 +85,24 @@ namespace RPG_LP2
 
         private void Timer_Tick(object sender, object e)
         {
-            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
-            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            if (hpBarMob.Value >= 0) hpBarMob.Value = mob.HP;
+            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value -= 5;
+            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value -= 5;
         }
 
         private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
-        { 
+        {
             this.Frame.Navigate(typeof(Map), BattlePlayer);
         }
 
         public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
         {
-            BattleController.CheckTurn(BattlePlayer, mob, turn, 1);
+            button = 1;
+            return;
         }
 
-        private void BtnSkillOne(object sender, RoutedEventArgs e)
-        {
-            BattleController.CheckTurn(BattlePlayer, mob, turn, 2);
-        }
+
+
+
+
     }
-
-
- 
 }
