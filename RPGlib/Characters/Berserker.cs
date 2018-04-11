@@ -60,5 +60,7 @@ namespace RPGlib.Characters
             return Damage*SacrificeBlood();
             
         }
+
+        
     }
 }

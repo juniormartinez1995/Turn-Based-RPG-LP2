@@ -19,58 +19,55 @@ namespace RPG_LP2
     {
         // public static Page TelaAtual { get; set; }
 
+        static int Turn = 0;
+
         public static int InicializeBattle(Character person, Mob mob, int button)
         {
-            int turn = 0;
-            return turn;
+                
+            return Turn;
             //CheckTurn(person, mob,turn,button);
         }
         // BattleScreen screen;
    
-        public static void CheckTurn(Character person, Mob mob,int turn, int button) // checa se é o turno do mob ou do player
+        public static void CheckTurn(Character person, Mob mob, int button, Button btn_actual) // checa se é o turno do mob ou do player
         {
            if (FinishBattle(person, mob)) 
             {
-
-                //if (turn % 2 == 0) 
-                //{
-                    turn++;
-                    PlayerTurn(person, mob,turn,button);
-                //}
-                    
-                //else 
-                //{
-                    turn++;
-                    MobTurn(person, mob, turn,button);    
-                //}
-
+                Turn++;
+                PlayerTurn(person, mob, button, btn_actual);
+            
+                Turn++;
+                MobTurn(person, mob, button);    
             }
 
         }
 
-        public static void PlayerTurn(Character person, Mob mob,int turn, int button)
+        public static void PlayerTurn(Character person, Mob mob, int button, Button btn_actual)
         {
+            Debug.WriteLine("Turno: " + Turn);
             switch (button) // OLHA ISSO AQUI
-            {
+            {   
                 case 1:
 
-                    int damageTurn = person.BasicSkill();
+                    int damageTurn = person.BasicSkill() - mob.currentArmor;
                     Debug.WriteLine("Dano causado = " + damageTurn + "\n");
                     mob.HP -= damageTurn;
                     break;
 
                 case 2:
-                    //btnSkillOne.Content = person.BasicSkill().ToString;
+                    //btn_actual.Content = person.BasicSkill().ToString;
                     break;
 
                 
             }
         }
 
-        public static void MobTurn(Character person, Mob mob, int turn, int button)
+        public static void MobTurn(Character person, Mob mob, int button)
         {
             Debug.WriteLine("Life person = " + person.CurrentHP + "\n" + "Life mob = " + mob.HP);
-            person.CurrentHP -= mob.Skills();
+
+            int damage = mob.Skills() - person.CurrentArmor;
+            person.CurrentHP -= damage;
            
             //CheckTurn(person, mob,turn,button);
         }
