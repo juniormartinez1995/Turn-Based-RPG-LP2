@@ -19,29 +19,30 @@ namespace RPG_LP2
     {
         // public static Page TelaAtual { get; set; }
 
-        public static void InicializeBattle(Character person, Mob mob, int button)
+        public static int InicializeBattle(Character person, Mob mob, int button)
         {
             int turn = 0;
-            CheckTurn(person, mob,turn,button);
+            return turn;
+            //CheckTurn(person, mob,turn,button);
         }
         // BattleScreen screen;
    
         public static void CheckTurn(Character person, Mob mob,int turn, int button) // checa se é o turno do mob ou do player
         {
-            while (FinishBattle(person, mob,button)) 
+           if (FinishBattle(person, mob)) 
             {
 
-                if (turn % 2 == 0) 
-                {
+                //if (turn % 2 == 0) 
+                //{
                     turn++;
                     PlayerTurn(person, mob,turn,button);
-                }
-
-                else 
-                {
+                //}
+                    
+                //else 
+                //{
                     turn++;
                     MobTurn(person, mob, turn,button);    
-                }
+                //}
 
             }
 
@@ -49,25 +50,33 @@ namespace RPG_LP2
 
         public static void PlayerTurn(Character person, Mob mob,int turn, int button)
         {
-            if (button == 1) // OLHA ISSO AQUI
+            switch (button) // OLHA ISSO AQUI
             {
-            Debug.WriteLine("Life Mob");
-            mob.HP -= person.BasicSkill();
-            Debug.WriteLine(mob.HP);
-            CheckTurn(person,mob,turn,button);
+                case 1:
+
+                    int damageTurn = person.BasicSkill();
+                    Debug.WriteLine("Dano causado = " + damageTurn + "\n");
+                    mob.HP -= damageTurn;
+                    break;
+
+                case 2:
+                    //btnSkillOne.Content = person.BasicSkill().ToString;
+                    break;
+
+                
             }
         }
 
         public static void MobTurn(Character person, Mob mob, int turn, int button)
         {
-            Debug.WriteLine("Life person");
+            Debug.WriteLine("Life person = " + person.CurrentHP + "\n" + "Life mob = " + mob.HP);
             person.CurrentHP -= mob.Skills();
-            Debug.WriteLine(person.CurrentHP);
-            CheckTurn(person, mob,turn,button);
+           
+            //CheckTurn(person, mob,turn,button);
         }
             
 
-        public static bool FinishBattle(Character person, Mob mob, int button)
+        public static bool FinishBattle(Character person, Mob mob)
         {
 
             if (mob.IsDead())
@@ -78,10 +87,11 @@ namespace RPG_LP2
                     xpGain = 50;
                 }
                 else
-                {
+                {   
                     xpGain = 30; 
                 }
                 person.LevelUp(xpGain);
+                WinBattle();
                 return false;
                 
                 // chama musicazona, chama run 
@@ -96,10 +106,9 @@ namespace RPG_LP2
             return true;
         }
 
-        public static void WinBattle(Character person, Mob mob)
+        public static void WinBattle()
         {
-               
-
+            Debug.WriteLine("Você ganhou caio");
 
         }
 

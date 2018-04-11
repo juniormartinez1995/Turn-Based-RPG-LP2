@@ -61,7 +61,7 @@ namespace RPGlib.Characters
 
         }
 
-        public int BasicSkill()
+        public virtual int BasicSkill()
         {
 
             if (CountCritic())

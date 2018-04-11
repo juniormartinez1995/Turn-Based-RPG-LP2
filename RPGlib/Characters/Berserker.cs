@@ -22,7 +22,7 @@ namespace RPGlib.Characters
             this.CriticRate = 15;
             this.EvasionRate = 5;
             this.CurrentArmor = 20;
-            this.Damage = 30 * SacrificeBlood();
+            this.Damage = 30;
 
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/cimagif.gif"));
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/baixogif.gif"));
@@ -39,16 +39,26 @@ namespace RPGlib.Characters
         public int SacrificeBlood()
         {
             
-            int hp_missing = this.MaxHealth - this.CurrentHP;
+            int missing_hp = this.MaxHealth - this.CurrentHP;
 
-            if (hp_missing == 0)  //Caso a vida estiver cheia
+            if (missing_hp == 0)  //Caso a vida estiver cheia
             {
                 return 1;
             }
 
-            int multiplier = (10 * hp_missing) / this.MaxHealth;
+            int multiplier = (10 * missing_hp) / this.MaxHealth;
 
             return multiplier;
+        }
+
+        public override int BasicSkill()
+        {
+            if (CountCritic())
+            {
+                return 2 * Damage * SacrificeBlood();
+            }
+            return Damage*SacrificeBlood();
+            
         }
     }
 }
