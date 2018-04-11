@@ -38,9 +38,10 @@ namespace RPG_LP2
             Mob1.Source = Ninja;
             mob = ninja as Mob;
             StartTimer();
+           
           
         }
-
+        int button = 0;
         Character BattlePlayer;
         Ninja ninja = new Ninja();
         Mob mob;
@@ -58,7 +59,7 @@ namespace RPG_LP2
             mpBarCharacter.Maximum = BattlePlayer.MaxMana;
             mpBarCharacter.Value = BattlePlayer.CurrentMana;
 
-            BattleController.InicializeBattle(BattlePlayer, mob);
+            BattleController.InicializeBattle(BattlePlayer, mob, button);
             
         }
 
@@ -85,13 +86,13 @@ namespace RPG_LP2
 
         public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
         {
-            BtnBasicSkillClicked();
+            button = 1;
+            return;
         }
-        public int BtnBasicSkillClicked()
-        {
-            return 1;
-        }
+        
 
     }
-   
+
+
+ 
 }

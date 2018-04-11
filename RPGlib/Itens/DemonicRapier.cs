@@ -22,7 +22,7 @@ namespace RPGlib.Itens
             this.EvasionRate = 0;
             this.Health = 0;
             this.Mana = 0;
-            this.Description = "Damage = " + damage;
+            this.Description = "Damage + " + damage;
         }
 
         public override void Effect(Character person)

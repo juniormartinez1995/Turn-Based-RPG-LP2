@@ -19,55 +19,55 @@ namespace RPG_LP2
     {
         // public static Page TelaAtual { get; set; }
 
-        public static void InicializeBattle(Character person, Mob mob)
+        public static void InicializeBattle(Character person, Mob mob, int button)
         {
             int turn = 0;
-            CheckTurn(person, mob,turn);
+            CheckTurn(person, mob,turn,button);
         }
         // BattleScreen screen;
    
-        public static void CheckTurn(Character person, Mob mob,int turn) // checa se é o turno do mob ou do player
+        public static void CheckTurn(Character person, Mob mob,int turn, int button) // checa se é o turno do mob ou do player
         {
-            while (FinishBattle(person, mob)) 
+            while (FinishBattle(person, mob,button)) 
             {
 
                 if (turn % 2 == 0) 
                 {
                     turn++;
-                    PlayerTurn(person, mob,turn);
+                    PlayerTurn(person, mob,turn,button);
                 }
 
                 else 
                 {
                     turn++;
-                    MobTurn(person, mob, turn);    
+                    MobTurn(person, mob, turn,button);    
                 }
 
             }
 
         }
 
-        public static void PlayerTurn(Character person, Mob mob,int turn)
+        public static void PlayerTurn(Character person, Mob mob,int turn, int button)
         {
-           // if (true) // OLHA ISSO AQUI
-          //  {
+            if (button == 1) // OLHA ISSO AQUI
+            {
             Debug.WriteLine("Life Mob");
             mob.HP -= person.BasicSkill();
             Debug.WriteLine(mob.HP);
-            CheckTurn(person,mob,turn);
-          //  }
+            CheckTurn(person,mob,turn,button);
+            }
         }
 
-        public static void MobTurn(Character person, Mob mob, int turn)
+        public static void MobTurn(Character person, Mob mob, int turn, int button)
         {
             Debug.WriteLine("Life person");
             person.CurrentHP -= mob.Skills();
             Debug.WriteLine(person.CurrentHP);
-            CheckTurn(person, mob,turn);
+            CheckTurn(person, mob,turn,button);
         }
             
 
-        public static bool FinishBattle(Character person, Mob mob)
+        public static bool FinishBattle(Character person, Mob mob, int button)
         {
 
             if (mob.IsDead())
