@@ -93,6 +93,13 @@ namespace RPG_LP2
             else return false;
         }
 
+        public static bool CheckEnemy(Image Person1, List<Image> Enemy, bool key, int i)
+        {
+            if (IsPlayerOverItem(Person1, Enemy.ElementAt(i), key)) return true;
+            return false;
+        }
+
+
         public static void LootVault(Character player, Chest ChestControl, TextBlock qt_lifePot, TextBlock qt_manaPot, List<InventoryBitImage>ListImage)
         {   
             if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário

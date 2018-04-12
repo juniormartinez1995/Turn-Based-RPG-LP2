@@ -47,13 +47,14 @@ namespace RPG_LP2
             AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
-                     
+            
         }
 
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
         List<Image> Collision = new List<Image>(); //Lista de colisões no mapa
         List<Image> LockedChests = new List<Image>(); //Lista de baús no mapa
         List<Image> Enemies = new List<Image>(); //Lista de enimigos no mapa
+        List<object> MobAndChar = new List<object>();
         
         //MUDEI AQUI, N SEI SE ESTA CERTO
         List<InventoryBitImage> ListInvetoryImage = new List<InventoryBitImage>(); //Lista das Imagens de Inventário
@@ -61,14 +62,19 @@ namespace RPG_LP2
 
         Character Player; //Personagem que estará no mapa
         Chest ChestControl = new Chest(); //Gerenciamento do baú
-       
+        Ninja Ninja = new Ninja();
 
 
         double PosY, PosX; //Posição X e Y do personagem no mapa
         bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
         int Velocity = 3; //Velocidade do personagem
 
-      
+        
+        public void StoreChars()
+        {
+            MobAndChar.Add(Player);
+            MobAndChar.Add(Ninja);
+        }
 
         //Método para setar os baús no mapa
         public void SetChetsInMap()
@@ -91,6 +97,17 @@ namespace RPG_LP2
             Collision.Add(Collision1);
             Collision.Add(Collision2);
             Collision.Add(Collision3);
+
+        }
+
+        private void AddImageOnList()
+        {
+            ListInvetoryImage.Add(new InventoryBitImage(Item1, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item2, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item3, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item4, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item5, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item6, null));
 
         }
 
@@ -147,19 +164,10 @@ namespace RPG_LP2
 
             Player = e.Parameter as Character;
             IsAnotherPage = false;
-
+            StoreChars();
         }
 
-        private void AddImageOnList()
-        {
-            ListInvetoryImage.Add(new InventoryBitImage(Item1, null));
-            ListInvetoryImage.Add(new InventoryBitImage(Item2, null));
-            ListInvetoryImage.Add(new InventoryBitImage(Item3, null));
-            ListInvetoryImage.Add(new InventoryBitImage(Item4, null));
-            ListInvetoryImage.Add(new InventoryBitImage(Item5, null));
-            ListInvetoryImage.Add(new InventoryBitImage(Item6, null));
 
-        }
 
         // Ainda estou implementando essa bagaça aqui
 
@@ -250,7 +258,10 @@ namespace RPG_LP2
             else if (ControllerGame.IsPlayerColliding(Person1, Enemies, Up))
             {
                 IsAnotherPage = true;
-                this.Frame.Navigate(typeof(BattleScreen), Player); //Irá para a tela de batalha
+
+                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 0)) this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+
+                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 1)) this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
              
             }
         }

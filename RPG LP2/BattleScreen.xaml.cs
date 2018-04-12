@@ -36,10 +36,10 @@ namespace RPG_LP2
             // BattleController.TelaAtual = this;           
 
             Mob1.Source = Ninja;
-            mob = ninja as Mob;
+            //mob = ninja as Mob;
             StartTimer();
 
-            mob.MobDead += Mob_MobDead;
+
 
 
         }
@@ -50,9 +50,9 @@ namespace RPG_LP2
         }
 
         int button = 0;
-        
+
         Character BattlePlayer;
-        Ninja ninja = new Ninja();
+        //Ninja ninja = new Ninja();
         Mob mob;
         int turn;
         DispatcherTimer timer = new DispatcherTimer();
@@ -61,18 +61,25 @@ namespace RPG_LP2
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            List<Object> CharList = e.Parameter as List<Object>;
+            //BattlePlayer = e.Parameter as Character;
 
-            BattlePlayer = e.Parameter as Character;
+            BattlePlayer = CharList.ElementAt(0) as Character;
+            mob = CharList.ElementAt(1) as Mob;
 
-            hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
-            hpBarCharacter.Value = BattlePlayer.CurrentHP;
-            mpBarCharacter.Maximum = BattlePlayer.MaxMana;
-            mpBarCharacter.Value = BattlePlayer.CurrentMana;
+            Debug.WriteLine("DANO MOB: " +mob.Damage);
+            Debug.WriteLine("Dano Player " +BattlePlayer.Damage);
+
+
+            //hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
+            //hpBarCharacter.Value = BattlePlayer.CurrentHP;
+            //mpBarCharacter.Maximum = BattlePlayer.MaxMana;
+            //mpBarCharacter.Value = BattlePlayer.CurrentMana;
             hpBarMob.Maximum = mob.HP;
             hpBarMob.Value = mob.HP;
 
             turn = BattleController.InicializeBattle(BattlePlayer, mob, button);
-
+            mob.MobDead += Mob_MobDead;
         }
         private async void DisplayEndedBattleDialog()
         {
@@ -81,7 +88,7 @@ namespace RPG_LP2
                 Title = "FIM DA BATALHA",
                 Content = "Você venceu!!!",
                 CloseButtonText = "Voltar ao mapa"
-                
+
             };
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
