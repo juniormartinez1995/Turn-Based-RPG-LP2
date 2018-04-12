@@ -13,13 +13,14 @@
             <RowDefinition Height="17*"/>
         </Grid.RowDefinitions>
         <Image HorizontalAlignment="Left" Height="602" VerticalAlignment="Top" Width="807" Margin="0,0,-9,-602" Grid.RowSpan="2" Source="Assets/MapsBackground/SelecClass.jpeg" Stretch="UniformToFill">
-            
+
         </Image>
         <Image x:Name="ImagemSelecClass" HorizontalAlignment="Left" Height="598" Margin="2,4,0,-2" VerticalAlignment="Top" Width="792" Grid.RowSpan="2"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="108,484,0,-584" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="122,482,0,-582" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="B_Berserker" Content="Berserker" HorizontalAlignment="Left" Margin="108,503,0,-535" Grid.RowSpan="2" VerticalAlignment="Top" Width="113" Click="B_Berserker_Click"/>
-        <Image HorizontalAlignment="Left" Height="159" Margin="89,326,0,-485" Grid.RowSpan="2" VerticalAlignment="Top" Width="151" Source="Assets/class_Highlight_Berserker.png"/>
+        <Button x:Name="B_Berserker" Content="Berserker" HorizontalAlignment="Left" Margin="135,540,0,-572" Grid.RowSpan="2" VerticalAlignment="Top" Width="113" Click="B_Berserker_Click"/>
+        <Image HorizontalAlignment="Left" Height="494" Margin="45,92,0,-586" Grid.RowSpan="2" VerticalAlignment="Top" Width="320" Source="Assets/BerserkerIMG.png"/>
+        <Image HorizontalAlignment="Left" Height="494" Margin="452,92,0,-586" Grid.RowSpan="2" VerticalAlignment="Top" Width="320" Source="Assets/DicerIMG.png"/>
 
     </Grid>
 </Page>
