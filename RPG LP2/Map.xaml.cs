@@ -167,21 +167,6 @@ namespace RPG_LP2
             StoreChars();
         }
 
-
-
-        // Ainda estou implementando essa bagaça aqui
-
-        //private void ButtonStatus_PointerEntered(object sender, PointerRoutedEventArgs e)
-        //{
-        //    FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-        //    Debug.WriteLine("Mouse entrou");
-        //}
-
-        //private void ButtonStatus_PointerExited(object sender, PointerRoutedEventArgs e)
-        //{
-        //    Debug.WriteLine("Mouse saiu");
-        //}
-
         private void ShowStatus(object sender, TappedRoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
@@ -259,6 +244,7 @@ namespace RPG_LP2
             {
                 IsAnotherPage = true;
 
+                //Precisa colocar restrições se os mobs ja foram derrotados ou nao
                 if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 0)) this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
 
                 if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 1)) this.Frame.Navigate(typeof(BattleScreen), MobAndChar);

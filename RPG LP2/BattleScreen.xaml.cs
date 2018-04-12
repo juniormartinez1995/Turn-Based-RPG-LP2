@@ -31,38 +31,27 @@ namespace RPG_LP2
     {
         public BattleScreen()
         {
-
             this.InitializeComponent();
-            // BattleController.TelaAtual = this;           
-
             Mob1.Source = Ninja;
-            //mob = ninja as Mob;
             StartTimer();
-
-
-
-
         }
+
+        Character BattlePlayer;
+        Mob mob;
+        DispatcherTimer timer = new DispatcherTimer();
+        BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
+
+        int button = 0;
+        int turn;
 
         private void Mob_MobDead(object sender, EventArgs args)
         {
             DisplayEndedBattleDialog();
         }
 
-        int button = 0;
-
-        Character BattlePlayer;
-        //Ninja ninja = new Ninja();
-        Mob mob;
-        int turn;
-        DispatcherTimer timer = new DispatcherTimer();
-        BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
-
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             List<Object> CharList = e.Parameter as List<Object>;
-            //BattlePlayer = e.Parameter as Character;
 
             BattlePlayer = CharList.ElementAt(0) as Character;
             mob = CharList.ElementAt(1) as Mob;
@@ -71,14 +60,16 @@ namespace RPG_LP2
             Debug.WriteLine("Dano Player " +BattlePlayer.Damage);
 
 
-            //hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
-            //hpBarCharacter.Value = BattlePlayer.CurrentHP;
-            //mpBarCharacter.Maximum = BattlePlayer.MaxMana;
-            //mpBarCharacter.Value = BattlePlayer.CurrentMana;
+            hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
+            hpBarCharacter.Value = BattlePlayer.CurrentHP;
+            mpBarCharacter.Maximum = BattlePlayer.MaxMana;
+            mpBarCharacter.Value = BattlePlayer.CurrentMana;
             hpBarMob.Maximum = mob.HP;
             hpBarMob.Value = mob.HP;
 
             turn = BattleController.InicializeBattle(BattlePlayer, mob, button);
+
+
             mob.MobDead += Mob_MobDead;
         }
         private async void DisplayEndedBattleDialog()

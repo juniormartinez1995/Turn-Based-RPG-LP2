@@ -46,7 +46,7 @@ namespace RPGlib.Characters
                 return 1;
             }
 
-            int multiplier = (10 * missing_hp) / this.MaxHealth;
+            int multiplier = ( 10 * missing_hp) / this.MaxHealth;
 
             return multiplier;
         }
