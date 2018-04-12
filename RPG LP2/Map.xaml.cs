@@ -94,7 +94,7 @@ namespace RPG_LP2
 
         }
 
-        private void ShowItemStatus1(object sender, TappedRoutedEventArgs e)
+        private void ShowItemStatus1(object sender, TappedRoutedEventArgs e) //Flyout para mostrar os status do 1 item do inventário
         {
             Item actual = Player.inventory.inventoryList[0];
 
@@ -102,7 +102,7 @@ namespace RPG_LP2
             ItemStatus1.Text = actual.ItemName +"\n"+ actual.Description;
         }
 
-        private void ShowItemStatus2(object sender, TappedRoutedEventArgs e)
+        private void ShowItemStatus2(object sender, TappedRoutedEventArgs e)  //Flyout para mostrar os status do 2 item do inventário
         {
             Item actual = Player.inventory.inventoryList[1];
 
@@ -110,7 +110,7 @@ namespace RPG_LP2
             ItemStatus2.Text = actual.ItemName + "\n" + actual.Description;
         }
 
-        private void ShowItemStatus3(object sender, TappedRoutedEventArgs e)
+        private void ShowItemStatus3(object sender, TappedRoutedEventArgs e)  //Flyout para mostrar os status do 3 item do inventário
         {
             Item actual = Player.inventory.inventoryList[2];
 
@@ -118,7 +118,7 @@ namespace RPG_LP2
             ItemStatus3.Text = actual.ItemName + "\n" + actual.Description;
         }
 
-        private void ShowItemStatus4(object sender, TappedRoutedEventArgs e)
+        private void ShowItemStatus4(object sender, TappedRoutedEventArgs e)  //Flyout para mostrar os status do 4 item do inventário
         {
             Item actual = Player.inventory.inventoryList[3];
 
@@ -126,7 +126,7 @@ namespace RPG_LP2
             ItemStatus4.Text = actual.ItemName + "\n" + actual.Description;
         }
 
-        private void ShowItemStatus5(object sender, TappedRoutedEventArgs e)
+        private void ShowItemStatus5(object sender, TappedRoutedEventArgs e)  //Flyout para mostrar os status do 5 item do inventário
         {
             Item actual = Player.inventory.inventoryList[4];
 
@@ -134,7 +134,7 @@ namespace RPG_LP2
             ItemStatus5.Text = actual.ItemName + "\n" + actual.Description;
         }
 
-        private void ShowItemStatus6(object sender, TappedRoutedEventArgs e)
+        private void ShowItemStatus6(object sender, TappedRoutedEventArgs e)  //Flyout para mostrar os status do 6 item do inventário
         {
             Item actual = Player.inventory.inventoryList[5];
 
@@ -174,7 +174,7 @@ namespace RPG_LP2
         //    Debug.WriteLine("Mouse saiu");
         //}
 
-        private void ShowStatus(object sender, TappedRoutedEventArgs e)
+        private void ShowStatus(object sender, TappedRoutedEventArgs e)   //Flyout mostrand os status do personagem
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
             status.Text =
@@ -249,6 +249,7 @@ namespace RPG_LP2
             //Checa se o player se encontra de frente com o mob, se sim, iniciará a tela de batalha
             else if (ControllerGame.IsPlayerColliding(Person1, Enemies, Up))
             {
+               
                 IsAnotherPage = true;
                 this.Frame.Navigate(typeof(BattleScreen), Player); //Irá para a tela de batalha
              

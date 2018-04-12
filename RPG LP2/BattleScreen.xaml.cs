@@ -44,9 +44,12 @@ namespace RPG_LP2
 
         }
 
-        private void Mob_MobDead(object sender, EventArgs args)
+       
+
+        private void Mob_MobDead(object sender, EventArgs args) //Método que chama a caixa de diálogo apos a batalha ter acabado
         {
             DisplayEndedBattleDialog();
+            
         }
 
         int button = 0;
@@ -74,15 +77,14 @@ namespace RPG_LP2
             turn = BattleController.InicializeBattle(BattlePlayer, mob, button);
 
         }
-        private async void DisplayEndedBattleDialog()
+        private async void DisplayEndedBattleDialog() //Botão para sair da batalha após ter acabado
         {
             ContentDialog BattleEnded = new ContentDialog
             {
                 Title = "FIM DA BATALHA",
                 Content = "Você venceu!!!",
-                CloseButtonText = "Voltar ao mapa"
-                
-            };
+                CloseButtonText = "Voltar ao mapa",
+                 };
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
             this.Frame.Navigate(typeof(Map), BattlePlayer);
