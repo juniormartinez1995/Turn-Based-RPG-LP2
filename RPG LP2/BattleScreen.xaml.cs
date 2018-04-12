@@ -46,8 +46,7 @@ namespace RPG_LP2
 
         private void Mob_MobDead(object sender, EventArgs args)
         {
-            ScreenWinBattle.Opacity = 100;
-            ButtonContinueWinBattle.Opacity = 100;
+            DisplayEndedBattleDialog();
         }
 
         int button = 0;
@@ -74,6 +73,19 @@ namespace RPG_LP2
 
             turn = BattleController.InicializeBattle(BattlePlayer, mob, button);
 
+        }
+        private async void DisplayEndedBattleDialog()
+        {
+            ContentDialog BattleEnded = new ContentDialog
+            {
+                Title = "FIM DA BATALHA",
+                Content = "Você venceu!!!",
+                CloseButtonText = "Voltar ao mapa"
+                
+            };
+
+            ContentDialogResult result = await BattleEnded.ShowAsync();
+            this.Frame.Navigate(typeof(Map), BattlePlayer);
         }
 
         public void StartTimer()
