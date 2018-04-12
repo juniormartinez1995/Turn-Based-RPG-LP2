@@ -20,18 +20,26 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Button x:Name="LeaveBtn" Content="Run" Canvas.Left="10" Canvas.Top="10" Tapped="LeaveBtn_Tapped"/>
+        <Image x:Name="SkillBox" Source="Assets/textbox.gif" Canvas.Left="143" Canvas.Top="463" Height="129" Width="524" />
+        <Button x:Name="LeaveBtn" Content="Run" Canvas.Left="10" Canvas.Top="10" Tapped="LeaveBtn_Tapped" Background="#847545"/>
         <Image Height="63" Canvas.Left="-7" Canvas.Top="457" Width="179" Source="Assets/i agem png barra.png"/>
+        <Image Height="63" Canvas.Left="625" Canvas.Top="470" Width="179" Source="Assets/i agem png barra.png" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Image.RenderTransform>
+                <CompositeTransform Rotation="-180.00"/>
+            </Image.RenderTransform>
+        </Image>
         <ProgressBar x:Name="hpBarCharacter" Height="22" Canvas.Left="37" Background="DarkRed" Foreground="Red" Canvas.Top="485" Width="109" RequestedTheme="Default" LargeChange="89"/>
-        <Button x:Name="btnSkillBasic" Content="Basic Skill" Canvas.Left="213" Canvas.Top="475" Height="33" Width="72" FontSize="12" BorderThickness="2,2,2,2" Click="BtnBasicSkill_Click"/>
+        <Button x:Name="btnSkillBasic" Content="Basic Skill" Canvas.Left="263" Canvas.Top="508" Height="33" Width="72" FontSize="12" BorderThickness="2,2,2,2" Click="BtnBasicSkill_Click" Background="#847545"/>
         <Image Height="63" Canvas.Left="-7" Canvas.Top="506" Width="179" Source="Assets/i agem png barra.png"/>
         <ProgressBar x:Name="mpBarCharacter" Height="22" Canvas.Left="37" Background="DarkBlue" Foreground="Blue" Canvas.Top="533" Width="109" RequestedTheme="Default" LargeChange="89"/>
-        <ProgressBar x:Name="hpBarMob" Height="22" Canvas.Left="607" Background="DarkRed" Foreground="Red" Canvas.Top="461" Width="109" RequestedTheme="Default" LargeChange="89"/>
+        <ProgressBar x:Name="hpBarMob" Height="22" Canvas.Left="650" Background="DarkRed" Foreground="Red" Canvas.Top="485" Width="109" RequestedTheme="Default" LargeChange="89"/>
 
-        
-        
-        
-        <Button x:Name="btnSkillOne" Canvas.Left="293" Canvas.Top="476" Height="33" Width="72" FontSize="12" BorderThickness="2,2,2,2" Click="BtnSkillOne_Click"/>
+
+
+
+
+        <Button x:Name="btnSkillOne" Canvas.Left="368" Canvas.Top="508" Height="33" Width="72" FontSize="12" Content="2nd Skill" BorderThickness="2,2,2,2" Click="BtnSkillOne_Click" Background="#847545"/>
+        <Button x:Name="btnSkillTwo" Canvas.Left="468" Canvas.Top="508" Height="33" Width="72" FontSize="12" Content="3rd Skill" BorderThickness="2,2,2,2" Click="BtnSkillOne_Click" Background="#847545"/>
     </Canvas>
 
 </Page>
