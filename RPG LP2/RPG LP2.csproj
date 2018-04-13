@@ -140,6 +140,7 @@
     <Content Include="Assets\MapsBackground\SelecClass.jpeg" />
     <Content Include="Assets\rabbit_feet.png" />
     <Content Include="Assets\SoundOpenChest.mp3" />
+    <Content Include="Assets\SoundPlayerWalking.mp3" />
     <Content Include="Assets\textbox.gif" />
     <Content Include="Assets\upAnimation\cimagif.gif" />
     <Content Include="Assets\crimson_vanguard.png" />

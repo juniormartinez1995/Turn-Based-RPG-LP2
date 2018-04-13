@@ -211,6 +211,7 @@ namespace RPG_LP2
             {
                 ControllerGame.MoveUp(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
+                ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
 
@@ -218,6 +219,7 @@ namespace RPG_LP2
             {
                 ControllerGame.MoveDown(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
+                ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
 
@@ -225,6 +227,7 @@ namespace RPG_LP2
             {
                 ControllerGame.MoveLeft(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
+                ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
 
@@ -232,6 +235,7 @@ namespace RPG_LP2
             {
                 ControllerGame.MoveRight(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
+                ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
             //Checa se o player está na frente do bau, para poder lootear
@@ -275,20 +279,25 @@ namespace RPG_LP2
                 switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
                 {
                     case Windows.System.VirtualKey.Up:
+                     //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Up = true;
                         break;
                     case Windows.System.VirtualKey.Down:
+                     //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Down = true;
                         break;
                     case Windows.System.VirtualKey.Left:
+                     //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Left = true;
                         break;
                     case Windows.System.VirtualKey.Right:
+                      //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Right = true;
                         break;
                 }
 
                 IsKeyPressed = true;
+              //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
         }
@@ -302,21 +311,26 @@ namespace RPG_LP2
                 case Windows.System.VirtualKey.Up:
                     Person1.Source = Player.IdleUp;
                     ControllerGame.MoveDown(Person1, Velocity);
+                 
                     Up = false;
+                   
                     break;
                 case Windows.System.VirtualKey.Down:
                     Person1.Source = Player.IdleDown;
                     ControllerGame.MoveUp(Person1, Velocity);
+
                     Down = false;
                     break;
                 case Windows.System.VirtualKey.Left:
                     Person1.Source = Player.IdleLeft;
                     ControllerGame.MoveRight(Person1, Velocity);
+                 
                     Left = false;
                     break;
                 case Windows.System.VirtualKey.Right:
                     Person1.Source = Player.IdleRight;
                     ControllerGame.MoveLeft(Person1, Velocity);
+                   
                     Right = false;
                     break;
             }
