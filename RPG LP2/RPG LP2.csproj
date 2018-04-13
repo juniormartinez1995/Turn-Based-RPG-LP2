@@ -122,7 +122,6 @@
     <None Include="RPG LP2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3" />
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\BerserkerIMG.png" />
@@ -140,6 +139,7 @@
     <Content Include="Assets\imagem progress bar.gif" />
     <Content Include="Assets\MapsBackground\SelecClass.jpeg" />
     <Content Include="Assets\rabbit_feet.png" />
+    <Content Include="Assets\SoundOpenChest.mp3" />
     <Content Include="Assets\textbox.gif" />
     <Content Include="Assets\upAnimation\cimagif.gif" />
     <Content Include="Assets\crimson_vanguard.png" />
@@ -158,8 +158,6 @@
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\stone.png" />
     <Content Include="Assets\upAnimation\0.png" />
-    <Content Include="Assets\class_Highlight_Berserker.png" />
-    <Content Include="Assets\V35BBN0.png" />
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
     </Content>

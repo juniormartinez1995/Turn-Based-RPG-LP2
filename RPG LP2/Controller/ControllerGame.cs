@@ -104,9 +104,10 @@ namespace RPG_LP2
         {   
             if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário
             {
+                ControllerGame.PlayMusicOpenChest("SoundOpenChest.mp3");
                 player.OpenChest(ChestControl);
                 qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
-                qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString(); //CAIO SEU BURRO FDP CHUPETINHA
+                qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString(); 
 
                 int countItem = 0;
                 foreach (Item item in player.inventory.inventoryList)
@@ -142,7 +143,19 @@ namespace RPG_LP2
             Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) + Velocity + Increment);
         }
 
-        public static async void PlayMusic(string nomeMusic)
+       /* public static async void PlayMusic(string nomeMusic)
+        {
+            MediaElement Music = new MediaElement();
+
+            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Folder = await Folder.GetFolderAsync("Assets");
+            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
+            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
+            Music.IsLooping = true;
+            Music.Play();
+        }*/
+
+        public static async void PlayMusicOpenChest(string nomeMusic)
         {
             MediaElement Music = new MediaElement();
 

@@ -179,7 +179,7 @@ namespace RPG_LP2
             "Evasion = " + Player.EvasionRate.ToString() + "%" + "\n" +
             "Critical = " + Player.CriticRate.ToString() + "%" + "\n" +
             "XP = " + Player.CurrentXP.ToString() + "/" + Player.MaxXP + "\n" +
-            "Level = " + Player.Level.ToString() ;
+            "Level = " + Player.Level.ToString();
         }
 
         
@@ -237,6 +237,7 @@ namespace RPG_LP2
             //Checa se o player está na frente do bau, para poder lootear
             else if (ControllerGame.IsPlayerOverChest(Person1, LockedChests, Up))
             {
+               
                 ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);
 
             }

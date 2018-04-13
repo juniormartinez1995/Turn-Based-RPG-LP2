@@ -51,6 +51,10 @@ namespace RPGlib.Characters
             if (multiplier > 3) {
                 return 3;
             }
+            if(multiplier <= 1)
+            {
+                return 1;
+            }
 
             return multiplier;
         }
