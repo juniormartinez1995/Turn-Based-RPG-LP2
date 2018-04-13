@@ -26,13 +26,13 @@ using RPGlib.Mobs;
 
 namespace RPG_LP2
 {
-   
+
     public sealed partial class Map : Page
     {
         public Map()
         {
             this.InitializeComponent();
-           
+
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
             Window.Current.CoreWindow.KeyDown += ControllerGame.CoreWindow_KeyDown;
@@ -47,7 +47,7 @@ namespace RPG_LP2
             AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
-            
+
         }
 
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
@@ -55,12 +55,14 @@ namespace RPG_LP2
         List<Image> LockedChests = new List<Image>(); //Lista de baús no mapa
         List<Image> Enemies = new List<Image>(); //Lista de enimigos no mapa
         List<object> MobAndChar = new List<object>();
-        
+
         //MUDEI AQUI, N SEI SE ESTA CERTO
         List<InventoryBitImage> ListInvetoryImage = new List<InventoryBitImage>(); //Lista das Imagens de Inventário
-        
+
 
         Character Player; //Personagem que estará no mapa
+        PablloVittar PablloVittar = new PablloVittar();
+        Ninja Ninja = new Ninja();
         Chest ChestControl = new Chest(); //Gerenciamento do baú
         //Ninja Ninja = new Ninja();
 
@@ -69,7 +71,7 @@ namespace RPG_LP2
         bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
         int Velocity = 3; //Velocidade do personagem
 
-        
+
         public void StoreChars(Mob EnemyMob)
         {
             MobAndChar.Add(EnemyMob);
@@ -114,8 +116,8 @@ namespace RPG_LP2
         {
             Item actual = Player.inventory.inventoryList[0];
 
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
-            ItemStatus1.Text = actual.ItemName +"\n"+ actual.Description;
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus1.Text = actual.ItemName + "\n" + actual.Description;
         }
 
         private void ShowItemStatus2(object sender, TappedRoutedEventArgs e)
@@ -160,17 +162,33 @@ namespace RPG_LP2
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (ControllerGame.CheckLastPage(typeof(SelecClass), this))
+            {
+                Player = e.Parameter as Character;
+                MobAndChar.Add(Player);
 
-            Player = e.Parameter as Character;
+            }
+
+            if (ControllerGame.CheckLastPage(typeof(BattleScreen), this))
+            {
+                MobAndChar = e.Parameter as List<Object>;
+
+                Player = MobAndChar.ElementAt(0) as Character;
+
+                if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;
+                else if (MobAndChar.ElementAt(1) is PablloVittar) PablloVittar = MobAndChar.ElementAt(1) as PablloVittar;
+                MobAndChar.RemoveAt(MobAndChar.Count - 1);
+
+
+            }
+
             IsAnotherPage = false;
 
-            MobAndChar.Add(Player);
-            if (MobAndChar.Count > 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
         }
 
         private void ShowStatus(object sender, TappedRoutedEventArgs e)
         {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             status.Text =
             "HP = " + Player.CurrentHP.ToString() + "/" + Player.MaxHealth.ToString() + "\n" +
             "MP = " + Player.CurrentMana.ToString() + "/" + Player.MaxMana.ToString() + "\n" +
@@ -182,7 +200,7 @@ namespace RPG_LP2
             "Level = " + Player.Level.ToString();
         }
 
-        
+
 
         private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {
@@ -191,12 +209,12 @@ namespace RPG_LP2
                 timer.Tick += AnimationEvent;
                 timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
                 timer.Start();
-                
+
             }
 
         }
-        
-        
+
+
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
         {                                                    // A cada 110 milisegundos       
             if (IsAnotherPage) return;
@@ -237,7 +255,7 @@ namespace RPG_LP2
             //Checa se o player está na frente do bau, para poder lootear
             else if (ControllerGame.IsPlayerOverChest(Person1, LockedChests, Up))
             {
-               
+
                 ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);
 
             }
@@ -247,22 +265,24 @@ namespace RPG_LP2
                 IsAnotherPage = true;
 
                 //Precisa colocar restrições se os mobs ja foram derrotados ou nao
-                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 0)) {
+                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 0) && !Ninja.IsDead())
+                {
                     if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
-                    StoreChars(new Ninja() as Mob);
+                    StoreChars(Ninja as Mob);
                     this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
                 }
 
-                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 1)) {
+                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 1) && !PablloVittar.IsDead())
+                {
 
                     if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
-                    StoreChars(new PablloVittar() as Mob);
+                    StoreChars(PablloVittar as Mob);
                     this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
                 }
 
             }
         }
-       
+
 
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
@@ -275,25 +295,25 @@ namespace RPG_LP2
                 switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
                 {
                     case Windows.System.VirtualKey.Up:
-                     //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
+                        //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Up = true;
                         break;
                     case Windows.System.VirtualKey.Down:
-                     //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
+                        //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Down = true;
                         break;
                     case Windows.System.VirtualKey.Left:
-                     //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
+                        //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Left = true;
                         break;
                     case Windows.System.VirtualKey.Right:
-                      //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
+                        //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Right = true;
                         break;
                 }
 
                 IsKeyPressed = true;
-              //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
+                //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
         }
@@ -307,9 +327,9 @@ namespace RPG_LP2
                 case Windows.System.VirtualKey.Up:
                     Person1.Source = Player.IdleUp;
                     ControllerGame.MoveDown(Person1, Velocity);
-                 
+
                     Up = false;
-                   
+
                     break;
                 case Windows.System.VirtualKey.Down:
                     Person1.Source = Player.IdleDown;
@@ -320,13 +340,13 @@ namespace RPG_LP2
                 case Windows.System.VirtualKey.Left:
                     Person1.Source = Player.IdleLeft;
                     ControllerGame.MoveRight(Person1, Velocity);
-                 
+
                     Left = false;
                     break;
                 case Windows.System.VirtualKey.Right:
                     Person1.Source = Player.IdleRight;
                     ControllerGame.MoveLeft(Person1, Velocity);
-                   
+
                     Right = false;
                     break;
             }

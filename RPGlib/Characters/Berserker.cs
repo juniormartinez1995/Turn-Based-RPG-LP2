@@ -47,51 +47,50 @@ namespace RPGlib.Characters
                 return 1;
             }
 
-            float multiplier = missing_hp /this.MaxHealth;
+            float multiplier = missing_hp / this.MaxHealth;
 
-            if (multiplier >= 0.0001 && multiplier <=0.3) //Entre 0.1% e 30% de hp faltante, o dano é multiplicado por 1
+            if (multiplier >= 0.0001 && multiplier <= 0.3) //Entre 0.1% e 30% de hp faltante, o dano é multiplicado por 1
             {
                 return 1;
             }
             else if (multiplier >= 0.3 && multiplier <= 0.6)  //Entre 30% e 60% de hp faltante, o dano é multiplicado por 2
             {
-                
+
                 return 2;
             }
-            else if (multiplier >=0.6 && multiplier <= 0.9) {  //Entre 40% e 90% de hp faltante, o dano é multiplicado por 1
-            
+            else if (multiplier >= 0.6 && multiplier <= 0.9)
+            {  //Entre 40% e 90% de hp faltante, o dano é multiplicado por 1
+
                 return 3;
             }
-            
-                return 4; //Acima de 90% de hp faltante, o dano é multiplicado por 4
-                   
+
+            return 4; //Acima de 90% de hp faltante, o dano é multiplicado por 4
+
         }
-        int lifestealdmg;
         public override int BasicSkill()
         {
+            int lifestealdmg;
             if (Lifesteal == 0) //Caso não haja lifesteal
             {
 
-            if (CountCritic())
-            {
-                return 2 * Damage * (int) SacrificeBlood();
+                if (CountCritic())
+                {
+                    return 2 * Damage * (int)SacrificeBlood();
+                }
+                return Damage * (int)SacrificeBlood();
+
             }
-            return Damage * (int) SacrificeBlood();
-            
-            }
-
-
-
-            else {  //Caso haja lifesteal
+            else
+            {  //Caso haja lifesteal
 
                 if (CountCritic())
                 {
-                    lifestealdmg = 2 * Damage * (int)SacrificeBlood() ;
-                    this.CurrentHP = this.CurrentHP + (lifestealdmg * (this.Lifesteal / 100));
+                    lifestealdmg = 2 * Damage * (int)SacrificeBlood();
+                    this.CurrentHP += (lifestealdmg * (this.Lifesteal / 100));
                     return lifestealdmg;
                 }
                 lifestealdmg = Damage * (int)SacrificeBlood();
-                this.CurrentHP = this.CurrentHP + (lifestealdmg * (this.Lifesteal / 100));
+                this.CurrentHP += (lifestealdmg * (this.Lifesteal / 100));
                 return lifestealdmg;
 
 
@@ -100,6 +99,6 @@ namespace RPGlib.Characters
 
         }
 
-        
+
     }
 }
