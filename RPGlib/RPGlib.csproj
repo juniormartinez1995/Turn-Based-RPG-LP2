@@ -128,6 +128,9 @@
     <Compile Include="Mobs\PablloVittar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Characters\Skills.cs" />
+    <Compile Include="Quest\CollectorOfRibbons.cs" />
+    <Compile Include="Quest\Quest.cs" />
+    <Compile Include="Quest\Ribbon.cs" />
     <EmbeddedResource Include="Properties\RPGlib.rd.xml" />
   </ItemGroup>
   <ItemGroup>
