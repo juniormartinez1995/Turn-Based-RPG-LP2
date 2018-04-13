@@ -143,18 +143,6 @@ namespace RPG_LP2
             Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) + Velocity + Increment);
         }
 
-       /* public static async void PlayMusic(string nomeMusic)
-        {
-            MediaElement Music = new MediaElement();
-
-            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
-            Music.IsLooping = true;
-            Music.Play();
-        }*/
-
         public static async void PlayMusicOpenChest(string nomeMusic)
         {
             MediaElement Music = new MediaElement();
@@ -165,19 +153,6 @@ namespace RPG_LP2
            Music.Volume = 0.5;
             Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
             Music.IsLooping = true;
-            Music.Play();
-        }
-        public static async void PlaySoundPlayerWalking(string nomeMusic)
-        {
-       
-            MediaElement Music = new MediaElement();
-
-            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
-            Music.IsLooping = true;
-            
             Music.Play();
         }
       

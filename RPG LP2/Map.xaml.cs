@@ -211,7 +211,6 @@ namespace RPG_LP2
             {
                 ControllerGame.MoveUp(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
-                ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
 
@@ -219,7 +218,6 @@ namespace RPG_LP2
             {
                 ControllerGame.MoveDown(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
-                ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
 
@@ -227,7 +225,6 @@ namespace RPG_LP2
             {
                 ControllerGame.MoveLeft(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
-                ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
 
@@ -235,7 +232,6 @@ namespace RPG_LP2
             {
                 ControllerGame.MoveRight(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
-                ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
             //Checa se o player está na frente do bau, para poder lootear
