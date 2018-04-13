@@ -37,7 +37,8 @@ namespace RPG_LP2
         }
 
         Character BattlePlayer;
-        Mob mob;
+        List<Object> CharList;
+        Mob Mob_;
         DispatcherTimer timer = new DispatcherTimer();
         BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
 
@@ -46,32 +47,44 @@ namespace RPG_LP2
 
         private void Mob_MobDead(object sender, EventArgs args)
         {
+            if (CharList.Count == 0)
+            {
+                CharList.Add(BattlePlayer);
+                CharList.Add(Mob_);
+            }
+            else
+            {
+                CharList.Clear();
+                CharList.Add(BattlePlayer);
+                CharList.Add(Mob_);
+            }
             DisplayEndedBattleDialog();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            List<Object> CharList = e.Parameter as List<Object>;
+            CharList = e.Parameter as List<Object>;
 
             BattlePlayer = CharList.ElementAt(0) as Character;
-            mob = CharList.ElementAt(1) as Mob;
+            Mob_ = CharList.ElementAt(1) as Mob;
+            CharList.Clear();
 
-            Debug.WriteLine("DANO MOB: " +mob.Damage);
-            Debug.WriteLine("Dano Player " +BattlePlayer.Damage);
-            Debug.WriteLine("EU SOU " + mob.name);
+            Debug.WriteLine("DANO MOB: " + Mob_.Damage);
+            Debug.WriteLine("Dano Player " + BattlePlayer.Damage);
+            Debug.WriteLine("EU SOU " + Mob_.name);
 
             hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
             hpBarCharacter.Value = BattlePlayer.CurrentHP;
             mpBarCharacter.Maximum = BattlePlayer.MaxMana;
             mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            hpBarMob.Maximum = mob.HP;
-            hpBarMob.Value = mob.HP;
+            hpBarMob.Maximum = Mob_.HP;
+            hpBarMob.Value = Mob_.HP;
 
-            mob.MobDead += Mob_MobDead;
+            Mob_.MobDead += Mob_MobDead;
 
-            turn = BattleController.InicializeBattle(BattlePlayer, mob, button);
+            turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
             StartTimer();
-           
+
         }
         private async void DisplayEndedBattleDialog()
         {
@@ -84,7 +97,7 @@ namespace RPG_LP2
             };
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
-            this.Frame.Navigate(typeof(Map), BattlePlayer);
+            this.Frame.Navigate(typeof(Map), CharList);
         }
 
         public void StartTimer()
@@ -99,24 +112,37 @@ namespace RPG_LP2
 
         private void Timer_Tick(object sender, object e)
         {
+
             if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            if (hpBarMob.Value >= 0) hpBarMob.Value = mob.HP;
+            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
         }
 
         private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Map), BattlePlayer);
+            if (CharList.Count == 0)
+            {
+                CharList.Add(BattlePlayer);
+                CharList.Add(Mob_);
+            }
+            else
+            {
+                CharList.Clear();
+                CharList.Add(BattlePlayer);
+                CharList.Add(Mob_);
+            }
+
+            this.Frame.Navigate(typeof(Map), CharList);
         }
 
         public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
         {
-            BattleController.CheckTurn(BattlePlayer, mob, 1, btnSkillBasic);
+            BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
         }
 
         private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
         {
-            BattleController.CheckTurn(BattlePlayer, mob, 2, btnSkillOne);
+            BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
         }
     }
 }

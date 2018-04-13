@@ -37,7 +37,12 @@ namespace RPG_LP2
 
         }
 
-        //CAIO CHUPETA
+        //Método para checar a página anterior
+        public static bool CheckLastPage(Type desiredPage, Page CurrentPage)
+        {
+            var lastPage = CurrentPage.Frame.BackStack.LastOrDefault();
+            return (lastPage != null && lastPage.SourcePageType.Equals(desiredPage)) ? true : false;
+        }
 
         public static void PaintAnimation(Image Person1, Character Person, bool Right, bool Left, bool Up, bool Down) // Método de recebe como parametro um vetor de Bitmap
         {                                                       // e realiza a animação do movimento
