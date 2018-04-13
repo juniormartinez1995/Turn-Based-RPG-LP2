@@ -26,6 +26,7 @@ namespace RPGlib.Characters
         public int GainedXP { get; set; }
         public int Level { get; set; }
         public int Damage { get; set; }
+        public int Lifesteal { get; set; }
 
 
         public BitmapImage RightMoviment { get; set; }
@@ -60,6 +61,8 @@ namespace RPGlib.Characters
             return criticCalc <= CriticRate;
 
         }
+
+ 
 
         public virtual int BasicSkill()
         {

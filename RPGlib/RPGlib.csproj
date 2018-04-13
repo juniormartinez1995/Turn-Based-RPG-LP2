@@ -112,6 +112,7 @@
     <Compile Include="Itens\Chest.cs" />
     <Compile Include="Itens\DemonicRapier.cs" />
     <Compile Include="Itens\CrimsomVanguard.cs" />
+    <Compile Include="Itens\DraculaTeeth.cs" />
     <Compile Include="Itens\Generator.cs" />
     <Compile Include="Itens\Inventory.cs" />
     <Compile Include="Itens\Item.cs" />

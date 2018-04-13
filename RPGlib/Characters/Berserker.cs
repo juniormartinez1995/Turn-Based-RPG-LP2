@@ -23,6 +23,7 @@ namespace RPGlib.Characters
             this.EvasionRate = 5;
             this.CurrentArmor = 20;
             this.Damage = 30;
+            this.Lifesteal = 0;
 
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/cimagif.gif"));
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/baixogif.gif"));
@@ -65,15 +66,38 @@ namespace RPGlib.Characters
                 return 4; //Acima de 90% de hp faltante, o dano é multiplicado por 4
                    
         }
-
+        int lifestealdmg;
         public override int BasicSkill()
         {
+            if (Lifesteal == 0) //Caso não haja lifesteal
+            {
+
             if (CountCritic())
             {
                 return 2 * Damage * (int) SacrificeBlood();
             }
             return Damage * (int) SacrificeBlood();
             
+            }
+
+
+
+            else {  //Caso haja lifesteal
+
+                if (CountCritic())
+                {
+                    lifestealdmg = 2 * Damage * (int)SacrificeBlood() ;
+                    this.CurrentHP = this.CurrentHP + (lifestealdmg * (this.Lifesteal / 100));
+                    return lifestealdmg;
+                }
+                lifestealdmg = Damage * (int)SacrificeBlood();
+                this.CurrentHP = this.CurrentHP + (lifestealdmg * (this.Lifesteal / 100));
+                return lifestealdmg;
+
+
+            }
+
+
         }
 
         

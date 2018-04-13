@@ -9,27 +9,27 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace RPGlib.Itens
 {
-    public class RabbitFeet: Item
+    public class DraculaTeeth : Item
     {
-        public RabbitFeet(int critical)
+        public DraculaTeeth(int lifesteal)
         {
 
-            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/rabbit_feet.png")); //ADICIONAR IMAGEM DE UM PÉ DE COELHO
-            this.ItemName = "Rabbit's Feet";
+            this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/draculasteeth.png"));  
+            this.ItemName = "Dracula's Teeth";
             this.Armor = 0;
-            this.CriticalRate = critical;
+            this.CriticalRate = 0;
             this.Damage = 0;
             this.EvasionRate = 0;
             this.Health = 0;
             this.Mana = 0;
-            this.Lifesteal = 0;
-            this.Description = "Critical Rate + " + critical+"%";
+            this.Lifesteal = lifesteal;
+            this.Description = "Lifesteal + " + lifesteal+"%";
         }
 
         public override void Effect(Character person)
         {
-            person.CriticRate += this.CriticalRate;
-           
+            person.Lifesteal += this.Lifesteal;
+
         }
     }
 }

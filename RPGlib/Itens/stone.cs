@@ -26,6 +26,7 @@ namespace RPGlib.Itens
             this.EvasionRate = 0;
             this.Damage = 0;
             this.Mana = 0;
+            this.Lifesteal = 0;
             //VELOCIDADE DO PERSONAGEM
         }
 

@@ -180,16 +180,6 @@ namespace RPG_LP2
             
             Music.Play();
         }
-        public void StartMusic() 
-        {
-            if (!timer.IsEnabled) 
-            {
-                timer.Tick += AnimationEvent;
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-                timer.Start();
-
-            }
-
-        }
+      
     }
 }
