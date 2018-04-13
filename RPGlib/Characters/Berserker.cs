@@ -38,7 +38,7 @@ namespace RPGlib.Characters
 
         public int SacrificeBlood()
         {
-            
+
             int missing_hp = this.MaxHealth - this.CurrentHP;
 
             if (missing_hp == 0)  //Caso a vida estiver cheia
@@ -46,7 +46,11 @@ namespace RPGlib.Characters
                 return 1;
             }
 
-            int multiplier = ( 10 * missing_hp) / this.MaxHealth;
+            int multiplier = (10 * missing_hp) / this.MaxHealth;
+
+            if (multiplier > 3) {
+                return 3;
+            }
 
             return multiplier;
         }
@@ -57,7 +61,7 @@ namespace RPGlib.Characters
             {
                 return 2 * Damage * SacrificeBlood();
             }
-            return Damage*SacrificeBlood();
+            return Damage * SacrificeBlood();
             
         }
 

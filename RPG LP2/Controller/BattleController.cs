@@ -25,31 +25,35 @@ namespace RPG_LP2
         {
                 
             return Turn;
-            //CheckTurn(person, mob,turn,button);
         }
-        // BattleScreen screen;
    
         public static void CheckTurn(Character person, Mob mob, int button, Button btn_actual) // checa se é o turno do mob ou do player
         {
-           if (FinishBattle(person, mob)) 
-            {
+            if (FinishBattle(person, mob)) {
                 Turn++;
                 PlayerTurn(person, mob, button, btn_actual);
-            
-                Turn++;
-                MobTurn(person, mob, button);    
             }
+
+            if (FinishBattle(person, mob)) {
+                Turn++;
+                MobTurn(person, mob, button);
+            }
+        
 
         }
 
         public static void PlayerTurn(Character person, Mob mob, int button, Button btn_actual)
         {
+            //MOSTRAR O NÚMERO DO TURNO
             Debug.WriteLine("Turno: " + Turn);
-            switch (button) // OLHA ISSO AQUI
+
+            switch (button) 
             {   
                 case 1:
 
-                    int damageTurn = person.BasicSkill() - mob.currentArmor;
+                    int damageTurn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+            
+                    //MOSTRAR O DANO CAUSADO NA TELA
                     Debug.WriteLine("Dano causado = " + damageTurn + "\n");
                     mob.HP -= damageTurn;
                     break;
@@ -64,11 +68,12 @@ namespace RPG_LP2
 
         public static void MobTurn(Character person, Mob mob, int button)
         {
+            int damageTurn = CheckArmorDamage(mob.Skills() - person.CurrentArmor);
+            person.CurrentHP -= damageTurn;
+
+            //MOSTRAR VALOR (INT) DO PERSONAGEM E DO MOB
             Debug.WriteLine("Life person = " + person.CurrentHP + "\n" + "Life mob = " + mob.HP);
 
-            int damage = mob.Skills() - person.CurrentArmor;
-            person.CurrentHP -= damage;
-           
             //CheckTurn(person, mob,turn,button);
         }
             
@@ -79,6 +84,7 @@ namespace RPG_LP2
             if (mob.IsDead())
             {
                 int xpGain = 0;
+
                 if (mob is Boss)
                 {
                     xpGain = 50;
@@ -89,14 +95,15 @@ namespace RPG_LP2
                 }
                 person.LevelUp(xpGain);
                 WinBattle();
+                Turn = 0;
                 return false;
                 
-                // chama musicazona, chama run 
             }
 
             if (person.IsDead())
             {
                 Debug.WriteLine("Mob ganhou!!!");
+                Turn = 0;
                 return false;
             }
 
@@ -113,6 +120,17 @@ namespace RPG_LP2
         {
 
         }
+
+        public static int CheckArmorDamage(int damage)
+        {
+            if(damage < 0) 
+            {
+                return 0;
+            }
+
+            return damage;
+        }
+
     }
 }
 

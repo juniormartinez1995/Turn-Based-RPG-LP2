@@ -62,7 +62,7 @@ namespace RPG_LP2
 
         Character Player; //Personagem que estará no mapa
         Chest ChestControl = new Chest(); //Gerenciamento do baú
-        Ninja Ninja = new Ninja();
+        //Ninja Ninja = new Ninja();
 
 
         double PosY, PosX; //Posição X e Y do personagem no mapa
@@ -70,10 +70,9 @@ namespace RPG_LP2
         int Velocity = 3; //Velocidade do personagem
 
         
-        public void StoreChars()
+        public void StoreChars(Mob EnemyMob)
         {
-            MobAndChar.Add(Player);
-            MobAndChar.Add(Ninja);
+            MobAndChar.Add(EnemyMob);
         }
 
         //Método para setar os baús no mapa
@@ -164,7 +163,9 @@ namespace RPG_LP2
 
             Player = e.Parameter as Character;
             IsAnotherPage = false;
-            StoreChars();
+
+            MobAndChar.Add(Player);
+            if (MobAndChar.Count > 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
         }
 
         private void ShowStatus(object sender, TappedRoutedEventArgs e)
@@ -245,10 +246,19 @@ namespace RPG_LP2
                 IsAnotherPage = true;
 
                 //Precisa colocar restrições se os mobs ja foram derrotados ou nao
-                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 0)) this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 0)) {
+                    if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
+                    StoreChars(new Ninja() as Mob);
+                    this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+                }
 
-                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 1)) this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
-             
+                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 1)) {
+
+                    if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
+                    StoreChars(new PablloVittar() as Mob);
+                    this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+                }
+
             }
         }
        

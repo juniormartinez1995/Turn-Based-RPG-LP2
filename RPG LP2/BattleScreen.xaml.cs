@@ -58,7 +58,7 @@ namespace RPG_LP2
 
             Debug.WriteLine("DANO MOB: " +mob.Damage);
             Debug.WriteLine("Dano Player " +BattlePlayer.Damage);
-
+            Debug.WriteLine("EU SOU " + mob.name);
 
             hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
             hpBarCharacter.Value = BattlePlayer.CurrentHP;
@@ -67,10 +67,11 @@ namespace RPG_LP2
             hpBarMob.Maximum = mob.HP;
             hpBarMob.Value = mob.HP;
 
-            turn = BattleController.InicializeBattle(BattlePlayer, mob, button);
-
-
             mob.MobDead += Mob_MobDead;
+
+            turn = BattleController.InicializeBattle(BattlePlayer, mob, button);
+            StartTimer();
+           
         }
         private async void DisplayEndedBattleDialog()
         {
