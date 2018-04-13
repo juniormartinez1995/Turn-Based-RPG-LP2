@@ -36,20 +36,25 @@ namespace RPGlib.Characters
         }
 
 
-        public int SacrificeBlood()
+        public float SacrificeBlood()
         {
 
-            int missing_hp = this.MaxHealth - this.CurrentHP;
+            float missing_hp = this.MaxHealth - this.CurrentHP;
 
             if (missing_hp == 0)  //Caso a vida estiver cheia
             {
                 return 1;
             }
 
-            int multiplier = (10 * missing_hp) / this.MaxHealth;
+            float multiplier = (10 * missing_hp) / this.MaxHealth;
 
-            if (multiplier > 3) {
+            if (multiplier > 3) 
+            {
                 return 3;
+            }
+            if (multiplier <= 1) 
+            {
+                return 1;
             }
 
             return multiplier;
@@ -59,9 +64,9 @@ namespace RPGlib.Characters
         {
             if (CountCritic())
             {
-                return 2 * Damage * SacrificeBlood();
+                return 2 * Damage * (int) SacrificeBlood();
             }
-            return Damage * SacrificeBlood();
+            return Damage * (int) SacrificeBlood();
             
         }
 
