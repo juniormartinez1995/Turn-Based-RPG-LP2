@@ -5,7 +5,7 @@
     xmlns:local="using:RPG_LP2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Height="600" Width="797" MaxHeight="600" MaxWidth="800" MinWidth="800" MinHeight="600" ManipulationMode="None" FontFamily="Segoe UI">
+    mc:Ignorable="d" Height="600" Width="797" MaxHeight="600" MaxWidth="800" MinWidth="800" MinHeight="600" ManipulationMode="None" FontFamily="Segoe UI" Background="#464646">
     <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
 
         <Image Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/MapsBackground/BattleScreen.png"/>
@@ -28,7 +28,7 @@
         <Button x:Name="btnSkillBasic" Content="Basic Skill" Canvas.Left="52" Canvas.Top="505" Height="33" Width="72" FontSize="12" BorderThickness="2,2,2,2" Click="BtnBasicSkill_Click" Background="#847545" VerticalAlignment="Stretch"/>
 
         <!--RUN BUTTON-->
-        <Button x:Name="LeaveBtn" Content="Run" Canvas.Left="743" Canvas.Top="7" Tapped="LeaveBtn_Tapped" Background="#847545" VerticalAlignment="Stretch"/>
+        <Image x:Name="LeaveBtn" Source="Assets/btn_closeCUTTED.png" Height="50" Width="80" Canvas.Left="714" Canvas.Top="5" Tapped="LeaveBtn_Tapped"  VerticalAlignment="Stretch"/>
 
         <!--BARRAS LARANJAS DE FUNDO-->
         <Image Height="63" Canvas.Left="-26" Canvas.Top="38" Width="179" Source="Assets/i agem png barra.png"/>
