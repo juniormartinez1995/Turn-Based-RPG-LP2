@@ -136,8 +136,11 @@
     <Content Include="Assets\btn_status2.png" />
     <Content Include="Assets\Buttom_Close.png" />
     <Content Include="Assets\Buttom_Start.png" />
+    <Content Include="Assets\heart_gif.gif" />
+    <Content Include="Assets\heart_png.png" />
     <Content Include="Assets\i agem png barra.png" />
     <Content Include="Assets\imagem progress bar.gif" />
+    <Content Include="Assets\lightning_icon.png" />
     <Content Include="Assets\MapsBackground\SelecClass.jpeg" />
     <Content Include="Assets\rabbit_feet.png" />
     <Content Include="Assets\textbox.gif" />

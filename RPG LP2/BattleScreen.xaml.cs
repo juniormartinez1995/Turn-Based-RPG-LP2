@@ -19,6 +19,7 @@ using RPG_LP2;
 using RPGlib.Mobs;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -40,6 +41,9 @@ namespace RPG_LP2
         Mob mob;
         DispatcherTimer timer = new DispatcherTimer();
         BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
+
+        BitmapImage heart_stopped = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_png.png"));
+        BitmapImage heart_goON = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_gif.gif"));
 
         int button = 0;
         int turn;
@@ -66,6 +70,8 @@ namespace RPG_LP2
             mpBarCharacter.Value = BattlePlayer.CurrentMana;
             hpBarMob.Maximum = mob.HP;
             hpBarMob.Value = mob.HP;
+
+            heart_icon.Source = heart_stopped;
 
             mob.MobDead += Mob_MobDead;
 
@@ -102,6 +108,7 @@ namespace RPG_LP2
             if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
             if (hpBarMob.Value >= 0) hpBarMob.Value = mob.HP;
+            if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
         }
 
         private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
