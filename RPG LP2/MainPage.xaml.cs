@@ -45,7 +45,7 @@ namespace RPG_LP2
         //funcao buttom de start do jogo
         private void btn_Start_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SelecClass));//proxima tela
+            this.Frame.Navigate(typeof(SceneHistory));//proxima tela
         }
 
 

@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="RPG_LP2.SceneHistory"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RPG_LP2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" FontFamily="Bebas Neue">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image x:Name="background_gif" Source="Assets/MapsBackground/scene_history.gif" Margin="-144,-96,-144,-96"/>
+        <Image x:Name="bock_text_question" Source="Assets/text_scene_block.png" Margin="0,0,8,108"  HorizontalAlignment="Right" Width="257" Height="30" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="text_box_scene_history" HorizontalAlignment="Right" Margin="0,0,10,77" VerticalAlignment="Bottom" Height="28" Width="254" FontFamily="Segoe UI" d:LayoutOverrides="Height"/>
+        <TextBlock x:Name="text_block_scene_history" HorizontalAlignment="Right" Margin="0,0,12,50" TextWrapping="Wrap" VerticalAlignment="Bottom"  Height="26" Width="250" FontSize="24" FontFamily="Bebas Neue" />
+        <Image x:Name="btn_go" Source="Assets/btn_startCUTTED.png" HorizontalAlignment="Right" Height="47" VerticalAlignment="Bottom" Width="71" Margin="0,0,100,4" Tapped="btn_go_event"/>
+    </Grid>
+</Page>
