@@ -112,6 +112,7 @@
     <Compile Include="Itens\Chest.cs" />
     <Compile Include="Itens\DemonicRapier.cs" />
     <Compile Include="Itens\CrimsomVanguard.cs" />
+    <Compile Include="Itens\DraculaTeeth.cs" />
     <Compile Include="Itens\Generator.cs" />
     <Compile Include="Itens\Inventory.cs" />
     <Compile Include="Itens\Item.cs" />
@@ -127,6 +128,9 @@
     <Compile Include="Mobs\PablloVittar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Characters\Skills.cs" />
+    <Compile Include="Quest\CollectorOfRibbons.cs" />
+    <Compile Include="Quest\Quest.cs" />
+    <Compile Include="Quest\Ribbon.cs" />
     <EmbeddedResource Include="Properties\RPGlib.rd.xml" />
   </ItemGroup>
   <ItemGroup>

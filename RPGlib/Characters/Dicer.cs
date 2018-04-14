@@ -23,9 +23,11 @@ namespace RPGlib.Characters
             this.EvasionRate = 5;
             this.CurrentArmor = 10;
             this.Damage = 15;
+            this.Lifesteal = 0;
+
             //UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/cimagif.gif"));  //Achar o img do dicer
-           // DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/baixogif.gif"));
-           // RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/dirgif.gif"));
+            // DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/baixogif.gif"));
+            // RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/dirgif.gif"));
             //LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/esqgif.gif"));
 
             // IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png"));

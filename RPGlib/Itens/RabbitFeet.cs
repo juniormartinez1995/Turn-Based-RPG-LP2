@@ -22,6 +22,7 @@ namespace RPGlib.Itens
             this.EvasionRate = 0;
             this.Health = 0;
             this.Mana = 0;
+            this.Lifesteal = 0;
             this.Description = "Critical Rate + " + critical+"%";
         }
 

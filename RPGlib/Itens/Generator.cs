@@ -43,7 +43,7 @@ namespace RPGlib.Itens
                     break;
             }
 
-            int numRandom2 = RandomElement.Limiter(1, 6);
+            int numRandom2 = 7;
             switch (numRandom2)
             {
                 case 1:
@@ -63,6 +63,9 @@ namespace RPGlib.Itens
                     break;
                 case 6:
                     c.ItemChest.Add(new RabbitFeet(RandomElement.Limiter(8, 10)));
+                    break;
+                case 7:
+                    c.ItemChest.Add(new DraculaTeeth(RandomElement.Limiter(50, 100)));
                     break;
             }
         }

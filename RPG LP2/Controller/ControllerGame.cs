@@ -37,7 +37,12 @@ namespace RPG_LP2
 
         }
 
-        //CAIO CHUPETA
+        //Método para checar a página anterior
+        public static bool CheckLastPage(Type desiredPage, Page CurrentPage)
+        {
+            var lastPage = CurrentPage.Frame.BackStack.LastOrDefault();
+            return (lastPage != null && lastPage.SourcePageType.Equals(desiredPage)) ? true : false;
+        }
 
         public static void PaintAnimation(Image Person1, Character Person, bool Right, bool Left, bool Up, bool Down) // Método de recebe como parametro um vetor de Bitmap
         {                                                       // e realiza a animação do movimento
@@ -104,9 +109,10 @@ namespace RPG_LP2
         {   
             if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário
             {
+                ControllerGame.PlayMusicOpenChest("SoundOpenChest.mp3");
                 player.OpenChest(ChestControl);
                 qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
-                qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString(); //CAIO SEU BURRO FDP CHUPETINHA
+                qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString(); 
 
                 int countItem = 0;
                 foreach (Item item in player.inventory.inventoryList)
@@ -142,16 +148,18 @@ namespace RPG_LP2
             Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) + Velocity + Increment);
         }
 
-        public static async void PlayMusic(string nomeMusic)
+        public static async void PlayMusicOpenChest(string nomeMusic)
         {
             MediaElement Music = new MediaElement();
 
             StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             Folder = await Folder.GetFolderAsync("Assets");
             StorageFile sf = await Folder.GetFileAsync(nomeMusic);
+           Music.Volume = 0.5;
             Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
             Music.IsLooping = true;
             Music.Play();
         }
+      
     }
 }

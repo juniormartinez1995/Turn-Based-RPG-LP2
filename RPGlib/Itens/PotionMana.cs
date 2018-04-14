@@ -25,6 +25,7 @@ namespace RPGlib.Itens
             this.CriticalRate = 0;
             this.EvasionRate = 0;
             this.Damage = 0;
+            this.Lifesteal = 0;
         }
         //person = personagem
         //correnMana = mana atual do personagem

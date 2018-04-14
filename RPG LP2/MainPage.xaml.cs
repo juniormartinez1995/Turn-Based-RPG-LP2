@@ -34,7 +34,7 @@ namespace RPG_LP2
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            ControllerGame.PlayMusic("1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3");
+          //  ControllerGame.PlayMusic("1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3");
         }
 
         //funcao buttom de quit do jogo

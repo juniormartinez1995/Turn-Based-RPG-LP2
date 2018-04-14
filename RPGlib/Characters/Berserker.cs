@@ -19,10 +19,11 @@ namespace RPGlib.Characters
             this.CurrentMana = 100;
             this.CurrentXP = 0;
             this.Level = 0;
-            this.CriticRate = 15;
+            this.CriticRate = 0;
             this.EvasionRate = 5;
             this.CurrentArmor = 20;
             this.Damage = 30;
+            this.Lifesteal = 0;
 
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/cimagif.gif"));
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/baixogif.gif"));
@@ -36,7 +37,7 @@ namespace RPGlib.Characters
         }
 
 
-        public float SacrificeBlood()
+        public float SacrificeBlood() //Está balanceada!
         {
 
             float missing_hp = this.MaxHealth - this.CurrentHP;
@@ -46,30 +47,58 @@ namespace RPGlib.Characters
                 return 1;
             }
 
-            float multiplier = (10 * missing_hp) / this.MaxHealth;
+            float multiplier = missing_hp / this.MaxHealth;
 
-            if (multiplier > 3) 
-            {
-                return 3;
-            }
-            if (multiplier <= 1) 
+            if (multiplier >= 0.0001 && multiplier <= 0.3) //Entre 0.1% e 30% de hp faltante, o dano é multiplicado por 1
             {
                 return 1;
             }
+            else if (multiplier >= 0.3 && multiplier <= 0.6)  //Entre 30% e 60% de hp faltante, o dano é multiplicado por 2
+            {
 
-            return multiplier;
+                return 2;
+            }
+            else if (multiplier >= 0.6 && multiplier <= 0.9)
+            {  //Entre 40% e 90% de hp faltante, o dano é multiplicado por 1
+
+                return 3;
+            }
+
+            return 4; //Acima de 90% de hp faltante, o dano é multiplicado por 4
+
         }
-
         public override int BasicSkill()
         {
-            if (CountCritic())
+            int lifestealdmg;
+            if (Lifesteal == 0) //Caso não haja lifesteal
             {
-                return 2 * Damage * (int) SacrificeBlood();
+
+                if (CountCritic())
+                {
+                    return 2 * Damage * (int)SacrificeBlood();
+                }
+                return Damage * (int)SacrificeBlood();
+
             }
-            return Damage * (int) SacrificeBlood();
-            
+            else
+            {  //Caso haja lifesteal
+
+                if (CountCritic())
+                {
+                    lifestealdmg = 2 * Damage * (int)SacrificeBlood();
+                    this.CurrentHP += (lifestealdmg * (this.Lifesteal / 100));
+                    return lifestealdmg;
+                }
+                lifestealdmg = Damage * (int)SacrificeBlood();
+                this.CurrentHP += (lifestealdmg * (this.Lifesteal / 100));
+                return lifestealdmg;
+
+
+            }
+
+
         }
 
-        
+
     }
 }

@@ -21,6 +21,7 @@ namespace RPGlib.Itens
             this.EvasionRate = 0;
             this.Health = health;
             this.Mana = 0;
+            this.Lifesteal = 0;
             this.Description = "HP + " + health +"\nArmor + " + armor;
         }
 
