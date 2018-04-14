@@ -86,7 +86,7 @@ namespace RPG_LP2
 
             heart_icon.Source = heart_stopped;
 
-            mob.MobDead += Mob_MobDead;
+            Mob_.MobDead += Mob_MobDead;
 
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
             StartTimer();
@@ -121,7 +121,7 @@ namespace RPG_LP2
 
             if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            if (hpBarMob.Value >= 0) hpBarMob.Value = mob.HP;
+            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
             if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
         }
 
