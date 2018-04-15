@@ -38,8 +38,8 @@ namespace RPG_LP2
         }
 
         Character BattlePlayer;
-        List<Object> CharList;
         Mob Mob_;
+        List<Object> CharList;
         DispatcherTimer timer = new DispatcherTimer();
         BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
 
@@ -65,6 +65,11 @@ namespace RPG_LP2
             DisplayEndedBattleDialog();
         }
 
+        private void Character_CharacterDead(object sender, EventArgs args)
+        {
+            LoseBattle_Navigate();
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             CharList = e.Parameter as List<Object>;
@@ -87,6 +92,7 @@ namespace RPG_LP2
             heart_icon.Source = heart_stopped;
 
             Mob_.MobDead += Mob_MobDead;
+            BattlePlayer.CharacterDead += Character_CharacterDead;
 
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
             StartTimer();
@@ -119,7 +125,7 @@ namespace RPG_LP2
         private void Timer_Tick(object sender, object e)
         {
 
-            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
+            if (hpBarCharacter.Value >= 0) while (hpBarCharacter.Value != BattlePlayer.CurrentHP) { hpBarCharacter.Value -=1; }
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
             if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
             if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
@@ -150,6 +156,11 @@ namespace RPG_LP2
         private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
         {
             BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
+        }
+
+        public void LoseBattle_Navigate()
+        {
+            this.Frame.Navigate(typeof(LosePage));
         }
     }
 }

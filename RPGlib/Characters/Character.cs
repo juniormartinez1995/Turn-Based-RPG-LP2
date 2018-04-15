@@ -40,6 +40,9 @@ namespace RPGlib.Characters
 
         public Inventory inventory = new Inventory();
 
+        public delegate void CharacterDeadEventHandler(object sender, EventArgs args);
+        public event CharacterDeadEventHandler CharacterDead;
+
         public void OpenChest(Chest chest)
         {
             for (int x = chest.ItemChest.Count() - 1; x >= 0; x--)
@@ -61,8 +64,6 @@ namespace RPGlib.Characters
             return criticCalc <= CriticRate;
 
         }
-
- 
 
         public virtual int BasicSkill()
         {
@@ -97,9 +98,20 @@ namespace RPGlib.Characters
 
         }
 
+        protected virtual void OnCharacterDead()
+        {
+            CharacterDead?.Invoke(this, EventArgs.Empty);
+        }
+
         public bool IsDead()
         {
-            return this.CurrentHP <= 0;
+            if (this.CurrentHP <= 0) 
+            {
+                OnCharacterDead();
+                return true;
+            }
+            else return false;
+            
         }
 
         public bool ManaCountDown(int currentSkill)

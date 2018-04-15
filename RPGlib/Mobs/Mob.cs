@@ -23,7 +23,6 @@ namespace RPGlib.Mobs
         public BitmapImage DownMoviment { get; set; }
 
         public delegate void MobDeadEventHandler(object sender, EventArgs args);
-
         public event MobDeadEventHandler MobDead;
 
         protected virtual void OnMobDead()

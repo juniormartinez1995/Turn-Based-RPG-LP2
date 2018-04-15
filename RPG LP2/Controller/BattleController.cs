@@ -87,7 +87,7 @@ namespace RPG_LP2
 
                 if (mob is Boss)
                 {
-                    xpGain = 50;
+                    xpGain = 70;
                 }
                 else
                 {   
@@ -104,6 +104,7 @@ namespace RPG_LP2
             {
                 Debug.WriteLine("Mob ganhou!!!");
                 Turn = 0;
+                LoseBattle();
                 return false;
             }
 
@@ -116,9 +117,9 @@ namespace RPG_LP2
 
         }
 
-        public static void LoseBattle(Character person, Mob mob)
+        public static void LoseBattle()
         {
-
+            
         }
 
         public static int CheckArmorDamage(int damage)

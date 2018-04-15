@@ -15,7 +15,7 @@ namespace RPGlib.Mobs
             this.Mana = 50;
             this.evasionRate = 20;
             this.currentArmor = 10;
-            this.Damage = 30;
+            this.Damage = 100;
             this.GifBattle = null;
 
         }

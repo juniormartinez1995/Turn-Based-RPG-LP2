@@ -100,6 +100,9 @@
       <DependentUpon>BattleScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controller\ControllerGame.cs" />
+    <Compile Include="LosePage.xaml.cs">
+      <DependentUpon>LosePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,8 @@
     <Content Include="Assets\SoundPlayerWalking.mp3" />
     <Content Include="Assets\textbox.gif" />
     <Content Include="Assets\text_scene_block.png" />
+    <Content Include="Assets\txt_continuerpg.png" />
+    <Content Include="Assets\txt_quitrpg.png" />
     <Content Include="Assets\upAnimation\cimagif.gif" />
     <Content Include="Assets\crimson_vanguard.png" />
     <Content Include="Assets\rightAnimation\dirgif.gif" />
@@ -171,6 +176,7 @@
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\stone.png" />
     <Content Include="Assets\upAnimation\0.png" />
+    <Content Include="Assets\youdiedscreen.jpg" />
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -181,6 +187,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="BattleScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LosePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
