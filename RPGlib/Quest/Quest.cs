@@ -11,6 +11,7 @@ namespace RPGlib.Quest
         public string name { get; set; }
         public string description { get; set; }
         public string objective { get; set; }
+        public string reward { get; set; }
 
         abstract public void StartQuest();
 
