@@ -49,6 +49,51 @@ namespace RPG_LP2
         int button = 0;
         int turn;
 
+        private async void DisplayEndedBattleDialog()
+        {
+            ContentDialog BattleEnded = new ContentDialog
+            {
+                Title = "FIM DA BATALHA",
+                Content = "Você venceu!!!",
+                CloseButtonText = "Voltar ao mapa"
+
+            };
+
+            ContentDialogResult result = await BattleEnded.ShowAsync();
+            this.Frame.Navigate(typeof(Map), CharList);
+        }
+
+        public void StartTimer()
+        {
+            if (!timer.IsEnabled)
+            {
+                timer.Tick += Timer_Tick;
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                timer.Start();
+            }
+        }
+
+        public void LoseBattle_Navigate()
+        {
+            this.Frame.Navigate(typeof(LosePage));
+        }
+
+        private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (CharList.Count == 0)
+            {
+                CharList.Add(BattlePlayer);
+                CharList.Add(Mob_);
+            }
+            else
+            {
+                CharList.Clear();
+                CharList.Add(BattlePlayer);
+                CharList.Add(Mob_);
+            }
+
+            this.Frame.Navigate(typeof(Map), CharList);
+        }
         private void Mob_MobDead(object sender, EventArgs args)
         {
             if (CharList.Count == 0)
@@ -65,9 +110,28 @@ namespace RPG_LP2
             DisplayEndedBattleDialog();
         }
 
+        private void Timer_Tick(object sender, object e)
+        {
+
+            if (hpBarCharacter.Value >= 0) while (hpBarCharacter.Value != BattlePlayer.CurrentHP) { hpBarCharacter.Value -=1; }
+            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
+            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
+            if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
+        }
+
         private void Character_CharacterDead(object sender, EventArgs args)
         {
             LoseBattle_Navigate();
+        }
+
+        public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
+        {
+            BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
+        }
+
+        private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
+        {
+            BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -98,69 +162,7 @@ namespace RPG_LP2
             StartTimer();
 
         }
-        private async void DisplayEndedBattleDialog()
-        {
-            ContentDialog BattleEnded = new ContentDialog
-            {
-                Title = "FIM DA BATALHA",
-                Content = "Você venceu!!!",
-                CloseButtonText = "Voltar ao mapa"
 
-            };
 
-            ContentDialogResult result = await BattleEnded.ShowAsync();
-            this.Frame.Navigate(typeof(Map), CharList);
-        }
-
-        public void StartTimer()
-        {
-            if (!timer.IsEnabled)
-            {
-                timer.Tick += Timer_Tick;
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-                timer.Start();
-            }
-        }
-
-        private void Timer_Tick(object sender, object e)
-        {
-
-            if (hpBarCharacter.Value >= 0) while (hpBarCharacter.Value != BattlePlayer.CurrentHP) { hpBarCharacter.Value -=1; }
-            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
-            if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
-        }
-
-        private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (CharList.Count == 0)
-            {
-                CharList.Add(BattlePlayer);
-                CharList.Add(Mob_);
-            }
-            else
-            {
-                CharList.Clear();
-                CharList.Add(BattlePlayer);
-                CharList.Add(Mob_);
-            }
-
-            this.Frame.Navigate(typeof(Map), CharList);
-        }
-
-        public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
-        {
-            BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
-        }
-
-        private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
-        {
-            BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
-        }
-
-        public void LoseBattle_Navigate()
-        {
-            this.Frame.Navigate(typeof(LosePage));
-        }
     }
 }

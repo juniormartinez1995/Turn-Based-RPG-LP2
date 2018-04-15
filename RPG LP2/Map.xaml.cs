@@ -112,52 +112,16 @@ namespace RPG_LP2
 
         }
 
-        private void ShowItemStatus1(object sender, TappedRoutedEventArgs e)
+        private void StartAnimation() // Método para configuração e inicialização do timer da animação
         {
-            Item actual = Player.inventory.inventoryList[0];
+            if (!timer.IsEnabled) //O timer só iniciará se ele estiver desligado
+            {
+                timer.Tick += AnimationEvent;
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+                timer.Start();
 
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-            ItemStatus1.Text = actual.ItemName + "\n" + actual.Description;
-        }
+            }
 
-        private void ShowItemStatus2(object sender, TappedRoutedEventArgs e)
-        {
-            Item actual = Player.inventory.inventoryList[1];
-
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-            ItemStatus2.Text = actual.ItemName + "\n" + actual.Description;
-        }
-
-        private void ShowItemStatus3(object sender, TappedRoutedEventArgs e)
-        {
-            Item actual = Player.inventory.inventoryList[2];
-
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-            ItemStatus3.Text = actual.ItemName + "\n" + actual.Description;
-        }
-
-        private void ShowItemStatus4(object sender, TappedRoutedEventArgs e)
-        {
-            Item actual = Player.inventory.inventoryList[3];
-
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-            ItemStatus4.Text = actual.ItemName + "\n" + actual.Description;
-        }
-
-        private void ShowItemStatus5(object sender, TappedRoutedEventArgs e)
-        {
-            Item actual = Player.inventory.inventoryList[4];
-
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-            ItemStatus5.Text = actual.ItemName + "\n" + actual.Description;
-        }
-
-        private void ShowItemStatus6(object sender, TappedRoutedEventArgs e)
-        {
-            Item actual = Player.inventory.inventoryList[5];
-
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-            ItemStatus6.Text = actual.ItemName + "\n" + actual.Description;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -181,9 +145,7 @@ namespace RPG_LP2
 
 
             }
-
             IsAnotherPage = false;
-
         }
 
         private void ShowStatus(object sender, TappedRoutedEventArgs e)
@@ -202,17 +164,6 @@ namespace RPG_LP2
 
 
 
-        private void StartAnimation() // Método para configuração e inicialização do timer da animação
-        {
-            if (!timer.IsEnabled) //O timer só iniciará se ele estiver desligado
-            {
-                timer.Tick += AnimationEvent;
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-                timer.Start();
-
-            }
-
-        }
 
 
         private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
@@ -284,8 +235,6 @@ namespace RPG_LP2
             }
         }
 
-
-
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
             if (IsAnotherPage) return;
@@ -318,7 +267,6 @@ namespace RPG_LP2
             }
 
         }
-
 
         private void CoreWindow_KeyUp(CoreWindow sender, KeyEventArgs args)
         {
@@ -353,6 +301,54 @@ namespace RPG_LP2
             }
             IsKeyPressed = false;
 
+        }
+
+        private void ShowItemStatus1(object sender, TappedRoutedEventArgs e)
+        {
+            Item actual = Player.inventory.inventoryList[0];
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus1.Text = actual.ItemName + "\n" + actual.Description;
+        }
+
+        private void ShowItemStatus2(object sender, TappedRoutedEventArgs e)
+        {
+            Item actual = Player.inventory.inventoryList[1];
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus2.Text = actual.ItemName + "\n" + actual.Description;
+        }
+
+        private void ShowItemStatus3(object sender, TappedRoutedEventArgs e)
+        {
+            Item actual = Player.inventory.inventoryList[2];
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus3.Text = actual.ItemName + "\n" + actual.Description;
+        }
+
+        private void ShowItemStatus4(object sender, TappedRoutedEventArgs e)
+        {
+            Item actual = Player.inventory.inventoryList[3];
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus4.Text = actual.ItemName + "\n" + actual.Description;
+        }
+
+        private void ShowItemStatus5(object sender, TappedRoutedEventArgs e)
+        {
+            Item actual = Player.inventory.inventoryList[4];
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus5.Text = actual.ItemName + "\n" + actual.Description;
+        }
+
+        private void ShowItemStatus6(object sender, TappedRoutedEventArgs e)
+        {
+            Item actual = Player.inventory.inventoryList[5];
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            ItemStatus6.Text = actual.ItemName + "\n" + actual.Description;
         }
 
     }
