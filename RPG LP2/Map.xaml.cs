@@ -129,6 +129,7 @@ namespace RPG_LP2
             if (ControllerGame.CheckLastPage(typeof(SelecClass), this))
             {
                 Player = e.Parameter as Character;
+                Person1.Source = Player.IdleRight;
                 MobAndChar.Add(Player);
 
             }
@@ -208,7 +209,7 @@ namespace RPG_LP2
             {
 
                 ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);
-                open_chest.Visibility = Visibility.Visible;
+                open_chest.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/open_chest3.png"));
 
             }
             //Checa se o player se encontra de frente com o mob, se sim, iniciará a tela de batalha
