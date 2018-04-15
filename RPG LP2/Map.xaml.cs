@@ -257,6 +257,7 @@ namespace RPG_LP2
             {
 
                 ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);
+                open_chest.Visibility = Visibility.Visible;
 
             }
             //Checa se o player se encontra de frente com o mob, se sim, iniciará a tela de batalha
