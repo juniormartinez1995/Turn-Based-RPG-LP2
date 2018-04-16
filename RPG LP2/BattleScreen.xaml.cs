@@ -36,6 +36,7 @@ namespace RPG_LP2
             ControllerGame.AdjustFullScreenMode(_Canvas,this);
             Mob1.Source = Ninja;
             StartTimer();
+            StartTimerSword();
         }
         DispatcherTimer TimerSword = new DispatcherTimer();
         Character BattlePlayer;
@@ -128,33 +129,29 @@ namespace RPG_LP2
         public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
         {
             Sword.Opacity = 100;
-            BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
-            StartTimerSword();
-           ControllerGame.PlaySoundSword("SoundSword.mp3");
+            TimerSword.Start();
+           //ControllerGame.PlaySoundSword("SoundSword.mp3");
 
 
         }
+
         public void  StartTimerSword() {
             TimerSword.Tick += TimerSword_Tick;
-            TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);
-            TimerSword.Start();
-          
+            TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);       
         }
-
-       
 
         public void TimerSword_Tick(object sender,object e)
         {
-          
-            Canvas.SetLeft(Sword, Canvas.GetLeft(Sword) + 45);
-            Debug.WriteLine(Canvas.GetLeft(Sword));
-            
-            if(Canvas.GetLeft(Sword) > 800)
+
+            if (!ControllerGame.IsSkillHittingEnemy(Sword, Mob1)) Canvas.SetLeft(Sword, Canvas.GetLeft(Sword) + 45);
+            else if(ControllerGame.IsSkillHittingEnemy(Sword, Mob1))
             {
-                TimerSword.Stop();
-                Canvas.SetLeft(Sword, 182.5);
+                BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
+                Canvas.SetLeft(Sword, Canvas.GetLeft(Person1) + 82);
                 Sword.Opacity = 0;
-            }        
+                TimerSword.Stop();
+                
+            }      
 
         }
         private void BtnSkillOne_Click(object sender, RoutedEventArgs e)

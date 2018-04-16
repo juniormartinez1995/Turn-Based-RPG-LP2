@@ -208,7 +208,7 @@ namespace RPG_LP2
             }
 
             //Checa se o player está na frente do bau, para poder lootear
-            else if (ControllerGame.IsPlayerOverChest(Person1, LockedChests, Up))
+            else if (ControllerGame.IsPlayerColliding(Person1, LockedChests, Up))
             {
 
                 ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);

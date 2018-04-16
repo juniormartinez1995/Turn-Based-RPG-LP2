@@ -92,20 +92,7 @@ namespace RPG_LP2
         //Checa se o movimento é permitido, se nao enconsta em um bau, inimigo ou obstaculo
         public static bool IsMovimentAllowed(Image Person1, List<Image> LockedChests, List<Image> Enemies, List<Image> Collision, bool key)
         {
-            return !IsPlayerOverChest(Person1, LockedChests, key) && !IsPlayerColliding(Person1, Enemies, key) && !IsPlayerColliding(Person1, Collision, key);
-        }
-
-
-        public static bool IsPlayerOverChest(Image Person1, List<Image> LockedChests, bool key) //Checa se o personagem encontrou um baú no mapa
-        {
-
-
-            foreach (Image vault in LockedChests)
-            {
-                if (IsPlayerOverItem(Person1, vault, key)) return true;
-            }
-
-            return false;
+            return !IsPlayerColliding(Person1, LockedChests, key) && !IsPlayerColliding(Person1, Enemies, key) && !IsPlayerColliding(Person1, Collision, key);
         }
 
         public static bool IsPlayerColliding(Image Person1, List<Image> Collision, bool key) //Checa se o personagem colide com algum objeto e/ou personagem
@@ -120,13 +107,13 @@ namespace RPG_LP2
         }
 
 
-        public static bool IsPlayerOverItem(Image Person1, Image _item, bool key)
+        public static bool IsPlayerOverItem(Image Player, Image _item, bool key)
         {
 
-            if (Canvas.GetLeft(Person1) + Person1.Width >= Canvas.GetLeft(_item) &&
-                Canvas.GetLeft(Person1) <= Canvas.GetLeft(_item) + _item.Width &&
-                Canvas.GetTop(Person1) + Person1.Height >= Canvas.GetTop(_item) &&
-                Canvas.GetTop(Person1) <= Canvas.GetTop(_item) + _item.Height
+            if (Canvas.GetLeft(Player) + Player.Width >= Canvas.GetLeft(_item) &&
+                Canvas.GetLeft(Player) <= Canvas.GetLeft(_item) + _item.Width &&
+                Canvas.GetTop(Player) + Player.Height >= Canvas.GetTop(_item) &&
+                Canvas.GetTop(Player) <= Canvas.GetTop(_item) + _item.Height
                 )
             {
                 return key;
@@ -134,6 +121,22 @@ namespace RPG_LP2
             }
             else return false;
         }
+
+        public static bool IsSkillHittingEnemy(Image Player, Image Enemy)
+        {
+
+            if (Canvas.GetLeft(Player) + Player.Width >= Canvas.GetLeft(Enemy) &&
+                Canvas.GetLeft(Player) <= Canvas.GetLeft(Enemy) + Enemy.Width &&
+                Canvas.GetTop(Player) + Player.Height >= Canvas.GetTop(Enemy) &&
+                Canvas.GetTop(Player) <= Canvas.GetTop(Enemy) + Enemy.Height
+                )
+            {
+                return true;
+
+            }
+            else return false;
+        }
+
 
         public static bool CheckEnemy(Image Person1, List<Image> Enemy, bool key, int i)
         {
