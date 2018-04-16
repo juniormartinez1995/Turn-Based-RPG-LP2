@@ -155,6 +155,8 @@
     <Content Include="Assets\MapsBackground\scene_history.gif" />
     <Content Include="Assets\SoundOpenChest.mp3" />
     <Content Include="Assets\SoundPlayerWalking.mp3" />
+    <Content Include="Assets\SoundSword.mp3" />
+    <Content Include="Assets\Sword.png" />
     <Content Include="Assets\textbox.gif" />
     <Content Include="Assets\text_scene_block.png" />
     <Content Include="Assets\txt_continuerpg.png" />

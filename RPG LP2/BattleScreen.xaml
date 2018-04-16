@@ -47,6 +47,12 @@
         <!--ICONS-->
         <Image x:Name ="heart_icon" Height="70" Width="70" Canvas.Left="134" Canvas.Top="40"/>
         <Image x:Name ="lightning_icon" Height="50" Width="50" Canvas.Left="142" Canvas.Top="99" Source="Assets/lightning_icon.png"/>
+        <Image x:Name="Sword" Height="100" Opacity="0" Canvas.Left="182.5" Canvas.Top="300" Width="100" Source="Assets/Sword.png" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Image.RenderTransform>
+                <CompositeTransform Rotation="89.573"/>
+            </Image.RenderTransform>
+
+        </Image>
 
     </Canvas>
 

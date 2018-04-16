@@ -36,7 +36,7 @@ namespace RPG_LP2
             Mob1.Source = Ninja;
             StartTimer();
         }
-
+        DispatcherTimer TimerSword = new DispatcherTimer();
         Character BattlePlayer;
         Mob Mob_;
         List<Object> CharList;
@@ -126,9 +126,36 @@ namespace RPG_LP2
 
         public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
         {
+            Sword.Opacity = 100;
             BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
+            StartTimerSword();
+           ControllerGame.PlaySoundSword("SoundSword.mp3");
+
+
+        }
+        public void  StartTimerSword() {
+            TimerSword.Tick += TimerSword_Tick;
+            TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);
+            TimerSword.Start();
+          
         }
 
+       
+
+        public void TimerSword_Tick(object sender,object e)
+        {
+          
+            Canvas.SetLeft(Sword, Canvas.GetLeft(Sword) + 45);
+            Debug.WriteLine(Canvas.GetLeft(Sword));
+            
+            if(Canvas.GetLeft(Sword) > 800)
+            {
+                TimerSword.Stop();
+                Canvas.SetLeft(Sword, 182.5);
+                Sword.Opacity = 0;
+            }        
+
+        }
         private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
         {
             BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);

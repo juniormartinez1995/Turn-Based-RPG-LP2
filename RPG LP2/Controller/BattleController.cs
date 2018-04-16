@@ -10,7 +10,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using RPGlib;
 using RPG_LP2;
-
+using System.Threading;
 
 
 namespace RPG_LP2
@@ -26,20 +26,21 @@ namespace RPG_LP2
                 
             return Turn;
         }
-   
+        static DispatcherTimer timerPlayer = new DispatcherTimer();
+
         public static void CheckTurn(Character person, Mob mob, int button, Button btn_actual) // checa se é o turno do mob ou do player
         {
             if (FinishBattle(person, mob)) {
                 Turn++;
                 PlayerTurn(person, mob, button, btn_actual);
+             
             }
 
             if (FinishBattle(person, mob)) {
                 Turn++;
                 MobTurn(person, mob, button);
-            }
-        
 
+            }          
         }
 
         public static void PlayerTurn(Character person, Mob mob, int button, Button btn_actual)
