@@ -15,6 +15,7 @@ namespace RPG_LP2
         public SelecClass()
         {
             this.InitializeComponent();
+            ControllerGame.AdjustFullScreenMode(_Canvas, this);
         }
         //ao user clickar nesse buttom, cria o personagem berserker 
         private void B_Berserker_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

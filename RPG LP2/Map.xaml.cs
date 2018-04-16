@@ -31,13 +31,11 @@ namespace RPG_LP2
     {
         public Map()
         {
+            
             this.InitializeComponent();
-
+            ControllerGame.AdjustFullScreenMode(_Canvas,this);
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
-            Window.Current.CoreWindow.KeyDown += ControllerGame.CoreWindow_KeyDown;
-            ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
 
@@ -47,6 +45,9 @@ namespace RPG_LP2
             AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
+
+            WidthRatio = _Canvas.Width / 800;
+            HeightRatio = _Canvas.Height / 600;
 
         }
 
@@ -67,6 +68,8 @@ namespace RPG_LP2
         //Ninja Ninja = new Ninja();
 
 
+
+        double WidthRatio, HeightRatio;
         double PosY, PosX; //Posição X e Y do personagem no mapa
         bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
         int Velocity = 3; //Velocidade do personagem
@@ -177,28 +180,28 @@ namespace RPG_LP2
             Player.CurrentPosY = PosY;
             Player.CurrentPosX = PosX;
 
-            if (Up && PosY > 140 && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Up))  //Movimento, checagem e animação para cima
+            if (Up && PosY > 140 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Up))  //Movimento, checagem e animação para cima
             {
                 ControllerGame.MoveUp(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
-            if (Down && PosY < 470 && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Down)) //Movimento, checagem e animação para baixo
+            if (Down && PosY < 470 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Down)) //Movimento, checagem e animação para baixo
             {
                 ControllerGame.MoveDown(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
-            if (Left && PosX > 70 && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Left)) //Movimento, checagem e animação para esquerda
+            if (Left && PosX > 70 * WidthRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Left)) //Movimento, checagem e animação para esquerda
             {
                 ControllerGame.MoveLeft(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
-            if (Right && PosX < 690 && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Right)) //Movimento, checagem e animação para direita
+            if (Right && PosX < 690 * WidthRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Right)) //Movimento, checagem e animação para direita
             {
                 ControllerGame.MoveRight(Person1, Velocity);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
@@ -246,25 +249,20 @@ namespace RPG_LP2
                 switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
                 {
                     case Windows.System.VirtualKey.Up:
-                        //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Up = true;
                         break;
                     case Windows.System.VirtualKey.Down:
-                        //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Down = true;
                         break;
                     case Windows.System.VirtualKey.Left:
-                        //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Left = true;
                         break;
                     case Windows.System.VirtualKey.Right:
-                        //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Right = true;
                         break;
                 }
 
                 IsKeyPressed = true;
-                //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
         }

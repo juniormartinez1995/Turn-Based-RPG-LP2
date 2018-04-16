@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="#464646" Height="600" Width="800">
 
-    <Canvas Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Canvas x:Name="_Canvas" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Image x:Name="image_died_DS" Source="Assets/youdiedscreen.jpg" Margin="0,0,0,0" Canvas.Left="-201" Canvas.Top="0" Height="598" Width="1198"/>
 

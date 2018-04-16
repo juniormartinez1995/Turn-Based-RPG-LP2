@@ -33,6 +33,7 @@ namespace RPG_LP2
         public BattleScreen()
         {
             this.InitializeComponent();
+            ControllerGame.AdjustFullScreenMode(_Canvas,this);
             Mob1.Source = Ninja;
             StartTimer();
         }
