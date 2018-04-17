@@ -129,10 +129,14 @@ namespace RPG_LP2
 
         public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
         {
-            Sword.Opacity = 100;
-            TimerSword.Start();
-            //ControllerGame.PlaySoundSword("SoundSword.mp3");
-
+            
+            if(BattlePlayer is Berserker){
+                Sword.Opacity = 100;
+                TimerSword.Start();
+                Sword.Opacity = 100;
+                TimerSword.Start();
+                //ControllerGame.PlaySoundSword("SoundSword.mp3");
+            }
 
         }
 

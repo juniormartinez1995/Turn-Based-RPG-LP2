@@ -51,12 +51,18 @@ namespace RPG_LP2
             switch (button) 
             {   
                 case 1:
+                    if (person is Berserker)
+                    {
+                        int damageTurn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
 
-                    int damageTurn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
-            
-                    //MOSTRAR O DANO CAUSADO NA TELA
-                    Debug.WriteLine("Dano causado = " + damageTurn + "\n");
-                    mob.HP -= damageTurn;
+                        //MOSTRAR O DANO CAUSADO NA TELA
+                        Debug.WriteLine("Dano causado = " + damageTurn + "\n");
+                        mob.HP -= damageTurn;
+                    }
+                    if (person is Dicer)
+                    {
+                        int damageTurn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+                    }
                     break;
 
                 case 2:

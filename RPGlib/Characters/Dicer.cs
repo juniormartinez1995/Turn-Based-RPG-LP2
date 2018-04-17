@@ -26,15 +26,15 @@ namespace RPGlib.Characters
             this.Damage = 15;
             this.Lifesteal = 0;
 
-            //UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/cimagif.gif"));  //Achar o img do dicer
-            // DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/baixogif.gif"));
-            // RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/dirgif.gif"));
-            //LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/esqgif.gif"));
+            UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dr.gif"));  //Achar o img do dicer
+            DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dl.gif"));
+            RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dr.gif"));
+            LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dl.gif"));
 
-            // IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png"));
-            // IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png"));
-            // IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/0.png"));
-            // IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png"));
+            IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dls.png"));
+            IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/drs.png"));
+            IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dls.png"));
+            IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/drs.png"));
         }
 
 
@@ -43,22 +43,22 @@ namespace RPGlib.Characters
 
             int multicastchance = RandomElement.Limiter(0, 100);
 
-            if (multicastchance <= 5)
+            if (multicastchance <=  10)
             {
                 return 5;
             }
 
-            if (multicastchance <= 10)
+            if (multicastchance <= 20)
             {
                 return 4;
             }
 
-            if (multicastchance <= 15)
+            if (multicastchance <= 30)
             {
                 return 3;
             }
 
-            if (multicastchance <= 20)
+            if (multicastchance <= 40)
             {
                 return 2;
             }
