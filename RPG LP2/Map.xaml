@@ -222,7 +222,7 @@
         <TextBlock x:Name="qt_manaPot" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
 
         <!--Baú aberto imagem-->
-        <Image x:Name="open_chest"  Visibility="Visible" Canvas.Left="123" Canvas.Top="410" Height="53" Width="53"/>
+        <Image x:Name="open_chest" VerticalAlignment="Top" HorizontalAlignment="Left"  Canvas.Left="125" Canvas.Top="411" Height="50" Width="50" Stretch="UniformToFill"/>
 
         <!--Botão de status-->
         <Image x:Name="ButtonStatus"  Source="Assets/btn_status2.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="ShowStatus" >

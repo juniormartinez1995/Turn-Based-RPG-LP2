@@ -72,7 +72,6 @@ namespace RPG_LP2
         double WidthRatio, HeightRatio;
         double PosY, PosX; //Posição X e Y do personagem no mapa
         bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
-        int Velocity = 3; //Velocidade do personagem
 
 
         public void StoreChars(Mob EnemyMob)
@@ -216,13 +215,14 @@ namespace RPG_LP2
             //Checa se o player se encontra de frente com o mob, se sim, iniciará a tela de batalha
             else if (ControllerGame.IsPlayerColliding(Person1, Enemies, Up))
             {
-                IsAnotherPage = true;
+
 
                 //Precisa colocar restrições se os mobs ja foram derrotados ou nao
                 if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 0) && !Ninja.IsDead())
                 {
                     if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
                     StoreChars(Ninja as Mob);
+                    IsAnotherPage = true;
                     this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
                 }
 
@@ -231,6 +231,7 @@ namespace RPG_LP2
 
                     if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
                     StoreChars(PablloVittar as Mob);
+                    IsAnotherPage = true;
                     this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
                 }
 
