@@ -151,6 +151,7 @@
     <Content Include="Assets\MapsBackground\SelecClass.jpeg" />
     <Content Include="Assets\open_chest.png" />
     <Content Include="Assets\open_chest3.png" />
+    <Content Include="Assets\hermesboots.png" />
     <Content Include="Assets\rabbit_feet.png" />
     <Content Include="Assets\MapsBackground\scene_history.gif" />
     <Content Include="Assets\SoundOpenChest.mp3" />
