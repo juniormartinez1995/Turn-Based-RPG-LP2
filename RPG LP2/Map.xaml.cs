@@ -156,14 +156,15 @@ namespace RPG_LP2
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             status.Text =
-            "HP = " + Player.CurrentHP.ToString() + "/" + Player.MaxHealth.ToString() + "\n" +
-            "MP = " + Player.CurrentMana.ToString() + "/" + Player.MaxMana.ToString() + "\n" +
-            "Damage = " + Player.Damage.ToString() + "\n" +
-            "Armor = " + Player.CurrentArmor.ToString() + "\n" +
-            "Evasion = " + Player.EvasionRate.ToString() + "%" + "\n" +
-            "Critical = " + Player.CriticRate.ToString() + "%" + "\n" +
-            "XP = " + Player.CurrentXP.ToString() + "/" + Player.MaxXP + "\n" +
-            "Level = " + Player.Level.ToString();
+            "HP - " + Player.CurrentHP.ToString() + "/" + Player.MaxHealth.ToString() + "\n" +
+            "MP -" + Player.CurrentMana.ToString() + "/" + Player.MaxMana.ToString() + "\n" +
+            "Damage - " + Player.Damage.ToString() + "\n" +
+            "Lifesteal - " + Player.Lifesteal.ToString() + "%" + "\n" +
+            "Armor - " + Player.CurrentArmor.ToString() + "\n" +
+            "Evasion - " + Player.EvasionRate.ToString() + "%" + "\n" +
+            "Critical - " + Player.CriticRate.ToString() + "%" + "\n" +
+            "XP - " + Player.CurrentXP.ToString() + "/" + Player.MaxXP + "\n" +
+            "Level - " + Player.Level.ToString();
         }
 
 
