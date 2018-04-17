@@ -26,7 +26,9 @@ namespace RPG_LP2
 
         private void B_Dicer_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Dicer p1 = new Dicer();   
+            Dicer p1 = new Dicer(); //cria o obj dicer
+           this.Frame.Navigate(typeof(Map), p1); //vai para proxima tela
+
         }
     }
 }
