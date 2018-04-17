@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace RPGlib.Characters
 {
-    class Dicer : Character
+    public class Dicer : Character
     {
 
         public Dicer()
