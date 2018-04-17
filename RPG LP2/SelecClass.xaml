@@ -8,8 +8,9 @@
     mc:Ignorable="d" Width="800" Height="600">
     <Canvas x:Name="_Canvas">
         <Image HorizontalAlignment="Left" Height="602" VerticalAlignment="Top" Width="807" Margin="0,0,-9,-602" Grid.RowSpan="2" Source="Assets/MapsBackground/SelecClass.jpeg" Stretch="UniformToFill"/>
-        <Button x:Name="B_Berserker" Content="Berserker" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="113" Click="B_Berserker_Click" Canvas.Left="150" Canvas.Top="543"/>
+        <Button x:Name="B_Berserker" Content="Escolher" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="113" Click="B_Berserker_Click" Canvas.Left="150" Canvas.Top="543"/>
         <Image HorizontalAlignment="Left" Height="494" Margin="0,0,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="320" Source="Assets/BerserkerIMG.png" Canvas.Left="45" Canvas.Top="50"/>
-        <Image HorizontalAlignment="Left" Height="494" Margin="0,0,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="320" Canvas.Top="50" Source="Assets/DicerIMG.png" Canvas.Left="450"/>
+        <Image HorizontalAlignment="Left" Height="494" Margin="0,0,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="320" Canvas.Top="50" Source="Assets/Dicer.png" Canvas.Left="450"/>
+        <Button x:Name="B_Dicer" Content="Escolher" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="113" Click="B_Dicer_Click" Canvas.Left="556" Canvas.Top="543"/>
     </Canvas>
 </Page>
