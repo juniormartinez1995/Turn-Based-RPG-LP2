@@ -16,7 +16,7 @@ namespace RPGlib.Characters
             
             this.CurrentHP = 100;
             this.MaxHealth = 100;
-            this.MaxHealth = 200;
+            this.MaxMana = 200;
             this.CurrentMana = 200;
             this.CurrentXP = 0;
             this.Level = 0;
