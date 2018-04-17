@@ -33,10 +33,12 @@ namespace RPG_LP2
         public BattleScreen()
         {
             this.InitializeComponent();
-            ControllerGame.AdjustFullScreenMode(_Canvas,this);
+            ControllerGame.AdjustFullScreenMode(_Canvas, this);
             Mob1.Source = Ninja;
             StartTimer();
             StartTimerSword();
+
+            heart_icon.Source = heart_stopped;
         }
         DispatcherTimer TimerSword = new DispatcherTimer();
         Character BattlePlayer;
@@ -62,6 +64,8 @@ namespace RPG_LP2
             };
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
+            Mob_.MobDead -= Mob_MobDead;
+            BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
             this.Frame.Navigate(typeof(Map), CharList);
         }
 
@@ -77,6 +81,8 @@ namespace RPG_LP2
 
         public void LoseBattle_Navigate()
         {
+            Mob_.MobDead -= Mob_MobDead;
+            BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
             this.Frame.Navigate(typeof(LosePage));
         }
 
@@ -115,43 +121,39 @@ namespace RPG_LP2
         private void Timer_Tick(object sender, object e)
         {
 
-            if (hpBarCharacter.Value >= 0) while (hpBarCharacter.Value != BattlePlayer.CurrentHP) { hpBarCharacter.Value -=1; }
+            if (hpBarCharacter.Value >= 0) while (hpBarCharacter.Value != BattlePlayer.CurrentHP) { hpBarCharacter.Value -= 1; }
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
             if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
             if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
-        }
-
-        private void Character_CharacterDead(object sender, EventArgs args)
-        {
-            LoseBattle_Navigate();
         }
 
         public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
         {
             Sword.Opacity = 100;
             TimerSword.Start();
-           //ControllerGame.PlaySoundSword("SoundSword.mp3");
+            //ControllerGame.PlaySoundSword("SoundSword.mp3");
 
 
         }
 
-        public void  StartTimerSword() {
+        public void StartTimerSword()
+        {
             TimerSword.Tick += TimerSword_Tick;
-            TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);       
+            TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);
         }
 
-        public void TimerSword_Tick(object sender,object e)
+        public void TimerSword_Tick(object sender, object e)
         {
 
             if (!ControllerGame.IsSkillHittingEnemy(Sword, Mob1)) Canvas.SetLeft(Sword, Canvas.GetLeft(Sword) + 45);
-            else if(ControllerGame.IsSkillHittingEnemy(Sword, Mob1))
+            else if (ControllerGame.IsSkillHittingEnemy(Sword, Mob1))
             {
                 BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
                 Canvas.SetLeft(Sword, Canvas.GetLeft(Person1) + 82);
                 Sword.Opacity = 0;
                 TimerSword.Stop();
-                
-            }      
+
+            }
 
         }
         private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
@@ -161,27 +163,30 @@ namespace RPG_LP2
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            CharList = e.Parameter as List<Object>;
 
-            BattlePlayer = CharList.ElementAt(0) as Character;
-            Mob_ = CharList.ElementAt(1) as Mob;
-            CharList.Clear();
+            if (ControllerGame.CheckLastPage(typeof(Map), this))
+            {
+                CharList = e.Parameter as List<Object>;
 
-            Debug.WriteLine("DANO MOB: " + Mob_.Damage);
-            Debug.WriteLine("Dano Player " + BattlePlayer.Damage);
-            Debug.WriteLine("EU SOU " + Mob_.name);
+                BattlePlayer = CharList.ElementAt(0) as Character;
+                Mob_ = CharList.ElementAt(1) as Mob;
+                CharList.Clear();
+                Debug.WriteLine("DANO MOB: " + Mob_.Damage);
+                Debug.WriteLine("Dano Player " + BattlePlayer.Damage);
+                Debug.WriteLine("EU SOU " + Mob_.name);
 
-            hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
-            hpBarCharacter.Value = BattlePlayer.CurrentHP;
-            mpBarCharacter.Maximum = BattlePlayer.MaxMana;
-            mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            hpBarMob.Maximum = Mob_.HP;
-            hpBarMob.Value = Mob_.HP;
+                hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
+                hpBarCharacter.Value = BattlePlayer.CurrentHP;
+                mpBarCharacter.Maximum = BattlePlayer.MaxMana;
+                mpBarCharacter.Value = BattlePlayer.CurrentMana;
+                hpBarMob.Maximum = Mob_.HP;
+                hpBarMob.Value = Mob_.HP;
 
-            heart_icon.Source = heart_stopped;
 
-            Mob_.MobDead += Mob_MobDead;
-            BattlePlayer.CharacterDead += BattlePlayer_CharacterDead;
+                //Eventos assinados na página
+                Mob_.MobDead += Mob_MobDead;
+                BattlePlayer.CharacterDead += BattlePlayer_CharacterDead;
+            }
 
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
             StartTimer();
@@ -190,7 +195,9 @@ namespace RPG_LP2
 
         private void BattlePlayer_CharacterDead(object sender, EventArgs args)
         {
-                this.Frame.Navigate(typeof(LosePage));
+            Mob_.MobDead -= Mob_MobDead;
+            BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
+            this.Frame.Navigate(typeof(LosePage));
         }
     }
 }

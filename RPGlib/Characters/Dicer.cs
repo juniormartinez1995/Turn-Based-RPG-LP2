@@ -13,7 +13,7 @@ namespace RPGlib.Characters
 
         public Dicer()
         {
-            
+
             this.CurrentHP = 100;
             this.MaxHealth = 100;
             this.MaxMana = 200;
@@ -40,7 +40,7 @@ namespace RPGlib.Characters
 
         public int Multicast() //Retorna um inteiro que será o multiplicador de quantas vezes a skill será castada
         {
-       
+
             int multicastchance = RandomElement.Limiter(0, 100);
 
             if (multicastchance <= 5)
@@ -48,7 +48,7 @@ namespace RPGlib.Characters
                 return 5;
             }
 
-            if(multicastchance<= 10)
+            if (multicastchance <= 10)
             {
                 return 4;
             }
@@ -70,5 +70,5 @@ namespace RPGlib.Characters
     }
 }
 
-    
+
 
