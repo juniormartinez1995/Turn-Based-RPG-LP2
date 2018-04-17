@@ -27,6 +27,7 @@ namespace RPG_LP2
         public LosePage()
         {
             this.InitializeComponent();
+            ControllerGame.AdjustFullScreenMode(_Canvas, this);
         }
 
         private void close_rpg(object sender, TappedRoutedEventArgs e)

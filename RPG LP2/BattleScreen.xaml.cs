@@ -181,13 +181,16 @@ namespace RPG_LP2
             heart_icon.Source = heart_stopped;
 
             Mob_.MobDead += Mob_MobDead;
-            BattlePlayer.CharacterDead += Character_CharacterDead;
+            BattlePlayer.CharacterDead += BattlePlayer_CharacterDead;
 
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
             StartTimer();
 
         }
 
-
+        private void BattlePlayer_CharacterDead(object sender, EventArgs args)
+        {
+                this.Frame.Navigate(typeof(LosePage));
+        }
     }
 }
