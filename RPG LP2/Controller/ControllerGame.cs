@@ -168,24 +168,24 @@ namespace RPG_LP2
             }
         }
 
-        public static void MoveUp(Image Person1, int Velocity, int Increment = 0) //Método que realiza a movimentação da imagem para cima
+        public static void MoveUp(Image Person1, int Speed, int Increment = 0) //Método que realiza a movimentação da imagem para cima
         {
-            Person1.SetValue(Canvas.TopProperty, Canvas.GetTop(Person1) - Velocity - Increment);
+            Person1.SetValue(Canvas.TopProperty, Canvas.GetTop(Person1) - Speed - Increment);
         }
 
-        public static void MoveDown(Image Person1, int Velocity, int Increment = 0) //Método que realiza a movimentação da imagem para baixo
+        public static void MoveDown(Image Person1, int Speed, int Increment = 0) //Método que realiza a movimentação da imagem para baixo
         {
-            Person1.SetValue(Canvas.TopProperty, Canvas.GetTop(Person1) + Velocity + Increment);
+            Person1.SetValue(Canvas.TopProperty, Canvas.GetTop(Person1) + Speed + Increment);
         }
 
-        public static void MoveLeft(Image Person1, int Velocity, int Increment = 0) //Método que realiza a movimentação da imagem para esquerda
+        public static void MoveLeft(Image Person1, int Speed, int Increment = 0) //Método que realiza a movimentação da imagem para esquerda
         {
-            Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) - Velocity - Increment);
+            Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) - Speed  - Increment);
         }
 
-        public static void MoveRight(Image Person1, int Velocity, int Increment = 0) //Método que realiza a movimentação da imagem para direita
+        public static void MoveRight(Image Person1, int Speed, int Increment = 0) //Método que realiza a movimentação da imagem para direita
         {
-            Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) + Velocity + Increment);
+            Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) + Speed + Increment);
         }
 
         public static async void PlayMusicOpenChest(string nomeMusic)

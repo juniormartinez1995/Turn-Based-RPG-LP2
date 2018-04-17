@@ -178,33 +178,30 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            Player.CurrentPosY = PosY;
-            Player.CurrentPosX = PosX;
-
             if (Up && PosY > 140 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Up))  //Movimento, checagem e animação para cima
             {
-                ControllerGame.MoveUp(Person1, Velocity);
+                ControllerGame.MoveUp(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
             if (Down && PosY < 470 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Down)) //Movimento, checagem e animação para baixo
             {
-                ControllerGame.MoveDown(Person1, Velocity);
+                ControllerGame.MoveDown(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
             if (Left && PosX > 70 * WidthRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Left)) //Movimento, checagem e animação para esquerda
             {
-                ControllerGame.MoveLeft(Person1, Velocity);
+                ControllerGame.MoveLeft(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
             if (Right && PosX < 690 * WidthRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Right)) //Movimento, checagem e animação para direita
             {
-                ControllerGame.MoveRight(Person1, Velocity);
+                ControllerGame.MoveRight(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
@@ -275,26 +272,26 @@ namespace RPG_LP2
             {
                 case Windows.System.VirtualKey.Up:
                     Person1.Source = Player.IdleUp;
-                    ControllerGame.MoveDown(Person1, Velocity);
+                    ControllerGame.MoveDown(Person1, Player.Speed);
 
                     Up = false;
 
                     break;
                 case Windows.System.VirtualKey.Down:
                     Person1.Source = Player.IdleDown;
-                    ControllerGame.MoveUp(Person1, Velocity);
+                    ControllerGame.MoveUp(Person1, Player.Speed);
 
                     Down = false;
                     break;
                 case Windows.System.VirtualKey.Left:
                     Person1.Source = Player.IdleLeft;
-                    ControllerGame.MoveRight(Person1, Velocity);
+                    ControllerGame.MoveRight(Person1, Player.Speed);
 
                     Left = false;
                     break;
                 case Windows.System.VirtualKey.Right:
                     Person1.Source = Player.IdleRight;
-                    ControllerGame.MoveLeft(Person1, Velocity);
+                    ControllerGame.MoveLeft(Person1, Player.Speed);
 
                     Right = false;
                     break;

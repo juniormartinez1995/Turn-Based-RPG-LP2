@@ -11,7 +11,7 @@ namespace RPGlib.Itens
 {
     public class HermesBoots : Item
     {
-        public HermesBoots(int lifesteal) //A MUDAR ATRIBUTOS PARA SPEED
+        public HermesBoots(int _Speed) //A MUDAR ATRIBUTOS PARA SPEED
         {
 
             this.ImageItem = new BitmapImage(new Uri(@"ms-appx:///Assets/hermesboots.png"));
@@ -23,12 +23,13 @@ namespace RPGlib.Itens
             this.Health = 0;
             this.Mana = 0;
             this.Lifesteal = 0;
-            this.Description = "Speed + " + lifesteal + "%";
+            this.Speed = _Speed;
+            this.Description = "Speed + " + _Speed + "%";
         }
 
         public override void Effect(Character person)
         {
-            person.Lifesteal += this.Lifesteal;
+            person.Speed += this.Speed;
 
         }
     }
