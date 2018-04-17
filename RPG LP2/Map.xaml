@@ -5,17 +5,17 @@
     xmlns:local="using:RPG_LP2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Height="600" Width="800" MaxHeight="600" MaxWidth="800" MinWidth="800" MinHeight="600" ManipulationMode="None" FontFamily="Segoe UI">
+    mc:Ignorable="d" Height="600" Width="800" FontFamily="Segoe UI">
 
 
-    <Canvas HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
+    <Canvas x:Name="_Canvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
 
-        <Image x:Name="MainDungeon" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/MainDungeon.gif" Stretch="Fill"/>
+        <Image x:Name="MainDungeon" HorizontalAlignment="Left" VerticalAlignment="Top" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/MainDungeon.gif" Stretch="Fill"/>
         <Image x:Name="Person1" Height="42" Width="42" Canvas.Left="80" Canvas.Top="310" Canvas.ZIndex="1"/>
 
         <!-- Lista de colisão  -->
-        <Image x:Name="Collision0" Height="47" Canvas.Left="598" Canvas.Top="344" Width="32"/>
-        <Image x:Name="Collision1" Height="47" Canvas.Left="596" Canvas.Top="232" Width="32"/>
+        <Image x:Name="Collision0" Height="47" Canvas.Left="603" Canvas.Top="344" Width="29"/>
+        <Image x:Name="Collision1" Height="47" Canvas.Left="603" Canvas.Top="232" Width="29"/>
         <Image x:Name="Collision2" Height="32" Canvas.Left="261" Canvas.Top="129" Width="23"/>
         <Image x:Name="Collision3" Height="32" Canvas.Left="376" Canvas.Top="128" Width="23"/>
 
@@ -23,8 +23,8 @@
         <Image x:Name="Chest0" Height="26" Canvas.Left="140" Canvas.Top="415" Width="21"/>
 
         <!-- Lista de inimigos  -->
-        <Image x:Name="Enemy0" Height="28" Canvas.Left="228" Canvas.Top="347" Width="22"/>
-        <Image x:Name="Enemy1" Height="27" Canvas.Left="228" Canvas.Top="235" Width="21"/>
+        <Image x:Name="Enemy0" Height="28" Canvas.Left="230" Canvas.Top="347" Width="18"/>
+        <Image x:Name="Enemy1" Height="27" Canvas.Left="230" Canvas.Top="235" Width="18"/>
 
 
 
@@ -220,9 +220,9 @@
         <!--Quantidade dos Potes LIFE and MANA-->
         <TextBlock x:Name="qt_lifePot" Canvas.Left="418" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"  />
         <TextBlock x:Name="qt_manaPot" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
-        
+
         <!--Baú aberto imagem-->
-        <Image x:Name="open_chest"  Visibility="Visible" Canvas.Left="123" Canvas.Top="410" Height="53" Width="53"/> 
+        <Image x:Name="open_chest" VerticalAlignment="Top" HorizontalAlignment="Left"  Canvas.Left="125" Canvas.Top="411" Height="50" Width="50" Stretch="UniformToFill"/>
 
         <!--Botão de status-->
         <Image x:Name="ButtonStatus"  Source="Assets/btn_status2.png" Height="52" Canvas.Left="3" Canvas.Top="3" Width="112" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="ShowStatus" >

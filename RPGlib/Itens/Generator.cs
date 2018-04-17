@@ -41,9 +41,12 @@ namespace RPGlib.Itens
                 case 6:
                     c.ItemChest.Add(new RabbitFeet(RandomElement.Limiter(8, 10)));
                     break;
+                case 7:
+                    c.ItemChest.Add(new HermesBoots(2));
+                    break;
             }
 
-            int numRandom2 = 7;
+            int numRandom2 = 8;
             switch (numRandom2)
             {
                 case 1:
@@ -66,6 +69,9 @@ namespace RPGlib.Itens
                     break;
                 case 7:
                     c.ItemChest.Add(new DraculaTeeth(RandomElement.Limiter(50, 100)));
+                    break;
+                case 8:
+                    c.ItemChest.Add(new HermesBoots(2));
                     break;
             }
         }

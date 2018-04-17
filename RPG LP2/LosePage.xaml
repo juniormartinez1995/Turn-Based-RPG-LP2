@@ -5,10 +5,11 @@
     xmlns:local="using:RPG_LP2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Height="600" Width="797" MaxHeight="600" MaxWidth="800" MinWidth="800" MinHeight="600" ManipulationMode="None" FontFamily="Segoe UI" Background="#464646">
+    mc:Ignorable="d" Background="#464646" Height="600" Width="800">
+
     <Canvas x:Name="_Canvas" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-            <Image x:Name="image_died_DS" Source="Assets/youdiedscreen.jpg" Margin="0,0,0,0" Canvas.Left="-201" Canvas.Top="0" Height="598" Width="1198"/>
+        <Image x:Name="image_died_DS" Source="Assets/youdiedscreen.jpg" Margin="0,0,0,0" Canvas.Left="-201" Canvas.Top="0" Height="598" Width="1198"/>
 
         <!--Butôes de quit e restart-->
         <Image x:Name="btn_quit" Source="Assets/btn_closeCUTTED.png" HorizontalAlignment="Left" Height="196" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="196" Canvas.Left="116" Canvas.Top="402" Tapped="close_rpg"/>

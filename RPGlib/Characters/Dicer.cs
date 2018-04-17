@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace RPGlib.Characters
 {
-    class Dicer : Character
+    public class Dicer : Character
     {
 
         public Dicer()
         {
-            
+
             this.CurrentHP = 100;
             this.MaxHealth = 100;
-            this.MaxHealth = 200;
+            this.MaxMana = 200;
             this.CurrentMana = 200;
             this.CurrentXP = 0;
             this.Level = 0;
@@ -39,7 +40,7 @@ namespace RPGlib.Characters
 
         public int Multicast() //Retorna um inteiro que será o multiplicador de quantas vezes a skill será castada
         {
-       
+
             int multicastchance = RandomElement.Limiter(0, 100);
 
             if (multicastchance <= 5)
@@ -47,7 +48,7 @@ namespace RPGlib.Characters
                 return 5;
             }
 
-            if(multicastchance<= 10)
+            if (multicastchance <= 10)
             {
                 return 4;
             }
@@ -69,5 +70,5 @@ namespace RPGlib.Characters
     }
 }
 
-    
+
 

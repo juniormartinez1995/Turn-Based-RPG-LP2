@@ -132,7 +132,7 @@
     <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\BerserkerIMG.png" />
     <Content Include="Assets\DemonicRapier.png" />
-    <Content Include="Assets\DicerIMG.png" />
+    <Content Include="Assets\Dicer.png" />
     <Content Include="Assets\downAnimation\baixogif.gif" />
     <Content Include="Assets\BattleAnimations\NinjaServa.gif" />
     <Content Include="Assets\berseker_Front.png" />
@@ -151,10 +151,13 @@
     <Content Include="Assets\MapsBackground\SelecClass.jpeg" />
     <Content Include="Assets\open_chest.png" />
     <Content Include="Assets\open_chest3.png" />
+    <Content Include="Assets\hermesboots.png" />
     <Content Include="Assets\rabbit_feet.png" />
     <Content Include="Assets\MapsBackground\scene_history.gif" />
     <Content Include="Assets\SoundOpenChest.mp3" />
     <Content Include="Assets\SoundPlayerWalking.mp3" />
+    <Content Include="Assets\SoundSword.mp3" />
+    <Content Include="Assets\Sword.png" />
     <Content Include="Assets\textbox.gif" />
     <Content Include="Assets\text_scene_block.png" />
     <Content Include="Assets\txt_continuerpg.png" />

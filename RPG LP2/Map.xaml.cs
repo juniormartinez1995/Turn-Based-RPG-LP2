@@ -31,13 +31,11 @@ namespace RPG_LP2
     {
         public Map()
         {
+            
             this.InitializeComponent();
-
+            ControllerGame.AdjustFullScreenMode(_Canvas,this);
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
-            Window.Current.CoreWindow.KeyDown += ControllerGame.CoreWindow_KeyDown;
-            ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
 
@@ -47,6 +45,9 @@ namespace RPG_LP2
             AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
+
+            WidthRatio = _Canvas.Width / 800;
+            HeightRatio = _Canvas.Height / 600;
 
         }
 
@@ -67,9 +68,10 @@ namespace RPG_LP2
         //Ninja Ninja = new Ninja();
 
 
+
+        double WidthRatio, HeightRatio;
         double PosY, PosX; //Posição X e Y do personagem no mapa
         bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
-        int Velocity = 3; //Velocidade do personagem
 
 
         public void StoreChars(Mob EnemyMob)
@@ -153,14 +155,16 @@ namespace RPG_LP2
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             status.Text =
-            "HP = " + Player.CurrentHP.ToString() + "/" + Player.MaxHealth.ToString() + "\n" +
-            "MP = " + Player.CurrentMana.ToString() + "/" + Player.MaxMana.ToString() + "\n" +
-            "Damage = " + Player.Damage.ToString() + "\n" +
-            "Armor = " + Player.CurrentArmor.ToString() + "\n" +
-            "Evasion = " + Player.EvasionRate.ToString() + "%" + "\n" +
-            "Critical = " + Player.CriticRate.ToString() + "%" + "\n" +
-            "XP = " + Player.CurrentXP.ToString() + "/" + Player.MaxXP + "\n" +
-            "Level = " + Player.Level.ToString();
+            Player.CurrentHP.ToString() + "/" + Player.MaxHealth.ToString() +  " HP" +  "\n" +
+            Player.CurrentMana.ToString() + "/" + Player.MaxMana.ToString() + " MP" +  "\n" +
+            Player.Damage.ToString() +  " Damage" +  "\n" +
+            Player.Lifesteal.ToString() +  "% Lifesteal" + "\n" +
+            Player.Speed.ToString() + " Movement Speed" +  "\n" +
+            Player.CurrentArmor.ToString() + " Armor" + "\n" +
+            Player.EvasionRate.ToString() + "% Evasion" + "\n" +
+            Player.CriticRate.ToString() +  "% Critical Chance" + "\n" +
+            Player.CurrentXP.ToString() + "/" + Player.MaxXP + " XP" +  "\n" +
+            "Level " + Player.Level.ToString();
         }
 
 
@@ -174,38 +178,35 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            Player.CurrentPosY = PosY;
-            Player.CurrentPosX = PosX;
-
-            if (Up && PosY > 140 && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Up))  //Movimento, checagem e animação para cima
+            if (Up && PosY > 140 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Up))  //Movimento, checagem e animação para cima
             {
-                ControllerGame.MoveUp(Person1, Velocity);
+                ControllerGame.MoveUp(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
-            if (Down && PosY < 470 && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Down)) //Movimento, checagem e animação para baixo
+            if (Down && PosY < 470 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Down)) //Movimento, checagem e animação para baixo
             {
-                ControllerGame.MoveDown(Person1, Velocity);
+                ControllerGame.MoveDown(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
-            if (Left && PosX > 70 && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Left)) //Movimento, checagem e animação para esquerda
+            if (Left && PosX > 70 * WidthRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Left)) //Movimento, checagem e animação para esquerda
             {
-                ControllerGame.MoveLeft(Person1, Velocity);
+                ControllerGame.MoveLeft(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
-            if (Right && PosX < 690 && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Right)) //Movimento, checagem e animação para direita
+            if (Right && PosX < 690 * WidthRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Right)) //Movimento, checagem e animação para direita
             {
-                ControllerGame.MoveRight(Person1, Velocity);
+                ControllerGame.MoveRight(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
             //Checa se o player está na frente do bau, para poder lootear
-            else if (ControllerGame.IsPlayerOverChest(Person1, LockedChests, Up))
+            else if (ControllerGame.IsPlayerColliding(Person1, LockedChests, Up))
             {
 
                 ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);
@@ -215,13 +216,14 @@ namespace RPG_LP2
             //Checa se o player se encontra de frente com o mob, se sim, iniciará a tela de batalha
             else if (ControllerGame.IsPlayerColliding(Person1, Enemies, Up))
             {
-                IsAnotherPage = true;
+
 
                 //Precisa colocar restrições se os mobs ja foram derrotados ou nao
                 if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 0) && !Ninja.IsDead())
                 {
                     if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
                     StoreChars(Ninja as Mob);
+                    IsAnotherPage = true;
                     this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
                 }
 
@@ -230,6 +232,7 @@ namespace RPG_LP2
 
                     if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
                     StoreChars(PablloVittar as Mob);
+                    IsAnotherPage = true;
                     this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
                 }
 
@@ -246,25 +249,20 @@ namespace RPG_LP2
                 switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
                 {
                     case Windows.System.VirtualKey.Up:
-                        //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Up = true;
                         break;
                     case Windows.System.VirtualKey.Down:
-                        //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Down = true;
                         break;
                     case Windows.System.VirtualKey.Left:
-                        //   ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Left = true;
                         break;
                     case Windows.System.VirtualKey.Right:
-                        //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
                         Right = true;
                         break;
                 }
 
                 IsKeyPressed = true;
-                //  ControllerGame.PlaySoundPlayerWalking("SoundPlayerWalking.mp3");
             }
 
         }
@@ -276,26 +274,26 @@ namespace RPG_LP2
             {
                 case Windows.System.VirtualKey.Up:
                     Person1.Source = Player.IdleUp;
-                    ControllerGame.MoveDown(Person1, Velocity);
+                    ControllerGame.MoveDown(Person1, Player.Speed);
 
                     Up = false;
 
                     break;
                 case Windows.System.VirtualKey.Down:
                     Person1.Source = Player.IdleDown;
-                    ControllerGame.MoveUp(Person1, Velocity);
+                    ControllerGame.MoveUp(Person1, Player.Speed);
 
                     Down = false;
                     break;
                 case Windows.System.VirtualKey.Left:
                     Person1.Source = Player.IdleLeft;
-                    ControllerGame.MoveRight(Person1, Velocity);
+                    ControllerGame.MoveRight(Person1, Player.Speed);
 
                     Left = false;
                     break;
                 case Windows.System.VirtualKey.Right:
                     Person1.Source = Player.IdleRight;
-                    ControllerGame.MoveLeft(Person1, Velocity);
+                    ControllerGame.MoveLeft(Person1, Player.Speed);
 
                     Right = false;
                     break;
