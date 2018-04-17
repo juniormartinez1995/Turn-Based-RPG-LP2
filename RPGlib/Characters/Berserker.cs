@@ -25,7 +25,7 @@ namespace RPGlib.Characters
             this.Damage = 30;
             this.Lifesteal = 0;
 
-            
+
 
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/cimagif.gif"));
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/baixogif.gif"));
@@ -101,6 +101,17 @@ namespace RPGlib.Characters
 
         }
 
+        public override int Skill1()
+        {
+           
+            return 80;
 
+        }
+
+        public override int Skill2()
+        {
+            int lifecost = this.CurrentHP / 2;
+            return lifecost;
+        }
     }
 }

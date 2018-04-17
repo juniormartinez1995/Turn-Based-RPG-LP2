@@ -74,6 +74,18 @@ namespace RPGlib.Characters
             return Damage;
         }
 
+        public virtual int Skill1()
+        {
+            
+            return 1;
+        }
+
+        public virtual int Skill2()
+        {
+            return 1;
+        }
+
+
 
         //public delegate void upLevelHandler(object sender, EventArgs e);
         //public event upLevelHandler upLevel;

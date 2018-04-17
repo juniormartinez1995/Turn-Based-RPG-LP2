@@ -199,5 +199,10 @@ namespace RPG_LP2
             BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
             this.Frame.Navigate(typeof(LosePage));
         }
+
+        private void btnSkillTwo_Click(object sender, RoutedEventArgs e)
+        {
+            BattleController.CheckTurn(BattlePlayer, Mob_, 3, btnSkillTwo);
+        }
     }
 }

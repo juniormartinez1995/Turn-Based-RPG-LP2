@@ -60,7 +60,24 @@ namespace RPG_LP2
                     break;
 
                 case 2:
-                    //btn_actual.Content = person.BasicSkill().ToString;
+                    if(person.CurrentMana >= 100)
+                    {
+                        person.CurrentMana -= 100;
+                        mob.HP -= person.Skill1();
+                        Debug.WriteLine("Dano causado = " + person.Skill1() + "\n");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Você não tem mana o suficiente para castar essa habilidade");
+                    }
+
+                    break;
+
+                case 3:
+                    person.CurrentHP -= person.Skill2();
+                    mob.HP = mob.HP/2;
+
+
                     break;
 
                 

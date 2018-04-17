@@ -24,7 +24,7 @@
         <!--SKILL BOX COM OS BUTTONS-->
         <Image x:Name="SkillBox" Source="Assets/textbox.gif" Canvas.Left="-68" Canvas.Top="460" Height="129" Width="524" />
         <Button x:Name="btnSkillOne" Canvas.Left="157" Canvas.Top="505" Height="33" Width="72" FontSize="12" Content="2nd Skill" BorderThickness="2,2,2,2" Click="BtnSkillOne_Click" Background="#847545" VerticalAlignment="Top"/>
-        <Button x:Name="btnSkillTwo" Canvas.Left="257" Canvas.Top="505" Height="33" Width="72" FontSize="12" Content="3rd Skill" BorderThickness="2,2,2,2" Click="BtnSkillOne_Click" Background="#847545" VerticalAlignment="Top"/>
+        <Button x:Name="btnSkillTwo" Canvas.Left="257" Canvas.Top="505" Height="33" Width="72" FontSize="12" Content="3rd Skill" BorderThickness="2,2,2,2" Click="btnSkillTwo_Click" Background="#847545" VerticalAlignment="Top"/>
         <Button x:Name="btnSkillBasic" Content="Basic Skill" Canvas.Left="52" Canvas.Top="505" Height="33" Width="72" FontSize="12" BorderThickness="2,2,2,2" Click="BtnBasicSkill_Click" Background="#847545" VerticalAlignment="Top"/>
 
         <!--RUN BUTTON-->
