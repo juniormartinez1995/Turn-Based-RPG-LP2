@@ -24,12 +24,12 @@
         <Button x:Name="B_Quit" Visibility="Collapsed" Content="QUIT" HorizontalAlignment="Left" Margin="109,504,0,-536" Grid.RowSpan="2" VerticalAlignment="Top" Background="#33EA0000"/>
 
         <Image x:Name="lbl_Title" Source="Assets/logo_back_smalN.png" Width="600" Grid.RowSpan="2" VerticalAlignment="Top" Margin="0,50,0,0"/>
-        <Image x:Name="btn_Close" HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Bottom" Width="100" Source="Assets/btn_closeCUTTED.png" Margin="10,0,0,10" Tapped="btn_Close_Tapped" RenderTransformOrigin="0.555,-0.761">
+        <Image x:Name="btn_Close" HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Bottom" Width="100" Source="Assets/btn_closeCUTTED.png" Margin="10,0,0,10" Tapped="Btn_Close_Tapped" RenderTransformOrigin="0.555,-0.761">
             <Image.RenderTransform>
                 <CompositeTransform SkewY="0" TranslateY="-26.971"/>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="btn_Start" Height="250" Grid.RowSpan="2" VerticalAlignment="Center" Source="Assets/btn_startCUTTED.png" Margin="0,100,0,0" Width="200" Tapped="btn_Start_Tapped"/>
+        <Image x:Name="btn_Start" Height="250" Grid.RowSpan="2" VerticalAlignment="Center" Source="Assets/btn_startCUTTED.png" Margin="0,100,0,0" Width="200" Tapped="Btn_Start_Tapped"/>
         <Image x:Name="trademark" Height="100" Grid.RowSpan="2" VerticalAlignment="Bottom" Source="Assets/trademarkkCUTTED.png" Width="400"/>
 
 

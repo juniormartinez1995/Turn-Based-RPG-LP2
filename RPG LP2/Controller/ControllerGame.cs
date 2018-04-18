@@ -31,10 +31,18 @@ namespace RPG_LP2
 
             List<UIElement> PageElements = _Canvas.Children.ToList();
 
-            CurrentPage.Width = Window.Current.Bounds.Width;
-            CurrentPage.Height = Window.Current.Bounds.Height;
-            _Canvas.Width = Window.Current.Bounds.Width;
-            _Canvas.Height = Window.Current.Bounds.Height;
+
+
+            var bounds = Window.Current.Bounds;
+            double height = bounds.Height;
+            Debug.WriteLine(height);
+            double width = bounds.Width;
+            Debug.WriteLine(width);
+
+            CurrentPage.Width = bounds.Width;
+            CurrentPage.Height = bounds.Height;
+            _Canvas.Width = CurrentPage.Width;
+            _Canvas.Height = CurrentPage.Height;
 
 
             WidthRatio = _Canvas.Width / 800;
@@ -75,8 +83,6 @@ namespace RPG_LP2
                     (Element as ProgressBar).Width *= WidthRatio;
                     (Element as ProgressBar).Height *= HeightRatio;
                 }
-                //Canvas.SetLeft(Element, Canvas.GetLeft(Element) * WidthRatio);
-                //Canvas.SetTop(Element, Canvas.GetTop(Element) * HeightRatio);
             }
 
         }
