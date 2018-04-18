@@ -18,6 +18,7 @@ using Windows.Media;
 using Windows.Media.Playback;
 using Windows.Media.Core;
 using Windows.Storage;
+using System.Diagnostics;
 
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x416
@@ -35,18 +36,16 @@ namespace RPG_LP2
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
             this.InitializeComponent();
 
-            //ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
-            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             //ControllerGame.PlayMusic("1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3");
         }
 
         //funcao buttom de quit do jogo
-        private void btn_Close_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Btn_Close_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Application.Current.Exit();//fecha o programa
         }
         //funcao buttom de start do jogo
-        private void btn_Start_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Btn_Start_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(SceneHistory));//proxima tela
         }

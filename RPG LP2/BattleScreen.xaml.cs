@@ -35,9 +35,6 @@ namespace RPG_LP2
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
             Mob1.Source = Ninja;
-            StartTimer();
-            StartTimerSword();
-
             heart_icon.Source = heart_stopped;
         }
         DispatcherTimer TimerSword = new DispatcherTimer();
@@ -64,26 +61,8 @@ namespace RPG_LP2
             };
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
-            Mob_.MobDead -= Mob_MobDead;
-            BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
+            UnsignPageEvents();
             this.Frame.Navigate(typeof(Map), CharList);
-        }
-
-        public void StartTimer()
-        {
-            if (!timer.IsEnabled)
-            {
-                timer.Tick += Timer_Tick;
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-                timer.Start();
-            }
-        }
-
-        public void LoseBattle_Navigate()
-        {
-            Mob_.MobDead -= Mob_MobDead;
-            BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
-            this.Frame.Navigate(typeof(LosePage));
         }
 
         private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
@@ -100,6 +79,7 @@ namespace RPG_LP2
                 CharList.Add(Mob_);
             }
 
+            UnsignPageEvents();
             this.Frame.Navigate(typeof(Map), CharList);
         }
         private void Mob_MobDead(object sender, EventArgs args)
@@ -138,12 +118,6 @@ namespace RPG_LP2
                 //ControllerGame.PlaySoundSword("SoundSword.mp3");
             }
 
-        }
-
-        public void StartTimerSword()
-        {
-            TimerSword.Tick += TimerSword_Tick;
-            TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);
         }
 
         public void TimerSword_Tick(object sender, object e)
@@ -188,25 +162,49 @@ namespace RPG_LP2
 
 
                 //Eventos assinados na página
-                Mob_.MobDead += Mob_MobDead;
-                BattlePlayer.CharacterDead += BattlePlayer_CharacterDead;
+
+
             }
 
+
+            SignPageEvents();
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
-            StartTimer();
 
         }
 
         private void BattlePlayer_CharacterDead(object sender, EventArgs args)
         {
-            Mob_.MobDead -= Mob_MobDead;
-            BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
+            UnsignPageEvents();
             this.Frame.Navigate(typeof(LosePage));
         }
 
         private void btnSkillTwo_Click(object sender, RoutedEventArgs e)
         {
             BattleController.CheckTurn(BattlePlayer, Mob_, 3, btnSkillTwo);
+        }
+
+        public void SignPageEvents()
+        {
+            Mob_.MobDead += Mob_MobDead;
+            BattlePlayer.CharacterDead += BattlePlayer_CharacterDead;
+
+            timer.Tick += Timer_Tick;
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            timer.Start();
+
+            TimerSword.Tick += TimerSword_Tick;
+            TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);
+        }
+
+        public void UnsignPageEvents()
+        {
+            Mob_.MobDead -= Mob_MobDead;
+            BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
+
+            timer.Tick -= Timer_Tick;
+            timer.Stop();
+
+            TimerSword.Tick -= TimerSword_Tick;
         }
     }
 }
