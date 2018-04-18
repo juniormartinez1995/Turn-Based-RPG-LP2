@@ -12,12 +12,12 @@
         <Image x:Name="image_died_DS" Source="Assets/youdiedscreen.jpg" Margin="0,0,0,0" Canvas.Left="-201" Canvas.Top="0" Height="598" Width="1198"/>
 
         <!--Butôes de quit e restart-->
-        <Image x:Name="btn_quit" Source="Assets/btn_closeCUTTED.png" HorizontalAlignment="Left" Height="196" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="196" Canvas.Left="116" Canvas.Top="402" Tapped="close_rpg"/>
-        <Image x:Name="btn_restart" Source="Assets/btn_startCUTTED.png" HorizontalAlignment="Right" Height="196" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="196" Canvas.Left="445" Canvas.Top="397" Tapped="restart_rpg"/>
+        <Image x:Name="btn_quit" Source="Assets/btn_closeCUTTED.png" HorizontalAlignment="Left" Height="143" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="142" Canvas.Left="191" Canvas.Top="457" Tapped="close_rpg"/>
+        <Image x:Name="btn_restart" Source="Assets/btn_startCUTTED.png" HorizontalAlignment="Right" Height="143" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="143" Canvas.Left="430" Canvas.Top="453" Tapped="restart_rpg"/>
 
         <!--Frases de quit e restart-->
-        <Image Source="Assets/txt_quitrpg.png" Canvas.Left="16" Canvas.Top="375" Height="45" Width="355" />
-        <Image Source="Assets/txt_continuerpg.png" Canvas.Left="397" Canvas.Top="375" Height="45" Width="355" />
+        <Image Source="Assets/txt_quitrpg.png" Canvas.Left="130" Canvas.Top="435" Height="33" Width="259" />
+        <Image Source="Assets/txt_continuerpg.png" Canvas.Left="395" Canvas.Top="437" Height="33" Width="259" />
 
     </Canvas>
 </Page>

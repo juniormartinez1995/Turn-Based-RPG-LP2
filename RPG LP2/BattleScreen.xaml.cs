@@ -121,7 +121,7 @@ namespace RPG_LP2
         private void Timer_Tick(object sender, object e)
         {
 
-            if (hpBarCharacter.Value >= 0) while (hpBarCharacter.Value != BattlePlayer.CurrentHP) { hpBarCharacter.Value -= 1; }
+            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
             if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
             if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
