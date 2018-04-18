@@ -71,6 +71,7 @@ namespace RPGlib.Characters
         }
         public override int BasicSkill()
         {
+            int cura;
             int lifestealdmg;
             if (Lifesteal == 0) //Caso não haja lifesteal
             {
@@ -85,15 +86,34 @@ namespace RPGlib.Characters
             else
             {  //Caso haja lifesteal
 
-                if (CountCritic())
+                if (CountCritic()) //Caso o ataque seja crítico
                 {
                     lifestealdmg = 2 * Damage * (int)SacrificeBlood();
-                    this.CurrentHP += (lifestealdmg * (this.Lifesteal / 100));
+                    cura = (int)((float)lifestealdmg * ((float)this.Lifesteal / 100)); //Dano que vai ser transformado em cura por %
+                    if (CurrentHP + cura > MaxHealth) //Se a vida atual + a cura der maior que a vida máxima, o personagem ficará com a vida máxima
+                    {
+                        this.CurrentHP = MaxHealth;
+                        return lifestealdmg;
+                    }
+                    else
+                    {
+                        this.CurrentHP += cura;
+                        return lifestealdmg;
+                    }
+                }
+                //Caso o ataque não seja crítico
+                lifestealdmg = Damage * (int)SacrificeBlood();
+                cura = (int)((float)lifestealdmg * ((float)this.Lifesteal / 100)); //Dano que vai ser transformado em cura por %
+                if (CurrentHP + cura > MaxHealth)//Se a vida atual + a cura der maior que a vida máxima, o personagem ficará com a vida máxima
+                {
+                    this.CurrentHP = MaxHealth;
                     return lifestealdmg;
                 }
-                lifestealdmg = Damage * (int)SacrificeBlood();
-                this.CurrentHP += (lifestealdmg * (this.Lifesteal / 100));
-                return lifestealdmg;
+                else
+                {
+                    this.CurrentHP += cura;
+                    return lifestealdmg;
+                }
 
 
             }
