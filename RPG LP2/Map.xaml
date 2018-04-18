@@ -11,20 +11,20 @@
     <Canvas x:Name="_Canvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
 
         <Image x:Name="MainDungeon" HorizontalAlignment="Left" VerticalAlignment="Top" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/MainDungeon.gif" Stretch="Fill"/>
-        <Image x:Name="Person1" Height="60" Width="60" Canvas.Left="80" Canvas.Top="310" Canvas.ZIndex="1"/>
+        <Image x:Name="Person1" Height="55" Width="55" Canvas.Left="80" Canvas.Top="310" Canvas.ZIndex="1"/>
 
         <!-- Lista de colisão  -->
-        <Image x:Name="Collision0" Height="47" Canvas.Left="603" Canvas.Top="344" Width="29"/>
-        <Image x:Name="Collision1" Height="47" Canvas.Left="603" Canvas.Top="232" Width="29"/>
-        <Image x:Name="Collision2" Height="32" Canvas.Left="261" Canvas.Top="129" Width="23"/>
-        <Image x:Name="Collision3" Height="32" Canvas.Left="376" Canvas.Top="128" Width="23"/>
+        <Image x:Name="Collision0" Height="47" Canvas.Left="603" Canvas.Top="344" Width="25"/>
+        <Image x:Name="Collision1" Height="47" Canvas.Left="603" Canvas.Top="232" Width="25"/>
+        <Image x:Name="Collision2" Height="30" Canvas.Left="261" Canvas.Top="128" Width="20"/>
+        <Image x:Name="Collision3" Height="30" Canvas.Left="376" Canvas.Top="128" Width="20"/>
 
         <!-- Lista de baús  -->
         <Image x:Name="Chest0" Height="26" Canvas.Left="140" Canvas.Top="415" Width="21"/>
 
         <!-- Lista de inimigos  -->
-        <Image x:Name="Enemy0" Height="28" Canvas.Left="230" Canvas.Top="347" Width="18"/>
-        <Image x:Name="Enemy1" Height="27" Canvas.Left="230" Canvas.Top="235" Width="18"/>
+        <Image x:Name="Enemy0" Height="28" Canvas.Left="230" Canvas.Top="347" Width="10"/>
+        <Image x:Name="Enemy1" Height="27" Canvas.Left="230" Canvas.Top="235" Width="10"/>
 
 
 

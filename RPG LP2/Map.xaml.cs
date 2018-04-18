@@ -65,6 +65,7 @@ namespace RPG_LP2
         PablloVittar PablloVittar = new PablloVittar();
         Ninja Ninja = new Ninja();
         Chest ChestControl = new Chest(); //Gerenciamento do baú
+        
         //Ninja Ninja = new Ninja();
 
 
@@ -178,21 +179,21 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            if (Up && PosY > 140 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Up))  //Movimento, checagem e animação para cima
+            if (Up && PosY > 115 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Up))  //Movimento, checagem e animação para cima
             {
                 ControllerGame.MoveUp(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
-            if (Down && PosY < 470 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Down)) //Movimento, checagem e animação para baixo
+            if (Down && PosY < 455 * HeightRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Down)) //Movimento, checagem e animação para baixo
             {
                 ControllerGame.MoveDown(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
             }
 
 
-            if (Left && PosX > 70 * WidthRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Left)) //Movimento, checagem e animação para esquerda
+            if (Left && PosX > 60 * WidthRatio && ControllerGame.IsMovimentAllowed(Person1, LockedChests, Enemies, Collision, Left)) //Movimento, checagem e animação para esquerda
             {
                 ControllerGame.MoveLeft(Person1, Player.Speed);
                 ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
