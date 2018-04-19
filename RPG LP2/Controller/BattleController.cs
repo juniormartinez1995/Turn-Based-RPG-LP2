@@ -42,10 +42,6 @@ namespace RPG_LP2
 
             }          
 
-            if(FinishBattle(person, mob))
-            {
-
-            }
         }
 
         public static void PlayerTurn(Character person, Mob mob, int button, Button btn_actual)

@@ -52,6 +52,7 @@ namespace RPG_LP2
 
         private async void DisplayEndedBattleDialog()
         {
+            Debug.WriteLine("DEBUG AQUIIIII");
             ContentDialog BattleEnded = new ContentDialog
             {
                 Title = "FIM DA BATALHA",
@@ -81,21 +82,6 @@ namespace RPG_LP2
 
             UnsignPageEvents();
             this.Frame.Navigate(typeof(Map), CharList);
-        }
-        private void Mob_MobDead(object sender, EventArgs args)
-        {
-            if (CharList.Count == 0)
-            {
-                CharList.Add(BattlePlayer);
-                CharList.Add(Mob_);
-            }
-            else
-            {
-                CharList.Clear();
-                CharList.Add(BattlePlayer);
-                CharList.Add(Mob_);
-            }
-            DisplayEndedBattleDialog();
         }
 
         private void Timer_Tick(object sender, object e)
@@ -166,10 +152,25 @@ namespace RPG_LP2
 
             }
 
-
             SignPageEvents();
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
 
+        }
+
+        private void Mob__MobDead(object sender, EventArgs args)
+        {
+            if (CharList.Count == 0)
+            {
+                CharList.Add(BattlePlayer);
+                CharList.Add(Mob_);
+            }
+            else
+            {
+                CharList.Clear();
+                CharList.Add(BattlePlayer);
+                CharList.Add(Mob_);
+            }
+            DisplayEndedBattleDialog();
         }
 
         private void BattlePlayer_CharacterDead(object sender, EventArgs args)
@@ -185,7 +186,7 @@ namespace RPG_LP2
 
         public void SignPageEvents()
         {
-            Mob_.MobDead += Mob_MobDead;
+            Mob_.MobDead += Mob__MobDead;
             BattlePlayer.CharacterDead += BattlePlayer_CharacterDead;
 
             timer.Tick += Timer_Tick;
@@ -198,7 +199,7 @@ namespace RPG_LP2
 
         public void UnsignPageEvents()
         {
-            Mob_.MobDead -= Mob_MobDead;
+            Mob_.MobDead -= Mob__MobDead;
             BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
 
             timer.Tick -= Timer_Tick;
