@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Width="800" Height="600" Background="#464646">
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  RenderTransformOrigin="0.52,0.496" HorizontalAlignment="Left" Width="800" Margin="0,0,0,12" UseLayoutRounding="True" >
+    <Canvas x:Name="_Canvas">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  RenderTransformOrigin="0.52,0.496" HorizontalAlignment="Left" Width="800" Margin="0,0,0,12" UseLayoutRounding="True" >
         <Grid.RowDefinitions>
             <RowDefinition Height="125*"/>
             <RowDefinition Height="122*"/>
@@ -35,4 +35,5 @@
 
 
     </Grid>
+    </Canvas>
 </Page>

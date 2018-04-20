@@ -104,6 +104,15 @@ namespace RPG_LP2
                 //ControllerGame.PlaySoundSword("SoundSword.mp3");
             }
 
+            if (BattlePlayer is Dicer)
+            {
+                Sword.Opacity = 100;
+                TimerSword.Start();
+                Sword.Opacity = 100;
+                TimerSword.Start();
+                //ControllerGame.PlaySoundSword("SoundSword.mp3");
+            }
+
         }
 
         public void TimerSword_Tick(object sender, object e)

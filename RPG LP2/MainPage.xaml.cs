@@ -35,6 +35,7 @@ namespace RPG_LP2
 
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
             this.InitializeComponent();
+            ControllerGame.AdjustFullScreenMode(_Canvas, this);
 
             //ControllerGame.PlayMusic("1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3");
         }

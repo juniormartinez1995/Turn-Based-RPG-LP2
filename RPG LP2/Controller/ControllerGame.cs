@@ -53,36 +53,8 @@ namespace RPG_LP2
                 Canvas.SetLeft(Element, Canvas.GetLeft(Element) * WidthRatio);
                 Canvas.SetTop(Element, Canvas.GetTop(Element) * HeightRatio);
 
-                if (Element is Button)
-                {
-                    (Element as Button).Width *= WidthRatio;
-                    (Element as Button).Height *= HeightRatio;
-                }
-                if (Element is Image)
-                {
-                    (Element as Image).Width *= WidthRatio;
-                    (Element as Image).Height *= HeightRatio;
-                }
-                if (Element is TextBlock)
-                {
-                    (Element as TextBlock).Width *= WidthRatio;
-                    (Element as TextBlock).Height *= HeightRatio;
-                }
-                if (Element is Grid)
-                {
-                    (Element as Grid).Width *= WidthRatio;
-                    (Element as Grid).Height *= HeightRatio;
-                }
-                if (Element is Rectangle)
-                {
-                    (Element as Rectangle).Width *= WidthRatio;
-                    (Element as Rectangle).Height *= HeightRatio;
-                }
-                if (Element is ProgressBar)
-                {
-                    (Element as ProgressBar).Width *= WidthRatio;
-                    (Element as ProgressBar).Height *= HeightRatio;
-                }
+                (Element as FrameworkElement).Width *= WidthRatio;
+                (Element as FrameworkElement).Height *= HeightRatio;
             }
 
         }

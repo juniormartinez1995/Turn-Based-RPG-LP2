@@ -14,19 +14,19 @@ namespace RPGlib.Characters
         public Dicer()
         {
 
-            this.CurrentHP = 100;
-            this.MaxHealth = 100;
-            this.MaxMana = 200;
-            this.CurrentMana = 200;
+            this.CurrentHP = 150;
+            this.MaxHealth = 150;
+            this.MaxMana = 300;
+            this.CurrentMana = 300;
             this.CurrentXP = 0;
             this.Level = 0;
             this.CriticRate = 10;
-            this.EvasionRate = 5;
+            this.EvasionRate = 0;
             this.CurrentArmor = 10;
-            this.Damage = 15;
+            this.Damage = 50;
             this.Lifesteal = 0;
 
-            UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dr.gif"));  //Achar o img do dicer
+            UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dr.gif")); 
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dl.gif"));
             RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dr.gif"));
             LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dl.gif"));
@@ -64,6 +64,12 @@ namespace RPGlib.Characters
             }
 
             return 1;
+        }
+
+        public override int BasicSkill()
+        {
+            int damageturn = this.Damage * Multicast();
+            return damageturn;
         }
 
 

@@ -23,24 +23,26 @@ namespace RPG_LP2
 
         public static int InicializeBattle(Character person, Mob mob, int button)
         {
-                
+
             return Turn;
         }
         static DispatcherTimer timerPlayer = new DispatcherTimer();
 
         public static void CheckTurn(Character person, Mob mob, int button, Button btn_actual) // checa se é o turno do mob ou do player
         {
-            if (FinishBattle(person, mob)) {
+            if (FinishBattle(person, mob))
+            {
                 Turn++;
                 PlayerTurn(person, mob, button, btn_actual);
-             
+
             }
 
-            if (FinishBattle(person, mob)) {
+            if (FinishBattle(person, mob))
+            {
                 Turn++;
                 MobTurn(person, mob, button);
 
-            }          
+            }
 
         }
 
@@ -49,8 +51,8 @@ namespace RPG_LP2
             //MOSTRAR O NÚMERO DO TURNO
             Debug.WriteLine("Turno: " + Turn);
 
-            switch (button) 
-            {   
+            switch (button)
+            {
                 case 1:
                     if (person is Berserker)
                     {
@@ -62,12 +64,23 @@ namespace RPG_LP2
                     }
                     if (person is Dicer)
                     {
-                        int damageTurn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+                        if (person.CurrentMana >= 50)
+                        {
+                            Debug.WriteLine("CHEGUEI AQUI");
+                            int damageturn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+                            person.CurrentMana -= 50;
+                            mob.HP -= damageturn;
+                        }
+                        else
+                        {
+
+                        }
+
                     }
                     break;
 
                 case 2:
-                    if(person.CurrentMana >= 100)
+                    if (person.CurrentMana >= 100)
                     {
                         person.CurrentMana -= 100;
                         mob.HP -= person.Skill1();
@@ -82,12 +95,12 @@ namespace RPG_LP2
 
                 case 3:
                     person.CurrentHP -= person.Skill2();
-                    mob.HP = mob.HP/2;
+                    mob.HP = mob.HP / 2;
 
 
                     break;
 
-                
+
             }
         }
 
@@ -101,7 +114,7 @@ namespace RPG_LP2
 
             //CheckTurn(person, mob,turn,button);
         }
-            
+
 
         public static bool FinishBattle(Character person, Mob mob)
         {
@@ -115,14 +128,14 @@ namespace RPG_LP2
                     xpGain = 70;
                 }
                 else
-                {   
-                    xpGain = 30; 
+                {
+                    xpGain = 30;
                 }
                 person.LevelUp(xpGain);
                 WinBattle();
                 Turn = 0;
                 return false;
-                
+
             }
 
             if (person.IsDead())
@@ -144,12 +157,12 @@ namespace RPG_LP2
 
         public static void LoseBattle()
         {
-            
+
         }
 
         public static int CheckArmorDamage(int damage)
         {
-            if(damage < 0) 
+            if (damage < 0)
             {
                 return 0;
             }
@@ -161,7 +174,7 @@ namespace RPG_LP2
 }
 
 
-    
 
 
-    
+
+
