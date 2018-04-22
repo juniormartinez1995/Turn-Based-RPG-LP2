@@ -12,7 +12,7 @@ namespace RPGlib.Itens
     public class Stone : Item
     {
 
-        public Stone()
+        public Stone(int _Speed)
         {
             this.Health = 0;
             this.ItemName = "Pedra";
@@ -27,11 +27,15 @@ namespace RPGlib.Itens
             this.Damage = 0;
             this.Mana = 0;
             this.Lifesteal = 0;
-            //VELOCIDADE DO PERSONAGEM
+            this.Speed = _Speed;
+            this.Description = "Speed - " + _Speed + "%";
         }
 
-        public override void Effect(Character person) { }
+        public override void Effect(Character person)
+        {
+            person.Speed -= this.Speed;
 
+        }
 
     }
 }

@@ -28,6 +28,7 @@ namespace RPGlib.Itens
             this.Damage = 0;
             this.Mana = 0;
             this.Lifesteal = 0;
+            this.Speed = 0;
 
         }
         //person = personagem

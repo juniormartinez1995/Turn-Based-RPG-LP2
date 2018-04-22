@@ -24,6 +24,7 @@ namespace RPGlib.Itens
             this.Mana = 0;
             this.Lifesteal = 0;
             this.Description = "Critical Rate + " + critical+"%";
+            this.Speed = 0;
         }
 
         public override void Effect(Character person)

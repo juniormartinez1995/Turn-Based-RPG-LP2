@@ -13,7 +13,7 @@
             public List<Item> inventoryList = new List<Item>();
             public List<PotionLife> inventoryPotionLife = new List<PotionLife>();
             public List<PotionMana> inventoryPotionMana = new List<PotionMana>();
-
+            public List<Item> ItensMap = new List<Item>();
 
         //PENSAR UM POUCO AQUI
             public Boolean Add_Item(Item item_current, Character player)
@@ -41,18 +41,6 @@
                 inventoryList.Remove(item);
 
             }
-
-            /*private int searchInventory()
-            {
-                for(int i=0;i<inventory.Length;i++)
-                {
-                    if (inventory[i]==null)
-                    {
-                        return i;
-                    }
-                }
-                return -1;
-            }*/
 
             public Boolean AddPotion(Item Potion)
             {
@@ -84,16 +72,19 @@
                     PotionMana p = Potion as PotionMana;
                     inventoryPotionMana.Remove(p);
                 }
-
             }
 
             public Boolean AddVerification(Item item, Character player)
             {
                 Boolean var = AddPotion(item);
-
+                
                 if (!var)
                 {
+                if (item is ItemMap)
+                    ItensMap.Add(item);
+                else
                     return Add_Item(item, player);
+                    
                 }
                 return true;
             }

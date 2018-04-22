@@ -24,6 +24,7 @@ namespace RPGlib.Itens
             this.Mana = 0;
             this.Lifesteal = lifesteal;
             this.Description = "Lifesteal + " + lifesteal+"%";
+            this.Speed = 0;
         }
 
         public override void Effect(Character person)
