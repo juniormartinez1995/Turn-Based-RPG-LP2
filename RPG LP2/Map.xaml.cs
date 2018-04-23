@@ -268,6 +268,11 @@ namespace RPG_LP2
 
         }
 
+        private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
         private void CoreWindow_KeyUp(CoreWindow sender, KeyEventArgs args)
         {
             //Método para checar quando a tecla é levantada, e cancelar a animação que acontecia

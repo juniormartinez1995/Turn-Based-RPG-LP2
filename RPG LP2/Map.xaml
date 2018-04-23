@@ -217,6 +217,9 @@
         <Image x:Name="life_pot" Canvas.Left="380" Canvas.Top="547" Width="50" Height="50" Source="Assets/potion_life.png" />
         <Image x:Name="life_mana" Canvas.Left="432" Canvas.Top="547" Width="50" Height="50" Source="Assets/potion_mana.png" />
 
+        <!--Close Button-->
+        <Image x:Name="btn_close" Source="Assets/btn_closeCUTTED.png" Canvas.Left="728" Canvas.Top="8" Height="41" Width="64" Tapped="btn_close_Tapped"/>
+
         <!--Quantidade dos Potes LIFE and MANA-->
         <TextBlock x:Name="qt_lifePot" Canvas.Left="418" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"  />
         <TextBlock x:Name="qt_manaPot" Canvas.Left="469" Canvas.Top="583" Width="20" Height="20" Text="0" FontFamily="04b30" Foreground="White"/>
