@@ -131,9 +131,15 @@
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\BerserkerIMG.png" />
+    <Content Include="Assets\CaioAbraOBaivis.mp4" />
+    <Content Include="Assets\CaioInimigosAFrente.mp4" />
+    <Content Include="Assets\CaioItem.mp4" />
+    <Content Include="Assets\CaioYouDied.mp4" />
+    <Content Include="Assets\CaioYouWin.mp4" />
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
     <Content Include="Assets\FireBall.gif" />
+    <Content Include="Assets\Gif_Image_Item_Quest\CaioInimigosAFrente.mp4" />
     <Content Include="Assets\SnakeDicer.gif" />
     <Content Include="Assets\downAnimation\baixogif.gif" />
     <Content Include="Assets\BattleAnimations\NinjaServa.gif" />

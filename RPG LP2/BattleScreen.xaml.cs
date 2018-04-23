@@ -60,7 +60,7 @@ namespace RPG_LP2
                 Title = "FIM DA BATALHA",
                 Content = "Você venceu!!!",
                 CloseButtonText = "Voltar ao mapa"
-
+                 
             };
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
@@ -109,7 +109,7 @@ namespace RPG_LP2
             {
 
                 Fireball.Opacity = 100;
-                ControllerGame.PlayFireballDicer("FireballDicer.mp3");
+                ControllerGame.PlaySoundsRPG("FireballDicer.mp3");
                 TimerFireball.Start();
             
               
@@ -131,7 +131,7 @@ namespace RPG_LP2
             if(BattlePlayer is Dicer)
             {
                 SnakeDicer.Opacity = 100;
-                ControllerGame.PlaySnakeDicer("SnakeDicer.mp3");
+                ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
                 TimerSnakeDicer.Start();
             }
         }

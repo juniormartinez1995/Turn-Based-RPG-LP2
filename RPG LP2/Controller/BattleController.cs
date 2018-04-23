@@ -165,13 +165,14 @@ namespace RPG_LP2
 
         public static void WinBattle()
         {
-            Debug.WriteLine("Você ganhou caio");
+            ControllerGame.PlaySoundsVitorHugo("CaioYouWin.mp4");
+          
 
         }
 
         public static void LoseBattle()
         {
-
+            ControllerGame.PlaySoundsVitorHugo("CaioYouDied.mp4");
         }
 
         public static int CheckArmorDamage(int damage)

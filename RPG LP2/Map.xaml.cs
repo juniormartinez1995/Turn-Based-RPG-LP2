@@ -34,7 +34,7 @@ namespace RPG_LP2
             
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas,this);
-            ControllerGame.PlayAmbienceMap("SoundAmbienceMap2.mp3");
+        
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
 
@@ -49,7 +49,8 @@ namespace RPG_LP2
 
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
-
+            ControllerGame.PlayAmbienceMap("SoundAmbienceMap2.mp3");
+            ControllerGame.PlaySoundsVitorHugo("CaioAbraOBaivis.mp4");
         }
 
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
@@ -147,7 +148,7 @@ namespace RPG_LP2
                 if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;
                 else if (MobAndChar.ElementAt(1) is PablloVittar) PablloVittar = MobAndChar.ElementAt(1) as PablloVittar;
                 MobAndChar.RemoveAt(MobAndChar.Count - 1);
-
+                ControllerGame.PlaySoundsVitorHugo("CaioInimigosAFrente.mp4");
 
             }
             IsAnotherPage = false;
@@ -227,6 +228,7 @@ namespace RPG_LP2
                     StoreChars(Ninja as Mob);
                     IsAnotherPage = true;
                     this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+         
                 }
 
                 if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 1) && !PablloVittar.IsDead())

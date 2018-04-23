@@ -127,12 +127,13 @@ namespace RPG_LP2
         {
             if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário
             {
-                ControllerGame.PlayMusicOpenChest("SoundOpenChest.mp3");
+                ControllerGame.PlaySoundsRPG("SoundOpenChest.mp3");
                 player.OpenChest(ChestControl);
                 qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
                 qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString();
 
                 int countItem = 0;
+                ControllerGame.PlaySoundsVitorHugo("CaioItem.mp4");
                 foreach (Item item in player.inventory.inventoryList)
                 {
                     ListImage[countItem].BitImage = item.ImageItem;
@@ -165,32 +166,8 @@ namespace RPG_LP2
         {
             Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) + Speed + Increment);
         }
-
-        public static async void PlayMusicOpenChest(string nomeMusic)
-        {
-            MediaElement Music = new MediaElement();
-
-            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.Volume = 0.5;
-            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
-            Music.IsLooping = true;
-            Music.Play();
-        }
-        public static async void PlayFireballDicer(string nomeMusic)
-        {
-            MediaElement Music = new MediaElement();
-
-            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.Volume = 0.5;
-            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
-            Music.IsLooping = true;
-            Music.Play();
-        }
-        public static async void PlaySnakeDicer(string nomeMusic)
+     
+        public static async void PlaySoundsRPG(string nomeMusic)
         {
             MediaElement Music = new MediaElement();
 
@@ -214,6 +191,19 @@ namespace RPG_LP2
             Music.Play();                     
             Music.IsLooping = true;
           
-        }      
+        }
+        public static async void PlaySoundsVitorHugo(string nomeMusic)
+        {
+            MediaElement Music = new MediaElement();
+
+            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Folder = await Folder.GetFolderAsync("Assets");
+            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
+            Music.Volume = 0.1;
+            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
+            Music.Play();
+            Music.IsLooping = true;
+
+        }
     }
 }
