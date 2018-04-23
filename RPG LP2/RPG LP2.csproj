@@ -133,6 +133,7 @@
     <Content Include="Assets\BerserkerIMG.png" />
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
+    <Content Include="Assets\SnakeDicer.gif" />
     <Content Include="Assets\downAnimation\baixogif.gif" />
     <Content Include="Assets\BattleAnimations\NinjaServa.gif" />
     <Content Include="Assets\berseker_Front.png" />
@@ -140,6 +141,9 @@
     <Content Include="Assets\btn_startCUTTED.png" />
     <Content Include="Assets\btn_status2.png" />
     <Content Include="Assets\draculasteeth.png" />
+    <Content Include="Assets\Fire Sound Effects.mp3" />
+    <Content Include="Assets\Fireball.png" />
+    <Content Include="Assets\FireballDicer.mp3" />
     <Content Include="Assets\Gif_Image_Item_Quest\rosinha.gif" />
     <Content Include="Assets\Gif_Image_Item_Quest\rosinha.png" />
     <Content Include="Assets\heart_gif.gif" />

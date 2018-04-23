@@ -53,6 +53,14 @@
             </Image.RenderTransform>
 
         </Image>
+        <Image x:Name="Fireball" Opacity ="0" Height="100" Canvas.Left="185" Canvas.Top="297" Width="100" Source="Assets/Fireball.png" >
+            <Image.Projection>
+                <PlaneProjection RotationX="0" RotationZ="180" RotationY="0"/>
+            </Image.Projection>
+
+        </Image>
+        <Image x:Name="SnakeDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/SnakeDicer.gif"/>
+
 
     </Canvas>
 
