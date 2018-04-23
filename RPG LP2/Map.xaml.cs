@@ -270,7 +270,7 @@ namespace RPG_LP2
 
         private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            Application.Current.Exit();//fecha o programa
         }
 
         private void CoreWindow_KeyUp(CoreWindow sender, KeyEventArgs args)
