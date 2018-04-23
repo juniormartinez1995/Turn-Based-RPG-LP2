@@ -34,6 +34,7 @@ namespace RPG_LP2
             
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas,this);
+            ControllerGame.PlayAmbienceMap("SoundAmbienceMap2.mp3");
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
 

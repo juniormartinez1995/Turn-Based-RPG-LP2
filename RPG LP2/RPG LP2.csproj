@@ -133,6 +133,7 @@
     <Content Include="Assets\BerserkerIMG.png" />
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
+    <Content Include="Assets\FireBall.gif" />
     <Content Include="Assets\SnakeDicer.gif" />
     <Content Include="Assets\downAnimation\baixogif.gif" />
     <Content Include="Assets\BattleAnimations\NinjaServa.gif" />
@@ -162,6 +163,8 @@
     <Content Include="Assets\MapsBackground\scene_history.gif" />
     <Content Include="Assets\rightAnimation\dr.gif" />
     <Content Include="Assets\rightAnimation\drs.png" />
+    <Content Include="Assets\SnakeDicer.mp3" />
+    <Content Include="Assets\SoundAmbienceMap2.mp3" />
     <Content Include="Assets\SoundOpenChest.mp3" />
     <Content Include="Assets\SoundPlayerWalking.mp3" />
     <Content Include="Assets\SoundSword.mp3" />

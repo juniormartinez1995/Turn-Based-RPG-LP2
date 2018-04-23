@@ -131,6 +131,7 @@ namespace RPG_LP2
             if(BattlePlayer is Dicer)
             {
                 SnakeDicer.Opacity = 100;
+                ControllerGame.PlaySnakeDicer("SnakeDicer.mp3");
                 TimerSnakeDicer.Start();
             }
         }
@@ -142,7 +143,7 @@ namespace RPG_LP2
             else if (ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1))
             {
                 BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
-                Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(Person1) + 85);
+                Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(Person1) + 95);
                 SnakeDicer.Opacity = 0;
                 TimerSnakeDicer.Stop();
 

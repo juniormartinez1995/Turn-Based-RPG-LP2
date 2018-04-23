@@ -190,6 +190,30 @@ namespace RPG_LP2
             Music.IsLooping = true;
             Music.Play();
         }
+        public static async void PlaySnakeDicer(string nomeMusic)
+        {
+            MediaElement Music = new MediaElement();
 
+            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Folder = await Folder.GetFolderAsync("Assets");
+            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
+            Music.Volume = 0.5;
+            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
+            Music.IsLooping = true;
+            Music.Play();
+        }
+        public static async void PlayAmbienceMap(string nomeMusic)
+        {
+            MediaElement Music = new MediaElement();
+
+            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Folder = await Folder.GetFolderAsync("Assets");
+            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
+            Music.Volume = 0.5;
+            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);        
+            Music.Play();                     
+            Music.IsLooping = true;
+          
+        }      
     }
 }
