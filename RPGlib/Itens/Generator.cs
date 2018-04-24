@@ -18,11 +18,9 @@ namespace RPGlib.Itens
              * 4 - CrimsonVanguard
              * 5 - DemonicRapier
              * 6 - RabbitFeet
-             * 7 - Dracula's Teeth
-             * 8 - Hermes's Boots
              **/
              
-            int numRandom = RandomElement.Limiter(1, 8);
+            int numRandom = RandomElement.Limiter(1, 6);
             switch (numRandom)
             {
                 case 1:
@@ -44,15 +42,11 @@ namespace RPGlib.Itens
                     c.ItemChest.Add(new RabbitFeet(RandomElement.Limiter(8, 10)));
                     break;
                 case 7:
-                    c.ItemChest.Add(new DraculaTeeth(RandomElement.Limiter(10,20)));
+                    c.ItemChest.Add(new HermesBoots(2));
                     break;
-                case 8:
-                    c.ItemChest.Add(new HermesBoots(RandomElement.Limiter(2,5)));
-                    break;
-
             }
 
-            int numRandom2 = RandomElement.Limiter(1, 8);
+            int numRandom2 = 8;
             switch (numRandom2)
             {
                 case 1:
@@ -74,10 +68,10 @@ namespace RPGlib.Itens
                     c.ItemChest.Add(new RabbitFeet(RandomElement.Limiter(8, 10)));
                     break;
                 case 7:
-                    c.ItemChest.Add(new DraculaTeeth(RandomElement.Limiter(10, 20)));
+                    c.ItemChest.Add(new DraculaTeeth(RandomElement.Limiter(50, 100)));
                     break;
                 case 8:
-                    c.ItemChest.Add(new HermesBoots(RandomElement.Limiter(2, 5)));
+                    c.ItemChest.Add(new HermesBoots(2));
                     break;
             }
         }
