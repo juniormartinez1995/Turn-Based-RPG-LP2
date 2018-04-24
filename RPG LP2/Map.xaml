@@ -250,7 +250,7 @@
                 </Flyout>
             </FlyoutBase.AttachedFlyout>
         </Image>
-        <Image Height="100" Canvas.Left="455" Canvas.Top="397" Width="100"/>
+        
     </Canvas>
 
 </Page>

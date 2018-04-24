@@ -48,6 +48,11 @@ namespace RPG_LP2
         double PosY, PosX; //Posição X e Y do personagem no mapa
         bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
 
+        private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Application.Current.Exit();//fecha o programa
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (ControllerGame.CheckLastPage(typeof(SelecClass), this)) {
