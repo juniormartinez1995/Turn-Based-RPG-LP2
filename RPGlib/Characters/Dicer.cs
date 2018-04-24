@@ -31,10 +31,10 @@ namespace RPGlib.Characters
             RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dr.gif"));
             LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dl.gif"));
 
-            IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dls.png"));
-            IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/drs.png"));
-            IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dls.png"));
-            IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/drs.png"));
+            IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/dls.gif"));
+            IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/drs.gif"));
+            IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/dls.gif"));
+            IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/drs.gif"));
         }
 
 

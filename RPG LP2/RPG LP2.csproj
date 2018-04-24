@@ -131,6 +131,12 @@
     <None Include="RPG LP2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AnimaçãoCharacters\bl.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\bls.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\br.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\brs.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\dls.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\drs.gif" />
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\BerserkerIMG.png" />
