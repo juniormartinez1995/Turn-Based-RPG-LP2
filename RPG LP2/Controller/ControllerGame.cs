@@ -18,6 +18,8 @@ namespace RPG_LP2
 {
     public static class ControllerGame
     {
+
+        public static String SizeHit;
         //Método para checar a página anterior
         public static bool CheckLastPage(Type desiredPage, Page CurrentPage)
         {
@@ -67,10 +69,89 @@ namespace RPG_LP2
             if (Down) Person1.Source = Person.DownMoviment;
         }
 
-        //Checa se o movimento é permitido, se nao enconsta em um bau, inimigo ou obstaculo
-        public static bool IsMovimentAllowed(Image Person1, List<Image> LockedChests, List<Image> Enemies, List<Image> Collision, bool key)
+        public static String Collision(Image Player, Image ObjectCollided)
         {
-            return !IsPlayerColliding(Person1, LockedChests, key) && !IsPlayerColliding(Person1, Enemies, key) && !IsPlayerColliding(Person1, Collision, key);
+
+            double player_bottom = Canvas.GetTop(Player) + Player.Height;
+            double enemy_bottom = Canvas.GetTop(ObjectCollided) + ObjectCollided.Height;
+            double player_right = Canvas.GetLeft(Player) + Player.Width;
+            double enemy_right = Canvas.GetLeft(ObjectCollided) + ObjectCollided.Width;
+
+            double b_collision = enemy_bottom - Canvas.GetTop(Player);
+            double t_collision = player_bottom - Canvas.GetTop(ObjectCollided);
+            double l_collision = player_right - Canvas.GetLeft(ObjectCollided);
+            double r_collision = enemy_right - Canvas.GetLeft(Player);
+
+            if (t_collision < b_collision && t_collision < l_collision && t_collision < r_collision)
+            {
+                //Top collision
+                SizeHit = "Top"; ;
+                Debug.WriteLine(SizeHit);
+
+            }
+            if (b_collision < t_collision && b_collision < l_collision && b_collision < r_collision)
+            {
+                //bottom collision
+                SizeHit = "Bottom";
+                Debug.WriteLine(SizeHit);
+            }
+            if (l_collision < r_collision && l_collision < t_collision && l_collision < b_collision)
+            {
+                //Left collision
+                SizeHit = "Left"; ;
+                Debug.WriteLine(SizeHit);
+            }
+            if (r_collision < l_collision && r_collision < t_collision && r_collision < b_collision)
+            {
+
+                //Right collision
+                SizeHit = "Right";
+                Debug.WriteLine(SizeHit);
+            }
+
+            return SizeHit;
+        }
+
+        public static bool CheckCollision(Character PlayerObject, Image Player, Image ObjectCollided)
+        {
+            double PlayerRight = Canvas.GetLeft(Player) + Player.Width;
+            double PlayerLeft = Canvas.GetLeft(Player);
+            double PlayerTop = Canvas.GetTop(Player);
+            double PlayerBottom = Canvas.GetTop(Player) + Player.Height;
+
+            double EnemyRight = Canvas.GetLeft(ObjectCollided) + ObjectCollided.Width;
+            double EnemyLeft = Canvas.GetLeft(ObjectCollided);
+            double EnemyTop = Canvas.GetTop(ObjectCollided);
+            double EnemyBottom = Canvas.GetTop(ObjectCollided) + ObjectCollided.Height;
+
+            if (PlayerRight >= EnemyLeft &&
+                PlayerLeft <= EnemyRight &&
+                PlayerBottom >= EnemyTop &&
+                PlayerTop <= EnemyBottom
+                )
+            {
+                if (Collision(Player, ObjectCollided) == "Right") MovePlayer(Player, PlayerObject.Speed - 2, 0);   //MoveRight(Player, 2);
+                if (Collision(Player, ObjectCollided) == "Left") MovePlayer(Player, -PlayerObject.Speed + 2, 0);         //MoveLeft(Player, 2);
+                if (Collision(Player, ObjectCollided) == "Top") MovePlayer(Player, 0, -PlayerObject.Speed + 2); //MoveUp(Player, 2);
+                if (Collision(Player, ObjectCollided) == "Bottom") MovePlayer(Player, 0, PlayerObject.Speed - 2);
+                return true;
+
+            }
+            else return false;
+        }
+
+        public static bool CheckListCollision(Character PlayerObject, Image Player, List<Image> ItemList)
+        {
+            foreach (Image Item in ItemList)
+            {
+                if (CheckCollision(PlayerObject, Player, Item)) return true;
+            }
+            return false;
+        }
+
+        public static bool IsMovimentAllowed(Character PlayerObject, Image Player, List<Image> LockedChests, List<Image> Enemies, List<Image> Collision)
+        {
+            return !CheckListCollision(PlayerObject, Player, LockedChests) && !CheckListCollision(PlayerObject, Player, Enemies) && !CheckListCollision(PlayerObject, Player, Collision);
         }
 
         public static bool IsPlayerColliding(Image Person1, List<Image> Collision, bool key) //Checa se o personagem colide com algum objeto e/ou personagem
@@ -127,13 +208,13 @@ namespace RPG_LP2
         {
             if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário
             {
-                ControllerGame.PlaySoundsRPG("SoundOpenChest.mp3");
+                PlaySoundsRPG("SoundOpenChest.mp3");
                 player.OpenChest(ChestControl);
                 qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
                 qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString();
 
                 int countItem = 0;
-                ControllerGame.PlaySoundsVitorHugo("CaioItem.mp4");
+                PlaySoundsVitorHugo("CaioItem.mp4");
                 foreach (Item item in player.inventory.inventoryList)
                 {
                     ListImage[countItem].BitImage = item.ImageItem;
@@ -147,26 +228,12 @@ namespace RPG_LP2
             }
         }
 
-        public static void MoveUp(Image Person1, int Speed, int Increment = 0) //Método que realiza a movimentação da imagem para cima
+        public static void MovePlayer(Image Player, double XSpeed, double YSpeed)
         {
-            Person1.SetValue(Canvas.TopProperty, Canvas.GetTop(Person1) - Speed - Increment);
+            Canvas.SetLeft(Player, Canvas.GetLeft(Player) + XSpeed);
+            Canvas.SetTop(Player, Canvas.GetTop(Player) + YSpeed);
         }
 
-        public static void MoveDown(Image Person1, int Speed, int Increment = 0) //Método que realiza a movimentação da imagem para baixo
-        {
-            Person1.SetValue(Canvas.TopProperty, Canvas.GetTop(Person1) + Speed + Increment);
-        }
-
-        public static void MoveLeft(Image Person1, int Speed, int Increment = 0) //Método que realiza a movimentação da imagem para esquerda
-        {
-            Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) - Speed  - Increment);
-        }
-
-        public static void MoveRight(Image Person1, int Speed, int Increment = 0) //Método que realiza a movimentação da imagem para direita
-        {
-            Person1.SetValue(Canvas.LeftProperty, Canvas.GetLeft(Person1) + Speed + Increment);
-        }
-     
         public static async void PlaySoundsRPG(string nomeMusic)
         {
             MediaElement Music = new MediaElement();
@@ -187,10 +254,10 @@ namespace RPG_LP2
             Folder = await Folder.GetFolderAsync("Assets");
             StorageFile sf = await Folder.GetFileAsync(nomeMusic);
             Music.Volume = 0.5;
-            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);        
-            Music.Play();                     
+            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
+            Music.Play();
             Music.IsLooping = true;
-          
+
         }
         public static async void PlaySoundsVitorHugo(string nomeMusic)
         {
@@ -205,5 +272,7 @@ namespace RPG_LP2
             Music.IsLooping = true;
 
         }
+
+
     }
 }

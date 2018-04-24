@@ -22,7 +22,9 @@
         <Image x:Name="Chest0" Height="26" Canvas.Left="140" Canvas.Top="415" Width="21"/>
 
         <!-- Imagem da Chave-->
+
         <Image x:Name="map1_key" Height="31" Width="31" Source="Assets/key.png" Canvas.Left="452" Canvas.Top="323"/>
+
 
         <!-- Lista de inimigos  -->
         <Image x:Name="Enemy0" Height="28" Canvas.Left="230" Canvas.Top="347" Width="10"/>
