@@ -151,6 +151,7 @@
     <Content Include="Assets\FireBall.gif" />
     <Content Include="Assets\Gif_Image_Item_Quest\CaioInimigosAFrente.mp4" />
     <Content Include="Assets\key.png" />
+    <Content Include="Assets\Fireball.mp3" />
     <Content Include="Assets\SnakeDicer.gif" />
     <Content Include="Assets\downAnimation\baixogif.gif" />
     <Content Include="Assets\BattleAnimations\NinjaServa.gif" />

@@ -109,7 +109,7 @@ namespace RPG_LP2
             {
 
                 Fireball.Opacity = 100;
-                ControllerGame.PlaySoundsRPG("FireballDicer.mp3");
+                ControllerGame.PlaySoundsRPG("Fireball.mp3");
                 TimerFireball.Start();
             
               
