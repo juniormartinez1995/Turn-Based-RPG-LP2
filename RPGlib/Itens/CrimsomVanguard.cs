@@ -23,6 +23,7 @@ namespace RPGlib.Itens
             this.Mana = 0;
             this.Lifesteal = 0;
             this.Description = "HP + " + health +"\nArmor + " + armor;
+            this.Speed = 0;
         }
 
         public override void Effect(Character person)

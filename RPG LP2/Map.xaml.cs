@@ -34,6 +34,7 @@ namespace RPG_LP2
             
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas,this);
+        
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
 
@@ -48,16 +49,16 @@ namespace RPG_LP2
 
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
-
+            ControllerGame.PlayAmbienceMap("SoundAmbienceMap2.mp3");
+            ControllerGame.PlaySoundsVitorHugo("CaioAbraOBaivis.mp4");
         }
 
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
         List<Image> Collision = new List<Image>(); //Lista de colisões no mapa
         List<Image> LockedChests = new List<Image>(); //Lista de baús no mapa
         List<Image> Enemies = new List<Image>(); //Lista de enimigos no mapa
+        List<Image> Keys = new List<Image>(); //Lista de chaves no mapa
         List<object> MobAndChar = new List<object>();
-
-        //MUDEI AQUI, N SEI SE ESTA CERTO
         List<InventoryBitImage> ListInvetoryImage = new List<InventoryBitImage>(); //Lista das Imagens de Inventário
 
 
@@ -67,8 +68,6 @@ namespace RPG_LP2
         Chest ChestControl = new Chest(); //Gerenciamento do baú
         
         //Ninja Ninja = new Ninja();
-
-
 
         double WidthRatio, HeightRatio;
         double PosY, PosX; //Posição X e Y do personagem no mapa
@@ -102,6 +101,12 @@ namespace RPG_LP2
             Collision.Add(Collision2);
             Collision.Add(Collision3);
 
+            Collision.Add(map1_key);
+        }
+
+        public void SetKeyOnMap()
+        {
+            Keys.Add(map1_key);
         }
 
         private void AddImageOnList()
@@ -146,7 +151,7 @@ namespace RPG_LP2
                 if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;
                 else if (MobAndChar.ElementAt(1) is PablloVittar) PablloVittar = MobAndChar.ElementAt(1) as PablloVittar;
                 MobAndChar.RemoveAt(MobAndChar.Count - 1);
-
+                ControllerGame.PlaySoundsVitorHugo("CaioInimigosAFrente.mp4");
 
             }
             IsAnotherPage = false;
@@ -226,6 +231,7 @@ namespace RPG_LP2
                     StoreChars(Ninja as Mob);
                     IsAnotherPage = true;
                     this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+         
                 }
 
                 if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 1) && !PablloVittar.IsDead())
@@ -237,6 +243,10 @@ namespace RPG_LP2
                     this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
                 }
 
+            }
+            else if (ControllerGame.IsPlayerColliding(Person1, Keys, Up)) 
+            {
+                map1_key.Visibility.Equals("Collapsed");
             }
         }
 
@@ -266,6 +276,11 @@ namespace RPG_LP2
                 IsKeyPressed = true;
             }
 
+        }
+
+        private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Application.Current.Exit();//fecha o programa
         }
 
         private void CoreWindow_KeyUp(CoreWindow sender, KeyEventArgs args)
@@ -302,6 +317,8 @@ namespace RPG_LP2
             IsKeyPressed = false;
 
         }
+
+        //Putaria pura daqui pra baixo  x.x  ---------------------------------
 
         private void ShowItemStatus1(object sender, TappedRoutedEventArgs e)
         {

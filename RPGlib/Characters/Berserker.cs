@@ -27,15 +27,15 @@ namespace RPGlib.Characters
 
 
 
-            UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/cimagif.gif"));
-            DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/baixogif.gif"));
-            RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dirgif.gif"));
-            LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/esqgif.gif"));
+            UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/br.gif"));
+            DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/bl.gif"));
+            RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/br.gif"));
+            LeftMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/bl.gif"));
 
-            IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/downAnimation/0.png"));
-            IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/upAnimation/0.png"));
-            IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/0.png"));
-            IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/0.png"));
+            IdleDown = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/bls.gif"));
+            IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/brs.gif"));
+            IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/bls.gif"));
+            IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/brs.gif"));
         }
 
 

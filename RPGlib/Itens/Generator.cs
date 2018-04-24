@@ -24,7 +24,7 @@ namespace RPGlib.Itens
             switch (numRandom)
             {
                 case 1:
-                    c.ItemChest.Add(new Stone());
+                    c.ItemChest.Add(new Stone(2));
                     break;
                 case 2:
                     c.ItemChest.Add(new PotionLife());
@@ -50,7 +50,7 @@ namespace RPGlib.Itens
             switch (numRandom2)
             {
                 case 1:
-                    c.ItemChest.Add(new Stone());
+                    c.ItemChest.Add(new Stone(2));
                     break;
                 case 2:
                     c.ItemChest.Add(new PotionLife());

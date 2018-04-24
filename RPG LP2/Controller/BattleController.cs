@@ -80,22 +80,36 @@ namespace RPG_LP2
                     break;
 
                 case 2:
-                    if (person.CurrentMana >= 100)
+                    if (person is Berserker)
                     {
-                        person.CurrentMana -= 100;
-                        mob.HP -= person.Skill1();
-                        Debug.WriteLine("Dano causado = " + person.Skill1() + "\n");
-                    }
-                    else
-                    {
-                        Debug.WriteLine("Você não tem mana o suficiente para castar essa habilidade");
-                    }
+                        if (person.CurrentMana >= 100)
+                        {
+                            person.CurrentMana -= 100;
+                            mob.HP -= person.Skill1();
+                            Debug.WriteLine("Dano causado = " + person.Skill1() + "\n");
+                        }
 
+                        else
+                        {
+                            Debug.WriteLine("Você não tem mana o suficiente para castar essa habilidade");
+                        }
+                    }
+                    if(person is Dicer)
+                    {
+
+                    }
                     break;
 
                 case 3:
-                    person.CurrentHP -= person.Skill2();
-                    mob.HP = mob.HP / 2;
+                    if (person is Berserker)
+                    {
+                        person.CurrentHP -= person.Skill2();
+                        mob.HP = mob.HP / 2;
+                    }
+                    if (person is Dicer)
+                    {
+
+                    }
 
 
                     break;
@@ -151,13 +165,14 @@ namespace RPG_LP2
 
         public static void WinBattle()
         {
-            Debug.WriteLine("Você ganhou caio");
+            ControllerGame.PlaySoundsVitorHugo("CaioYouWin.mp4");
+          
 
         }
 
         public static void LoseBattle()
         {
-
+            ControllerGame.PlaySoundsVitorHugo("CaioYouDied.mp4");
         }
 
         public static int CheckArmorDamage(int damage)

@@ -118,6 +118,7 @@
     <Compile Include="Itens\Inventory.cs" />
     <Compile Include="Itens\Item.cs" />
     <Compile Include="Itens\InventoryBitImage.cs" />
+    <Compile Include="Itens\ItemMap.cs" />
     <Compile Include="Itens\RabbitFeet.cs" />
     <Compile Include="Itens\Stone.cs" />
     <Compile Include="Itens\RandomElement.cs" />

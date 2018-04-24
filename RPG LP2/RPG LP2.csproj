@@ -109,6 +109,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Map2.xaml.cs">
+      <DependentUpon>Map2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SceneHistory.xaml.cs">
       <DependentUpon>SceneHistory.xaml</DependentUpon>
@@ -128,11 +131,28 @@
     <None Include="RPG LP2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AnimaçãoCharacters\bl.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\bls.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\br.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\brs.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\dls.gif" />
+    <Content Include="Assets\AnimaçãoCharacters\drs.gif" />
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\BerserkerIMG.png" />
+    <Content Include="Assets\CaioAbraOBaivis.mp4" />
+    <Content Include="Assets\CaioInimigosAFrente.mp4" />
+    <Content Include="Assets\CaioItem.mp4" />
+    <Content Include="Assets\CaioYouDied.mp4" />
+    <Content Include="Assets\CaioYouWin.mp4" />
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
+    <Content Include="Assets\Dungeons\SecondDungeon.gif" />
+    <Content Include="Assets\FireBall.gif" />
+    <Content Include="Assets\Gif_Image_Item_Quest\CaioInimigosAFrente.mp4" />
+    <Content Include="Assets\key.png" />
+    <Content Include="Assets\Fireball.mp3" />
+    <Content Include="Assets\SnakeDicer.gif" />
     <Content Include="Assets\downAnimation\baixogif.gif" />
     <Content Include="Assets\BattleAnimations\NinjaServa.gif" />
     <Content Include="Assets\berseker_Front.png" />
@@ -140,6 +160,9 @@
     <Content Include="Assets\btn_startCUTTED.png" />
     <Content Include="Assets\btn_status2.png" />
     <Content Include="Assets\draculasteeth.png" />
+    <Content Include="Assets\Fire Sound Effects.mp3" />
+    <Content Include="Assets\Fireball.png" />
+    <Content Include="Assets\FireballDicer.mp3" />
     <Content Include="Assets\Gif_Image_Item_Quest\rosinha.gif" />
     <Content Include="Assets\Gif_Image_Item_Quest\rosinha.png" />
     <Content Include="Assets\heart_gif.gif" />
@@ -158,9 +181,12 @@
     <Content Include="Assets\MapsBackground\scene_history.gif" />
     <Content Include="Assets\rightAnimation\dr.gif" />
     <Content Include="Assets\rightAnimation\drs.png" />
+    <Content Include="Assets\SnakeDicer.mp3" />
+    <Content Include="Assets\SoundAmbienceMap2.mp3" />
     <Content Include="Assets\SoundOpenChest.mp3" />
     <Content Include="Assets\SoundPlayerWalking.mp3" />
     <Content Include="Assets\SoundSword.mp3" />
+    <Content Include="Assets\SplashScreen.scale-200RIGHT.png" />
     <Content Include="Assets\Sword.png" />
     <Content Include="Assets\textbox.gif" />
     <Content Include="Assets\text_scene_block.png" />
@@ -209,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Map2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SceneHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,7 +261,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Imagens\Uplay\" />
-    <Folder Include="Assets\Sons\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

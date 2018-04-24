@@ -38,6 +38,8 @@ namespace RPG_LP2
             heart_icon.Source = heart_stopped;
         }
         DispatcherTimer TimerSword = new DispatcherTimer();
+        DispatcherTimer TimerFireball = new DispatcherTimer();
+        DispatcherTimer TimerSnakeDicer = new DispatcherTimer();
         Character BattlePlayer;
         Mob Mob_;
         List<Object> CharList;
@@ -58,7 +60,7 @@ namespace RPG_LP2
                 Title = "FIM DA BATALHA",
                 Content = "Você venceu!!!",
                 CloseButtonText = "Voltar ao mapa"
-
+                 
             };
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
@@ -99,22 +101,68 @@ namespace RPG_LP2
             if(BattlePlayer is Berserker){
                 Sword.Opacity = 100;
                 TimerSword.Start();
-                Sword.Opacity = 100;
-                TimerSword.Start();
-                //ControllerGame.PlaySoundSword("SoundSword.mp3");
+            
+              // ControllerGame.PlaySoundSword("SoundSword.mp3");
             }
 
             if (BattlePlayer is Dicer)
             {
-                Sword.Opacity = 100;
-                TimerSword.Start();
-                Sword.Opacity = 100;
-                TimerSword.Start();
-                //ControllerGame.PlaySoundSword("SoundSword.mp3");
+
+                Fireball.Opacity = 100;
+                ControllerGame.PlaySoundsRPG("Fireball.mp3");
+                TimerFireball.Start();
+            
+              
             }
 
         }
+        private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
+        {
+            BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
+        }
 
+        private void btnSkillTwo_Click(object sender, RoutedEventArgs e)
+        {
+            if (BattlePlayer is Berserker)
+            {
+                BattleController.CheckTurn(BattlePlayer, Mob_, 3, btnSkillTwo);
+            }
+
+            if(BattlePlayer is Dicer)
+            {
+                SnakeDicer.Opacity = 100;
+                ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
+                TimerSnakeDicer.Start();
+            }
+        }
+
+        public void TimerSnake_Tick(object sender,object e)
+        {
+            if (!ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1)) Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(SnakeDicer) + 45);
+
+            else if (ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1))
+            {
+                BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
+                Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(Person1) + 95);
+                SnakeDicer.Opacity = 0;
+                TimerSnakeDicer.Stop();
+
+            }
+        }
+    
+        public void TimerFireball_Tick(object sender, object e)
+        {
+            if (!ControllerGame.IsSkillHittingEnemy(Fireball, Mob1)) Canvas.SetLeft(Fireball, Canvas.GetLeft(Fireball) + 45);
+         
+            else if (ControllerGame.IsSkillHittingEnemy(Fireball, Mob1))
+            {
+                BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
+                Canvas.SetLeft(Fireball, Canvas.GetLeft(Person1) + 85);
+                Fireball.Opacity = 0;
+                TimerFireball.Stop();
+
+            }
+        }
         public void TimerSword_Tick(object sender, object e)
         {
 
@@ -129,11 +177,7 @@ namespace RPG_LP2
             }
 
         }
-        private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
-        {
-            BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
-        }
-
+       
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
@@ -148,6 +192,7 @@ namespace RPG_LP2
                 Debug.WriteLine("Dano Player " + BattlePlayer.Damage);
                 Debug.WriteLine("EU SOU " + Mob_.name);
 
+                //Define valores máximos e mínimos para as progress bars
                 hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
                 hpBarCharacter.Value = BattlePlayer.CurrentHP;
                 mpBarCharacter.Maximum = BattlePlayer.MaxMana;
@@ -155,10 +200,10 @@ namespace RPG_LP2
                 hpBarMob.Maximum = Mob_.HP;
                 hpBarMob.Value = Mob_.HP;
 
+                //Coloca a imagem do Player na cena de batalha
+                Person1.Source = BattlePlayer.IdleUp;
 
                 //Eventos assinados na página
-
-
             }
 
             SignPageEvents();
@@ -188,11 +233,7 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(LosePage));
         }
 
-        private void btnSkillTwo_Click(object sender, RoutedEventArgs e)
-        {
-            BattleController.CheckTurn(BattlePlayer, Mob_, 3, btnSkillTwo);
-        }
-
+      
         public void SignPageEvents()
         {
             Mob_.MobDead += Mob__MobDead;
@@ -204,6 +245,12 @@ namespace RPG_LP2
 
             TimerSword.Tick += TimerSword_Tick;
             TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);
+
+            TimerFireball.Tick += TimerFireball_Tick;
+            TimerFireball.Interval = new TimeSpan(0, 0, 0, 0, 40);
+
+            TimerSnakeDicer.Tick += TimerSnake_Tick;
+            TimerSnakeDicer.Interval = new TimeSpan(0, 0, 0, 0, 40);
         }
 
         public void UnsignPageEvents()
@@ -215,6 +262,9 @@ namespace RPG_LP2
             timer.Stop();
 
             TimerSword.Tick -= TimerSword_Tick;
+            TimerFireball.Tick -= TimerFireball_Tick;
+            TimerSnakeDicer.Tick -= TimerSnake_Tick;
+
         }
     }
 }
