@@ -9,7 +9,7 @@
     <Canvas x:Name="_Canvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
 
         <Image Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/MapsBackground/BattleScreen.png"/>
-        <Image x:Name="Person1" Height="100" Canvas.Left="100" Canvas.Top="300" Width="100" Source="Assets/rightAnimation/0.png"/>
+        <Image x:Name="Person1" Height="100" Canvas.Left="100" Canvas.Top="300" Width="100" />
         <Image x:Name="Mob1" Height="150" Canvas.Left="600" Canvas.Top="250" Width="150" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>

@@ -192,6 +192,7 @@ namespace RPG_LP2
                 Debug.WriteLine("Dano Player " + BattlePlayer.Damage);
                 Debug.WriteLine("EU SOU " + Mob_.name);
 
+                //Define valores máximos e mínimos para as progress bars
                 hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
                 hpBarCharacter.Value = BattlePlayer.CurrentHP;
                 mpBarCharacter.Maximum = BattlePlayer.MaxMana;
@@ -199,10 +200,10 @@ namespace RPG_LP2
                 hpBarMob.Maximum = Mob_.HP;
                 hpBarMob.Value = Mob_.HP;
 
+                //Coloca a imagem do Player na cena de batalha
+                Person1.Source = BattlePlayer.IdleUp;
 
                 //Eventos assinados na página
-
-
             }
 
             SignPageEvents();
