@@ -54,9 +54,7 @@
 
         </Image>
         <Image x:Name="Fireball" Opacity ="0" Height="100" Canvas.Left="176" Canvas.Top="297" Width="100" Source="Assets/FireBall.gif" >
-            <Image.Projection>
-                <PlaneProjection RotationX="0" RotationZ="90" RotationY="0"/>
-            </Image.Projection>
+           
 
         </Image>
         <Image x:Name="SnakeDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/SnakeDicer.gif"/>
