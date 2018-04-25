@@ -65,8 +65,8 @@ namespace RPG_LP2
 
 
         Character Player; //Personagem que estará no mapa
-        PablloVittar PablloVittar = new PablloVittar();
-        Ninja Ninja = new Ninja();
+        PablloVittar PablloVittar;
+        Ninja Ninja;
         Chest ChestControl = new Chest(); //Gerenciamento do baú
 
         //Ninja Ninja = new Ninja();
@@ -74,7 +74,7 @@ namespace RPG_LP2
         double WidthRatio, HeightRatio;
         double XSpeed, YSpeed;
         double PosY, PosX; //Posição X e Y do personagem no mapa
-        bool Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
+        bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
 
 
         public void StoreChars(Mob EnemyMob)
@@ -107,7 +107,7 @@ namespace RPG_LP2
 
         public void SetKeyOnMap()
         {
-            DroppedKeys.Add(map1_key);
+            DroppedKeys.Add(FirstMapKey);
         }
 
         private void AddImageOnList()
@@ -139,6 +139,9 @@ namespace RPG_LP2
             {
                 Player = e.Parameter as Character;
                 Person1.Source = Player.IdleRight;
+                MobAndChar.Clear();
+                PablloVittar = new PablloVittar();
+                Ninja = new Ninja();
                 MobAndChar.Add(Player);
 
             }
@@ -185,7 +188,7 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            if (ControllerGame.IsMovimentAllowed(Player, Person1, LockedChests, Enemies, Collision))
+            if (ControllerGame.IsMovimentAllowed(Player, Person1, LockedChests, Enemies, Collision, DroppedKeys))
             {
                 if (YSpeed < 0 && PosY > 115 * HeightRatio)  //Movimento, checagem e animação para cima
                 {
@@ -229,11 +232,24 @@ namespace RPG_LP2
                 }
             }
 
+            else if (ControllerGame.CheckListCollision(Player, Person1, DroppedKeys))
+            {
+                foreach (Image Hit in DroppedKeys)
+                {
+                    _Canvas.Children.Remove(FirstMapKey);
+                    //Key _Key = new Key();
+                    //Player.inventory.Add_Item(_Key, Player);
+                }
+                DroppedKeys.Clear();
+            }
+
+
+
             //Checa se o player se encontra de frente com o mob, se sim, iniciará a tela de batalha
-            else if (ControllerGame.IsPlayerColliding(Person1, Enemies, Up))
+            else if (ControllerGame.CheckListCollision(Player, Person1, Enemies))
             {
                 //Precisa colocar restrições se os mobs ja foram derrotados ou nao
-                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 0) && !Ninja.IsDead())
+                if (ControllerGame.CheckEnemy(Player, Person1, Enemies, 0) && !Ninja.IsDead())
                 {
                     if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
                     StoreChars(Ninja as Mob);
@@ -242,7 +258,7 @@ namespace RPG_LP2
 
                 }
 
-                if (ControllerGame.CheckEnemy(Person1, Enemies, Up, 1) && !PablloVittar.IsDead())
+                if (ControllerGame.CheckEnemy(Player, Person1, Enemies, 1) && !PablloVittar.IsDead())
                 {
 
                     if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
@@ -258,6 +274,7 @@ namespace RPG_LP2
         {
             if (IsAnotherPage) return;
 
+            IsKeyPressed = true;
             switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
             {
                 case Windows.System.VirtualKey.Up:
@@ -313,6 +330,7 @@ namespace RPG_LP2
                     XSpeed = 0;
                     break;
             }
+            IsKeyPressed = false;
         }
 
         //Putaria pura daqui pra baixo  x.x  ---------------------------------

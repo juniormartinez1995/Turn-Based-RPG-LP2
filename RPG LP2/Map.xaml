@@ -23,7 +23,7 @@
 
         <!-- Imagem da Chave-->
 
-        <Image x:Name="map1_key" Height="31" Width="31" Source="Assets/key.png" Canvas.Left="452" Canvas.Top="323"/>
+        <Image x:Name="FirstMapKey" Height="30" Width="30" Source="Assets/key.png" Canvas.Left="452" Canvas.Top="323"/>
 
 
         <!-- Lista de inimigos  -->

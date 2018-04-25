@@ -69,6 +69,71 @@ namespace RPG_LP2
             if (Down) Person1.Source = Person.DownMoviment;
         }
 
+        public static bool CheckEnemy(Character PlayerObject, Image Player, List<Image> Enemies, int i)
+        {
+            if (CheckCollision(PlayerObject, Player, Enemies.ElementAt(i))) return true;
+            return false;
+        }
+
+
+
+        public static bool CheckListCollision(Character PlayerObject, Image Player, List<Image> ItemList)
+        {
+            foreach (Image Item in ItemList)
+            {
+                if (CheckCollision(PlayerObject, Player, Item)) return true;
+            }
+            return false;
+        }
+
+        public static bool IsMovimentAllowed(Character PlayerObject, Image Player, List<Image> LockedChests, List<Image> Enemies, List<Image> Collision, List<Image> Keys)
+        {
+            return !CheckListCollision(PlayerObject, Player, LockedChests) && !CheckListCollision(PlayerObject, Player, Enemies) && !CheckListCollision(PlayerObject, Player, Collision) && !CheckListCollision(PlayerObject, Player, Keys);
+        }
+
+        public static bool IsSkillHittingEnemy(Image Player, Image Enemy)
+        {
+
+            if (Canvas.GetLeft(Player) + Player.Width >= Canvas.GetLeft(Enemy) &&
+                Canvas.GetLeft(Player) <= Canvas.GetLeft(Enemy) + Enemy.Width &&
+                Canvas.GetTop(Player) + Player.Height >= Canvas.GetTop(Enemy) &&
+                Canvas.GetTop(Player) <= Canvas.GetTop(Enemy) + Enemy.Height
+                )
+            {
+                return true;
+
+            }
+            else return false;
+        }
+
+        public static bool CheckCollision(Character PlayerObject, Image Player, Image ObjectCollided)
+        {
+            double PlayerRight = Canvas.GetLeft(Player) + Player.Width;
+            double PlayerLeft = Canvas.GetLeft(Player);
+            double PlayerTop = Canvas.GetTop(Player);
+            double PlayerBottom = Canvas.GetTop(Player) + Player.Height;
+
+            double EnemyRight = Canvas.GetLeft(ObjectCollided) + ObjectCollided.Width;
+            double EnemyLeft = Canvas.GetLeft(ObjectCollided);
+            double EnemyTop = Canvas.GetTop(ObjectCollided);
+            double EnemyBottom = Canvas.GetTop(ObjectCollided) + ObjectCollided.Height;
+
+            if (PlayerRight >= EnemyLeft &&
+                PlayerLeft <= EnemyRight &&
+                PlayerBottom >= EnemyTop &&
+                PlayerTop <= EnemyBottom
+                )
+            {
+                if (Collision(Player, ObjectCollided) == "Right") MovePlayer(Player, PlayerObject.Speed - 2, 0);   //MoveRight(Player, 2);
+                if (Collision(Player, ObjectCollided) == "Left") MovePlayer(Player, -PlayerObject.Speed + 2, 0);         //MoveLeft(Player, 2);
+                if (Collision(Player, ObjectCollided) == "Top") MovePlayer(Player, 0, -PlayerObject.Speed + 2); //MoveUp(Player, 2);
+                if (Collision(Player, ObjectCollided) == "Bottom") MovePlayer(Player, 0, PlayerObject.Speed - 2);
+                return true;
+
+            }
+            else return false;
+        }
+
         public static String Collision(Image Player, Image ObjectCollided)
         {
 
@@ -111,98 +176,6 @@ namespace RPG_LP2
 
             return SizeHit;
         }
-
-        public static bool CheckCollision(Character PlayerObject, Image Player, Image ObjectCollided)
-        {
-            double PlayerRight = Canvas.GetLeft(Player) + Player.Width;
-            double PlayerLeft = Canvas.GetLeft(Player);
-            double PlayerTop = Canvas.GetTop(Player);
-            double PlayerBottom = Canvas.GetTop(Player) + Player.Height;
-
-            double EnemyRight = Canvas.GetLeft(ObjectCollided) + ObjectCollided.Width;
-            double EnemyLeft = Canvas.GetLeft(ObjectCollided);
-            double EnemyTop = Canvas.GetTop(ObjectCollided);
-            double EnemyBottom = Canvas.GetTop(ObjectCollided) + ObjectCollided.Height;
-
-            if (PlayerRight >= EnemyLeft &&
-                PlayerLeft <= EnemyRight &&
-                PlayerBottom >= EnemyTop &&
-                PlayerTop <= EnemyBottom
-                )
-            {
-                if (Collision(Player, ObjectCollided) == "Right") MovePlayer(Player, PlayerObject.Speed - 2, 0);   //MoveRight(Player, 2);
-                if (Collision(Player, ObjectCollided) == "Left") MovePlayer(Player, -PlayerObject.Speed + 2, 0);         //MoveLeft(Player, 2);
-                if (Collision(Player, ObjectCollided) == "Top") MovePlayer(Player, 0, -PlayerObject.Speed + 2); //MoveUp(Player, 2);
-                if (Collision(Player, ObjectCollided) == "Bottom") MovePlayer(Player, 0, PlayerObject.Speed - 2);
-                return true;
-
-            }
-            else return false;
-        }
-
-        public static bool CheckListCollision(Character PlayerObject, Image Player, List<Image> ItemList)
-        {
-            foreach (Image Item in ItemList)
-            {
-                if (CheckCollision(PlayerObject, Player, Item)) return true;
-            }
-            return false;
-        }
-
-        public static bool IsMovimentAllowed(Character PlayerObject, Image Player, List<Image> LockedChests, List<Image> Enemies, List<Image> Collision)
-        {
-            return !CheckListCollision(PlayerObject, Player, LockedChests) && !CheckListCollision(PlayerObject, Player, Enemies) && !CheckListCollision(PlayerObject, Player, Collision);
-        }
-
-        public static bool IsPlayerColliding(Image Person1, List<Image> Collision, bool key) //Checa se o personagem colide com algum objeto e/ou personagem
-        {
-
-            foreach (Image wall in Collision)
-            {
-                if (IsPlayerOverItem(Person1, wall, key)) return true;
-            }
-            return false;
-
-        }
-
-
-        public static bool IsPlayerOverItem(Image Player, Image _item, bool key)
-        {
-
-            if (Canvas.GetLeft(Player) + Player.Width >= Canvas.GetLeft(_item) &&
-                Canvas.GetLeft(Player) <= Canvas.GetLeft(_item) + _item.Width &&
-                Canvas.GetTop(Player) + Player.Height >= Canvas.GetTop(_item) &&
-                Canvas.GetTop(Player) <= Canvas.GetTop(_item) + _item.Height
-                )
-            {
-                return key;
-
-            }
-            else return false;
-        }
-
-        public static bool IsSkillHittingEnemy(Image Player, Image Enemy)
-        {
-
-            if (Canvas.GetLeft(Player) + Player.Width >= Canvas.GetLeft(Enemy) &&
-                Canvas.GetLeft(Player) <= Canvas.GetLeft(Enemy) + Enemy.Width &&
-                Canvas.GetTop(Player) + Player.Height >= Canvas.GetTop(Enemy) &&
-                Canvas.GetTop(Player) <= Canvas.GetTop(Enemy) + Enemy.Height
-                )
-            {
-                return true;
-
-            }
-            else return false;
-        }
-
-
-        public static bool CheckEnemy(Image Person1, List<Image> Enemy, bool key, int i)
-        {
-            if (IsPlayerOverItem(Person1, Enemy.ElementAt(i), key)) return true;
-            return false;
-        }
-
 
         public static void LootVault(Character player, Chest ChestControl, TextBlock qt_lifePot, TextBlock qt_manaPot, List<InventoryBitImage> ListImage)
         {
