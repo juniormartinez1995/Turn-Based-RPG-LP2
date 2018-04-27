@@ -26,6 +26,8 @@ namespace RPGlib.Characters
             this.Damage = 50;
             this.Lifesteal = 0;
 
+            Attacking = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/datk.gif"));
+
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dr.gif")); 
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dl.gif"));
             RightMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dr.gif"));
@@ -38,7 +40,7 @@ namespace RPGlib.Characters
         }
 
 
-        public int Multicast() //Retorna um inteiro que será o multiplicador de quantas vezes a skill será castada
+        public override int Passive() //Retorna um inteiro que será o multiplicador de quantas vezes a skill será castada
         {
 
             int multicastchance = RandomElement.Limiter(0, 100);
@@ -68,11 +70,26 @@ namespace RPGlib.Characters
 
         public override int BasicSkill()
         {
-            int damageturn = this.Damage * Multicast();
+            int damageturn = this.Damage * Passive();
             return damageturn;
         }
 
+        //Skill a ser pensada
+        public override int Skill1()
+        {
+            int damageTurn = 30 * Passive();
 
+            return damageTurn;
+        }
+
+        //SKill consome 20 de vida para ser castada
+        public override int Skill2()
+        {
+            int damageTurn = 80 * Passive();
+            this.CurrentHP -= 20;
+
+            return damageTurn;
+        }
     }
 }
 

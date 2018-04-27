@@ -18,6 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>RPG LP2_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>1604778C4B59F7976B1B28C8175405A69413FDC4</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -137,6 +138,13 @@
     <Content Include="Assets\AnimaçãoCharacters\brs.gif" />
     <Content Include="Assets\AnimaçãoCharacters\dls.gif" />
     <Content Include="Assets\AnimaçãoCharacters\drs.gif" />
+    <Content Include="Assets\AttackGifs\batk.gif" />
+    <Content Include="Assets\AttackGifs\datk.gif" />
+    <Content Include="Assets\AttackGifs\Dicer\ghost_spell.gif" />
+    <Content Include="Assets\AttackGifs\Dicer\ghost_spellq.gif" />
+    <Content Include="Assets\AttackGifs\Dicer\water_spell.gif" />
+    <Content Include="Assets\AttackGifs\Dicer\water_spellq.gif" />
+    <Content Include="Assets\AttackGifs\teste.gif" />
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\BerserkerIMG.png" />
@@ -152,7 +160,7 @@
     <Content Include="Assets\Gif_Image_Item_Quest\CaioInimigosAFrente.mp4" />
     <Content Include="Assets\key.png" />
     <Content Include="Assets\Fireball.mp3" />
-    <Content Include="Assets\SnakeDicer.gif" />
+    <Content Include="Assets\AttackGifs\Dicer\SnakeDicer.gif" />
     <Content Include="Assets\downAnimation\baixogif.gif" />
     <Content Include="Assets\BattleAnimations\NinjaServa.gif" />
     <Content Include="Assets\berseker_Front.png" />

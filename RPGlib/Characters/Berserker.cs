@@ -25,7 +25,7 @@ namespace RPGlib.Characters
             this.Damage = 30;
             this.Lifesteal = 0;
 
-
+            Attacking = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/teste.gif"));
 
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/br.gif"));
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/bl.gif"));
@@ -39,7 +39,7 @@ namespace RPGlib.Characters
         }
 
 
-        public float SacrificeBlood() //Está balanceada!
+        public float Passive() //Está balanceada!
         {
 
             float missing_hp = this.MaxHealth - this.CurrentHP;
@@ -78,9 +78,9 @@ namespace RPGlib.Characters
 
                 if (CountCritic())
                 {
-                    return 2 * Damage * (int)SacrificeBlood();
+                    return 2 * Damage * (int)Passive();
                 }
-                return Damage * (int)SacrificeBlood();
+                return Damage * (int)Passive();
 
             }
             else
@@ -88,7 +88,7 @@ namespace RPGlib.Characters
 
                 if (CountCritic()) //Caso o ataque seja crítico
                 {
-                    lifestealdmg = 2 * Damage * (int)SacrificeBlood();
+                    lifestealdmg = 2 * Damage * (int)Passive();
                     cura = (int)((float)lifestealdmg * ((float)this.Lifesteal / 100)); //Dano que vai ser transformado em cura por %
                     if (CurrentHP + cura > MaxHealth) //Se a vida atual + a cura der maior que a vida máxima, o personagem ficará com a vida máxima
                     {
@@ -102,7 +102,7 @@ namespace RPGlib.Characters
                     }
                 }
                 //Caso o ataque não seja crítico
-                lifestealdmg = Damage * (int)SacrificeBlood();
+                lifestealdmg = Damage * (int)Passive();
                 cura = (int)((float)lifestealdmg * ((float)this.Lifesteal / 100)); //Dano que vai ser transformado em cura por %
                 if (CurrentHP + cura > MaxHealth)//Se a vida atual + a cura der maior que a vida máxima, o personagem ficará com a vida máxima
                 {

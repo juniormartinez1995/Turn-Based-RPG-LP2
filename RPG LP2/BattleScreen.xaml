@@ -53,12 +53,15 @@
             </Image.RenderTransform>
 
         </Image>
-        <Image x:Name="Fireball" Opacity ="0" Height="100" Canvas.Left="176" Canvas.Top="297" Width="100" Source="Assets/FireBall.gif" >
-           
-
-        </Image>
-        <Image x:Name="SnakeDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/SnakeDicer.gif"/>
-
+        
+        <!--Fireball-->
+        <Image x:Name="Fireball" Opacity ="0" Height="100" Canvas.Left="176" Canvas.Top="297" Width="100" Source="Assets/FireBall.gif" />
+        <!--Snake-->
+        <Image x:Name="SnakeDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/AttackGifs/Dicer/SnakeDicer.gif"/>
+        <!--Ghost-->
+        <Image x:Name="GhostDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/AttackGifs/Dicer/ghost_spellq.gif"/>
+        <!--Water-->
+        <Image x:Name="WaterDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/AttackGifs/Dicer/water_spellq.gif"/>
 
     </Canvas>
 

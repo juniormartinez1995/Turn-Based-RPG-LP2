@@ -27,7 +27,7 @@ namespace RPGlib.Characters
         public int Damage { get; set; }
         public int Lifesteal { get; set; }
 
-
+        public BitmapImage Attacking { get; set; }
         public BitmapImage RightMoviment { get; set; }
         public BitmapImage LeftMoviment { get; set; }
         public BitmapImage UpMoviment { get; set; }
@@ -62,6 +62,11 @@ namespace RPGlib.Characters
 
             return criticCalc <= CriticRate;
 
+        }
+
+        public virtual int Passive()
+        {
+            return 1;
         }
 
         public virtual int BasicSkill()

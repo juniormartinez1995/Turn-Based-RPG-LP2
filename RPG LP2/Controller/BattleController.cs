@@ -54,32 +54,30 @@ namespace RPG_LP2
             switch (button)
             {
                 case 1:
+
                     if (person is Berserker)
                     {
                         int damageTurn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
-
-                        //MOSTRAR O DANO CAUSADO NA TELA
-                        Debug.WriteLine("Dano causado = " + damageTurn + "\n");
                         mob.HP -= damageTurn;
                     }
                     if (person is Dicer)
                     {
                         if (person.CurrentMana >= 50)
                         {
-                            Debug.WriteLine("CHEGUEI AQUI");
                             int damageturn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
                             person.CurrentMana -= 50;
                             mob.HP -= damageturn;
                         }
                         else
                         {
-
+                            //do nothing
                         }
 
                     }
                     break;
 
                 case 2:
+
                     if (person is Berserker)
                     {
                         if (person.CurrentMana >= 100)
@@ -96,6 +94,12 @@ namespace RPG_LP2
                     }
                     if(person is Dicer)
                     {
+                        if(person.CurrentMana >= 80) 
+                        {
+                            person.CurrentMana -= 80;
+                            int damageTurn = CheckArmorDamage(person.Skill1() - mob.currentArmor);
+                            mob.HP -= damageTurn;
+                        }
 
                     }
                     break;
@@ -108,12 +112,13 @@ namespace RPG_LP2
                     }
                     if (person is Dicer)
                     {
-
+                        if (person.CurrentMana >= 150) {
+                            person.CurrentMana -= 150;
+                            int damageTurn = CheckArmorDamage(person.Skill1() - mob.currentArmor);
+                            mob.HP -= damageTurn;
+                        }
                     }
-
-
                     break;
-
 
             }
         }
