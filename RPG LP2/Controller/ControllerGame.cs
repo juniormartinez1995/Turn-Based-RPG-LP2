@@ -106,6 +106,20 @@ namespace RPG_LP2
             else return false;
         }
 
+
+        public static bool IsSkillHittingPerson(Image Player, Image Enemy)
+        {
+
+            if (Canvas.GetLeft(Player) + Player.Width >= Canvas.GetLeft(Enemy) &&
+                Canvas.GetLeft(Player) <= Canvas.GetLeft(Enemy) + Enemy.Width &&
+                Canvas.GetTop(Player) + Player.Height >= Canvas.GetTop(Enemy) &&
+                Canvas.GetTop(Player) <= Canvas.GetTop(Enemy) + Enemy.Height
+                ) {
+                return true;
+
+            }
+            else return false;
+        }
         public static bool CheckCollision(Character PlayerObject, Image Player, Image ObjectCollided)
         {
             double PlayerRight = Canvas.GetLeft(Player) + Player.Width;

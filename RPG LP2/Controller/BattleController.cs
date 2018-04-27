@@ -20,6 +20,7 @@ namespace RPG_LP2
         // public static Page TelaAtual { get; set; }
 
         static int Turn = 0;
+        static int dmg = 0;
 
         public static int InicializeBattle(Character person, Mob mob, int button)
         {
@@ -28,7 +29,7 @@ namespace RPG_LP2
         }
         static DispatcherTimer timerPlayer = new DispatcherTimer();
 
-        public static void CheckTurn(Character person, Mob mob, int button, Button btn_actual) // checa se é o turno do mob ou do player
+        public async static void CheckTurn(Character person, Mob mob, int button, Button btn_actual) // checa se é o turno do mob ou do player
         {
             if (FinishBattle(person, mob))
             {
@@ -40,87 +41,81 @@ namespace RPG_LP2
             if (FinishBattle(person, mob))
             {
                 Turn++;
+
+                await Task.Delay(500);
+                TurnMobAnimation();
                 MobTurn(person, mob, button);
 
             }
 
         }
 
-        public static void PlayerTurn(Character person, Mob mob, int button, Button btn_actual)
+        public static int PlayerTurn(Character person, Mob mob, int button, Button btn_actual)
         {
             //MOSTRAR O NÚMERO DO TURNO
             Debug.WriteLine("Turno: " + Turn);
 
-            switch (button)
-            {
-                case 1:
 
-                    if (person is Berserker)
-                    {
-                        int damageTurn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
-                        mob.HP -= damageTurn;
+            switch (button) {
+                case 1:
+                    if (person is Berserker) {
+                        dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+
+                        //MOSTRAR O DANO CAUSADO NA TELA
+                        Debug.WriteLine("Dano causado = " + dmg + "\n");
+                        mob.HP -= dmg;
                     }
-                    if (person is Dicer)
-                    {
-                        if (person.CurrentMana >= 50)
-                        {
-                            int damageturn = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+                    if (person is Dicer) {
+                        if (person.CurrentMana >= 50) {
+                            Debug.WriteLine("CHEGUEI AQUI");
+                            dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
                             person.CurrentMana -= 50;
-                            mob.HP -= damageturn;
+                            mob.HP -= dmg;
                         }
-                        else
-                        {
-                            //do nothing
+                        else {
+                            Debug.WriteLine("Você não tem mana o suficiente para castar essa habilidade");
                         }
 
                     }
                     break;
-
                 case 2:
 
-                    if (person is Berserker)
-                    {
-                        if (person.CurrentMana >= 100)
-                        {
+                    if (person is Berserker) {
+                        if (person.CurrentMana >= 100) {
+                            dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
                             person.CurrentMana -= 100;
-                            mob.HP -= person.Skill1();
+                            mob.HP -= dmg;
                             Debug.WriteLine("Dano causado = " + person.Skill1() + "\n");
                         }
 
-                        else
-                        {
+                        else {
                             Debug.WriteLine("Você não tem mana o suficiente para castar essa habilidade");
                         }
                     }
-                    if(person is Dicer)
-                    {
-                        if(person.CurrentMana >= 80) 
-                        {
-                            person.CurrentMana -= 80;
-                            int damageTurn = CheckArmorDamage(person.Skill1() - mob.currentArmor);
-                            mob.HP -= damageTurn;
-                        }
-
+                    if (person is Dicer) {
+                        dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
+                        person.CurrentMana -= 100;
+                        mob.HP -= dmg;
                     }
                     break;
 
                 case 3:
-                    if (person is Berserker)
-                    {
+
+                    if (person is Berserker) {
                         person.CurrentHP -= person.Skill2();
                         mob.HP = mob.HP / 2;
                     }
-                    if (person is Dicer)
-                    {
-                        if (person.CurrentMana >= 150) {
-                            person.CurrentMana -= 150;
-                            int damageTurn = CheckArmorDamage(person.Skill1() - mob.currentArmor);
-                            mob.HP -= damageTurn;
-                        }
+                    if (person is Dicer) {
+                        dmg = CheckArmorDamage(person.Skill2() - mob.currentArmor);
+                        person.CurrentMana -= 100;
+                        mob.HP -= dmg;
                     }
+
                     break;
 
+
             }
+            return dmg;
         }
 
         public static void MobTurn(Character person, Mob mob, int button)
@@ -190,6 +185,21 @@ namespace RPG_LP2
             return damage;
         }
 
+        public static int ReturnDmgTurn()
+        {
+            return dmg;
+        }
+
+        public static bool TurnMobAnimation()
+        {
+            if (Turn % 2 != 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
     }
 }
 

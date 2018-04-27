@@ -37,6 +37,10 @@ namespace RPG_LP2
             Mob1.Source = Ninja;
             heart_icon.Source = heart_stopped;
         }
+
+        //Timer HitBox
+        DispatcherTimer TimerHitbox = new DispatcherTimer();
+
         //Timer Berserker
         DispatcherTimer TimerSword = new DispatcherTimer();
 
@@ -44,6 +48,9 @@ namespace RPG_LP2
         DispatcherTimer TimerSnakeDicer = new DispatcherTimer();
         DispatcherTimer TimerGhostDicer = new DispatcherTimer();
         DispatcherTimer TimerWaterDicer = new DispatcherTimer();
+
+        //Timer Mob
+        DispatcherTimer TimerKnife = new DispatcherTimer();
 
         Character BattlePlayer;
         Mob Mob_;
@@ -56,6 +63,7 @@ namespace RPG_LP2
 
         int button = 0;
         int turn;
+        int cont = 0;
 
         private async void DisplayEndedBattleDialog()
         {
@@ -106,18 +114,22 @@ namespace RPG_LP2
             if(BattlePlayer is Berserker){
                 Sword.Opacity = 100;
                 TimerSword.Start();
-            
-              // ControllerGame.PlaySoundSword("SoundSword.mp3");
+                TimerHitbox.Start();
+
+                // ControllerGame.PlaySoundSword("SoundSword.mp3");
             }
 
             if (BattlePlayer is Dicer)
             {
 
                 WaterDicer.Opacity = 100;
-                //ControllerGame.PlaySoundsRPG("Fireball.mp3");
                 TimerWaterDicer.Start();
-            
-              
+
+                Knife.Opacity = 100;
+                AnimationKnifeMob();
+
+                TimerHitbox.Start();
+
             }
 
         }
@@ -128,6 +140,7 @@ namespace RPG_LP2
             if (BattlePlayer is Berserker) {
                 Sword.Opacity = 100;
                 TimerSword.Start();
+                TimerHitbox.Start();
 
                 // ControllerGame.PlaySoundSword("SoundSword.mp3");
             }
@@ -143,7 +156,7 @@ namespace RPG_LP2
                 SnakeDicer.Opacity = 100;
                 ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
                 TimerSnakeDicer.Start();
-
+                TimerHitbox.Start();
 
             }
 
@@ -154,6 +167,7 @@ namespace RPG_LP2
             if (BattlePlayer is Berserker)
             {
                 BattleController.CheckTurn(BattlePlayer, Mob_, 3, btnSkillTwo);
+                TimerHitbox.Start();
             }
 
             if(BattlePlayer is Dicer)
@@ -161,7 +175,7 @@ namespace RPG_LP2
                 GhostDicer.Opacity = 100;
                 //ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
                 TimerGhostDicer.Start();
-                
+                TimerHitbox.Start();
             }
         }
 
@@ -193,7 +207,7 @@ namespace RPG_LP2
             else if (ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1)) {
                 BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
                 AttackingAnimation(false);
-                Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(Person1) + 95);
+                Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(Person1) + 82);
                 SnakeDicer.Opacity = 0;
                 TimerSnakeDicer.Stop();
 
@@ -235,8 +249,46 @@ namespace RPG_LP2
             }
 
         }
-       
-        
+
+        //ANIMAÇÃO DAS SKILLS DO MOB ------------------------------------------------------
+        public void TimerKnife_Tick(object sender, object e)
+        {
+            if (!ControllerGame.IsSkillHittingPerson(Knife, Person1)) Canvas.SetLeft(Knife, Canvas.GetLeft(Knife) - 45);
+
+            else if (ControllerGame.IsSkillHittingPerson(Knife, Person1)) {
+                Canvas.SetLeft(Knife, Canvas.GetLeft(Person1) + 560);
+                Knife.Opacity = 0;
+                TimerKnife.Stop();
+
+            }
+        }
+
+
+        public void AnimationKnifeMob()
+        {
+            //  if (BattleController.TurnMobAnimation()){
+            Knife.Opacity = 100;
+            TimerKnife.Start();
+
+            //  }
+        }
+
+        public void TimerHitbox_Tick(object sender, object e)
+        {
+            if (!ControllerGame.IsSkillHittingEnemy(Sword, Mob1)) {
+                Hitbox.Opacity = 100;
+
+                Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
+
+                cont++;
+                if (cont == 2) {
+                    Hitbox.Opacity = 0;
+                    cont = 0;
+                    TimerHitbox.Stop();
+
+                }
+            }
+        }
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -327,7 +379,14 @@ namespace RPG_LP2
 
             TimerGhostDicer.Tick += TimerGhost_Tick;
             TimerGhostDicer.Interval = new TimeSpan(0, 0, 0, 0, 40);
-         
+
+
+            TimerHitbox.Tick += TimerHitbox_Tick;
+            TimerHitbox.Interval = new TimeSpan(0, 0, 0, 1, 0);
+
+            TimerKnife.Tick += TimerKnife_Tick;
+            TimerKnife.Interval = new TimeSpan(0, 0, 0, 0, 40);
+
         }
 
         public void UnsignPageEvents()
@@ -343,7 +402,9 @@ namespace RPG_LP2
             TimerWaterDicer.Tick -= TimerWater_Tick;
             TimerSnakeDicer.Tick -= TimerSnake_Tick;
             TimerGhostDicer.Tick -= TimerGhost_Tick;
-            
+
+            TimerHitbox.Tick -= TimerHitbox_Tick;
+            TimerKnife.Tick -= TimerKnife_Tick;
         }
     }
 }

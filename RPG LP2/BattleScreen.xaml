@@ -63,6 +63,21 @@
         <!--Water-->
         <Image x:Name="WaterDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/AttackGifs/Dicer/water_spellq.gif"/>
 
+        
+        <!--HITBOX-->
+        <TextBlock x:Name="Hitbox" Opacity =" 0" Canvas.Left="508" Canvas.Top="240" Text="-" TextWrapping="Wrap" FontSize="36" Height="45" Width="76" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="-22.926"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        
+        <!--Faca-->
+        <Image x:Name="Knife" Height="58"  Opacity ="0" Canvas.Left="534" Canvas.Top="312" Width="50" Source="Assets/knife.png" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Image.RenderTransform>
+                <CompositeTransform Rotation="-45.873"/>
+            </Image.RenderTransform>
+        </Image>
+        
     </Canvas>
 
 </Page>
