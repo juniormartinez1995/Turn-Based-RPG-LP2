@@ -191,7 +191,7 @@ namespace RPG_LP2
             else if (ControllerGame.IsSkillHittingEnemy(WaterDicer, Mob1)) {
                 BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
                 AttackingAnimation(false);
-                Canvas.SetLeft(GhostDicer, Canvas.GetLeft(Person1) + 82);
+                Canvas.SetLeft(WaterDicer, Canvas.GetLeft(Person1) + 82);
                 WaterDicer.Opacity = 0;
                 TimerWaterDicer.Stop();
 
