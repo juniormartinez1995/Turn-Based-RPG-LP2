@@ -125,7 +125,6 @@ namespace RPG_LP2
                 WaterDicer.Opacity = 100;
                 TimerWaterDicer.Start();
 
-                Knife.Opacity = 100;
                 AnimationKnifeMob();
 
                 TimerHitbox.Start();
@@ -251,12 +250,12 @@ namespace RPG_LP2
         }
 
         //ANIMAÇÃO DAS SKILLS DO MOB ------------------------------------------------------
-        public void TimerKnife_Tick(object sender, object e)
+        public  void TimerKnife_Tick(object sender, object e)
         {
             if (!ControllerGame.IsSkillHittingPerson(Knife, Person1)) Canvas.SetLeft(Knife, Canvas.GetLeft(Knife) - 45);
 
             else if (ControllerGame.IsSkillHittingPerson(Knife, Person1)) {
-                Canvas.SetLeft(Knife, Canvas.GetLeft(Person1) + 560);
+                Canvas.SetLeft(Knife, Canvas.GetLeft(Person1) + 650);
                 Knife.Opacity = 0;
                 TimerKnife.Stop();
 
@@ -264,13 +263,12 @@ namespace RPG_LP2
         }
 
 
-        public void AnimationKnifeMob()
+        public async void AnimationKnifeMob()
         {
-            //  if (BattleController.TurnMobAnimation()){
-            Knife.Opacity = 100;
-            TimerKnife.Start();
+            //if (BattleController.TurnMobAnimation()) 
 
-            //  }
+            if (Mob_ is Ninja) { await Task.Delay(600); Knife.Opacity = 100; TimerKnife.Start(); }
+
         }
 
         public void TimerHitbox_Tick(object sender, object e)

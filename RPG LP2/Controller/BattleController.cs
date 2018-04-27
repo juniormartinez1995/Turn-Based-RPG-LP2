@@ -42,7 +42,7 @@ namespace RPG_LP2
             {
                 Turn++;
 
-                await Task.Delay(500);
+                await Task.Delay(600);
                 TurnMobAnimation();
                 MobTurn(person, mob, button);
 
