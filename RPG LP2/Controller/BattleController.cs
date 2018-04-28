@@ -42,7 +42,7 @@ namespace RPG_LP2
             {
                 Turn++;
 
-                await Task.Delay(600);
+                await Task.Delay(800);
                 TurnMobAnimation();
                 MobTurn(person, mob, button);
 
@@ -59,56 +59,64 @@ namespace RPG_LP2
             switch (button) {
                 case 1:
                     if (person is Berserker) {
-                        dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
 
-                        //MOSTRAR O DANO CAUSADO NA TELA
-                        Debug.WriteLine("Dano causado = " + dmg + "\n");
-                        mob.HP -= dmg;
+                        dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+                        DealMobDamage(dmg, mob);
                     }
                     if (person is Dicer) {
-                        if (person.CurrentMana >= 50) {
-                            Debug.WriteLine("CHEGUEI AQUI");
-                            dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
-                            person.CurrentMana -= 50;
-                            mob.HP -= dmg;
-                        }
-                        else {
-                            Debug.WriteLine("Você não tem mana o suficiente para castar essa habilidade");
-                        }
 
+                        if (person.ManaCountDown(50)) {
+                            
+                            dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+                            DealMobDamage(dmg, mob);
+                        }
                     }
                     break;
+
                 case 2:
 
                     if (person is Berserker) {
-                        if (person.CurrentMana >= 100) {
-                            dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
-                            person.CurrentMana -= 100;
-                            mob.HP -= dmg;
-                            Debug.WriteLine("Dano causado = " + person.Skill1() + "\n");
-                        }
 
-                        else {
-                            Debug.WriteLine("Você não tem mana o suficiente para castar essa habilidade");
+                        if (person.ManaCountDown(100)) {
+
+                            dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
+                            DealMobDamage(dmg, mob);
+                 
                         }
                     }
+
                     if (person is Dicer) {
-                        dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
-                        person.CurrentMana -= 100;
-                        mob.HP -= dmg;
+
+                        if (person.ManaCountDown(100)) {
+
+                            dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
+                            person.CurrentMana -= 100;
+                            DealMobDamage(dmg, mob);
+                        }
+                       
                     }
                     break;
 
                 case 3:
 
+                    //Isso aqui ta erradíssimo
                     if (person is Berserker) {
+
                         person.CurrentHP -= person.Skill2();
                         mob.HP = mob.HP / 2;
                     }
+
                     if (person is Dicer) {
-                        dmg = CheckArmorDamage(person.Skill2() - mob.currentArmor);
-                        person.CurrentMana -= 100;
-                        mob.HP -= dmg;
+
+                        if (person.ManaCountDown(150))
+                        {
+                            dmg = CheckArmorDamage(person.Skill2() - mob.currentArmor);
+                            person.CurrentMana -= 100;
+                            DealMobDamage(dmg, mob);
+
+                        }
+
+                        
                     }
 
                     break;
@@ -199,6 +207,11 @@ namespace RPG_LP2
                 return false;
             }
 
+        }
+
+        private static void DealMobDamage(int dmg, Mob mob)
+        {
+            mob.HP -= dmg;
         }
     }
 }

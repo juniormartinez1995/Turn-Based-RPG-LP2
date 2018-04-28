@@ -255,7 +255,7 @@ namespace RPG_LP2
             if (!ControllerGame.IsSkillHittingPerson(Knife, Person1)) Canvas.SetLeft(Knife, Canvas.GetLeft(Knife) - 45);
 
             else if (ControllerGame.IsSkillHittingPerson(Knife, Person1)) {
-                Canvas.SetLeft(Knife, Canvas.GetLeft(Person1) + 650);
+                Canvas.SetLeft(Knife, Canvas.GetLeft(Person1) + 740);
                 Knife.Opacity = 0;
                 TimerKnife.Stop();
 
@@ -267,7 +267,8 @@ namespace RPG_LP2
         {
             //if (BattleController.TurnMobAnimation()) 
 
-            if (Mob_ is Ninja) { await Task.Delay(600); Knife.Opacity = 100; TimerKnife.Start(); }
+            if (Mob_ is Ninja) { await Task.Delay(800); Knife.Opacity = 100; TimerKnife.Start(); }
+            if (Mob_ is PablloVittar) { await Task.Delay(800); Knife.Opacity = 100; TimerKnife.Start(); }
 
         }
 
@@ -344,6 +345,13 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(LosePage));
         }
 
+        private void BattlePlayer_NoMana(object sender, EventArgs args)
+        {
+            btnSkillBasic.Visibility = 0;
+            btnSkillOne.Visibility = 0;
+            btnSkillTwo.Visibility = 0;
+        }
+
         private void AttackingAnimation(bool isAttacking)
         {
             if(isAttacking) 
@@ -360,6 +368,7 @@ namespace RPG_LP2
         {
             Mob_.MobDead += Mob__MobDead;
             BattlePlayer.CharacterDead += BattlePlayer_CharacterDead;
+            BattlePlayer.NoMana += BattlePlayer_NoMana;
 
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
@@ -391,6 +400,7 @@ namespace RPG_LP2
         {
             Mob_.MobDead -= Mob__MobDead;
             BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
+            BattlePlayer.NoMana -= BattlePlayer_NoMana;
 
             timer.Tick -= Timer_Tick;
             timer.Stop();

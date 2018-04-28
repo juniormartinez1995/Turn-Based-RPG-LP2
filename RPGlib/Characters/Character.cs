@@ -42,6 +42,9 @@ namespace RPGlib.Characters
         public delegate void CharacterDeadEventHandler(object sender, EventArgs args);
         public event CharacterDeadEventHandler CharacterDead;
 
+        public delegate void NoManaEventHandler(object sender, EventArgs args);
+        public event NoManaEventHandler NoMana;
+
         public void OpenChest(Chest chest)
         {
             for (int x = chest.ItemChest.Count() - 1; x >= 0; x--)
@@ -90,11 +93,6 @@ namespace RPGlib.Characters
             return 1;
         }
 
-
-
-        //public delegate void upLevelHandler(object sender, EventArgs e);
-        //public event upLevelHandler upLevel;
-
         public bool LevelUp(int xpGain)
         {
             while ((this.CurrentXP += xpGain) > MaxXP)
@@ -119,6 +117,11 @@ namespace RPGlib.Characters
             CharacterDead?.Invoke(this, EventArgs.Empty);
         }
 
+        protected virtual void OnNoMana()
+        {
+            NoMana?.Invoke(this, EventArgs.Empty);
+        }
+
         public bool IsDead()
         {
             if (this.CurrentHP <= 0) 
@@ -132,8 +135,11 @@ namespace RPGlib.Characters
 
         public bool ManaCountDown(int currentSkill)
         {
-            if (CurrentMana < currentSkill)
-                return false; //NAO PODE USAR A SKILL
+            if (CurrentMana < currentSkill) 
+            { 
+                OnNoMana(); //NAO PODE USAR A SKILL
+                return false;
+            }      
             else
             {
                 CurrentMana -= currentSkill;
