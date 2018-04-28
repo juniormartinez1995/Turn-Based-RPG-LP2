@@ -52,7 +52,6 @@ namespace RPG_LP2
             HeightRatio = _Canvas.Height / 600;
             ControllerGame.PlayAmbienceMap("SoundAmbienceMap2.mp3");
             ControllerGame.PlaySoundsVitorHugo("CaioAbraOBaivis.mp4");
-            Debug.WriteLine("Lista de chave" + DroppedKeys.Count());
         }
 
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
@@ -74,7 +73,7 @@ namespace RPG_LP2
         double WidthRatio, HeightRatio;
         double XSpeed, YSpeed;
         double PosY, PosX; //Posição X e Y do personagem no mapa
-        bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
+        bool Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
 
 
         public void StoreChars(Mob EnemyMob)
@@ -103,6 +102,7 @@ namespace RPG_LP2
             Collision.Add(Collision1);
             Collision.Add(Collision2);
             Collision.Add(Collision3);
+            Collision.Add(MapExit);
         }
 
         public void SetKeyOnMap()
@@ -268,13 +268,22 @@ namespace RPG_LP2
                 }
 
             }
+
+            else if(ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
+            {
+                    this.Frame.Navigate(typeof(Map2), Player);
+                //if(Ninja.IsDead() && PablloVittar.IsDead())
+                //{
+                //}
+
+            }
+
         }
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
             if (IsAnotherPage) return;
 
-            IsKeyPressed = true;
             switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
             {
                 case Windows.System.VirtualKey.Up:
@@ -330,7 +339,6 @@ namespace RPG_LP2
                     XSpeed = 0;
                     break;
             }
-            IsKeyPressed = false;
         }
 
         //Putaria pura daqui pra baixo  x.x  ---------------------------------

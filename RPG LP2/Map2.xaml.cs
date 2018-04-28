@@ -29,14 +29,23 @@ namespace RPG_LP2
         {
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
-
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
+
+            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+            Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
+            StartAnimation();
+            SetCollision();
+            WidthRatio = _Canvas.Width / 800;
+            HeightRatio = _Canvas.Height / 600;
+
         }
+
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
         List<Image> Collision = new List<Image>(); //Lista de colisões no mapa
         List<Image> LockedChests = new List<Image>(); //Lista de baús no mapa
         List<Image> Enemies = new List<Image>(); //Lista de enimigos no mapa
         List<Image> Keys = new List<Image>(); //Lista de chaves no mapa
+        List<Image> DroppedKeys = new List<Image>();
         List<object> MobAndChar = new List<object>();
 
         Character Player; //Personagem que estará no mapa
@@ -45,8 +54,73 @@ namespace RPG_LP2
         Chest ChestControl = new Chest(); //Gerenciamento do baú
 
         double WidthRatio, HeightRatio;
-        double PosY, PosX; //Posição X e Y do personagem no mapa
-        bool IsKeyPressed, Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
+        double PosY, PosX, XSpeed, YSpeed; //Posição X e Y do personagem no mapa
+        bool Up, Down, Right, Left, IsAnotherPage; //Checagem da direção que o personagem está indo
+
+
+        public void StartAnimation()
+        {
+            if (!timer.IsEnabled) //O timer só iniciará se ele estiver desligado
+            {
+                timer.Tick += AnimationEvent;
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+                timer.Start();
+
+            }
+        }
+
+        public void SetCollision()
+        {
+            Collision.Add(LockedChest);
+            Collision.Add(OpenedChest);
+
+        }
+
+        private void AnimationEvent(object sender, object e)
+        {
+            if (IsAnotherPage) return;
+
+            PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
+            PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
+
+            if(!ControllerGame.CheckListCollision(Player, Person1, Collision))
+            {
+
+                if (YSpeed < 0 && PosY > 115 * HeightRatio)  //Movimento, checagem e animação para cima
+                {
+                    ControllerGame.MovePlayer(Person1, 0, YSpeed);
+                    ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
+                }
+
+                if (YSpeed > 0 && PosY < 455 * HeightRatio) //Movimento, checagem e animação para baixo
+                {
+                    ControllerGame.MovePlayer(Person1, 0, YSpeed);
+                    ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
+                }
+
+                if (XSpeed < 0 && PosX > 60 * WidthRatio) //Movimento, checagem e animação para esquerda
+                {
+                    ControllerGame.MovePlayer(Person1, XSpeed, 0);
+                    ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
+                }
+
+                if (XSpeed > 0 && PosX < 690 * WidthRatio) //Movimento, checagem e animação para direita
+                {
+                    ControllerGame.MovePlayer(Person1, XSpeed, 0);
+                    ControllerGame.PaintAnimation(Person1, Player, Right, Left, Up, Down);
+                }
+
+            }
+
+            //else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
+            //{
+            //    if (Ninja.IsDead() && PablloVittar.IsDead())
+            //    {
+            //        this.Frame.Navigate(typeof(Map2), Player);
+            //    }
+
+            //}
+        }
 
         private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -55,14 +129,16 @@ namespace RPG_LP2
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (ControllerGame.CheckLastPage(typeof(SelecClass), this)) {
+            if (ControllerGame.CheckLastPage(typeof(Map), this))
+            {
                 Player = e.Parameter as Character;
                 Person1.Source = Player.IdleRight;
                 MobAndChar.Add(Player);
 
             }
 
-            if (ControllerGame.CheckLastPage(typeof(BattleScreen), this)) {
+            if (ControllerGame.CheckLastPage(typeof(BattleScreen), this))
+            {
                 MobAndChar = e.Parameter as List<Object>;
 
                 Player = MobAndChar.ElementAt(0) as Character;
@@ -76,13 +152,69 @@ namespace RPG_LP2
             IsAnotherPage = false;
         }
 
+
+        private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
+        {
+            if (IsAnotherPage) return;
+
+            switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
+            {
+                case Windows.System.VirtualKey.Up:
+                    Up = true;
+                    YSpeed = -Player.Speed;
+                    break;
+                case Windows.System.VirtualKey.Down:
+                    Down = true;
+                    YSpeed = Player.Speed;
+                    break;
+                case Windows.System.VirtualKey.Left:
+                    Left = true;
+                    XSpeed = -Player.Speed;
+                    break;
+                case Windows.System.VirtualKey.Right:
+                    Right = true;
+                    XSpeed = Player.Speed;
+                    break;
+            }
+        }
+
+        private void CoreWindow_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
+        {
+            //Método para checar quando a tecla é levantada, e cancelar a animação que acontecia
+            switch (args.VirtualKey)
+            {
+                case Windows.System.VirtualKey.Up:
+                    Person1.Source = Player.IdleUp;
+                    Up = false;
+                    YSpeed = 0;
+                    break;
+                case Windows.System.VirtualKey.Down:
+                    Person1.Source = Player.IdleDown;
+                    Down = false;
+                    YSpeed = 0;
+                    break;
+
+                case Windows.System.VirtualKey.Left:
+                    Person1.Source = Player.IdleLeft;
+                    Left = false;
+                    XSpeed = 0;
+                    break;
+
+                case Windows.System.VirtualKey.Right:
+                    Person1.Source = Player.IdleRight;
+                    Right = false;
+                    XSpeed = 0;
+                    break;
+            }
+        }
+
         //Putaria pura daqui pra baixo -------
 
         private void ShowItemStatus1(object sender, TappedRoutedEventArgs e)
         {
             Item actual = Player.inventory.inventoryList[0];
 
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             ItemStatus1.Text = actual.ItemName + "\n" + actual.Description;
         }
 
@@ -90,7 +222,7 @@ namespace RPG_LP2
         {
             Item actual = Player.inventory.inventoryList[1];
 
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             ItemStatus2.Text = actual.ItemName + "\n" + actual.Description;
         }
 
@@ -98,7 +230,7 @@ namespace RPG_LP2
         {
             Item actual = Player.inventory.inventoryList[2];
 
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             ItemStatus3.Text = actual.ItemName + "\n" + actual.Description;
         }
 
@@ -106,7 +238,7 @@ namespace RPG_LP2
         {
             Item actual = Player.inventory.inventoryList[3];
 
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             ItemStatus4.Text = actual.ItemName + "\n" + actual.Description;
         }
 
@@ -114,7 +246,7 @@ namespace RPG_LP2
         {
             Item actual = Player.inventory.inventoryList[4];
 
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             ItemStatus5.Text = actual.ItemName + "\n" + actual.Description;
         }
 
@@ -122,10 +254,10 @@ namespace RPG_LP2
         {
             Item actual = Player.inventory.inventoryList[5];
 
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             ItemStatus6.Text = actual.ItemName + "\n" + actual.Description;
         }
-    
+
     }
 
 }

@@ -17,6 +17,7 @@
         <Image x:Name="Collision1" Height="47" Canvas.Left="603" Canvas.Top="232" Width="25"/>
         <Image x:Name="Collision2" Height="30" Canvas.Left="261" Canvas.Top="128" Width="20"/>
         <Image x:Name="Collision3" Height="30" Canvas.Left="376" Canvas.Top="128" Width="20"/>
+        <Image x:Name="MapExit" Height="26" Canvas.Left="301" Canvas.Top="99" Width="60"/>
 
         <!-- Lista de baús  -->
         <Image x:Name="Chest0" Height="26" Canvas.Left="140" Canvas.Top="415" Width="21"/>
@@ -252,7 +253,7 @@
                 </Flyout>
             </FlyoutBase.AttachedFlyout>
         </Image>
-        
+
     </Canvas>
 
 </Page>
