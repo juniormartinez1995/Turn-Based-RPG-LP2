@@ -215,6 +215,21 @@ namespace RPG_LP2
             }
         }
 
+        public static void RefreshItems(Character player, TextBlock qt_lifePot, TextBlock qt_manaPot, List<InventoryBitImage> ListImage)
+        {
+            qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
+            qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString();
+
+            int countItem = 0;
+            foreach (Item item in player.inventory.inventoryList) {
+                ListImage[countItem].BitImage = item.ImageItem;
+                countItem++;
+            }
+            foreach (InventoryBitImage BitmapImage in ListImage) {
+                BitmapImage.ImageMap.Source = BitmapImage.BitImage;
+            }
+        }
+
         public static void MovePlayer(Image Player, double XSpeed, double YSpeed)
         {
             Canvas.SetLeft(Player, Canvas.GetLeft(Player) + XSpeed);

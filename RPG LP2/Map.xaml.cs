@@ -110,6 +110,7 @@ namespace RPG_LP2
             DroppedKeys.Add(FirstMapKey);
         }
 
+        //Método para adicionar as imagens a uma list
         private void AddImageOnList()
         {
             ListInvetoryImage.Add(new InventoryBitImage(Item1, null));
@@ -271,7 +272,12 @@ namespace RPG_LP2
 
             else if(ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
             {
+
+                if (Ninja.IsDead() && PablloVittar.IsDead()) 
+                {
                     this.Frame.Navigate(typeof(Map2), Player);
+                }
+                    
                 //if(Ninja.IsDead() && PablloVittar.IsDead())
                 //{
                 //}

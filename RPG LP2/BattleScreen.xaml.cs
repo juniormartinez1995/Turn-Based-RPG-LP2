@@ -347,8 +347,14 @@ namespace RPG_LP2
 
         private void BattlePlayer_NoMana(object sender, EventArgs args)
         {
+            
             btnSkillBasic.Visibility = 0;
+            btnSkillBasic.Opacity = 0;
+
+            btnSkillOne.Opacity = 0;
             btnSkillOne.Visibility = 0;
+
+            btnSkillTwo.Opacity = 0;
             btnSkillTwo.Visibility = 0;
         }
 

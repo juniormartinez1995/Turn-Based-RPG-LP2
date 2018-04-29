@@ -35,6 +35,8 @@ namespace RPG_LP2
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
             StartAnimation();
             SetCollision();
+            AddImageOnList();
+            
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
@@ -47,6 +49,7 @@ namespace RPG_LP2
         List<Image> Keys = new List<Image>(); //Lista de chaves no mapa
         List<Image> DroppedKeys = new List<Image>();
         List<object> MobAndChar = new List<object>();
+        List<InventoryBitImage> ListInvetoryImage = new List<InventoryBitImage>(); //Lista das Imagens de Inventário
 
         Character Player; //Personagem que estará no mapa
         PablloVittar PablloVittar = new PablloVittar();
@@ -73,6 +76,17 @@ namespace RPG_LP2
         {
             Collision.Add(LockedChest);
             Collision.Add(OpenedChest);
+
+        }
+
+        private void AddImageOnList()
+        {
+            ListInvetoryImage.Add(new InventoryBitImage(Item1, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item2, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item3, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item4, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item5, null));
+            ListInvetoryImage.Add(new InventoryBitImage(Item6, null));
 
         }
 
@@ -134,6 +148,8 @@ namespace RPG_LP2
                 Player = e.Parameter as Character;
                 Person1.Source = Player.IdleRight;
                 MobAndChar.Add(Player);
+
+                ControllerGame.RefreshItems(Player, qt_lifePot, qt_manaPot, ListInvetoryImage);
 
             }
 
