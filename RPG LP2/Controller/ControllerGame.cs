@@ -197,20 +197,8 @@ namespace RPG_LP2
             {
                 PlaySoundsRPG("SoundOpenChest.mp3");
                 player.OpenChest(ChestControl);
-                qt_lifePot.Text = player.inventory.inventoryPotionLife.Count().ToString();
-                qt_manaPot.Text = player.inventory.inventoryPotionMana.Count().ToString();
 
-                int countItem = 0;
-                PlaySoundsVitorHugo("CaioItem.mp4");
-                foreach (Item item in player.inventory.inventoryList)
-                {
-                    ListImage[countItem].BitImage = item.ImageItem;
-                    countItem++;
-                }
-                foreach (InventoryBitImage BitmapImage in ListImage)
-                {
-                    BitmapImage.ImageMap.Source = BitmapImage.BitImage;
-                }
+                RefreshItems(player, qt_lifePot, qt_manaPot, ListImage);
 
             }
         }
