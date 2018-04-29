@@ -90,8 +90,8 @@ namespace RPG_LP2
         //Método para setar os inimigos no mapa
         public void SetEnemiesPosition()
         {
-            Enemies.Add(Enemy0);
-            Enemies.Add(Enemy1);
+            Enemies.Add(NinjaIMG);
+            Enemies.Add(PabbloVitarIMG);
 
         }
 
@@ -244,40 +244,32 @@ namespace RPG_LP2
                 DroppedKeys.Clear();
             }
 
-
-
-            //Checa se o player se encontra de frente com o mob, se sim, iniciará a tela de batalha
-            else if (ControllerGame.CheckListCollision(Player, Person1, Enemies))
+            //Checar se o personagem encontra o Ninja
+            if (ControllerGame.CheckCollision(Player, Person1, Enemies.Find(x => x.Name == "NinjaIMG")) && !Ninja.IsDead())
             {
-                //Precisa colocar restrições se os mobs ja foram derrotados ou nao
-                if (ControllerGame.CheckEnemy(Player, Person1, Enemies, 0) && !Ninja.IsDead())
-                {
-                    if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
-                    StoreChars(Ninja as Mob);
-                    IsAnotherPage = true;
-                    this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
-
-                }
-
-                if (ControllerGame.CheckEnemy(Player, Person1, Enemies, 1) && !PablloVittar.IsDead())
-                {
-
-                    if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
-                    StoreChars(PablloVittar as Mob);
-                    IsAnotherPage = true;
-                    this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
-                }
+                if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
+                StoreChars(Ninja as Mob);
+                IsAnotherPage = true;
+                Debug.WriteLine("TO QUERENDO MUDAR DE MAPA");
+                this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
 
             }
 
-            else if(ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
+            //Checar se o personagem encontra o Pabblo
+            if (ControllerGame.CheckCollision(Player, Person1, Enemies.Find(x => x.Name == "PabbloVitarIMG")) && !PablloVittar.IsDead())
             {
 
-                if (Ninja.IsDead() && PablloVittar.IsDead()) 
-                {
-                    this.Frame.Navigate(typeof(Map2), Player);
-                }
-                    
+                if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
+                StoreChars(PablloVittar as Mob);
+                IsAnotherPage = true;
+                this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+            }
+
+
+            else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
+            {
+                this.Frame.Navigate(typeof(Map2), Player);
+
                 //if(Ninja.IsDead() && PablloVittar.IsDead())
                 //{
                 //}

@@ -17,7 +17,7 @@
         <Image x:Name="Collision1" Height="47" Canvas.Left="603" Canvas.Top="232" Width="25"/>
         <Image x:Name="Collision2" Height="30" Canvas.Left="261" Canvas.Top="128" Width="20"/>
         <Image x:Name="Collision3" Height="30" Canvas.Left="376" Canvas.Top="128" Width="20"/>
-        <Image x:Name="MapExit" Height="26" Canvas.Left="301" Canvas.Top="99" Width="60"/>
+        <Image x:Name="MapExit" Height="31" Canvas.Left="301" Canvas.Top="99" Width="60"/>
 
         <!-- Lista de baús  -->
         <Image x:Name="Chest0" Height="26" Canvas.Left="140" Canvas.Top="415" Width="21"/>
@@ -28,8 +28,8 @@
 
 
         <!-- Lista de inimigos  -->
-        <Image x:Name="Enemy0" Height="28" Canvas.Left="230" Canvas.Top="347" Width="10"/>
-        <Image x:Name="Enemy1" Height="27" Canvas.Left="230" Canvas.Top="235" Width="10"/>
+        <Image x:Name="NinjaIMG" Height="28" Canvas.Left="230" Canvas.Top="347" Width="10"/>
+        <Image x:Name="PabbloVitarIMG" Height="27" Canvas.Left="230" Canvas.Top="235" Width="10"/>
 
         <!--Seção dos retângulos-->
 
