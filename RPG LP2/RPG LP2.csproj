@@ -156,6 +156,8 @@
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
     <Content Include="Assets\Dungeons\SecondDungeon.gif" />
+    <Content Include="Assets\DyingGifs\b_dy.gif" />
+    <Content Include="Assets\DyingGifs\d_dy.gif" />
     <Content Include="Assets\FireBall.gif" />
     <Content Include="Assets\Gif_Image_Item_Quest\CaioInimigosAFrente.mp4" />
     <Content Include="Assets\key.png" />

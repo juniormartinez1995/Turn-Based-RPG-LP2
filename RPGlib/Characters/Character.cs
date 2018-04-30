@@ -28,6 +28,7 @@ namespace RPGlib.Characters
         public int Lifesteal { get; set; }
 
         public BitmapImage Attacking { get; set; }
+        public BitmapImage Dying { get; set; }
         public BitmapImage RightMoviment { get; set; }
         public BitmapImage LeftMoviment { get; set; }
         public BitmapImage UpMoviment { get; set; }

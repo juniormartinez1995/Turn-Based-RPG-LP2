@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGlib.Characters;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,10 +24,14 @@ namespace RPG_LP2
     /// </summary>
     public sealed partial class LosePage : Page
     {
+        Character Player;
 
         public LosePage()
         {
             this.InitializeComponent();
+
+            
+
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
         }
 
@@ -39,5 +44,16 @@ namespace RPG_LP2
         {
             this.Frame.Navigate(typeof(MainPage));
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (ControllerGame.CheckLastPage(typeof(Map), this)) {
+
+                Player = e.Parameter as Character;
+                img_dy.Source = Player.Dying;
+            }
+
+        }
+
     }
 }

@@ -27,6 +27,7 @@ namespace RPGlib.Characters
             this.Lifesteal = 0;
 
             Attacking = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/datk.gif"));
+            Dying = new BitmapImage(new Uri(@"ms-appx:///Assets/DyingGifs/d_dy.gif"));
 
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/rightAnimation/dr.gif")); 
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/leftAnimation/dl.gif"));

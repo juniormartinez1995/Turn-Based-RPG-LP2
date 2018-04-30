@@ -25,7 +25,8 @@ namespace RPGlib.Characters
             this.Damage = 30;
             this.Lifesteal = 0;
 
-            Attacking = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/teste.gif"));
+            Attacking = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/batk.gif"));
+            Dying = new BitmapImage(new Uri(@"ms-appx:///Assets/DyingGifs/b_dy.gif"));
 
             UpMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/br.gif"));
             DownMoviment = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/bl.gif"));
@@ -39,7 +40,7 @@ namespace RPGlib.Characters
         }
 
 
-        public float Passive() //Está balanceada!
+        public override int Passive() //Está balanceada!
         {
 
             float missing_hp = this.MaxHealth - this.CurrentHP;
