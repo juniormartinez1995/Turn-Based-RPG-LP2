@@ -21,6 +21,7 @@ namespace RPG_LP2
 
         static int Turn = 0;
         static int dmg = 0;
+        static int dmgMob = 0;
 
         public static int InicializeBattle(Character person, Mob mob, int button)
         {
@@ -42,7 +43,7 @@ namespace RPG_LP2
             {
                 Turn++;
 
-                await Task.Delay(800);
+                await Task.Delay(1200);
                 TurnMobAnimation();
                 MobTurn(person, mob, button);
 
@@ -126,17 +127,20 @@ namespace RPG_LP2
             return dmg;
         }
 
-        public static void MobTurn(Character person, Mob mob, int button)
+        public static int MobTurn(Character person, Mob mob, int button)
         {
-            int damageTurn = CheckArmorDamage(mob.Skills() - person.CurrentArmor);
-            person.CurrentHP -= damageTurn;
+            dmgMob = CheckArmorDamage(mob.Skills() - person.CurrentArmor);
+            person.CurrentHP -= dmgMob;
 
             //MOSTRAR VALOR (INT) DO PERSONAGEM E DO MOB
             Debug.WriteLine("Life person = " + person.CurrentHP + "\n" + "Life mob = " + mob.HP);
 
-            //CheckTurn(person, mob,turn,button);
+            return dmgMob;
         }
-
+        public static int dmgTurnMob()
+        {
+            return dmgMob;
+        }
 
         public static bool FinishBattle(Character person, Mob mob)
         {

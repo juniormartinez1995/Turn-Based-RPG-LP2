@@ -51,7 +51,7 @@ namespace RPG_LP2
 
         //Timer Mob
         DispatcherTimer TimerKnife = new DispatcherTimer();
-
+        DispatcherTimer TimerHitBoxPerson = new DispatcherTimer();
         Character BattlePlayer;
         Mob Mob_;
         List<Object> CharList;
@@ -64,6 +64,7 @@ namespace RPG_LP2
         int button = 0;
         int turn;
         int cont = 0;
+        int cont1=0;
 
         private async void DisplayEndedBattleDialog()
         {
@@ -115,6 +116,7 @@ namespace RPG_LP2
                 Sword.Opacity = 100;
                 TimerSword.Start();
                 TimerHitbox.Start();
+                AnimationKnifeMob();
 
                 // ControllerGame.PlaySoundSword("SoundSword.mp3");
             }
@@ -140,6 +142,7 @@ namespace RPG_LP2
                 Sword.Opacity = 100;
                 TimerSword.Start();
                 TimerHitbox.Start();
+                AnimationKnifeMob();
 
                 // ControllerGame.PlaySoundSword("SoundSword.mp3");
             }
@@ -156,6 +159,7 @@ namespace RPG_LP2
                 ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
                 TimerSnakeDicer.Start();
                 TimerHitbox.Start();
+                AnimationKnifeMob();
 
             }
 
@@ -167,6 +171,7 @@ namespace RPG_LP2
             {
                 BattleController.CheckTurn(BattlePlayer, Mob_, 3, btnSkillTwo);
                 TimerHitbox.Start();
+                AnimationKnifeMob();
             }
 
             if(BattlePlayer is Dicer)
@@ -175,6 +180,8 @@ namespace RPG_LP2
                 //ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
                 TimerGhostDicer.Start();
                 TimerHitbox.Start();
+                AnimationKnifeMob();
+
             }
         }
 
@@ -267,8 +274,9 @@ namespace RPG_LP2
         {
             //if (BattleController.TurnMobAnimation()) 
 
-            if (Mob_ is Ninja) { await Task.Delay(800); Knife.Opacity = 100; TimerKnife.Start(); }
-            if (Mob_ is PablloVittar) { await Task.Delay(800); Knife.Opacity = 100; TimerKnife.Start(); }
+            if (Mob_ is Ninja) { await Task.Delay(1200); Knife.Opacity = 100; TimerKnife.Start(); }
+            if (Mob_ is PablloVittar) { await Task.Delay(1200); Knife.Opacity = 100; TimerKnife.Start(); }
+            TimerHitBoxPerson.Start();
 
         }
 
@@ -287,6 +295,25 @@ namespace RPG_LP2
 
                 }
             }
+        }
+        public void TimerHitboxPerson_Tick(object sender, object e)
+        {
+            if (!ControllerGame.IsSkillHittingEnemy(Knife, Person1))
+            {
+                HitboxPerson.Opacity = 100;
+
+                HitboxPerson.Text = BattleController.dmgTurnMob().ToString();
+
+                cont1++;
+                if (cont1 == 2)
+                {
+                    HitboxPerson.Opacity = 0;
+                    cont1 = 0;
+                    TimerHitBoxPerson.Stop();
+
+                }
+            }
+
         }
 
 
@@ -400,6 +427,9 @@ namespace RPG_LP2
             TimerKnife.Tick += TimerKnife_Tick;
             TimerKnife.Interval = new TimeSpan(0, 0, 0, 0, 40);
 
+            TimerHitBoxPerson.Tick += TimerHitboxPerson_Tick;
+            TimerHitBoxPerson.Interval = new TimeSpan(0, 0, 0, 1, 0);
+
         }
 
         public void UnsignPageEvents()
@@ -419,6 +449,7 @@ namespace RPG_LP2
 
             TimerHitbox.Tick -= TimerHitbox_Tick;
             TimerKnife.Tick -= TimerKnife_Tick;
+            TimerHitBoxPerson.Tick -= TimerHitboxPerson_Tick;
         }
     }
 }

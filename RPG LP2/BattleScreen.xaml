@@ -66,7 +66,12 @@
 
 
         <!--HITBOX-->
-        <TextBlock x:Name="Hitbox" Opacity =" 0" Canvas.Left="508" Canvas.Top="240" Text="-" TextWrapping="Wrap" FontSize="36" Height="45" Width="76" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="Hitbox" Canvas.Left="545" Canvas.Top="240" Text="-" TextWrapping="Wrap" FontSize="36" Height="45" Width="76" RenderTransformOrigin="0.5,0.5" FontFamily="Hobo Std" FontWeight="Bold"  Foreground="Black" Opacity="0">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="-22.926"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock x:Name="HitboxPerson" Canvas.Left="208" Canvas.Top="240" Text="" TextWrapping="Wrap" FontSize="36" Height="45" Width="76" RenderTransformOrigin="0.5,0.5" FontFamily="Hobo Std" FontWeight="Bold"  Foreground="Black" Opacity="0">
             <TextBlock.RenderTransform>
                 <CompositeTransform Rotation="-22.926"/>
             </TextBlock.RenderTransform>
