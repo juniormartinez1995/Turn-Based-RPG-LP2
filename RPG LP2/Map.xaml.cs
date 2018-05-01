@@ -46,10 +46,12 @@ namespace RPG_LP2
             AddImageOnList(); //Inicializa as imagens do Inventário do mapa em um List
             SetEnemiesPosition(); //Inicializa os inimigos
             SetKeyOnMap();
+
             Generator.ChestPopulate(ChestControl); //Método para gerar os itens randomicamente dentro do baú
 
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
+
             ControllerGame.PlayAmbienceMap("SoundAmbienceMap2.mp3");
             ControllerGame.PlaySoundsVitorHugo("CaioAbraOBaivis.mp4");
         }
@@ -122,7 +124,8 @@ namespace RPG_LP2
 
         }
 
-        private void StartAnimation() // Método para configuração e inicialização do timer da animação
+        // Método para configuração e inicialização do timer da animação
+        private void StartAnimation() 
         {
             if (!timer.IsEnabled) //O timer só iniciará se ele estiver desligado
             {
@@ -162,28 +165,9 @@ namespace RPG_LP2
             IsAnotherPage = false;
         }
 
-        private void ShowStatus(object sender, TappedRoutedEventArgs e)
+        //Método que trata toda a animação, movimento e colisão do jogo
+        private void AnimationEvent(object sender, object e)
         {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-            status.Text =
-            Player.CurrentHP.ToString() + "/" + Player.MaxHealth.ToString() + " HP" + "\n" +
-            Player.CurrentMana.ToString() + "/" + Player.MaxMana.ToString() + " MP" + "\n" +
-            Player.Damage.ToString() + " Damage" + "\n" +
-            Player.Lifesteal.ToString() + "% Lifesteal" + "\n" +
-            Player.Speed.ToString() + " Movement Speed" + "\n" +
-            Player.CurrentArmor.ToString() + " Armor" + "\n" +
-            Player.EvasionRate.ToString() + "% Evasion" + "\n" +
-            Player.CriticRate.ToString() + "% Critical Chance" + "\n" +
-            Player.CurrentXP.ToString() + "/" + Player.MaxXP + " XP" + "\n" +
-            "Level " + Player.Level.ToString();
-        }
-
-
-
-
-
-        private void AnimationEvent(object sender, object e) //Timer que roda o codigo escrito
-        {                                                    // A cada 110 milisegundos       
             if (IsAnotherPage) return;
 
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
@@ -268,12 +252,7 @@ namespace RPG_LP2
 
             else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
             {
-                this.Frame.Navigate(typeof(Map2), Player);
-
-                //if(Ninja.IsDead() && PablloVittar.IsDead())
-                //{
-                //}
-
+                if (Ninja.IsDead() && PablloVittar.IsDead()) { this.Frame.Navigate(typeof(Map2), Player); }
             }
 
         }
@@ -282,21 +261,26 @@ namespace RPG_LP2
         {
             if (IsAnotherPage) return;
 
-            switch (args.VirtualKey) //Detecta qual direção o personagem irá ir
+            //Detecta qual direção o personagem irá ir
+            switch (args.VirtualKey)
             {
+                case Windows.System.VirtualKey.W:
                 case Windows.System.VirtualKey.Up:
                     Up = true;
                     YSpeed = -Player.Speed;
                     break;
+                case Windows.System.VirtualKey.S:
                 case Windows.System.VirtualKey.Down:
                     Down = true;
                     YSpeed = Player.Speed;
                     break;
+                case Windows.System.VirtualKey.A:
                 case Windows.System.VirtualKey.Left:
                     Left = true;
                     XSpeed = -Player.Speed;
                     break;
                 case Windows.System.VirtualKey.Right:
+                case Windows.System.VirtualKey.D:
                     Right = true;
                     XSpeed = Player.Speed;
                     break;
@@ -304,33 +288,30 @@ namespace RPG_LP2
 
         }
 
-        private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Application.Current.Exit();//fecha o programa
-        }
-
         private void CoreWindow_KeyUp(CoreWindow sender, KeyEventArgs args)
         {
             //Método para checar quando a tecla é levantada, e cancelar a animação que acontecia
             switch (args.VirtualKey)
             {
+                case Windows.System.VirtualKey.W:
                 case Windows.System.VirtualKey.Up:
                     Person1.Source = Player.IdleUp;
                     Up = false;
                     YSpeed = 0;
                     break;
+                case Windows.System.VirtualKey.S:
                 case Windows.System.VirtualKey.Down:
                     Person1.Source = Player.IdleDown;
                     Down = false;
                     YSpeed = 0;
                     break;
-
+                case Windows.System.VirtualKey.A:
                 case Windows.System.VirtualKey.Left:
                     Person1.Source = Player.IdleLeft;
                     Left = false;
                     XSpeed = 0;
                     break;
-
+                case Windows.System.VirtualKey.D:
                 case Windows.System.VirtualKey.Right:
                     Person1.Source = Player.IdleRight;
                     Right = false;
@@ -339,7 +320,28 @@ namespace RPG_LP2
             }
         }
 
-        //Putaria pura daqui pra baixo  x.x  ---------------------------------
+        private void Btn_close_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Application.Current.Exit();//fecha o programa
+        }
+
+        //Configurações de todos os flyouts daqui pra baixo
+
+        private void ShowStatus(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            status.Text =
+            Player.CurrentHP.ToString() + "/" + Player.MaxHealth.ToString() + " HP" + "\n" +
+            Player.CurrentMana.ToString() + "/" + Player.MaxMana.ToString() + " MP" + "\n" +
+            Player.Damage.ToString() + " Damage" + "\n" +
+            Player.Lifesteal.ToString() + "% Lifesteal" + "\n" +
+            Player.Speed.ToString() + " Movement Speed" + "\n" +
+            Player.CurrentArmor.ToString() + " Armor" + "\n" +
+            Player.EvasionRate.ToString() + "% Evasion" + "\n" +
+            Player.CriticRate.ToString() + "% Critical Chance" + "\n" +
+            Player.CurrentXP.ToString() + "/" + Player.MaxXP + " XP" + "\n" +
+            "Level " + Player.Level.ToString();
+        }
 
         private void ShowItemStatus1(object sender, TappedRoutedEventArgs e)
         {

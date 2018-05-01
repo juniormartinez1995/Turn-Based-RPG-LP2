@@ -52,6 +52,8 @@ namespace RPG_LP2
         //Timer Mob
         DispatcherTimer TimerKnife = new DispatcherTimer();
         DispatcherTimer TimerHitBoxPerson = new DispatcherTimer();
+
+
         Character BattlePlayer;
         Mob Mob_;
         List<Object> CharList;
@@ -64,7 +66,7 @@ namespace RPG_LP2
         int button = 0;
         int turn;
         int cont = 0;
-        int cont1=0;
+        int cont1 = 0;
 
         private async void DisplayEndedBattleDialog()
         {
@@ -74,7 +76,7 @@ namespace RPG_LP2
                 Title = "FIM DA BATALHA",
                 Content = "Você venceu!!!",
                 CloseButtonText = "Voltar ao mapa"
-                 
+
             };
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
@@ -82,6 +84,57 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(Map), CharList);
         }
 
+        //Setar animação de ataque ou idle
+        private void AttackingAnimation(bool isAttacking)
+        {
+            if (isAttacking)
+            {
+                Person1.Source = BattlePlayer.Attacking;
+            }
+            else
+            {
+                Person1.Source = BattlePlayer.IdleRight;
+            }
+        }
+
+        //Define valores máximos e mínimos para as progress bars
+        public void AdjustProgessBar()
+        {
+            hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
+            hpBarCharacter.Value = BattlePlayer.CurrentHP;
+            mpBarCharacter.Maximum = BattlePlayer.MaxMana;
+            mpBarCharacter.Value = BattlePlayer.CurrentMana;
+            hpBarMob.Maximum = Mob_.HP;
+            hpBarMob.Value = Mob_.HP;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+            if (ControllerGame.CheckLastPage(typeof(Map), this))
+            {
+                CharList = e.Parameter as List<Object>;
+
+                BattlePlayer = CharList.ElementAt(0) as Character;
+                Mob_ = CharList.ElementAt(1) as Mob;
+                CharList.Clear();
+
+                Debug.WriteLine("DANO MOB: " + Mob_.Damage);
+                Debug.WriteLine("Dano Player " + BattlePlayer.Damage);
+                Debug.WriteLine("EU SOU " + Mob_.name);
+
+                AdjustProgessBar();
+
+                Person1.Source = BattlePlayer.IdleUp;
+
+            }
+
+            SignPageEvents();
+            turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
+
+        }
+
+        //Evento para sair da página e voltar ao mapa
         private void LeaveBtn_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (CharList.Count == 0)
@@ -100,19 +153,12 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(Map), CharList);
         }
 
-        private void Timer_Tick(object sender, object e)
-        {
-
-            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
-            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
-            if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
-        }
 
         public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
         {
-            
-            if(BattlePlayer is Berserker){
+
+            if (BattlePlayer is Berserker)
+            {
                 Sword.Opacity = 100;
                 TimerSword.Start();
                 TimerHitbox.Start();
@@ -134,11 +180,13 @@ namespace RPG_LP2
             }
 
         }
+
         private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
         {
             //BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
 
-            if (BattlePlayer is Berserker) {
+            if (BattlePlayer is Berserker)
+            {
                 Sword.Opacity = 100;
                 TimerSword.Start();
                 TimerHitbox.Start();
@@ -147,7 +195,8 @@ namespace RPG_LP2
                 // ControllerGame.PlaySoundSword("SoundSword.mp3");
             }
 
-            if (BattlePlayer is Dicer) {
+            if (BattlePlayer is Dicer)
+            {
 
                 /*
                 Fireball.Opacity = 100;
@@ -165,7 +214,7 @@ namespace RPG_LP2
 
         }
 
-        private void btnSkillTwo_Click(object sender, RoutedEventArgs e)
+        private void BtnSkillTwo_Click(object sender, RoutedEventArgs e)
         {
             if (BattlePlayer is Berserker)
             {
@@ -174,7 +223,7 @@ namespace RPG_LP2
                 AnimationKnifeMob();
             }
 
-            if(BattlePlayer is Dicer)
+            if (BattlePlayer is Dicer)
             {
                 GhostDicer.Opacity = 100;
                 //ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
@@ -185,16 +234,37 @@ namespace RPG_LP2
             }
         }
 
+        public async void AnimationKnifeMob()
+        {
+            //if (BattleController.TurnMobAnimation()) 
+
+            if (Mob_ is Ninja) { await Task.Delay(1200); Knife.Opacity = 100; TimerKnife.Start(); }
+            if (Mob_ is PablloVittar) { await Task.Delay(1200); Knife.Opacity = 100; TimerKnife.Start(); }
+            TimerHitBoxPerson.Start();
+
+        }
+
+        //Evento para atualizar o progress bar
+        private void Timer_Tick(object sender, object e)
+        {
+
+            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
+            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
+            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
+            if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
+        }
 
         //ANIMAÇÕES DAS SPELLS DO DICER--------------------------------------------------------------------------------------------------
 
         public void TimerWater_Tick(object sender, object e)
         {
-            if (!ControllerGame.IsSkillHittingEnemy(WaterDicer, Mob1)) {
+            if (!ControllerGame.IsSkillHittingEnemy(WaterDicer, Mob1))
+            {
                 Canvas.SetLeft(WaterDicer, Canvas.GetLeft(WaterDicer) + 45);
                 AttackingAnimation(true);
             }
-            else if (ControllerGame.IsSkillHittingEnemy(WaterDicer, Mob1)) {
+            else if (ControllerGame.IsSkillHittingEnemy(WaterDicer, Mob1))
+            {
                 BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
                 AttackingAnimation(false);
                 Canvas.SetLeft(WaterDicer, Canvas.GetLeft(Person1) + 82);
@@ -204,13 +274,16 @@ namespace RPG_LP2
             }
         }
 
-        public void TimerSnake_Tick(object sender,object e)
+        public void TimerSnake_Tick(object sender, object e)
         {
-            if (!ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1)) { Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(SnakeDicer) + 45);
+            if (!ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1))
+            {
+                Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(SnakeDicer) + 45);
                 AttackingAnimation(true);
             }
 
-            else if (ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1)) {
+            else if (ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1))
+            {
                 BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
                 AttackingAnimation(false);
                 Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(Person1) + 82);
@@ -222,11 +295,13 @@ namespace RPG_LP2
 
         public void TimerGhost_Tick(object sender, object e)
         {
-            if (!ControllerGame.IsSkillHittingEnemy(GhostDicer, Mob1)) {
+            if (!ControllerGame.IsSkillHittingEnemy(GhostDicer, Mob1))
+            {
                 Canvas.SetLeft(GhostDicer, Canvas.GetLeft(GhostDicer) + 45);
                 AttackingAnimation(true);
             }
-            else if (ControllerGame.IsSkillHittingEnemy(GhostDicer, Mob1)) {
+            else if (ControllerGame.IsSkillHittingEnemy(GhostDicer, Mob1))
+            {
                 BattleController.CheckTurn(BattlePlayer, Mob_, 3, btnSkillTwo);
                 AttackingAnimation(false);
                 Canvas.SetLeft(GhostDicer, Canvas.GetLeft(Person1) + 82);
@@ -241,7 +316,9 @@ namespace RPG_LP2
         public void TimerSword_Tick(object sender, object e)
         {
 
-            if (!ControllerGame.IsSkillHittingEnemy(Sword, Mob1)){ Canvas.SetLeft(Sword, Canvas.GetLeft(Sword) + 45);
+            if (!ControllerGame.IsSkillHittingEnemy(Sword, Mob1))
+            {
+                Canvas.SetLeft(Sword, Canvas.GetLeft(Sword) + 45);
                 AttackingAnimation(true);
             }
             else if (ControllerGame.IsSkillHittingEnemy(Sword, Mob1))
@@ -257,11 +334,12 @@ namespace RPG_LP2
         }
 
         //ANIMAÇÃO DAS SKILLS DO MOB ------------------------------------------------------
-        public  void TimerKnife_Tick(object sender, object e)
+        public void TimerKnife_Tick(object sender, object e)
         {
             if (!ControllerGame.IsSkillHittingPerson(Knife, Person1)) Canvas.SetLeft(Knife, Canvas.GetLeft(Knife) - 45);
 
-            else if (ControllerGame.IsSkillHittingPerson(Knife, Person1)) {
+            else if (ControllerGame.IsSkillHittingPerson(Knife, Person1))
+            {
                 Canvas.SetLeft(Knife, Canvas.GetLeft(Person1) + 740);
                 Knife.Opacity = 0;
                 TimerKnife.Stop();
@@ -269,26 +347,18 @@ namespace RPG_LP2
             }
         }
 
-
-        public async void AnimationKnifeMob()
+        //Evento para tratar o dano sofrido do mob e mostrar na tela
+        public void TimerHitboxMob_Tick(object sender, object e)
         {
-            //if (BattleController.TurnMobAnimation()) 
-
-            if (Mob_ is Ninja) { await Task.Delay(1200); Knife.Opacity = 100; TimerKnife.Start(); }
-            if (Mob_ is PablloVittar) { await Task.Delay(1200); Knife.Opacity = 100; TimerKnife.Start(); }
-            TimerHitBoxPerson.Start();
-
-        }
-
-        public void TimerHitbox_Tick(object sender, object e)
-        {
-            if (!ControllerGame.IsSkillHittingEnemy(Sword, Mob1)) {
+            if (!ControllerGame.IsSkillHittingEnemy(Sword, Mob1))
+            {
                 Hitbox.Opacity = 100;
 
                 Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
 
                 cont++;
-                if (cont == 2) {
+                if (cont == 2)
+                {
                     Hitbox.Opacity = 0;
                     cont = 0;
                     TimerHitbox.Stop();
@@ -296,6 +366,8 @@ namespace RPG_LP2
                 }
             }
         }
+
+        //Evento para tratar o dano sofrido do jogador e mostrar na tela
         public void TimerHitboxPerson_Tick(object sender, object e)
         {
             if (!ControllerGame.IsSkillHittingEnemy(Knife, Person1))
@@ -310,46 +382,12 @@ namespace RPG_LP2
                     HitboxPerson.Opacity = 0;
                     cont1 = 0;
                     TimerHitBoxPerson.Stop();
-
                 }
             }
 
         }
 
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-
-            if (ControllerGame.CheckLastPage(typeof(Map), this))
-            {
-                CharList = e.Parameter as List<Object>;
-
-                BattlePlayer = CharList.ElementAt(0) as Character;
-                Mob_ = CharList.ElementAt(1) as Mob;
-                CharList.Clear();
-                Debug.WriteLine("DANO MOB: " + Mob_.Damage);
-                Debug.WriteLine("Dano Player " + BattlePlayer.Damage);
-                Debug.WriteLine("EU SOU " + Mob_.name);
-
-                //Define valores máximos e mínimos para as progress bars
-                hpBarCharacter.Maximum = BattlePlayer.MaxHealth;
-                hpBarCharacter.Value = BattlePlayer.CurrentHP;
-                mpBarCharacter.Maximum = BattlePlayer.MaxMana;
-                mpBarCharacter.Value = BattlePlayer.CurrentMana;
-                hpBarMob.Maximum = Mob_.HP;
-                hpBarMob.Value = Mob_.HP;
-
-                //Coloca a imagem do Player na cena de batalha
-                Person1.Source = BattlePlayer.IdleUp;
-
-                //Eventos assinados na página
-            }
-
-            SignPageEvents();
-            turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
-
-        }
-
+        //Evento para tratar quando o mob morre
         private void Mob__MobDead(object sender, EventArgs args)
         {
             if (CharList.Count == 0)
@@ -366,15 +404,17 @@ namespace RPG_LP2
             DisplayEndedBattleDialog();
         }
 
+        //Evento para tratar quando o personagem morre
         private void BattlePlayer_CharacterDead(object sender, EventArgs args)
         {
             UnsignPageEvents();
             this.Frame.Navigate(typeof(LosePage));
         }
 
+        //Evento para tratar quando o jogador está sem mana
         private void BattlePlayer_NoMana(object sender, EventArgs args)
         {
-            
+
             btnSkillBasic.Visibility = 0;
             btnSkillBasic.Opacity = 0;
 
@@ -385,18 +425,7 @@ namespace RPG_LP2
             btnSkillTwo.Visibility = 0;
         }
 
-        private void AttackingAnimation(bool isAttacking)
-        {
-            if(isAttacking) 
-            {
-                Person1.Source = BattlePlayer.Attacking;
-            }
-            else 
-            {
-                Person1.Source = BattlePlayer.IdleRight;
-            }
-        }
-      
+        //Assina todos os eventos da página
         public void SignPageEvents()
         {
             Mob_.MobDead += Mob__MobDead;
@@ -410,7 +439,6 @@ namespace RPG_LP2
             TimerSword.Tick += TimerSword_Tick;
             TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);
 
-
             TimerWaterDicer.Tick += TimerWater_Tick;
             TimerWaterDicer.Interval = new TimeSpan(0, 0, 0, 0, 40);
 
@@ -420,8 +448,7 @@ namespace RPG_LP2
             TimerGhostDicer.Tick += TimerGhost_Tick;
             TimerGhostDicer.Interval = new TimeSpan(0, 0, 0, 0, 40);
 
-
-            TimerHitbox.Tick += TimerHitbox_Tick;
+            TimerHitbox.Tick += TimerHitboxMob_Tick;
             TimerHitbox.Interval = new TimeSpan(0, 0, 0, 1, 0);
 
             TimerKnife.Tick += TimerKnife_Tick;
@@ -432,6 +459,7 @@ namespace RPG_LP2
 
         }
 
+        //Cancela todos os eventos da página
         public void UnsignPageEvents()
         {
             Mob_.MobDead -= Mob__MobDead;
@@ -447,7 +475,7 @@ namespace RPG_LP2
             TimerSnakeDicer.Tick -= TimerSnake_Tick;
             TimerGhostDicer.Tick -= TimerGhost_Tick;
 
-            TimerHitbox.Tick -= TimerHitbox_Tick;
+            TimerHitbox.Tick -= TimerHitboxMob_Tick;
             TimerKnife.Tick -= TimerKnife_Tick;
             TimerHitBoxPerson.Tick -= TimerHitboxPerson_Tick;
         }

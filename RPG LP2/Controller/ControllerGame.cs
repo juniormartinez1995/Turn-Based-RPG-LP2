@@ -70,14 +70,6 @@ namespace RPG_LP2
             if (Down) Person1.Source = Person.DownMoviment;
         }
 
-        public static bool CheckEnemy(Character PlayerObject, Image Player, List<Image> Enemies, int i)
-        {
-            if (CheckCollision(PlayerObject, Player, Enemies.ElementAt(i))) return true;
-            return false;
-        }
-
-
-
         public static bool CheckListCollision(Character PlayerObject, Image Player, List<Image> ItemList)
         {
             foreach (Image Item in ItemList)
@@ -121,6 +113,7 @@ namespace RPG_LP2
             }
             else return false;
         }
+
         public static bool CheckCollision(Character PlayerObject, Image Player, Image ObjectCollided)
         {
             double PlayerRight = Canvas.GetLeft(Player) + Player.Width;
