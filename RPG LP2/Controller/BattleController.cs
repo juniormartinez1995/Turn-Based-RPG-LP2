@@ -30,12 +30,12 @@ namespace RPG_LP2
         }
         static DispatcherTimer timerPlayer = new DispatcherTimer();
 
-        public async static void CheckTurn(Character person, Mob mob, int button, Button btn_actual) // checa se é o turno do mob ou do player
+        public async static void CheckTurn(Character person, Mob mob, int button) // checa se é o turno do mob ou do player
         {
             if (FinishBattle(person, mob))
             {
                 Turn++;
-                PlayerTurn(person, mob, button, btn_actual);
+                PlayerTurn(person, mob, button);
 
             }
 
@@ -43,7 +43,7 @@ namespace RPG_LP2
             {
                 Turn++;
 
-                await Task.Delay(1200);
+                await Task.Delay(3000);
                 TurnMobAnimation();
                 MobTurn(person, mob, button);
 
@@ -51,7 +51,7 @@ namespace RPG_LP2
 
         }
 
-        public static int PlayerTurn(Character person, Mob mob, int button, Button btn_actual)
+        public static int PlayerTurn(Character person, Mob mob, int button)
         {
             //MOSTRAR O NÚMERO DO TURNO
             Debug.WriteLine("Turno: " + Turn);

@@ -37,6 +37,9 @@ namespace RPGlib.Characters
         public BitmapImage IdleLeft { get; set; }
         public BitmapImage IdleUp { get; set; }
         public BitmapImage IdleDown { get; set; }
+        public BitmapImage FirstSkill { get; set; }
+        public BitmapImage SecondSkill { get; set; }
+        public BitmapImage ThirdSkill { get; set; }
 
         public Inventory inventory = new Inventory();
 

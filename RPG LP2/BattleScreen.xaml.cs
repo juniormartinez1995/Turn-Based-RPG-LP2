@@ -38,22 +38,6 @@ namespace RPG_LP2
             heart_icon.Source = heart_stopped;
         }
 
-        //Timer HitBox
-        DispatcherTimer TimerHitbox = new DispatcherTimer();
-
-        //Timer Berserker
-        DispatcherTimer TimerSword = new DispatcherTimer();
-
-        //Timer Dicer
-        DispatcherTimer TimerSnakeDicer = new DispatcherTimer();
-        DispatcherTimer TimerGhostDicer = new DispatcherTimer();
-        DispatcherTimer TimerWaterDicer = new DispatcherTimer();
-
-        //Timer Mob
-        DispatcherTimer TimerKnife = new DispatcherTimer();
-        DispatcherTimer TimerHitBoxPerson = new DispatcherTimer();
-
-
         Character BattlePlayer;
         Mob Mob_;
         List<Object> CharList;
@@ -65,8 +49,7 @@ namespace RPG_LP2
 
         int button = 0;
         int turn;
-        int cont = 0;
-        int cont1 = 0;
+        String ChosenSkill;
 
         private async void DisplayEndedBattleDialog()
         {
@@ -153,236 +136,141 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(Map), CharList);
         }
 
-
-        public void BtnBasicSkill_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (BattlePlayer is Berserker)
-            {
-                Sword.Opacity = 100;
-                TimerSword.Start();
-                TimerHitbox.Start();
-                AnimationKnifeMob();
-
-                // ControllerGame.PlaySoundSword("SoundSword.mp3");
-            }
-
-            if (BattlePlayer is Dicer)
-            {
-
-                WaterDicer.Opacity = 100;
-                TimerWaterDicer.Start();
-
-                AnimationKnifeMob();
-
-                TimerHitbox.Start();
-
-            }
-
-        }
-
-        private void BtnSkillOne_Click(object sender, RoutedEventArgs e)
-        {
-            //BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
-
-            if (BattlePlayer is Berserker)
-            {
-                Sword.Opacity = 100;
-                TimerSword.Start();
-                TimerHitbox.Start();
-                AnimationKnifeMob();
-
-                // ControllerGame.PlaySoundSword("SoundSword.mp3");
-            }
-
-            if (BattlePlayer is Dicer)
-            {
-
-                /*
-                Fireball.Opacity = 100;
-                ControllerGame.PlaySoundsRPG("Fireball.mp3");
-                TimerFireball.Start();
-                */
-
-                SnakeDicer.Opacity = 100;
-                ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
-                TimerSnakeDicer.Start();
-                TimerHitbox.Start();
-                AnimationKnifeMob();
-
-            }
-
-        }
-
-        private void BtnSkillTwo_Click(object sender, RoutedEventArgs e)
-        {
-            if (BattlePlayer is Berserker)
-            {
-                BattleController.CheckTurn(BattlePlayer, Mob_, 3, btnSkillTwo);
-                TimerHitbox.Start();
-                AnimationKnifeMob();
-            }
-
-            if (BattlePlayer is Dicer)
-            {
-                GhostDicer.Opacity = 100;
-                //ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
-                TimerGhostDicer.Start();
-                TimerHitbox.Start();
-                AnimationKnifeMob();
-
-            }
-        }
+        private void FirstButton(object sender, RoutedEventArgs e) { ChosenSkill = "FirstSkill"; }
+        private void SecondButton(object sender, RoutedEventArgs e) { ChosenSkill = "SecondSkill"; }
+        private void ThirdButton(object sender, RoutedEventArgs e) { ChosenSkill = "ThirdSkill"; }
 
         public async void AnimationKnifeMob()
         {
-            //if (BattleController.TurnMobAnimation()) 
+            await Task.Delay(3000);
+            Knife.Opacity = 100;
 
-            if (Mob_ is Ninja) { await Task.Delay(1200); Knife.Opacity = 100; TimerKnife.Start(); }
-            if (Mob_ is PablloVittar) { await Task.Delay(1200); Knife.Opacity = 100; TimerKnife.Start(); }
-            TimerHitBoxPerson.Start();
-
-        }
-
-        //Evento para atualizar o progress bar
-        private void Timer_Tick(object sender, object e)
-        {
-
-            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
-            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
-            if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
-        }
-
-        //ANIMAÇÕES DAS SPELLS DO DICER--------------------------------------------------------------------------------------------------
-
-        public void TimerWater_Tick(object sender, object e)
-        {
-            if (!ControllerGame.IsSkillHittingEnemy(WaterDicer, Mob1))
-            {
-                Canvas.SetLeft(WaterDicer, Canvas.GetLeft(WaterDicer) + 45);
-                AttackingAnimation(true);
-            }
-            else if (ControllerGame.IsSkillHittingEnemy(WaterDicer, Mob1))
-            {
-                BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
-                AttackingAnimation(false);
-                Canvas.SetLeft(WaterDicer, Canvas.GetLeft(Person1) + 82);
-                WaterDicer.Opacity = 0;
-                TimerWaterDicer.Stop();
-
-            }
-        }
-
-        public void TimerSnake_Tick(object sender, object e)
-        {
-            if (!ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1))
-            {
-                Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(SnakeDicer) + 45);
-                AttackingAnimation(true);
-            }
-
-            else if (ControllerGame.IsSkillHittingEnemy(SnakeDicer, Mob1))
-            {
-                BattleController.CheckTurn(BattlePlayer, Mob_, 2, btnSkillOne);
-                AttackingAnimation(false);
-                Canvas.SetLeft(SnakeDicer, Canvas.GetLeft(Person1) + 82);
-                SnakeDicer.Opacity = 0;
-                TimerSnakeDicer.Stop();
-
-            }
-        }
-
-        public void TimerGhost_Tick(object sender, object e)
-        {
-            if (!ControllerGame.IsSkillHittingEnemy(GhostDicer, Mob1))
-            {
-                Canvas.SetLeft(GhostDicer, Canvas.GetLeft(GhostDicer) + 45);
-                AttackingAnimation(true);
-            }
-            else if (ControllerGame.IsSkillHittingEnemy(GhostDicer, Mob1))
-            {
-                BattleController.CheckTurn(BattlePlayer, Mob_, 3, btnSkillTwo);
-                AttackingAnimation(false);
-                Canvas.SetLeft(GhostDicer, Canvas.GetLeft(Person1) + 82);
-                GhostDicer.Opacity = 0;
-                TimerGhostDicer.Stop();
-
-            }
-        }
-
-        //ANIMAÇÕES DAS SPELLS DO BERSERKER--------------------------------------------------------------------------------------------------
-
-        public void TimerSword_Tick(object sender, object e)
-        {
-
-            if (!ControllerGame.IsSkillHittingEnemy(Sword, Mob1))
-            {
-                Canvas.SetLeft(Sword, Canvas.GetLeft(Sword) + 45);
-                AttackingAnimation(true);
-            }
-            else if (ControllerGame.IsSkillHittingEnemy(Sword, Mob1))
-            {
-                BattleController.CheckTurn(BattlePlayer, Mob_, 1, btnSkillBasic);
-                AttackingAnimation(false);
-                Canvas.SetLeft(Sword, Canvas.GetLeft(Person1) + 82);
-                Sword.Opacity = 0;
-                TimerSword.Stop();
-
-            }
-
-        }
-
-        //ANIMAÇÃO DAS SKILLS DO MOB ------------------------------------------------------
-        public void TimerKnife_Tick(object sender, object e)
-        {
             if (!ControllerGame.IsSkillHittingPerson(Knife, Person1)) Canvas.SetLeft(Knife, Canvas.GetLeft(Knife) - 45);
 
             else if (ControllerGame.IsSkillHittingPerson(Knife, Person1))
             {
                 Canvas.SetLeft(Knife, Canvas.GetLeft(Person1) + 740);
                 Knife.Opacity = 0;
-                TimerKnife.Stop();
+                PaintDamageGiven(2);
 
+            }
+
+
+        }
+
+        public void CastSkill(int Button)
+        {
+            if (!ControllerGame.IsSkillHittingEnemy(CharacterSkill, Mob1))
+            {
+                Canvas.SetLeft(CharacterSkill, Canvas.GetLeft(CharacterSkill) + 45);
+                AttackingAnimation(true);
+
+            }
+
+            else if (ControllerGame.IsSkillHittingEnemy(CharacterSkill, Mob1))
+            {
+                BattleController.CheckTurn(BattlePlayer, Mob_, Button);
+                PaintDamageGiven(1);
+                AttackingAnimation(false);
+                Canvas.SetLeft(CharacterSkill, Canvas.GetLeft(Person1) + 82);
+                CharacterSkill.Source = null;
+                ChosenSkill = null;
             }
         }
 
-        //Evento para tratar o dano sofrido do mob e mostrar na tela
-        public void TimerHitboxMob_Tick(object sender, object e)
+        //Evento para atualizar o progress bar
+        private void AnimationHandler(object sender, object e)
         {
-            if (!ControllerGame.IsSkillHittingEnemy(Sword, Mob1))
+
+            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
+            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
+            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
+            if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
+
+            switch (ChosenSkill)
             {
-                Hitbox.Opacity = 100;
+                case "FirstSkill":
 
-                Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
+                    if (BattlePlayer is Berserker)
+                    {
+                        CharacterSkill.Source = BattlePlayer.FirstSkill;
+                        CastSkill(1);
+                        AnimationKnifeMob();
 
-                cont++;
-                if (cont == 2)
-                {
+
+                        // ControllerGame.PlaySoundSword("SoundSword.mp3");
+                    }
+
+                    if (BattlePlayer is Dicer)
+                    {
+                        CharacterSkill.Source = BattlePlayer.FirstSkill;
+                        CastSkill(1);
+                        AnimationKnifeMob();
+
+                    }
+                    break;
+
+                case "SecondSkill":
+
+                    if (BattlePlayer is Berserker)
+                    {
+                        CharacterSkill.Source = BattlePlayer.FirstSkill;
+                        CastSkill(2);
+                        AnimationKnifeMob();
+
+                        // ControllerGame.PlaySoundSword("SoundSword.mp3");
+                    }
+
+                    if (BattlePlayer is Dicer)
+                    {
+                        CharacterSkill.Source = BattlePlayer.SecondSkill;
+                        ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
+                        CastSkill(2);
+                        AnimationKnifeMob();
+
+                    }
+                    break;
+
+                case "ThirdSkill":
+                    if (BattlePlayer is Berserker)
+                    {
+                        CharacterSkill.Source = BattlePlayer.FirstSkill;
+                        CastSkill(3);
+                        AnimationKnifeMob();
+                    }
+
+                    if (BattlePlayer is Dicer)
+                    {
+                        CharacterSkill.Source = BattlePlayer.ThirdSkill;
+                        //ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
+                        CastSkill(3);
+                        AnimationKnifeMob();
+                    }
+                    break;
+
+            }
+
+        }
+
+        public async void PaintDamageGiven(int Attacker)
+        {
+            // 1 = Player ataca
+            // 2 = Mob Ataca
+            switch (Attacker)
+            {
+                case 1:
+                    Hitbox.Opacity = 100;
+                    Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
+                    await Task.Delay(500);
                     Hitbox.Opacity = 0;
-                    cont = 0;
-                    TimerHitbox.Stop();
+                    break;
 
-                }
-            }
-        }
-
-        //Evento para tratar o dano sofrido do jogador e mostrar na tela
-        public void TimerHitboxPerson_Tick(object sender, object e)
-        {
-            if (!ControllerGame.IsSkillHittingEnemy(Knife, Person1))
-            {
-                HitboxPerson.Opacity = 100;
-
-                HitboxPerson.Text = BattleController.dmgTurnMob().ToString();
-
-                cont1++;
-                if (cont1 == 2)
-                {
+                case 2:
+                    HitboxPerson.Opacity = 100;
+                    HitboxPerson.Text = BattleController.dmgTurnMob().ToString();
+                    await Task.Delay(500);
                     HitboxPerson.Opacity = 0;
-                    cont1 = 0;
-                    TimerHitBoxPerson.Stop();
-                }
+                    break;
             }
 
         }
@@ -432,30 +320,9 @@ namespace RPG_LP2
             BattlePlayer.CharacterDead += BattlePlayer_CharacterDead;
             BattlePlayer.NoMana += BattlePlayer_NoMana;
 
-            timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            timer.Tick += AnimationHandler;
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 40);
             timer.Start();
-
-            TimerSword.Tick += TimerSword_Tick;
-            TimerSword.Interval = new TimeSpan(0, 0, 0, 0, 40);
-
-            TimerWaterDicer.Tick += TimerWater_Tick;
-            TimerWaterDicer.Interval = new TimeSpan(0, 0, 0, 0, 40);
-
-            TimerSnakeDicer.Tick += TimerSnake_Tick;
-            TimerSnakeDicer.Interval = new TimeSpan(0, 0, 0, 0, 40);
-
-            TimerGhostDicer.Tick += TimerGhost_Tick;
-            TimerGhostDicer.Interval = new TimeSpan(0, 0, 0, 0, 40);
-
-            TimerHitbox.Tick += TimerHitboxMob_Tick;
-            TimerHitbox.Interval = new TimeSpan(0, 0, 0, 1, 0);
-
-            TimerKnife.Tick += TimerKnife_Tick;
-            TimerKnife.Interval = new TimeSpan(0, 0, 0, 0, 40);
-
-            TimerHitBoxPerson.Tick += TimerHitboxPerson_Tick;
-            TimerHitBoxPerson.Interval = new TimeSpan(0, 0, 0, 1, 0);
 
         }
 
@@ -466,18 +333,8 @@ namespace RPG_LP2
             BattlePlayer.CharacterDead -= BattlePlayer_CharacterDead;
             BattlePlayer.NoMana -= BattlePlayer_NoMana;
 
-            timer.Tick -= Timer_Tick;
+            timer.Tick -= AnimationHandler;
             timer.Stop();
-
-            TimerSword.Tick -= TimerSword_Tick;
-
-            TimerWaterDicer.Tick -= TimerWater_Tick;
-            TimerSnakeDicer.Tick -= TimerSnake_Tick;
-            TimerGhostDicer.Tick -= TimerGhost_Tick;
-
-            TimerHitbox.Tick -= TimerHitboxMob_Tick;
-            TimerKnife.Tick -= TimerKnife_Tick;
-            TimerHitBoxPerson.Tick -= TimerHitboxPerson_Tick;
         }
     }
 }

@@ -38,6 +38,10 @@ namespace RPGlib.Characters
             IdleUp = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/drs.gif"));
             IdleLeft = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/dls.gif"));
             IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/drs.gif"));
+
+            FirstSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/Dicer/water_spellq.gif"));
+            SecondSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/Dicer/SnakeDicer.gif"));
+            ThirdSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/Dicer/ghost_spellq.gif"));
         }
 
 

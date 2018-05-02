@@ -23,9 +23,9 @@
 
         <!--SKILL BOX COM OS BUTTONS-->
         <Image x:Name="SkillBox" Source="Assets/textbox.gif" Canvas.Left="-68" Canvas.Top="460" Height="129" Width="524" />
-        <Button x:Name="btnSkillBasic"  Content="Basic Skill" Canvas.Left="89" Canvas.Top="509" Height="25" Width="53" FontSize="12" BorderThickness="2,2,2,2" Click="BtnBasicSkill_Click" Background="#847545" VerticalAlignment="Top"/>
-        <Button x:Name="btnSkillOne"  Canvas.Left="166" Canvas.Top="509" Height="25" Width="53" FontSize="12" Content="2nd Skill" BorderThickness="2,2,2,2" Click="BtnSkillOne_Click" Background="#847545" VerticalAlignment="Top"/>
-        <Button x:Name="btnSkillTwo"  Canvas.Left="239" Canvas.Top="509" Height="25" Width="53" FontSize="12" Content="3rd Skill" BorderThickness="2,2,2,2" Click="BtnSkillTwo_Click" Background="#847545" VerticalAlignment="Top"/>
+        <Button x:Name="btnSkillBasic"  Content="Basic Skill" Canvas.Left="89" Canvas.Top="509" Height="25" Width="53" FontSize="12" BorderThickness="2,2,2,2" Click="FirstButton" Background="#847545" VerticalAlignment="Top"/>
+        <Button x:Name="btnSkillOne"  Canvas.Left="166" Canvas.Top="509" Height="25" Width="53" FontSize="12" Content="2nd Skill" BorderThickness="2,2,2,2" Click="SecondButton" Background="#847545" VerticalAlignment="Top"/>
+        <Button x:Name="btnSkillTwo"  Canvas.Left="239" Canvas.Top="509" Height="25" Width="53" FontSize="12" Content="3rd Skill" BorderThickness="2,2,2,2" Click="ThirdButton" Background="#847545" VerticalAlignment="Top"/>
 
 
         <!--RUN BUTTON-->
@@ -48,21 +48,8 @@
         <!--ICONS-->
         <Image x:Name ="heart_icon" Height="70" Width="70" Canvas.Left="134" Canvas.Top="40"/>
         <Image x:Name ="lightning_icon" Height="50" Width="50" Canvas.Left="142" Canvas.Top="99" Source="Assets/lightning_icon.png"/>
-        <Image x:Name="Sword" Height="100" Opacity="0" Canvas.Left="182.5" Canvas.Top="300" Width="100" Source="Assets/Sword.png" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-            <Image.RenderTransform>
-                <CompositeTransform Rotation="89.573"/>
-            </Image.RenderTransform>
 
-        </Image>
-
-        <!--Fireball-->
-        <Image x:Name="Fireball" Opacity ="0" Height="100" Canvas.Left="176" Canvas.Top="297" Width="100" Source="Assets/FireBall.gif" />
-        <!--Snake-->
-        <Image x:Name="SnakeDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/AttackGifs/Dicer/SnakeDicer.gif"/>
-        <!--Ghost-->
-        <Image x:Name="GhostDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/AttackGifs/Dicer/ghost_spellq.gif"/>
-        <!--Water-->
-        <Image x:Name="WaterDicer"  Opacity =" 0" Height="100" Canvas.Left="182" Canvas.Top="287" Width="100" Source="Assets/AttackGifs/Dicer/water_spellq.gif"/>
+        <Image x:Name="CharacterSkill"  Height="100" Canvas.Left="182" Canvas.Top="287" Width="100"/>
 
 
         <!--HITBOX-->
