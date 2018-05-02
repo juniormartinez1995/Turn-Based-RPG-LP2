@@ -36,20 +36,32 @@ namespace RPG_LP2
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
             Mob1.Source = Ninja;
             heart_icon.Source = heart_stopped;
+
+            WidthRatio = _Canvas.Width / 800;
+            HeightRatio = _Canvas.Height / 600;
+
+            InitialKnifePosition = 534 * WidthRatio;
+
         }
+
+        DispatcherTimer MobAttackTimer = new DispatcherTimer();
 
         Character BattlePlayer;
         Mob Mob_;
         List<Object> CharList;
         DispatcherTimer timer = new DispatcherTimer();
+
         BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
 
         BitmapImage heart_stopped = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_png.png"));
         BitmapImage heart_goON = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_gif.gif"));
 
+
         int button = 0;
         int turn;
+        double WidthRatio, HeightRatio, InitialKnifePosition;
         String ChosenSkill;
+        bool AnimationEnabled, MobsDefeated;
 
         private async void DisplayEndedBattleDialog()
         {
@@ -139,6 +151,8 @@ namespace RPG_LP2
         private void FirstButton(object sender, RoutedEventArgs e)
         {
             ChosenSkill = "FirstSkill";
+
+            AnimationKnifeMob();
             btnSkillBasic.IsEnabled = false;
             btnSkillOne.IsEnabled = false;
             btnSkillTwo.IsEnabled = false;
@@ -148,6 +162,7 @@ namespace RPG_LP2
         {
             ChosenSkill = "SecondSkill";
 
+            AnimationKnifeMob();
             btnSkillBasic.IsEnabled = false;
             btnSkillOne.IsEnabled = false;
             btnSkillTwo.IsEnabled = false;
@@ -157,6 +172,7 @@ namespace RPG_LP2
         {
             ChosenSkill = "ThirdSkill";
 
+            AnimationKnifeMob();
             btnSkillBasic.IsEnabled = false;
             btnSkillOne.IsEnabled = false;
             btnSkillTwo.IsEnabled = false;
@@ -164,23 +180,16 @@ namespace RPG_LP2
 
         public async void AnimationKnifeMob()
         {
-            await Task.Delay(3000);
+            await Task.Delay(2600);
+
+            if (MobsDefeated) return;
+
             Knife.Opacity = 100;
 
-            if (!ControllerGame.IsSkillHittingPerson(Knife, Person1)) Canvas.SetLeft(Knife, Canvas.GetLeft(Knife) - 45);
+            if (!MobAttackTimer.IsEnabled) MobAttackTimer.Start();
 
-            else if (ControllerGame.IsSkillHittingPerson(Knife, Person1))
-            {
-                Canvas.SetLeft(Knife, Canvas.GetLeft(Person1) + 740);
-                Knife.Opacity = 0;
-                PaintDamageGiven(2);
-
-
-                btnSkillBasic.IsEnabled = true;
-                btnSkillOne.IsEnabled = true;
-                btnSkillTwo.IsEnabled = true;
-            }
-
+            AnimationEnabled = true;
+            Debug.WriteLine("QUANTAS VEZES ENTREI AQUI");
 
         }
 
@@ -204,6 +213,8 @@ namespace RPG_LP2
             }
         }
 
+
+
         //Evento para atualizar o progress bar
         private void AnimationHandler(object sender, object e)
         {
@@ -221,8 +232,6 @@ namespace RPG_LP2
                     {
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
                         CastSkill(1);
-                        AnimationKnifeMob();
-
 
                         // ControllerGame.PlaySoundSword("SoundSword.mp3");
                     }
@@ -231,7 +240,7 @@ namespace RPG_LP2
                     {
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
                         CastSkill(1);
-                        AnimationKnifeMob();
+
 
                     }
                     break;
@@ -242,7 +251,6 @@ namespace RPG_LP2
                     {
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
                         CastSkill(2);
-                        AnimationKnifeMob();
 
                         // ControllerGame.PlaySoundSword("SoundSword.mp3");
                     }
@@ -252,7 +260,6 @@ namespace RPG_LP2
                         CharacterSkill.Source = BattlePlayer.SecondSkill;
                         ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
                         CastSkill(2);
-                        AnimationKnifeMob();
 
                     }
                     break;
@@ -262,7 +269,6 @@ namespace RPG_LP2
                     {
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
                         CastSkill(3);
-                        AnimationKnifeMob();
                     }
 
                     if (BattlePlayer is Dicer)
@@ -270,9 +276,29 @@ namespace RPG_LP2
                         CharacterSkill.Source = BattlePlayer.ThirdSkill;
                         //ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
                         CastSkill(3);
-                        AnimationKnifeMob();
                     }
                     break;
+
+            }
+
+        }
+
+        private void MobAttackHandler(object sender, object e)
+        {
+            if (MobsDefeated) return;
+            if (!ControllerGame.IsSkillHittingPerson(Knife, Person1)) Canvas.SetLeft(Knife, Canvas.GetLeft(Knife) - 45);
+
+            else if (ControllerGame.IsSkillHittingPerson(Knife, Person1))
+            {
+                Knife.Opacity = 0;
+                Canvas.SetLeft(Knife, InitialKnifePosition);
+                PaintDamageGiven(2);
+
+                btnSkillBasic.IsEnabled = true;
+                btnSkillOne.IsEnabled = true;
+                btnSkillTwo.IsEnabled = true;
+                AnimationEnabled = false;
+                MobAttackTimer.Stop();
 
             }
 
@@ -315,6 +341,7 @@ namespace RPG_LP2
                 CharList.Add(BattlePlayer);
                 CharList.Add(Mob_);
             }
+            MobsDefeated = true;
             DisplayEndedBattleDialog();
         }
 
@@ -350,6 +377,9 @@ namespace RPG_LP2
             timer.Interval = new TimeSpan(0, 0, 0, 0, 40);
             timer.Start();
 
+            MobAttackTimer.Tick += MobAttackHandler;
+            MobAttackTimer.Interval = new TimeSpan(0, 0, 0, 0, 30);
+
         }
 
         //Cancela todos os eventos da página
@@ -361,6 +391,9 @@ namespace RPG_LP2
 
             timer.Tick -= AnimationHandler;
             timer.Stop();
+
+            MobAttackTimer.Tick -= MobAttackHandler;
+
         }
     }
 }

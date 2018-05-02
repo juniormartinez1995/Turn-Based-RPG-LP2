@@ -107,7 +107,8 @@ namespace RPG_LP2
                 Canvas.GetLeft(Player) <= Canvas.GetLeft(Enemy) + Enemy.Width &&
                 Canvas.GetTop(Player) + Player.Height >= Canvas.GetTop(Enemy) &&
                 Canvas.GetTop(Player) <= Canvas.GetTop(Enemy) + Enemy.Height
-                ) {
+                )
+            {
                 return true;
 
             }
