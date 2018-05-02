@@ -8,7 +8,7 @@
     mc:Ignorable="d" Height="600" Width="800" >
 
     <Canvas x:Name="_Canvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
-        <Image x:Name="MainDungeon" HorizontalAlignment="Left" VerticalAlignment="Top" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/SecondDungeon.gif" Stretch="Fill"/>
+        <Image x:Name="MainDungeon" HorizontalAlignment="Left" VerticalAlignment="Top" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/gifmapa2.gif" Stretch="Fill"/>
         <Image x:Name="Person1" Height="55" Width="55" Canvas.Left="80" Canvas.Top="310" Canvas.ZIndex="1"/>
 
         <Image x:Name="OpenedChest" Height="17" Width="20" Canvas.Left="138" Canvas.Top="166"/>

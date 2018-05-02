@@ -147,6 +147,9 @@
     <Content Include="Assets\AttackGifs\teste.gif" />
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
+    <Content Include="Assets\BattleAnimations\mimic.gif" />
+    <Content Include="Assets\BattleAnimations\mouse.png" />
+    <Content Include="Assets\BattleAnimations\salamander.png" />
     <Content Include="Assets\BerserkerIMG.png" />
     <Content Include="Assets\CaioAbraOBaivis.mp4" />
     <Content Include="Assets\CaioInimigosAFrente.mp4" />
@@ -155,6 +158,7 @@
     <Content Include="Assets\CaioYouWin.mp4" />
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
+    <Content Include="Assets\Dungeons\gifmapa2.gif" />
     <Content Include="Assets\Dungeons\SecondDungeon.gif" />
     <Content Include="Assets\DyingGifs\b_dy.gif" />
     <Content Include="Assets\DyingGifs\d_dy.gif" />

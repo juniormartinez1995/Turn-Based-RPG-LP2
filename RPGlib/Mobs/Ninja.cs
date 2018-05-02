@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace RPGlib.Mobs
 {
@@ -16,7 +17,7 @@ namespace RPGlib.Mobs
             this.evasionRate = 20;
             this.currentArmor = 10;
             this.Damage = 30;
-            this.GifBattle = null;
+            this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif")); ;
 
         }
     }
