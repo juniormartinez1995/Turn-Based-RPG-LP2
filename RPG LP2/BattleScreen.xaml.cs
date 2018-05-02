@@ -136,9 +136,31 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(Map), CharList);
         }
 
-        private void FirstButton(object sender, RoutedEventArgs e) { ChosenSkill = "FirstSkill"; }
-        private void SecondButton(object sender, RoutedEventArgs e) { ChosenSkill = "SecondSkill"; }
-        private void ThirdButton(object sender, RoutedEventArgs e) { ChosenSkill = "ThirdSkill"; }
+        private void FirstButton(object sender, RoutedEventArgs e)
+        {
+            ChosenSkill = "FirstSkill";
+            btnSkillBasic.IsEnabled = false;
+            btnSkillOne.IsEnabled = false;
+            btnSkillTwo.IsEnabled = false;
+
+        }
+        private void SecondButton(object sender, RoutedEventArgs e)
+        {
+            ChosenSkill = "SecondSkill";
+
+            btnSkillBasic.IsEnabled = false;
+            btnSkillOne.IsEnabled = false;
+            btnSkillTwo.IsEnabled = false;
+
+        }
+        private void ThirdButton(object sender, RoutedEventArgs e)
+        {
+            ChosenSkill = "ThirdSkill";
+
+            btnSkillBasic.IsEnabled = false;
+            btnSkillOne.IsEnabled = false;
+            btnSkillTwo.IsEnabled = false;
+        }
 
         public async void AnimationKnifeMob()
         {
@@ -153,6 +175,10 @@ namespace RPG_LP2
                 Knife.Opacity = 0;
                 PaintDamageGiven(2);
 
+
+                btnSkillBasic.IsEnabled = true;
+                btnSkillOne.IsEnabled = true;
+                btnSkillTwo.IsEnabled = true;
             }
 
 
