@@ -180,7 +180,7 @@ namespace RPG_LP2
 
         public async void AnimationKnifeMob()
         {
-            await Task.Delay(2600);
+            await Task.Delay(2700);
 
             if (MobsDefeated) return;
 
@@ -313,14 +313,14 @@ namespace RPG_LP2
                 case 1:
                     Hitbox.Opacity = 100;
                     Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
-                    await Task.Delay(500);
+                    await Task.Delay(600);
                     Hitbox.Opacity = 0;
                     break;
 
                 case 2:
                     HitboxPerson.Opacity = 100;
                     HitboxPerson.Text = BattleController.dmgTurnMob().ToString();
-                    await Task.Delay(500);
+                    await Task.Delay(600);
                     HitboxPerson.Opacity = 0;
                     break;
             }
