@@ -349,7 +349,7 @@ namespace RPG_LP2
         private void BattlePlayer_CharacterDead(object sender, EventArgs args)
         {
             UnsignPageEvents();
-            this.Frame.Navigate(typeof(LosePage));
+            this.Frame.Navigate(typeof(LosePage), BattlePlayer);
         }
 
         //Evento para tratar quando o jogador está sem mana

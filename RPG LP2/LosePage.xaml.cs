@@ -47,7 +47,7 @@ namespace RPG_LP2
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (ControllerGame.CheckLastPage(typeof(Map), this)) {
+            if (ControllerGame.CheckLastPage(typeof(BattleScreen), this)) {
 
                 Player = e.Parameter as Character;
                 img_dy.Source = Player.Dying;
