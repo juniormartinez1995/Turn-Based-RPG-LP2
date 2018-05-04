@@ -32,22 +32,19 @@ namespace RPG_LP2
 
         public async static void CheckTurn(Character person, Mob mob, int button) // checa se é o turno do mob ou do player
         {
-            if (FinishBattle(person, mob))
-            {
-                Turn++;
-                PlayerTurn(person, mob, button);
 
-            }
+            //Turno do player
+            Turn++;
+            PlayerTurn(person, mob, button);
 
-            if (FinishBattle(person, mob))
-            {
-                Turn++;
 
-                await Task.Delay(2500);
-                TurnMobAnimation();
-                MobTurn(person, mob, button);
+            //Turno do mob
+            Turn++;
 
-            }
+            await Task.Delay(2500);
+            TurnMobAnimation();
+            MobTurn(person, mob, button);
+
 
         }
 
@@ -57,17 +54,21 @@ namespace RPG_LP2
             Debug.WriteLine("Turno: " + Turn);
 
 
-            switch (button) {
+            switch (button)
+            {
                 case 1:
-                    if (person is Berserker) {
+                    if (person is Berserker)
+                    {
 
                         dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
                         DealMobDamage(dmg, mob);
                     }
-                    if (person is Dicer) {
+                    if (person is Dicer)
+                    {
 
-                        if (person.ManaCountDown(50)) {
-                            
+                        if (person.ManaCountDown(50))
+                        {
+
                             dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
                             DealMobDamage(dmg, mob);
                         }
@@ -76,38 +77,44 @@ namespace RPG_LP2
 
                 case 2:
 
-                    if (person is Berserker) {
+                    if (person is Berserker)
+                    {
 
-                        if (person.ManaCountDown(100)) {
+                        if (person.ManaCountDown(100))
+                        {
 
                             dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
                             DealMobDamage(dmg, mob);
-                 
+
                         }
                     }
 
-                    if (person is Dicer) {
+                    if (person is Dicer)
+                    {
 
-                        if (person.ManaCountDown(100)) {
+                        if (person.ManaCountDown(100))
+                        {
 
                             dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
                             person.CurrentMana -= 100;
                             DealMobDamage(dmg, mob);
                         }
-                       
+
                     }
                     break;
 
                 case 3:
 
                     //Isso aqui ta erradíssimo
-                    if (person is Berserker) {
+                    if (person is Berserker)
+                    {
 
                         person.CurrentHP -= person.Skill2();
                         mob.HP = mob.HP / 2;
                     }
 
-                    if (person is Dicer) {
+                    if (person is Dicer)
+                    {
 
                         if (person.ManaCountDown(150))
                         {
@@ -117,7 +124,7 @@ namespace RPG_LP2
 
                         }
 
-                        
+
                     }
 
                     break;
@@ -129,6 +136,7 @@ namespace RPG_LP2
 
         public static int MobTurn(Character person, Mob mob, int button)
         {
+
             dmgMob = CheckArmorDamage(mob.Skills() - person.CurrentArmor);
             person.CurrentHP -= dmgMob;
 
@@ -178,7 +186,7 @@ namespace RPG_LP2
         public static void WinBattle()
         {
             ControllerGame.PlaySoundsVitorHugo("CaioYouWin.mp4");
-          
+
 
         }
 
@@ -204,10 +212,12 @@ namespace RPG_LP2
 
         public static bool TurnMobAnimation()
         {
-            if (Turn % 2 != 0) {
+            if (Turn % 2 != 0)
+            {
                 return true;
             }
-            else {
+            else
+            {
                 return false;
             }
 

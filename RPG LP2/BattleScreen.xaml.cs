@@ -124,6 +124,19 @@ namespace RPG_LP2
 
             }
 
+            if (BattlePlayer is Berserker)
+            {
+                btnSkillBasic.Content = "Caio trouxa";
+                btnSkillOne.Content = "Mamosa infinita";
+                btnSkillTwo.Content = "Infinity Edge";
+            }
+            if (BattlePlayer is Dicer)
+            {
+                btnSkillBasic.Content = "Waterball";
+                btnSkillOne.Content = "Mystic Snake";
+                btnSkillTwo.Content = "Nether Blast";
+            }
+
             SignPageEvents();
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
 
@@ -189,7 +202,6 @@ namespace RPG_LP2
             if (!MobAttackTimer.IsEnabled) MobAttackTimer.Start();
 
             AnimationEnabled = true;
-            Debug.WriteLine("QUANTAS VEZES ENTREI AQUI");
 
         }
 
@@ -211,13 +223,17 @@ namespace RPG_LP2
                 CharacterSkill.Source = null;
                 ChosenSkill = null;
             }
+
+            BattleController.FinishBattle(BattlePlayer, Mob_);
+
         }
 
 
 
         //Evento para atualizar o progress bar
         private void AnimationHandler(object sender, object e)
-        {
+        { 
+
 
             if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
@@ -305,7 +321,8 @@ namespace RPG_LP2
         }
 
         public async void PaintDamageGiven(int Attacker)
-        {
+        {       
+
             // 1 = Player ataca
             // 2 = Mob Ataca
             switch (Attacker)
@@ -342,6 +359,7 @@ namespace RPG_LP2
                 CharList.Add(Mob_);
             }
             MobsDefeated = true;
+            
             DisplayEndedBattleDialog();
         }
 
