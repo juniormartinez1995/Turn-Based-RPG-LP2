@@ -15,7 +15,6 @@ using Windows.UI.Xaml.Navigation;
 using RPGlib.Characters;
 using RPGlib;
 using RPG_LP2;
-
 using RPGlib.Mobs;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Diagnostics;
@@ -41,7 +40,6 @@ namespace RPG_LP2
             HeightRatio = _Canvas.Height / 600;
 
             InitialKnifePosition = 534 * WidthRatio;
-
         }
 
         DispatcherTimer MobAttackTimer = new DispatcherTimer();
@@ -105,7 +103,6 @@ namespace RPG_LP2
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
             if (ControllerGame.CheckLastPage(typeof(Map), this))
             {
                 CharList = e.Parameter as List<Object>;
@@ -207,14 +204,14 @@ namespace RPG_LP2
 
         public void CastSkill(int Button)
         {
-            if (!ControllerGame.IsSkillHittingEnemy(CharacterSkill, Mob1))
+            if (!ControllerGame.IsSkillHitting(CharacterSkill, Mob1))
             {
                 Canvas.SetLeft(CharacterSkill, Canvas.GetLeft(CharacterSkill) + 45);
                 AttackingAnimation(true);
 
             }
 
-            else if (ControllerGame.IsSkillHittingEnemy(CharacterSkill, Mob1))
+            else if (ControllerGame.IsSkillHitting(CharacterSkill, Mob1))
             {
                 BattleController.CheckTurn(BattlePlayer, Mob_, Button);
                 PaintDamageGiven(1);
@@ -225,7 +222,6 @@ namespace RPG_LP2
             }
 
             BattleController.FinishBattle(BattlePlayer, Mob_);
-
         }
 
 
@@ -233,7 +229,6 @@ namespace RPG_LP2
         //Evento para atualizar o progress bar
         private void AnimationHandler(object sender, object e)
         { 
-
 
             if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
@@ -294,17 +289,15 @@ namespace RPG_LP2
                         CastSkill(3);
                     }
                     break;
-
             }
-
         }
 
         private void MobAttackHandler(object sender, object e)
         {
             if (MobsDefeated) return;
-            if (!ControllerGame.IsSkillHittingPerson(Knife, Person1)) Canvas.SetLeft(Knife, Canvas.GetLeft(Knife) - 45);
+            if (!ControllerGame.IsSkillHitting(Knife, Person1)) Canvas.SetLeft(Knife, Canvas.GetLeft(Knife) - 45);
 
-            else if (ControllerGame.IsSkillHittingPerson(Knife, Person1))
+            else if (ControllerGame.IsSkillHitting(Knife, Person1))
             {
                 Knife.Opacity = 0;
                 Canvas.SetLeft(Knife, InitialKnifePosition);
@@ -315,14 +308,12 @@ namespace RPG_LP2
                 btnSkillTwo.IsEnabled = true;
                 AnimationEnabled = false;
                 MobAttackTimer.Stop();
-
             }
 
         }
 
         public async void PaintDamageGiven(int Attacker)
         {       
-
             // 1 = Player ataca
             // 2 = Mob Ataca
             switch (Attacker)
@@ -330,18 +321,17 @@ namespace RPG_LP2
                 case 1:
                     Hitbox.Opacity = 100;
                     Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
-                    await Task.Delay(600);
+                    await Task.Delay(700);
                     Hitbox.Opacity = 0;
                     break;
 
                 case 2:
                     HitboxPerson.Opacity = 100;
                     HitboxPerson.Text = BattleController.dmgTurnMob().ToString();
-                    await Task.Delay(600);
+                    await Task.Delay(700);
                     HitboxPerson.Opacity = 0;
                     break;
             }
-
         }
 
         //Evento para tratar quando o mob morre
@@ -373,7 +363,6 @@ namespace RPG_LP2
         //Evento para tratar quando o jogador está sem mana
         private void BattlePlayer_NoMana(object sender, EventArgs args)
         {
-
             btnSkillBasic.Visibility = 0;
             btnSkillBasic.Opacity = 0;
 
@@ -397,7 +386,6 @@ namespace RPG_LP2
 
             MobAttackTimer.Tick += MobAttackHandler;
             MobAttackTimer.Interval = new TimeSpan(0, 0, 0, 0, 30);
-
         }
 
         //Cancela todos os eventos da página
@@ -411,7 +399,6 @@ namespace RPG_LP2
             timer.Stop();
 
             MobAttackTimer.Tick -= MobAttackHandler;
-
         }
     }
 }

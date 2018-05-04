@@ -50,21 +50,6 @@ namespace RPG_LP2
         {
             this.Frame.Navigate(typeof(SceneHistory));//proxima tela
         }
-
-
-        /*public async void Play()
-        {
-            MediaElement PlayMusic = new MediaElement();
-
-            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync("1 Hora de Musicas de Cidades e Vilarejos de RPG.mp3");
-            PlayMusic.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
-            PlayMusic.IsLooping = true;
-            PlayMusic.Play();
-
-
-        }*/
     }
 }
 

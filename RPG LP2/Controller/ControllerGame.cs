@@ -33,8 +33,6 @@ namespace RPG_LP2
 
             List<UIElement> PageElements = _Canvas.Children.ToList();
 
-
-
             var bounds = Window.Current.Bounds;
             double height = bounds.Height;
             Debug.WriteLine(height);
@@ -45,7 +43,6 @@ namespace RPG_LP2
             CurrentPage.Height = bounds.Height;
             _Canvas.Width = CurrentPage.Width;
             _Canvas.Height = CurrentPage.Height;
-
 
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
@@ -58,7 +55,6 @@ namespace RPG_LP2
                 (Element as FrameworkElement).Width *= WidthRatio;
                 (Element as FrameworkElement).Height *= HeightRatio;
             }
-
         }
       
 
@@ -84,35 +80,14 @@ namespace RPG_LP2
             return !CheckListCollision(PlayerObject, Player, LockedChests) && !CheckListCollision(PlayerObject, Player, Enemies) && !CheckListCollision(PlayerObject, Player, Collision) && !CheckListCollision(PlayerObject, Player, Keys);
         }
 
-        public static bool IsSkillHittingEnemy(Image Player, Image Enemy)
+        public static bool IsSkillHitting(Image Player, Image Enemy)
         {
 
-            if (Canvas.GetLeft(Player) + Player.Width >= Canvas.GetLeft(Enemy) &&
+            return (Canvas.GetLeft(Player) + Player.Width >= Canvas.GetLeft(Enemy) &&
                 Canvas.GetLeft(Player) <= Canvas.GetLeft(Enemy) + Enemy.Width &&
                 Canvas.GetTop(Player) + Player.Height >= Canvas.GetTop(Enemy) &&
                 Canvas.GetTop(Player) <= Canvas.GetTop(Enemy) + Enemy.Height
-                )
-            {
-                return true;
-
-            }
-            else return false;
-        }
-
-
-        public static bool IsSkillHittingPerson(Image Player, Image Enemy)
-        {
-
-            if (Canvas.GetLeft(Player) + Player.Width >= Canvas.GetLeft(Enemy) &&
-                Canvas.GetLeft(Player) <= Canvas.GetLeft(Enemy) + Enemy.Width &&
-                Canvas.GetTop(Player) + Player.Height >= Canvas.GetTop(Enemy) &&
-                Canvas.GetTop(Player) <= Canvas.GetTop(Enemy) + Enemy.Height
-                )
-            {
-                return true;
-
-            }
-            else return false;
+                );
         }
 
         public static bool CheckCollision(Character PlayerObject, Image Player, Image ObjectCollided)
@@ -133,10 +108,10 @@ namespace RPG_LP2
                 PlayerTop <= EnemyBottom
                 )
             {
-                if (Collision(Player, ObjectCollided) == "Right") MovePlayer(Player, PlayerObject.Speed - 2, 0);   //MoveRight(Player, 2);
-                if (Collision(Player, ObjectCollided) == "Left") MovePlayer(Player, -PlayerObject.Speed + 2, 0);         //MoveLeft(Player, 2);
-                if (Collision(Player, ObjectCollided) == "Top") MovePlayer(Player, 0, -PlayerObject.Speed + 2); //MoveUp(Player, 2);
-                if (Collision(Player, ObjectCollided) == "Bottom") MovePlayer(Player, 0, PlayerObject.Speed - 2);
+                if (Collision(Player, ObjectCollided) == "Right") MovePlayer(Player, PlayerObject.Speed - 1, 0);   //MoveRight(Player, 2);
+                if (Collision(Player, ObjectCollided) == "Left") MovePlayer(Player, -PlayerObject.Speed + 1, 0);         //MoveLeft(Player, 2);
+                if (Collision(Player, ObjectCollided) == "Top") MovePlayer(Player, 0, -PlayerObject.Speed + 1); //MoveUp(Player, 2);
+                if (Collision(Player, ObjectCollided) == "Bottom") MovePlayer(Player, 0, PlayerObject.Speed - 1);
                 return true;
 
             }
@@ -194,7 +169,6 @@ namespace RPG_LP2
                 player.OpenChest(ChestControl);
 
                 RefreshItems(player, qt_lifePot, qt_manaPot, ListImage);
-
             }
         }
 
@@ -231,6 +205,7 @@ namespace RPG_LP2
             Music.IsLooping = true;
             Music.Play();
         }
+
         public static async void PlayAmbienceMap(string nomeMusic)
         {
             MediaElement Music = new MediaElement();
@@ -244,6 +219,7 @@ namespace RPG_LP2
             Music.IsLooping = true;
 
         }
+
         public static async void PlaySoundsVitorHugo(string nomeMusic)
         {
             MediaElement Music = new MediaElement();
@@ -255,9 +231,6 @@ namespace RPG_LP2
             Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
             Music.Play();
             Music.IsLooping = true;
-
         }
-
-
     }
 }

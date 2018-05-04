@@ -39,11 +39,15 @@ namespace RPG_LP2
 
 
             //Turno do mob
-            Turn++;
+            if (mob.HP > 0)
+            {
+                Turn++;
 
-            await Task.Delay(2500);
-            TurnMobAnimation();
-            MobTurn(person, mob, button);
+                await Task.Delay(2500);
+                TurnMobAnimation();
+                MobTurn(person, mob, button);
+
+            }
 
 
         }

@@ -234,7 +234,6 @@ namespace RPG_LP2
                 if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
                 StoreChars(Ninja as Mob);
                 IsAnotherPage = true;
-                Debug.WriteLine("TO QUERENDO MUDAR DE MAPA");
                 this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
 
             }
@@ -242,7 +241,6 @@ namespace RPG_LP2
             //Checar se o personagem encontra o Pabblo
             if (ControllerGame.CheckCollision(Player, Person1, Enemies.Find(x => x.Name == "PabbloVitarIMG")) && !PablloVittar.IsDead())
             {
-
                 if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
                 StoreChars(PablloVittar as Mob);
                 IsAnotherPage = true;
