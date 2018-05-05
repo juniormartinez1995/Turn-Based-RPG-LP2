@@ -21,7 +21,9 @@ namespace RPG_LP2
 
         static int Turn = 0;
         static int dmg = 0;
+        static int dmgturn = 0;
         static int dmgMob = 0;
+        static int multicast = 1;
 
         public static int InicializeBattle(Character person, Mob mob, int button)
         {
@@ -63,15 +65,38 @@ namespace RPG_LP2
                 case 1:
                     if (person is Berserker)
                     {
-
+                        
                         dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
                         DealMobDamage(dmg, mob);
                     }
                     if (person is Dicer)
                     {
 
-                        dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+                        dmgturn = person.BasicSkill();
+                        multicast = dmgturn / person.Damage;
+                        dmg = CheckArmorDamage(dmgturn - mob.currentArmor);
                         DealMobDamage(dmg, mob);
+                        //Checagem se houve multicast
+                        if (multicast > 1)
+                        {
+                            if(multicast == 2)
+                            {
+                                ControllerGame.PlaySoundsMulticast("Multicast_x2.mp3");
+                            }
+                            if(multicast == 3)
+                            {
+                                ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
+                            }
+                            if(multicast == 4)
+                            {
+                                ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                            }
+                            if (multicast == 5)
+                            {
+                                ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
+                                ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                            }
+                        }
                     }
                     break;
 
@@ -82,7 +107,7 @@ namespace RPG_LP2
 
                         if (person.ManaCountDown(100))
                         {
-
+                            
                             dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
                             DealMobDamage(dmg, mob);
 
@@ -94,10 +119,32 @@ namespace RPG_LP2
 
                         if (person.ManaCountDown(100))
                         {
-
-                            dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
+                            dmgturn = person.Skill1();
+                            multicast = dmgturn / 30;
+                            dmg = CheckArmorDamage(dmgturn - mob.currentArmor);
                             person.CurrentMana -= 100;
                             DealMobDamage(dmg, mob);
+                            //Checagem se houve multicast
+                            if (multicast > 1)
+                            {
+                                if (multicast == 2)
+                                {
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x2.mp3");
+                                }
+                                if (multicast == 3)
+                                {
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
+                                }
+                                if (multicast == 4)
+                                {
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                }
+                                if (multicast == 5)
+                                {
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                }
+                            }
                         }
 
                     }
@@ -106,6 +153,7 @@ namespace RPG_LP2
                 case 3:
 
                     //Isso aqui ta erradíssimo
+                    //Caio é um pau no cu
                     if (person is Berserker)
                     {
 
@@ -118,9 +166,32 @@ namespace RPG_LP2
 
                         if (person.ManaCountDown(150))
                         {
-                            dmg = CheckArmorDamage(person.Skill2() - mob.currentArmor);
+                            dmgturn = person.Skill2();
+                            multicast = dmgturn / 80;
+                            dmg = CheckArmorDamage(dmgturn - mob.currentArmor);
                             person.CurrentMana -= 100;
                             DealMobDamage(dmg, mob);
+                            //Checagem se houve multicast
+                            if (multicast > 1)
+                            {
+                                if (multicast == 2)
+                                {
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x2.mp3");
+                                }
+                                if (multicast == 3)
+                                {
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
+                                }
+                                if (multicast == 4)
+                                {
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                }
+                                if (multicast == 5)
+                                {
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
+                                    ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                }
+                            }
 
                         }
 

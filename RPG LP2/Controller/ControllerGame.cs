@@ -232,5 +232,18 @@ namespace RPG_LP2
             Music.Play();
             Music.IsLooping = true;
         }
+
+        public static async void PlaySoundsMulticast(string nomeMusic)
+        {
+            MediaElement Music = new MediaElement();
+
+            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Folder = await Folder.GetFolderAsync("Assets");
+            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
+            Music.Volume = 0.1;
+            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
+            Music.Play();
+            Music.IsLooping = true;
+        }
     }
 }
