@@ -363,8 +363,6 @@ namespace RPG_LP2
         //Evento para tratar quando o jogador está sem mana
         private void BattlePlayer_NoMana(object sender, EventArgs args)
         {
-            btnSkillBasic.Visibility = 0;
-            btnSkillBasic.Opacity = 0;
 
             btnSkillOne.Opacity = 0;
             btnSkillOne.Visibility = 0;

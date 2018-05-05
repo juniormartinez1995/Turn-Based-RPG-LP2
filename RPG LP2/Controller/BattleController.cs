@@ -43,7 +43,7 @@ namespace RPG_LP2
             {
                 Turn++;
 
-                await Task.Delay(2500);
+                await Task.Delay(2700);
                 TurnMobAnimation();
                 MobTurn(person, mob, button);
 
@@ -70,12 +70,8 @@ namespace RPG_LP2
                     if (person is Dicer)
                     {
 
-                        if (person.ManaCountDown(50))
-                        {
-
-                            dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
-                            DealMobDamage(dmg, mob);
-                        }
+                        dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
+                        DealMobDamage(dmg, mob);
                     }
                     break;
 

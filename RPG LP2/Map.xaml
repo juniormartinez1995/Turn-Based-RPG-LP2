@@ -111,8 +111,11 @@
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
                     <TextBlock Name="ItemStatus1" FontSize="15"/>
+                   
                 </Flyout>
+                
             </FlyoutBase.AttachedFlyout>
+            
         </Image>
 
         <Image x:Name="Item2" Canvas.Left="108" Canvas.Top="547" Width="50" Height="50" Tag="1" Tapped="ShowItemStatus2">
