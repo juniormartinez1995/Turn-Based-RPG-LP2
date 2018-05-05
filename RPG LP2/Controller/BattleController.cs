@@ -163,7 +163,7 @@ namespace RPG_LP2
                 }
                 else
                 {
-                    xpGain = 30;
+                    xpGain = 110;
                 }
                 person.LevelUp(xpGain);
                 WinBattle();

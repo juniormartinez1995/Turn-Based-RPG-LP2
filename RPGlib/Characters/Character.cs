@@ -49,6 +49,9 @@ namespace RPGlib.Characters
         public delegate void NoManaEventHandler(object sender, EventArgs args);
         public event NoManaEventHandler NoMana;
 
+        public delegate void UpLevelEventHandler(object sender, EventArgs args);
+        public event UpLevelEventHandler UpLevel;
+
         public void OpenChest(Chest chest)
         {
             for (int x = chest.ItemChest.Count() - 1; x >= 0; x--)
@@ -97,12 +100,18 @@ namespace RPGlib.Characters
             return 1;
         }
 
+        protected virtual void OnUpLevel()
+        {
+            UpLevel?.Invoke(this, EventArgs.Empty);
+        }
+
         public bool LevelUp(int xpGain)
         {
             while ((this.CurrentXP += xpGain) > MaxXP)
             {
                 this.CurrentXP -= MaxXP;
                 this.Level += 1;
+                OnUpLevel();
                 MinimunXPlevel();
                 return true;
 
@@ -115,6 +124,7 @@ namespace RPGlib.Characters
             MaxXP += (10 * this.Level);
 
         }
+
 
         protected virtual void OnCharacterDead()
         {

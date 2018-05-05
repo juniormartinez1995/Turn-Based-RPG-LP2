@@ -124,6 +124,34 @@ namespace RPG_LP2
 
         }
 
+        private void Player_UpLevel(object sender, EventArgs args)
+        {
+            Player.MaxHealth += 50;
+            Player.MaxMana += 50;
+            Player.CurrentHP += 50;
+            Player.CurrentMana += 50;
+            Player.Damage += 2;
+
+
+            DisplayLevelIncreasedDialog();
+        }
+
+        private async void DisplayLevelIncreasedDialog()
+        {
+            Debug.WriteLine("DEBUG AQUIIIII");
+            ContentDialog StatusIncreased = new ContentDialog {
+
+                Title = "LEVEL INCREASED",
+                Content = "MAX HEALTH + 50\nMAX MANA + 50\nCURRENT LIFE + 50\n CURRENT MANA + 50\nDAMAGE + 2",
+                CloseButtonText = "Voltar ao mapa"
+
+            };
+
+            ContentDialogResult result = await StatusIncreased.ShowAsync();
+            //UnsignPageEvents();
+            
+        }
+
         // Método para configuração e inicialização do timer da animação
         private void StartAnimation() 
         {
@@ -155,6 +183,8 @@ namespace RPG_LP2
                 MobAndChar = e.Parameter as List<Object>;
 
                 Player = MobAndChar.ElementAt(0) as Character;
+
+                Player.UpLevel += Player_UpLevel;
 
                 if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;
                 else if (MobAndChar.ElementAt(1) is PablloVittar) PablloVittar = MobAndChar.ElementAt(1) as PablloVittar;
