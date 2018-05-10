@@ -244,12 +244,13 @@ namespace RPG_LP2
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
                         CastSkill(1);
 
-                        // ControllerGame.PlaySoundSword("SoundSword.mp3");
+                       //ControllerGame.PlaySoundSword("SoundSword.mp3");
                     }
 
                     if (BattlePlayer is Dicer)
                     {
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
+                        ControllerGame.PlaySoundsRPG("Fireball.mp3");
                         CastSkill(1);
 
 
@@ -263,7 +264,7 @@ namespace RPG_LP2
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
                         CastSkill(2);
 
-                        // ControllerGame.PlaySoundSword("SoundSword.mp3");
+                        //ControllerGame.PlaySoundSword("SoundSword.mp3");
                     }
 
                     if (BattlePlayer is Dicer)
@@ -285,7 +286,7 @@ namespace RPG_LP2
                     if (BattlePlayer is Dicer)
                     {
                         CharacterSkill.Source = BattlePlayer.ThirdSkill;
-                        //ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
+                        ControllerGame.PlaySoundsRPG("Satanic.mp3");
                         CastSkill(3);
                     }
                     break;
