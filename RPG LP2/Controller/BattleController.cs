@@ -48,6 +48,9 @@ namespace RPG_LP2
                 await Task.Delay(2700);
                 TurnMobAnimation();
                 MobTurn(person, mob, button);
+                if(person is Berserker) {
+                SoundController.PlayDynamicSound("Battle_Trance.mp3");
+                }
 
             }
 
@@ -159,13 +162,12 @@ namespace RPG_LP2
 
                 case 3:
 
-                    //Isso aqui ta erradíssimo
-                    //Caio é um pau no cu
                     if (person is Berserker)
                     {
 
                         person.CurrentHP -= person.Skill2();
                         mob.HP = mob.HP / 2;
+                       
                     }
 
                     if (person is Dicer)
@@ -221,7 +223,6 @@ namespace RPG_LP2
 
             dmgMob = CheckArmorDamage(mob.Skills() - person.CurrentArmor);
             person.CurrentHP -= dmgMob;
-
             //MOSTRAR VALOR (INT) DO PERSONAGEM E DO MOB
             Debug.WriteLine("Life person = " + person.CurrentHP + "\n" + "Life mob = " + mob.HP);
 
@@ -290,6 +291,11 @@ namespace RPG_LP2
         public static int ReturnDmgTurn()
         {
             return dmg;
+        }
+
+        public static int ReturnMulticastTurn()
+        {
+            return multicast;
         }
 
         public static bool TurnMobAnimation()

@@ -319,10 +319,17 @@ namespace RPG_LP2
             switch (Attacker)
             {
                 case 1:
+                  
                     Hitbox.Opacity = 100;
                     Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
+                    if (BattlePlayer is Dicer)
+                    {
+                        Multicast.Opacity = 100;
+                        Multicast.Text = "MULTICAST X"+ BattleController.ReturnMulticastTurn().ToString();
+                    }
                     await Task.Delay(700);
                     Hitbox.Opacity = 0;
+                    Multicast.Opacity = 0;
                     break;
 
                 case 2:
