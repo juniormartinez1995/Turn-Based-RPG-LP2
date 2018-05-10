@@ -290,9 +290,11 @@ namespace RPG_LP2
 
                     if (BattlePlayer is Dicer)
                     {
-                        CharacterSkill.Source = BattlePlayer.ThirdSkill;
-                        CastSkill(3);
-                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
+                     
+                            CharacterSkill.Source = BattlePlayer.ThirdSkill;
+                            CastSkill(3);
+                            if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
+        
                     }
                     break;
             }
@@ -325,10 +327,17 @@ namespace RPG_LP2
             switch (Attacker)
             {
                 case 1:
+                  
                     Hitbox.Opacity = 100;
                     Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
+                    if (BattlePlayer is Dicer)
+                    {
+                        Multicast.Opacity = 100;
+                        Multicast.Text = "MULTICAST X"+ BattleController.ReturnMulticastTurn().ToString();
+                    }
                     await Task.Delay(700);
                     Hitbox.Opacity = 0;
+                    Multicast.Opacity = 0;
                     break;
 
                 case 2:
@@ -371,10 +380,16 @@ namespace RPG_LP2
         {
 
             btnSkillOne.Opacity = 0;
-            btnSkillOne.Visibility = 0;
-
+            btnSkillOne.Visibility = 0;          
             btnSkillTwo.Opacity = 0;
-            btnSkillTwo.Visibility = 0;
+            btnSkillTwo.Visibility = 0;      
+            if(BattlePlayer is Dicer)
+            {
+                SoundController.PlaySound(BattleSounds, "DicerNoMana.mp3");         
+            }
+            if(BattlePlayer is Berserker) {
+                SoundController.PlaySound(BattleSounds, "BerserkerNoMana.mp3");
+            }
         }
 
         //Assina todos os eventos da página

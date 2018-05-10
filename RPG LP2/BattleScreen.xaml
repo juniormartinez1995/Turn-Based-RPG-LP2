@@ -63,6 +63,11 @@
                 <CompositeTransform Rotation="-22.926"/>
             </TextBlock.RenderTransform>
         </TextBlock>
+        <TextBlock x:Name="Multicast" Canvas.Left="298" Canvas.Top="100" Text="-" TextWrapping="Wrap" FontSize="70" Height="118" Width="214" RenderTransformOrigin="0.5,0.5" FontFamily="Kristen ITC" FontWeight="Bold"  Foreground="Black" Opacity="0" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="0.878"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
         <TextBlock x:Name="HitboxPerson" Canvas.Left="208" Canvas.Top="240" Text="" TextWrapping="Wrap" FontSize="36" Height="45" Width="76" RenderTransformOrigin="0.5,0.5" FontFamily="Hobo Std" FontWeight="Bold"  Foreground="Black" Opacity="0">
             <TextBlock.RenderTransform>
                 <CompositeTransform Rotation="-22.926"/>
