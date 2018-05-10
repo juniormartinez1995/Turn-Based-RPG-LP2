@@ -200,6 +200,7 @@
     <Content Include="Assets\MapsBackground\scene_history.gif" />
     <Content Include="Assets\rightAnimation\dr.gif" />
     <Content Include="Assets\rightAnimation\drs.png" />
+    <Content Include="Assets\Satanic.mp3" />
     <Content Include="Assets\SnakeDicer.mp3" />
     <Content Include="Assets\SoundAmbienceMap2.mp3" />
     <Content Include="Assets\SoundOpenChest.mp3" />
