@@ -12,6 +12,7 @@ namespace RPG_LP2.Controller
     {
         public static void PlaySound(MediaElement Sound, String SoundName, double volume = 0.3)
         {
+
             Sound.Source = new Uri(@"ms-appx:///Assets/" + SoundName);
             Sound.Volume = volume;
             Sound.Play();
@@ -25,7 +26,7 @@ namespace RPG_LP2.Controller
             StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             Folder = await Folder.GetFolderAsync("Assets");
             StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.Volume = 0.1;
+            Music.Volume = 0.3;
             Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
             Music.Play();
             Music.IsLooping = true;

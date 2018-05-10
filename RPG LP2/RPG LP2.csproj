@@ -151,6 +151,7 @@
     <Content Include="Assets\BattleAnimations\mimic.gif" />
     <Content Include="Assets\BattleAnimations\mouse.png" />
     <Content Include="Assets\BattleAnimations\salamander.png" />
+    <Content Include="Assets\Battle_Trance.mp3" />
     <Content Include="Assets\BerserkerIMG.png" />
     <Content Include="Assets\CaioAbraOBaivis.mp4" />
     <Content Include="Assets\CaioInimigosAFrente.mp4" />
@@ -165,6 +166,8 @@
     <Content Include="Assets\DyingGifs\d_dy.gif" />
     <Content Include="Assets\FireBall.gif" />
     <Content Include="Assets\Gif_Image_Item_Quest\CaioInimigosAFrente.mp4" />
+    <Content Include="Assets\BerserkerNoMana.mp3" />
+    <Content Include="Assets\DicerNoMana.mp3" />
     <Content Include="Assets\key.png" />
     <Content Include="Assets\Fireball.mp3" />
     <Content Include="Assets\AttackGifs\Dicer\SnakeDicer.gif" />

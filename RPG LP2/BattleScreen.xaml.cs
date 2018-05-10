@@ -35,8 +35,7 @@ namespace RPG_LP2
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
             Mob1.Source = Ninja;
-            heart_icon.Source = heart_stopped;
-
+            heart_icon.Source = heart_stopped;           
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
@@ -58,6 +57,7 @@ namespace RPG_LP2
 
         int button = 0;
         int turn;
+        
         double WidthRatio, HeightRatio, InitialKnifePosition;
         String ChosenSkill;
         bool AnimationEnabled, MobsDefeated;
@@ -100,6 +100,7 @@ namespace RPG_LP2
             mpBarCharacter.Value = BattlePlayer.CurrentMana;
             hpBarMob.Maximum = Mob_.HP;
             hpBarMob.Value = Mob_.HP;
+            TextBlockHP.Text = BattlePlayer.CurrentHP.ToString();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -254,9 +255,20 @@ namespace RPG_LP2
         private void AnimationHandler(object sender, object e)
         {
 
-            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
-            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
+            if (hpBarCharacter.Value >= 0) {
+                hpBarCharacter.Value = BattlePlayer.CurrentHP;
+                TextBlockHP.Text = BattlePlayer.CurrentHP.ToString();
+            }
+            if (mpBarCharacter.Value >= 0)
+            {
+                mpBarCharacter.Value = BattlePlayer.CurrentMana;
+                TextBlockMP.Text = BattlePlayer.CurrentMana.ToString();
+            }
+            if (hpBarMob.Value >= 0)
+            {
+                hpBarMob.Value = Mob_.HP;
+                TextBlockMob.Text = Mob_.HP.ToString();
+            }
             if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
 
             switch (ChosenSkill)
@@ -305,9 +317,11 @@ namespace RPG_LP2
 
                     if (BattlePlayer is Dicer)
                     {
-                        CharacterSkill.Source = BattlePlayer.ThirdSkill;
-                        CastSkill(3);
-                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
+                     
+                            CharacterSkill.Source = BattlePlayer.ThirdSkill;
+                            CastSkill(3);
+                            if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
+        
                     }
                     break;
 
@@ -358,10 +372,17 @@ namespace RPG_LP2
             switch (Attacker)
             {
                 case 1:
+                  
                     Hitbox.Opacity = 100;
                     Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
+                    if (BattlePlayer is Dicer)
+                    {
+                        Multicast.Opacity = 100;
+                        Multicast.Text = "MULTICAST X"+ BattleController.ReturnMulticastTurn().ToString();
+                    }
                     await Task.Delay(700);
                     Hitbox.Opacity = 0;
+                    Multicast.Opacity = 0;
                     break;
 
                 case 2:
@@ -404,10 +425,16 @@ namespace RPG_LP2
         {
 
             btnSkillOne.Opacity = 0;
-            btnSkillOne.Visibility = 0;
-
+            btnSkillOne.Visibility = 0;          
             btnSkillTwo.Opacity = 0;
-            btnSkillTwo.Visibility = 0;
+            btnSkillTwo.Visibility = 0;      
+            if(BattlePlayer is Dicer)
+            {
+                SoundController.PlaySound(BattleSounds, "DicerNoMana.mp3");         
+            }
+            if(BattlePlayer is Berserker) {
+                SoundController.PlaySound(BattleSounds, "BerserkerNoMana.mp3");
+            }
         }
 
         //Assina todos os eventos da página
