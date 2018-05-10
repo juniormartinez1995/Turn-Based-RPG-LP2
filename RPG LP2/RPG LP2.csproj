@@ -133,6 +133,8 @@
     <None Include="RPG LP2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\2ndBerserker.gif" />
+    <Content Include="Assets\3rdBerserker.gif" />
     <Content Include="Assets\AnimaçãoCharacters\bl.gif" />
     <Content Include="Assets\AnimaçãoCharacters\bls.gif" />
     <Content Include="Assets\AnimaçãoCharacters\br.gif" />
@@ -153,6 +155,7 @@
     <Content Include="Assets\BattleAnimations\salamander.png" />
     <Content Include="Assets\Battle_Trance.mp3" />
     <Content Include="Assets\BerserkerIMG.png" />
+    <Content Include="Assets\Book.gif" />
     <Content Include="Assets\CaioAbraOBaivis.mp4" />
     <Content Include="Assets\CaioInimigosAFrente.mp4" />
     <Content Include="Assets\CaioItem.mp4" />

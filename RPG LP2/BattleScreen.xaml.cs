@@ -367,6 +367,11 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(LosePage), BattlePlayer);
         }
 
+        private void Book_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
         //Evento para tratar quando o jogador está sem mana
         private void BattlePlayer_NoMana(object sender, EventArgs args)
         {
