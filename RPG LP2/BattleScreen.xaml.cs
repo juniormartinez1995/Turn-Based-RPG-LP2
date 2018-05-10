@@ -164,9 +164,7 @@ namespace RPG_LP2
             ChosenSkill = "FirstSkill";
 
             AnimationKnifeMob();
-            btnSkillBasic.IsEnabled = false;
-            btnSkillOne.IsEnabled = false;
-            btnSkillTwo.IsEnabled = false;
+            MakeFalseButtons();
 
         }
         private void SecondButton(object sender, RoutedEventArgs e)
@@ -174,9 +172,7 @@ namespace RPG_LP2
             ChosenSkill = "SecondSkill";
 
             AnimationKnifeMob();
-            btnSkillBasic.IsEnabled = false;
-            btnSkillOne.IsEnabled = false;
-            btnSkillTwo.IsEnabled = false;
+            MakeFalseButtons();
 
         }
         private void ThirdButton(object sender, RoutedEventArgs e)
@@ -184,9 +180,36 @@ namespace RPG_LP2
             ChosenSkill = "ThirdSkill";
 
             AnimationKnifeMob();
+            MakeFalseButtons();
+
+        }
+
+        private void LifePotButton(object sender, RoutedEvent e)
+        {
+            ChosenSkill = "LifePot";
+
+            AnimationKnifeMob();
+            MakeFalseButtons();
+
+        }
+
+        private void ManaPotButton(object sender, RoutedEvent e)
+        {
+            ChosenSkill = "ManaPot";
+
+            AnimationKnifeMob();
+            MakeFalseButtons();
+
+        }
+
+        private void MakeFalseButtons()
+        {
             btnSkillBasic.IsEnabled = false;
             btnSkillOne.IsEnabled = false;
             btnSkillTwo.IsEnabled = false;
+            btnLifePot.IsEnabled = false;
+            BtnManaPot.IsEnabled = false;
+            
         }
 
         public async void AnimationKnifeMob()
@@ -286,6 +309,24 @@ namespace RPG_LP2
                         CastSkill(3);
                         if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
                     }
+                    break;
+
+                case "LifePot":
+
+                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) 
+                    {
+                        BattlePlayer.inventory.removeAndUseLifePot(BattlePlayer);
+                    }
+
+                    break;
+
+                case "ManaPot":
+
+                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) 
+                    {
+                        BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
+                    }
+
                     break;
             }
         }

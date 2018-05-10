@@ -20,11 +20,11 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        
-        
+
+
         <MediaElement x:Name="BattleSounds" Volume="0.6" />
-        
-        
+
+
         <!--SKILL BOX COM OS BUTTONS-->
         <Image x:Name="SkillBox" Source="Assets/textbox.gif" Canvas.Left="-68" Canvas.Top="460" Height="129" Width="524" />
         <Button x:Name="btnSkillBasic"  Content="Basic Skill" Canvas.Left="89" Canvas.Top="509" Height="25" Width="53" FontSize="12" BorderThickness="2,2,2,2" Click="FirstButton" Background="#847545" VerticalAlignment="Top"/>
@@ -70,6 +70,10 @@
 
         <!--Faca-->
         <Image x:Name="Knife" Height="58" Opacity="0" Canvas.Left="534" Canvas.Top="312" Width="50" Source="Assets/Knife.png" />
+
+        <!--Pote life and mana-->
+        <Button x:Name="btnLifePot" Height="38" Canvas.Left="397" Canvas.Top="506" Width="83" Content="Life Pot" Background="#847545" VerticalAlignment="Stretch"/>
+        <Button x:Name="BtnManaPot" Height="38" Canvas.Left="495" Canvas.Top="506" Width="83" Content="Mana Pot" Background="#847545" VerticalAlignment="Stretch"/>
 
     </Canvas>
 

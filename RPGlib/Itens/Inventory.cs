@@ -60,18 +60,43 @@ namespace RPGlib.Itens
             return false;
         }
 
-        public void removeOrUsePotion(Item Potion)
+        public void removeOrUsePotion (Item Potion)
         {
-            if (Potion is PotionLife)
+            if (Potion is PotionLife )
             {
                 PotionLife p = Potion as PotionLife;
                 inventoryPotionLife.Remove(p);
+                
             }
-            else if (Potion is PotionMana)
+            else if (Potion is PotionMana )
             {
                 PotionMana p = Potion as PotionMana;
                 inventoryPotionMana.Remove(p);
+                
             }
+
+        }
+
+        public void removeAndUseLifePot (Character player)
+        {
+            PotionLife p = new PotionLife();
+            p.Effect(player);
+            this.inventoryPotionLife.Remove(p as PotionLife);
+        }
+
+        public void removeAndUseManaPot (Character player)
+        {
+            PotionMana p = new PotionMana();
+            p.Effect(player);
+            this.inventoryPotionMana.Remove(p as PotionMana);
+        }
+
+        public Boolean checkPotCount (String Potion)
+        {
+            if (Potion is "LifePot" && this.inventoryPotionLife.Count() > 0) return true;
+            else if (Potion is "ManaPot" && this.inventoryPotionMana.Count() > 0) return true;
+
+            return false;
         }
 
         public Boolean AddVerification(Item item, Character player)
