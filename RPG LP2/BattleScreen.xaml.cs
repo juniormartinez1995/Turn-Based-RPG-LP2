@@ -235,8 +235,12 @@ namespace RPG_LP2
             if (hpBarCharacter.Value >= 0) {
                 hpBarCharacter.Value = BattlePlayer.CurrentHP;
                 TextBlockHP.Text = BattlePlayer.CurrentHP.ToString();
-            }   
-            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
+            }
+            if (mpBarCharacter.Value >= 0)
+            {
+                mpBarCharacter.Value = BattlePlayer.CurrentMana;
+                TextBlockMP.Text = BattlePlayer.CurrentMana.ToString();
+            }
             if (hpBarMob.Value >= 0)
             {
                 hpBarMob.Value = Mob_.HP;

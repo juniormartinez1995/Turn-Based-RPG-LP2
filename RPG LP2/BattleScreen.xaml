@@ -76,8 +76,9 @@
 
         <!--Faca-->
         <Image x:Name="Knife" Height="58" Opacity="0" Canvas.Left="534" Canvas.Top="312" Width="50" Source="Assets/Knife.png" />
-        <TextBlock x:Name="TextBlockHP" Canvas.Left="58" Canvas.Top="62" Canvas.ZIndex="5" Text="" TextWrapping="Wrap" FontSize="24" Height="28" Width="32" CompositeMode="Inherit" FontFamily="Kristen ITC"/>
-        <TextBlock x:Name="TextBlockMob" Canvas.Left="705" Canvas.Top="62" Canvas.ZIndex="5" Text="" TextWrapping="Wrap" FontSize="24" Height="28" Width="32" CompositeMode="Inherit" FontFamily="Kristen ITC"/>
+        <TextBlock x:Name="TextBlockHP" Canvas.Left="58" Canvas.Top="64" Canvas.ZIndex="5" Text="50" TextWrapping="Wrap" FontSize="24" Height="28" Width="32" CompositeMode="Inherit" FontFamily="Kristen ITC" Foreground="#FF9B0404" />
+        <TextBlock x:Name="TextBlockMob" Canvas.Left="705" Canvas.Top="64" Canvas.ZIndex="5" Text="" TextWrapping="Wrap" FontSize="24" Height="28" Width="32" CompositeMode="Inherit" FontFamily="Kristen ITC" Foreground="#FF9B0404"/>
+        <TextBlock x:Name="TextBlockMP" Canvas.Left="58" Canvas.Top="115"  Canvas.ZIndex="5" Text="50" TextWrapping="Wrap" FontSize="24" Height="28" Width="32" CompositeMode="Inherit" FontFamily="Kristen ITC"  Foreground="#FF92C9FF"/>
 
     </Canvas>
 
