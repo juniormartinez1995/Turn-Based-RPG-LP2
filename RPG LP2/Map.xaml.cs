@@ -20,6 +20,7 @@ using RPGlib.Itens;
 using System.Diagnostics;
 using RPGlib;
 using RPGlib.Mobs;
+using RPG_LP2.Controller;
 
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
@@ -52,8 +53,9 @@ namespace RPG_LP2
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
-            ControllerGame.PlayAmbienceMap("SoundAmbienceMap2.mp3");
-            ControllerGame.PlaySoundsVitorHugo("CaioAbraOBaivis.mp4");
+            SoundController.PlaySound(VoiceSound, "CaioAbraOBaivis");
+
+
         }
 
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
@@ -189,7 +191,7 @@ namespace RPG_LP2
                 if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;
                 else if (MobAndChar.ElementAt(1) is PablloVittar) PablloVittar = MobAndChar.ElementAt(1) as PablloVittar;
                 MobAndChar.RemoveAt(MobAndChar.Count - 1);
-                ControllerGame.PlaySoundsVitorHugo("CaioInimigosAFrente.mp4");
+                SoundController.PlaySound(VoiceSound, "CaioInimigosAFrente");
 
             }
             IsAnotherPage = false;
@@ -239,6 +241,7 @@ namespace RPG_LP2
                     {
                         if (!ChestControl.isOpen)
                         {
+                            SoundController.PlaySound(VoiceSound, "SoundOpenChest");
                             ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);
                             open_chest.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/open_chest3.png"));
                         }

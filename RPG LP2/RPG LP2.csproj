@@ -101,6 +101,7 @@
       <DependentUpon>BattleScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controller\ControllerGame.cs" />
+    <Compile Include="Controller\SoundController.cs" />
     <Compile Include="LosePage.xaml.cs">
       <DependentUpon>LosePage.xaml</DependentUpon>
     </Compile>
