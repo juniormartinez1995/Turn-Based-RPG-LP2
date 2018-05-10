@@ -282,9 +282,11 @@ namespace RPG_LP2
 
                     if (BattlePlayer is Dicer)
                     {
-                        CharacterSkill.Source = BattlePlayer.ThirdSkill;
-                        CastSkill(3);
-                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
+                     
+                            CharacterSkill.Source = BattlePlayer.ThirdSkill;
+                            CastSkill(3);
+                            if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
+        
                     }
                     break;
             }
@@ -363,10 +365,16 @@ namespace RPG_LP2
         {
 
             btnSkillOne.Opacity = 0;
-            btnSkillOne.Visibility = 0;
-
+            btnSkillOne.Visibility = 0;          
             btnSkillTwo.Opacity = 0;
-            btnSkillTwo.Visibility = 0;
+            btnSkillTwo.Visibility = 0;      
+            if(BattlePlayer is Dicer)
+            {
+                SoundController.PlaySound(BattleSounds, "DicerNoMana.mp3");         
+            }
+            if(BattlePlayer is Berserker) {
+                SoundController.PlaySound(BattleSounds, "BerserkerNoMana.mp3");
+            }
         }
 
         //Assina todos os eventos da página

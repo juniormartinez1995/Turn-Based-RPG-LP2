@@ -112,6 +112,10 @@ namespace RPG_LP2
                             DealMobDamage(dmg, mob);
 
                         }
+                        else
+                        {
+                            SoundController.PlayDynamicSound("BerserkerNoMana.mp3");
+                        }
                     }
 
                     if (person is Dicer)
@@ -146,7 +150,10 @@ namespace RPG_LP2
                                 }
                             }
                         }
-
+                        else
+                        {
+                            SoundController.PlayDynamicSound("DicerNoMana.mp3");
+                        }
                     }
                     break;
 
@@ -193,6 +200,10 @@ namespace RPG_LP2
                                 }
                             }
 
+                        }
+                        else
+                        {
+                           
                         }
 
 
