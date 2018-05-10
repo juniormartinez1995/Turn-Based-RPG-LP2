@@ -162,7 +162,7 @@ namespace RPG_LP2
                 if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;
                 else if (MobAndChar.ElementAt(1) is PablloVittar) PablloVittar = MobAndChar.ElementAt(1) as PablloVittar;
                 MobAndChar.RemoveAt(MobAndChar.Count - 1);
-                ControllerGame.PlaySoundsVitorHugo("CaioInimigosAFrente.mp4");
+                //ControllerGame.PlaySoundsVitorHugo("CaioInimigosAFrente.mp4");
 
             }
             IsAnotherPage = false;

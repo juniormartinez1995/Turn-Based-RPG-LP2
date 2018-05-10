@@ -19,6 +19,7 @@ using RPGlib.Mobs;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using RPG_LP2.Controller;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -190,7 +191,7 @@ namespace RPG_LP2
 
         public async void AnimationKnifeMob()
         {
-            await Task.Delay(2700);
+            await Task.Delay(2800);
 
             if (MobsDefeated) return;
 
@@ -228,7 +229,7 @@ namespace RPG_LP2
 
         //Evento para atualizar o progress bar
         private void AnimationHandler(object sender, object e)
-        { 
+        {
 
             if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
@@ -243,17 +244,14 @@ namespace RPG_LP2
                     {
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
                         CastSkill(1);
-
-                       //ControllerGame.PlaySoundSword("SoundSword.mp3");
+                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "SoundSword.mp3");
                     }
 
                     if (BattlePlayer is Dicer)
                     {
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
-                        ControllerGame.PlaySoundsRPG("Fireball.mp3");
                         CastSkill(1);
-
-
+                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Fireball.mp3");
                     }
                     break;
 
@@ -263,15 +261,14 @@ namespace RPG_LP2
                     {
                         CharacterSkill.Source = BattlePlayer.FirstSkill;
                         CastSkill(2);
-
-                        //ControllerGame.PlaySoundSword("SoundSword.mp3");
+                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "SoundSword.mp3");
                     }
 
                     if (BattlePlayer is Dicer)
                     {
                         CharacterSkill.Source = BattlePlayer.SecondSkill;
-                        ControllerGame.PlaySoundsRPG("SnakeDicer.mp3");
                         CastSkill(2);
+                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "SnakeDicer.mp3");
 
                     }
                     break;
@@ -286,8 +283,8 @@ namespace RPG_LP2
                     if (BattlePlayer is Dicer)
                     {
                         CharacterSkill.Source = BattlePlayer.ThirdSkill;
-                        ControllerGame.PlaySoundsRPG("Satanic.mp3");
                         CastSkill(3);
+                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
                     }
                     break;
             }
@@ -314,7 +311,7 @@ namespace RPG_LP2
         }
 
         public async void PaintDamageGiven(int Attacker)
-        {       
+        {
             // 1 = Player ataca
             // 2 = Mob Ataca
             switch (Attacker)
@@ -350,7 +347,7 @@ namespace RPG_LP2
                 CharList.Add(Mob_);
             }
             MobsDefeated = true;
-            
+
             DisplayEndedBattleDialog();
         }
 

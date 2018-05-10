@@ -1,4 +1,5 @@
-﻿using RPGlib.Characters;
+﻿using RPG_LP2.Controller;
+using RPGlib.Characters;
 using RPGlib.Itens;
 using System;
 using System.Collections.Generic;
@@ -165,7 +166,7 @@ namespace RPG_LP2
         {
             if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário
             {
-                PlaySoundsRPG("SoundOpenChest.mp3");
+                SoundController.PlayDynamicSound("SoundOpenChest.mp4");
                 player.OpenChest(ChestControl);
 
                 RefreshItems(player, qt_lifePot, qt_manaPot, ListImage);
@@ -193,57 +194,5 @@ namespace RPG_LP2
             Canvas.SetTop(Player, Canvas.GetTop(Player) + YSpeed);
         }
 
-        public static async void PlaySoundsRPG(string nomeMusic)
-        {
-            MediaElement Music = new MediaElement();
-
-            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.Volume = 0.5;
-            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
-            Music.IsLooping = true;
-            Music.Play();
-        }
-
-        public static async void PlayAmbienceMap(string nomeMusic)
-        {
-            MediaElement Music = new MediaElement();
-
-            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.Volume = 0.5;
-            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
-            Music.Play();
-            Music.IsLooping = true;
-
-        }
-
-        public static async void PlaySoundsVitorHugo(string nomeMusic)
-        {
-            MediaElement Music = new MediaElement();
-
-            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.Volume = 0.1;
-            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
-            Music.Play();
-            Music.IsLooping = true;
-        }
-
-        public static async void PlaySoundsMulticast(string nomeMusic)
-        {
-            MediaElement Music = new MediaElement();
-
-            StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Folder = await Folder.GetFolderAsync("Assets");
-            StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.Volume = 0.1;
-            Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
-            Music.Play();
-            Music.IsLooping = true;
-        }
     }
 }

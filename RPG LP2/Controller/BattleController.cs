@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Controls;
 using RPGlib;
 using RPG_LP2;
 using System.Threading;
-
+using RPG_LP2.Controller;
 
 namespace RPG_LP2
 {
@@ -81,20 +81,20 @@ namespace RPG_LP2
                         {
                             if(multicast == 2)
                             {
-                                ControllerGame.PlaySoundsMulticast("Multicast_x2.mp3");
+                                SoundController.PlayDynamicSound("Multicast_x2.mp3");
                             }
                             if(multicast == 3)
                             {
-                                ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
+                                SoundController.PlayDynamicSound("Multicast_x3.mp3");
                             }
                             if(multicast == 4)
                             {
-                                ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                SoundController.PlayDynamicSound("Multicast_x4.mp3");
                             }
                             if (multicast == 5)
                             {
-                                ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
-                                ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                SoundController.PlayDynamicSound("Multicast_x3.mp3");
+                                SoundController.PlayDynamicSound("Multicast_x4.mp3");
                             }
                         }
                     }
@@ -129,20 +129,20 @@ namespace RPG_LP2
                             {
                                 if (multicast == 2)
                                 {
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x2.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x2.mp3");
                                 }
                                 if (multicast == 3)
                                 {
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x3.mp3");
                                 }
                                 if (multicast == 4)
                                 {
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x4.mp3");
                                 }
                                 if (multicast == 5)
                                 {
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x3.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x4.mp3");
                                 }
                             }
                         }
@@ -176,20 +176,20 @@ namespace RPG_LP2
                             {
                                 if (multicast == 2)
                                 {
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x2.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x2.mp3");
                                 }
                                 if (multicast == 3)
                                 {
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x3.mp3");
                                 }
                                 if (multicast == 4)
                                 {
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x4.mp3");
                                 }
                                 if (multicast == 5)
                                 {
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x3.mp3");
-                                    ControllerGame.PlaySoundsMulticast("Multicast_x4.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x3.mp3");
+                                    SoundController.PlayDynamicSound("Multicast_x4.mp3");
                                 }
                             }
 
@@ -256,14 +256,14 @@ namespace RPG_LP2
 
         public static void WinBattle()
         {
-            ControllerGame.PlaySoundsVitorHugo("CaioYouWin.mp4");
+            SoundController.PlayDynamicSound("CaioYouWin.mp4");
 
 
         }
 
         public static void LoseBattle()
         {
-            ControllerGame.PlaySoundsVitorHugo("CaioYouDied.mp4");
+            SoundController.PlayDynamicSound("CaioYouDied.mp4");
         }
 
         public static int CheckArmorDamage(int damage)

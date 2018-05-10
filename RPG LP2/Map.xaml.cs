@@ -53,7 +53,7 @@ namespace RPG_LP2
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
-            SoundController.PlaySound(VoiceSound, "CaioAbraOBaivis");
+            SoundController.PlaySound(VoiceSound, "CaioAbraOBaivis.mp4");
 
 
         }
@@ -134,24 +134,7 @@ namespace RPG_LP2
             Player.CurrentMana += 50;
             Player.Damage += 2;
 
-
-            DisplayLevelIncreasedDialog();
-        }
-
-        private async void DisplayLevelIncreasedDialog()
-        {
-            Debug.WriteLine("DEBUG AQUIIIII");
-            ContentDialog StatusIncreased = new ContentDialog {
-
-                Title = "LEVEL INCREASED",
-                Content = "MAX HEALTH + 50\nMAX MANA + 50\nCURRENT LIFE + 50\n CURRENT MANA + 50\nDAMAGE + 2",
-                CloseButtonText = "Voltar ao mapa"
-
-            };
-
-            ContentDialogResult result = await StatusIncreased.ShowAsync();
-            //UnsignPageEvents();
-            
+            //Tirei o content dialog porque tava bugando
         }
 
         // Método para configuração e inicialização do timer da animação
@@ -191,7 +174,7 @@ namespace RPG_LP2
                 if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;
                 else if (MobAndChar.ElementAt(1) is PablloVittar) PablloVittar = MobAndChar.ElementAt(1) as PablloVittar;
                 MobAndChar.RemoveAt(MobAndChar.Count - 1);
-                SoundController.PlaySound(VoiceSound, "CaioInimigosAFrente");
+                SoundController.PlaySound(VoiceSound, "CaioInimigosAFrente.mp4");
 
             }
             IsAnotherPage = false;
@@ -241,7 +224,6 @@ namespace RPG_LP2
                     {
                         if (!ChestControl.isOpen)
                         {
-                            SoundController.PlaySound(VoiceSound, "SoundOpenChest");
                             ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);
                             open_chest.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/open_chest3.png"));
                         }
