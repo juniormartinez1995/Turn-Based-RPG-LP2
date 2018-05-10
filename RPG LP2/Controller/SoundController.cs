@@ -25,7 +25,7 @@ namespace RPG_LP2.Controller
             StorageFolder Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             Folder = await Folder.GetFolderAsync("Assets");
             StorageFile sf = await Folder.GetFileAsync(nomeMusic);
-            Music.Volume = 0.1;
+            Music.Volume = 0.5;
             Music.SetSource(await sf.OpenAsync(FileAccessMode.Read), sf.ContentType);
             Music.Play();
             Music.IsLooping = true;

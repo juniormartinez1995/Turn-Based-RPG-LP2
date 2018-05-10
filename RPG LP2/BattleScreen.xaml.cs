@@ -35,8 +35,7 @@ namespace RPG_LP2
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
             Mob1.Source = Ninja;
-            heart_icon.Source = heart_stopped;
-
+            heart_icon.Source = heart_stopped;           
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
@@ -58,6 +57,7 @@ namespace RPG_LP2
 
         int button = 0;
         int turn;
+        
         double WidthRatio, HeightRatio, InitialKnifePosition;
         String ChosenSkill;
         bool AnimationEnabled, MobsDefeated;
@@ -100,6 +100,7 @@ namespace RPG_LP2
             mpBarCharacter.Value = BattlePlayer.CurrentMana;
             hpBarMob.Maximum = Mob_.HP;
             hpBarMob.Value = Mob_.HP;
+            TextBlockHP.Text = BattlePlayer.CurrentHP.ToString();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -231,9 +232,16 @@ namespace RPG_LP2
         private void AnimationHandler(object sender, object e)
         {
 
-            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
+            if (hpBarCharacter.Value >= 0) {
+                hpBarCharacter.Value = BattlePlayer.CurrentHP;
+                TextBlockHP.Text = BattlePlayer.CurrentHP.ToString();
+            }   
             if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
+            if (hpBarMob.Value >= 0)
+            {
+                hpBarMob.Value = Mob_.HP;
+                TextBlockMob.Text = Mob_.HP.ToString();
+            }
             if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
 
             switch (ChosenSkill)

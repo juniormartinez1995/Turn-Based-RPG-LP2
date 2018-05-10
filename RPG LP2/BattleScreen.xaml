@@ -20,11 +20,11 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        
-        
+
+
         <MediaElement x:Name="BattleSounds" Volume="0.6" />
-        
-        
+
+
         <!--SKILL BOX COM OS BUTTONS-->
         <Image x:Name="SkillBox" Source="Assets/textbox.gif" Canvas.Left="-68" Canvas.Top="460" Height="129" Width="524" />
         <Button x:Name="btnSkillBasic"  Content="Basic Skill" Canvas.Left="89" Canvas.Top="509" Height="25" Width="53" FontSize="12" BorderThickness="2,2,2,2" Click="FirstButton" Background="#847545" VerticalAlignment="Top"/>
@@ -43,6 +43,7 @@
             </Image.RenderTransform>
         </Image>
         <Image Height="63" Canvas.Left="-26" Canvas.Top="87" Width="179" Source="Assets/i agem png barra.png"/>
+
 
         <!--PROGRESS BARS-->
         <ProgressBar x:Name="hpBarCharacter" Height="22" Canvas.Left="18" Background="DarkRed" Foreground="Red" Canvas.Top="66" Width="109" RequestedTheme="Default" LargeChange="89" VerticalAlignment="Stretch" Canvas.ZIndex="2"/>
@@ -70,6 +71,8 @@
 
         <!--Faca-->
         <Image x:Name="Knife" Height="58" Opacity="0" Canvas.Left="534" Canvas.Top="312" Width="50" Source="Assets/Knife.png" />
+        <TextBlock x:Name="TextBlockHP" Canvas.Left="58" Canvas.Top="62" Canvas.ZIndex="5" Text="" TextWrapping="Wrap" FontSize="24" Height="28" Width="32" CompositeMode="Inherit" FontFamily="Kristen ITC"/>
+        <TextBlock x:Name="TextBlockMob" Canvas.Left="705" Canvas.Top="62" Canvas.ZIndex="5" Text="" TextWrapping="Wrap" FontSize="24" Height="28" Width="32" CompositeMode="Inherit" FontFamily="Kristen ITC"/>
 
     </Canvas>
 
