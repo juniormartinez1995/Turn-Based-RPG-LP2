@@ -35,8 +35,7 @@ namespace RPG_LP2
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
             Mob1.Source = Ninja;
-            heart_icon.Source = heart_stopped;
-
+            heart_icon.Source = heart_stopped;           
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
@@ -58,6 +57,7 @@ namespace RPG_LP2
 
         int button = 0;
         int turn;
+        
         double WidthRatio, HeightRatio, InitialKnifePosition;
         String ChosenSkill;
         bool AnimationEnabled, MobsDefeated;
@@ -100,6 +100,7 @@ namespace RPG_LP2
             mpBarCharacter.Value = BattlePlayer.CurrentMana;
             hpBarMob.Maximum = Mob_.HP;
             hpBarMob.Value = Mob_.HP;
+            TextBlockHP.Text = BattlePlayer.CurrentHP.ToString();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -164,9 +165,7 @@ namespace RPG_LP2
             ChosenSkill = "FirstSkill";
 
             AnimationKnifeMob();
-            btnSkillBasic.IsEnabled = false;
-            btnSkillOne.IsEnabled = false;
-            btnSkillTwo.IsEnabled = false;
+            MakeFalseButtons();
 
         }
         private void SecondButton(object sender, RoutedEventArgs e)
@@ -174,9 +173,7 @@ namespace RPG_LP2
             ChosenSkill = "SecondSkill";
 
             AnimationKnifeMob();
-            btnSkillBasic.IsEnabled = false;
-            btnSkillOne.IsEnabled = false;
-            btnSkillTwo.IsEnabled = false;
+            MakeFalseButtons();
 
         }
         private void ThirdButton(object sender, RoutedEventArgs e)
@@ -184,9 +181,36 @@ namespace RPG_LP2
             ChosenSkill = "ThirdSkill";
 
             AnimationKnifeMob();
+            MakeFalseButtons();
+
+        }
+
+        private void LifePotButton(object sender, RoutedEvent e)
+        {
+            ChosenSkill = "LifePot";
+
+            AnimationKnifeMob();
+            MakeFalseButtons();
+
+        }
+
+        private void ManaPotButton(object sender, RoutedEvent e)
+        {
+            ChosenSkill = "ManaPot";
+
+            AnimationKnifeMob();
+            MakeFalseButtons();
+
+        }
+
+        private void MakeFalseButtons()
+        {
             btnSkillBasic.IsEnabled = false;
             btnSkillOne.IsEnabled = false;
             btnSkillTwo.IsEnabled = false;
+            btnLifePot.IsEnabled = false;
+            BtnManaPot.IsEnabled = false;
+            
         }
 
         public async void AnimationKnifeMob()
@@ -231,9 +255,20 @@ namespace RPG_LP2
         private void AnimationHandler(object sender, object e)
         {
 
-            if (hpBarCharacter.Value >= 0) hpBarCharacter.Value = BattlePlayer.CurrentHP;
-            if (mpBarCharacter.Value >= 0) mpBarCharacter.Value = BattlePlayer.CurrentMana;
-            if (hpBarMob.Value >= 0) hpBarMob.Value = Mob_.HP;
+            if (hpBarCharacter.Value >= 0) {
+                hpBarCharacter.Value = BattlePlayer.CurrentHP;
+                TextBlockHP.Text = BattlePlayer.CurrentHP.ToString();
+            }
+            if (mpBarCharacter.Value >= 0)
+            {
+                mpBarCharacter.Value = BattlePlayer.CurrentMana;
+                TextBlockMP.Text = BattlePlayer.CurrentMana.ToString();
+            }
+            if (hpBarMob.Value >= 0)
+            {
+                hpBarMob.Value = Mob_.HP;
+                TextBlockMob.Text = Mob_.HP.ToString();
+            }
             if (BattlePlayer.CurrentHP < (BattlePlayer.MaxHealth / 2)) heart_icon.Source = heart_goON;
 
             switch (ChosenSkill)
@@ -288,6 +323,24 @@ namespace RPG_LP2
                             if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
         
                     }
+                    break;
+
+                case "LifePot":
+
+                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) 
+                    {
+                        BattlePlayer.inventory.removeAndUseLifePot(BattlePlayer);
+                    }
+
+                    break;
+
+                case "ManaPot":
+
+                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) 
+                    {
+                        BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
+                    }
+
                     break;
             }
         }

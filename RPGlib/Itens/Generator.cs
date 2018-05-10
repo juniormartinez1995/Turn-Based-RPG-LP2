@@ -21,6 +21,7 @@ namespace RPGlib.Itens
              **/
              
             int numRandom = RandomElement.Limiter(1, 6);
+            numRandom = 2;
             switch (numRandom)
             {
                 case 1:
@@ -46,7 +47,7 @@ namespace RPGlib.Itens
                     break;
             }
 
-            int numRandom2 = 8;
+            int numRandom2 = 3;
             switch (numRandom2)
             {
                 case 1:
