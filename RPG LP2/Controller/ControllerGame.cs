@@ -166,7 +166,7 @@ namespace RPG_LP2
         {
             if (!ChestControl.isOpen) //Abre o baú e adiciona os itens ao inventário
             {
-                SoundController.PlayDynamicSound("SoundOpenChest.mp4");
+                SoundController.PlayDynamicSound("SoundOpenChest.mp3");
                 player.OpenChest(ChestControl);
 
                 RefreshItems(player, qt_lifePot, qt_manaPot, ListImage);
