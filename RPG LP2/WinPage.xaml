@@ -5,21 +5,24 @@
     xmlns:local="using:RPG_LP2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Background="#464646">
 
     <Canvas x:Name="_Canvas" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <Image x:Name="image_died_DS" Source="Assets/youdiedscreen.jpg" Margin="0,0,0,0" Canvas.Left="-201" Canvas.Top="0" Height="598" Width="1198"/>
-
         <!--Butôes de quit e restart-->
-        <Image x:Name="btn_quit" Source="Assets/btn_closeCUTTED.png" HorizontalAlignment="Left" Height="114" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="113" Canvas.Left="248" Canvas.Top="488" Tapped="Close_rpg"/>
-        <Image x:Name="btn_restart" Source="Assets/btn_startCUTTED.png" HorizontalAlignment="Right" Height="114" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="114" Canvas.Left="438" Canvas.Top="485" Tapped="Restart_rpg"/>
+        <Image x:Name="btn_quit" Source="Assets/btn_closeCUTTED.png" HorizontalAlignment="Left" Height="117" Margin="0,0,0,0" Canvas.ZIndex="10" VerticalAlignment="Bottom" Width="228" Canvas.Left="617" Canvas.Top="830" Tapped="Close_rpg"/>
 
         <!--Frases de quit e restart-->
-        <Image Source="Assets/txt_quitrpg.png" Canvas.Left="200" Canvas.Top="471" Height="26" Width="206" />
-        <Image Source="Assets/txt_continuerpg.png" Canvas.Left="410" Canvas.Top="473" Height="26" Width="206" />
+        <Image Source="Assets/txt_quitrpg.png" Canvas.Left="628" Canvas.Top="784" Height="26" Width="206"  Canvas.ZIndex="10"/>
+        <Image Source="Assets/textodeserva.png" Canvas.Left="64" Canvas.Top="401" Height="459" Width="1399"  Canvas.ZIndex="10"/>
 
         <Image x:Name="img_dy" Height="80" Width="113" Canvas.Left="353" Canvas.Top="367" />
+        <Image x:Name="chupeta" Source="Assets/Chupeta.png" Canvas.ZIndex="50" Height="369" Width="366" Canvas.Left="563" Canvas.Top="36" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Image.RenderTransform>
+                <CompositeTransform Rotation="-15.468"/>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="Brackground" Source="Assets/endscreen.jpg" Canvas.Left="-1" Height="1034" Width="1525" Stretch="Fill" Canvas.Top="3" />
 
     </Canvas>
 </Page>

@@ -21,7 +21,7 @@ namespace RPG_LP2
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
-    public sealed partial class WinPage 
+    public sealed partial class WinPage
     {
         Character Player;
 
@@ -44,8 +44,7 @@ namespace RPG_LP2
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (ControllerGame.CheckLastPage(typeof(BattleScreen), this))
-            {
+            if (ControllerGame.CheckLastPage(typeof(BattleScreen), this)) {
 
                 Player = e.Parameter as Character;
                 img_dy.Source = Player.Dying;

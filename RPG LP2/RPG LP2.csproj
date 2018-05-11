@@ -171,6 +171,7 @@
     <Content Include="Assets\CaioYouWin.mp4" />
     <Content Include="Assets\charizard.jpg" />
     <Content Include="Assets\cheese.png" />
+    <Content Include="Assets\Chupeta.png" />
     <Content Include="Assets\defending.gif" />
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
@@ -179,6 +180,7 @@
     <Content Include="Assets\Dungeons\SecondDungeon.gif" />
     <Content Include="Assets\DyingGifs\b_dy.gif" />
     <Content Include="Assets\DyingGifs\d_dy.gif" />
+    <Content Include="Assets\endscreen.jpg" />
     <Content Include="Assets\history.png" />
     <Content Include="Assets\HistoryVitorHugo.mp4" />
     <Content Include="Assets\Jynx.gif" />
@@ -238,6 +240,7 @@
     <Content Include="Assets\SplashScreen.scale-200RIGHT.png" />
     <Content Include="Assets\SwordFinal.png" />
     <Content Include="Assets\textbox.gif" />
+    <Content Include="Assets\textodeserva.png" />
     <Content Include="Assets\text_scene_block.png" />
     <Content Include="Assets\txt_continuerpg.png" />
     <Content Include="Assets\txt_quitrpg.png" />
