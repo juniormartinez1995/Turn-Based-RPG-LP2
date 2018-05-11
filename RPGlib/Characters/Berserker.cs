@@ -19,11 +19,11 @@ namespace RPGlib.Characters
             this.CurrentMana = 100;
             this.CurrentXP = 0;
             this.Level = 0;
-            this.CriticRate = 0;
+            this.CriticRate = 15;
             this.EvasionRate = 5;
             this.CurrentArmor = 20;
             this.Damage = 30;
-            this.Lifesteal = 0;
+            this.Lifesteal = 5;
 
             Attacking = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/batk.gif"));
             Dying = new BitmapImage(new Uri(@"ms-appx:///Assets/DyingGifs/b_dy.gif"));

@@ -23,7 +23,7 @@ namespace RPGlib.Characters
             this.CriticRate = 10;
             this.EvasionRate = 0;
             this.CurrentArmor = 10;
-            this.Damage = 10;
+            this.Damage = 30;
             this.Lifesteal = 0;
 
             Attacking = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/datk.gif"));
@@ -94,11 +94,11 @@ namespace RPGlib.Characters
             return damageTurn;
         }
 
-        //SKill consome 20 de vida para ser castada
+        //SKill consome 50 de vida para ser castada
         public override int Skill2()
         {
-            int damageTurn = 100 * Passive();
-            this.CurrentHP -= 50;
+            int damageTurn = 70 * Passive();
+            this.CurrentHP -= 30;
 
             return damageTurn;
         }
