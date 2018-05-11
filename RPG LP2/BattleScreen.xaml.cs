@@ -245,7 +245,7 @@ namespace RPG_LP2
 
             Knife.Source = Attack;
             Knife.Opacity = 100;
-
+            SoundController.PlaySound(BattleSounds, "SoundSword.mp3");
             if (!MobAttackTimer.IsEnabled) MobAttackTimer.Start();
 
             AnimationEnabled = true;
@@ -260,6 +260,7 @@ namespace RPG_LP2
                 AttackingAnimation(true);
 
             }
+        
 
             else if (ControllerGame.IsSkillHitting(CharacterSkill, Mob1))
             {
@@ -273,8 +274,6 @@ namespace RPG_LP2
 
             BattleController.FinishBattle(BattlePlayer, Mob_);
         }
-
-
 
         //Evento para atualizar o progress bar
         private void AnimationHandler(object sender, object e)
@@ -320,7 +319,7 @@ namespace RPG_LP2
 
                     if (BattlePlayer is Berserker)
                     {
-                        CharacterSkill.Source = BattlePlayer.FirstSkill;
+                        CharacterSkill.Source = BattlePlayer.SecondSkill;
                         CastSkill(2);
                         if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "SoundSword.mp3");
                     }
@@ -337,7 +336,7 @@ namespace RPG_LP2
                 case "ThirdSkill":
                     if (BattlePlayer is Berserker)
                     {
-                        CharacterSkill.Source = BattlePlayer.FirstSkill;
+                        CharacterSkill.Source = BattlePlayer.ThirdSkill;
                         CastSkill(3);
                     }
 

@@ -13,12 +13,12 @@ namespace RPGlib.Mobs
         public PablloVittar()
         {
             this.name = "Pabllo Vittar";
-            this.HP = 100;
+            this.HP = 250;
             this.Mana = 100;
             this.evasionRate = 6;
             this.currentArmor = 20;
             this.Damage = 30;
-            this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/Jynx.gif"));
+            this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/Jynx3.gif"));
         }
 
         public override void Skill_Normal()
