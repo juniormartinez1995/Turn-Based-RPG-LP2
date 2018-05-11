@@ -49,8 +49,9 @@ namespace RPG_LP2
                 await Task.Delay(2700);
                 TurnMobAnimation();
                 MobTurn(person, mob, button);
-                if(person is Berserker) {
-                SoundController.PlayDynamicSound("Battle_Trance.mp3");
+                if (person is Berserker)
+                {
+                    SoundController.PlayDynamicSound("Battle_Trance.mp3");
                 }
 
             }
@@ -69,7 +70,7 @@ namespace RPG_LP2
                 case 1:
                     if (person is Berserker)
                     {
-                        
+
                         dmg = CheckArmorDamage(person.BasicSkill() - mob.currentArmor);
                         DealMobDamage(dmg, mob);
                     }
@@ -83,15 +84,15 @@ namespace RPG_LP2
                         //Checagem se houve multicast
                         if (multicast > 1)
                         {
-                            if(multicast == 2)
+                            if (multicast == 2)
                             {
                                 SoundController.PlayDynamicSound("Multicast_x2.mp3");
                             }
-                            if(multicast == 3)
+                            if (multicast == 3)
                             {
                                 SoundController.PlayDynamicSound("Multicast_x3.mp3");
                             }
-                            if(multicast == 4)
+                            if (multicast == 4)
                             {
                                 SoundController.PlayDynamicSound("Multicast_x4.mp3");
                             }
@@ -128,9 +129,9 @@ namespace RPG_LP2
 
                         if (person.ManaCountDown(0))
                         {
-                           person.Skill1();                                     
+                            person.Skill1();
                         }
-                        
+
                     }
                     break;
 
@@ -178,7 +179,7 @@ namespace RPG_LP2
                             }
 
                         }
-                       
+
 
 
                     }
