@@ -50,7 +50,7 @@ namespace RPG_LP2
         List<Object> CharList;
         DispatcherTimer timer = new DispatcherTimer();
 
-        BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
+        BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/newninja.gif"));
 
         BitmapImage heart_stopped = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_png.png"));
         BitmapImage heart_goON = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_gif.gif"));
@@ -207,22 +207,20 @@ namespace RPG_LP2
 
         }
 
-        private void LifePotButton(object sender, RoutedEvent e)
+        private void LifePotButton(object sender, RoutedEventArgs e)
         {
             ChosenSkill = "LifePot";
 
             AnimationKnifeMob();
             MakeFalseButtons();
-
         }
 
-        private void ManaPotButton(object sender, RoutedEvent e)
+        private void ManaPotButton(object sender, RoutedEventArgs e)
         {
             ChosenSkill = "ManaPot";
 
             AnimationKnifeMob();
             MakeFalseButtons();
-
         }
 
         private void MakeFalseButtons()
@@ -230,8 +228,6 @@ namespace RPG_LP2
             btnSkillBasic.IsEnabled = false;
             btnSkillOne.IsEnabled = false;
             btnSkillTwo.IsEnabled = false;
-            btnLifePot.IsEnabled = false;
-            BtnManaPot.IsEnabled = false;
 
         }
 
@@ -448,6 +444,8 @@ namespace RPG_LP2
             _Canvas.Children.Add(SkillBackground);
             SoundController.PlayDynamicSound("book.mp3");
         }
+
+      
 
         private void Book_PointerExited(object sender, PointerRoutedEventArgs e)
         {

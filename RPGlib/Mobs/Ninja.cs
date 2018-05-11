@@ -17,7 +17,7 @@ namespace RPGlib.Mobs
             this.evasionRate = 20;
             this.currentArmor = 10;
             this.Damage = 30;
-            this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif")); ;
+            this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/newninja.gif")); ;
 
         }
     }
