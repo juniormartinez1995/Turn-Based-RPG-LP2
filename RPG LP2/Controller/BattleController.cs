@@ -24,6 +24,7 @@ namespace RPG_LP2
         static int dmgturn = 0;
         static int dmgMob = 0;
         static int multicast = 1;
+        static int local = 0;
 
         public static int InicializeBattle(Character person, Mob mob, int button)
         {
@@ -166,8 +167,9 @@ namespace RPG_LP2
                     {
 
                         person.CurrentHP -= person.Skill2();
+                        local = mob.HP / 2;
                         mob.HP = mob.HP / 2;
-                       
+                        dmg = local;
                     }
 
                     if (person is Dicer)
@@ -203,10 +205,7 @@ namespace RPG_LP2
                             }
 
                         }
-                        else
-                        {
-                           
-                        }
+                       
 
 
                     }
