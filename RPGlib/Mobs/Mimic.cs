@@ -18,7 +18,8 @@ namespace RPGlib.Mobs
             this.evasionRate = 14;
             this.currentArmor = 5;
             this.Damage = 50;
-            this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/mimic.gif")); 
+            this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/mimic.gif"));
+            this.castBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/Book.gif"));
         }
 
         public override void Skill_Normal()

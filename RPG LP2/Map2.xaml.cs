@@ -229,6 +229,17 @@ namespace RPG_LP2
 
         }
 
+        private void Player_UpLevel(object sender, EventArgs args)
+        {
+            Player.MaxHealth += 50;
+            Player.MaxMana += 50;
+            Player.CurrentHP += 50;
+            Player.CurrentMana += 50;
+            Player.Damage += 2;
+
+            //Tirei o content dialog porque tava bugando
+        }
+
         private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Application.Current.Exit();//fecha o programa
@@ -250,6 +261,8 @@ namespace RPG_LP2
             {
                 MobAndChar = e.Parameter as List<Object>;
                 Player = MobAndChar.ElementAt(0) as Character;
+                ControllerGame.RefreshItems(Player, qt_lifePot, qt_manaPot, ListInvetoryImage);
+                Player.UpLevel += Player_UpLevel;
 
                 if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;
                 else if (MobAndChar.ElementAt(1) is PablloVittar) PablloVittar = MobAndChar.ElementAt(1) as PablloVittar;

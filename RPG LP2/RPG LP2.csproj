@@ -179,6 +179,7 @@
     <Content Include="Assets\Dungeons\SecondDungeon.gif" />
     <Content Include="Assets\DyingGifs\b_dy.gif" />
     <Content Include="Assets\DyingGifs\d_dy.gif" />
+    <Content Include="Assets\history.png" />
     <Content Include="Assets\HistoryVitorHugo.mp4" />
     <Content Include="Assets\Jynx.gif" />
     <Content Include="Assets\Jynx2.gif" />

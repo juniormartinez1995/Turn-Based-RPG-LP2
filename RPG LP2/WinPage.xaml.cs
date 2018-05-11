@@ -21,7 +21,7 @@ namespace RPG_LP2
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
-    public sealed partial class WinPage : LosePage
+    public sealed partial class WinPage 
     {
         Character Player;
 

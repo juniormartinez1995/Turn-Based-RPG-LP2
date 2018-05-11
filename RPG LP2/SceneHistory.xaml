@@ -8,6 +8,7 @@
     mc:Ignorable="d" FontFamily="Bebas Neue">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image x:Name="history" Source="Assets/history.png" Canvas.ZIndex="1" Margin="58,58,106,52"/>
         <Image x:Name="background_gif" Source="Assets/MapsBackground/scene_history.gif" Margin="-144,-96,-144,-96"/>
         <Image x:Name="bock_text_question" Source="Assets/text_scene_block.png" Margin="0,0,8,108"  HorizontalAlignment="Right" Width="257" Height="30" VerticalAlignment="Bottom"/>
         <TextBox x:Name="text_box_scene_history" HorizontalAlignment="Right" Margin="0,0,10,77" VerticalAlignment="Bottom" Height="28" Width="254" FontFamily="Segoe UI" d:LayoutOverrides="Height"/>
