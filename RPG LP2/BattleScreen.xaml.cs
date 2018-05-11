@@ -146,8 +146,8 @@ namespace RPG_LP2
 
             if (BattlePlayer is Berserker)
             {
-                btnSkillBasic.Content = "Caio trouxa";
-                btnSkillOne.Content = "Mamosa infinita";
+                btnSkillBasic.Content = "Sword Basic";
+                btnSkillOne.Content = "";
                 btnSkillTwo.Content = "Infinity Edge";
             }
             if (BattlePlayer is Dicer)
@@ -155,6 +155,16 @@ namespace RPG_LP2
                 btnSkillBasic.Content = "Waterball";
                 btnSkillOne.Content = "Mystic Snake";
                 btnSkillTwo.Content = "Nether Blast";
+            }
+
+            btnLifePot.IsEnabled = false;
+            if (BattlePlayer.inventory.checkPotCount("LifePot")) {
+                btnLifePot.IsEnabled = true;
+            }
+
+            BtnManaPot.IsEnabled = false;
+            if (BattlePlayer.inventory.checkPotCount("ManaPot")) {
+                BtnManaPot.IsEnabled = true;
             }
 
             Mob1.Source = Mob_.GifBattle;
@@ -187,7 +197,7 @@ namespace RPG_LP2
         {
             ChosenSkill = "FirstSkill";
 
-            AnimationKnifeMob();
+            AnimationKnifeMob(Mob_.GifBattle);
             MakeFalseButtons();
 
         }
@@ -195,7 +205,7 @@ namespace RPG_LP2
         {
             ChosenSkill = "SecondSkill";
 
-            AnimationKnifeMob();
+            AnimationKnifeMob(Mob_.GifBattle);
             MakeFalseButtons();
 
         }
@@ -203,25 +213,30 @@ namespace RPG_LP2
         {
             ChosenSkill = "ThirdSkill";
 
-            AnimationKnifeMob();
+            AnimationKnifeMob(Mob_.GifBattle);
             MakeFalseButtons();
 
         }
 
         private void LifePotButton(object sender, RoutedEventArgs e)
         {
-            ChosenSkill = "LifePot";
+            
+            if (BattlePlayer.inventory.checkPotCount("LifePot")) {
 
-            AnimationKnifeMob();
-            MakeFalseButtons();
+                BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
+            }
+
+           
         }
 
         private void ManaPotButton(object sender, RoutedEventArgs e)
         {
-            ChosenSkill = "ManaPot";
 
-            AnimationKnifeMob();
-            MakeFalseButtons();
+            if (BattlePlayer.inventory.checkPotCount("ManaPot")) {
+
+                BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
+            }
+
         }
 
         private void MakeFalseButtons()
@@ -232,14 +247,15 @@ namespace RPG_LP2
 
         }
 
-        public async void AnimationKnifeMob()
+        public async void AnimationKnifeMob(BitmapImage Attack)
         {
             await Task.Delay(2800);
 
             if (MobsDefeated) return;
 
+            Knife.Source = Attack;
             Knife.Opacity = 100;
-
+            SoundController.PlaySound(BattleSounds, "SoundSword.mp3");
             if (!MobAttackTimer.IsEnabled) MobAttackTimer.Start();
 
             AnimationEnabled = true;
@@ -254,6 +270,7 @@ namespace RPG_LP2
                 AttackingAnimation(true);
 
             }
+        
 
             else if (ControllerGame.IsSkillHitting(CharacterSkill, Mob1))
             {
@@ -267,8 +284,6 @@ namespace RPG_LP2
 
             BattleController.FinishBattle(BattlePlayer, Mob_);
         }
-
-
 
         //Evento para atualizar o progress bar
         private void AnimationHandler(object sender, object e)
@@ -314,7 +329,7 @@ namespace RPG_LP2
 
                     if (BattlePlayer is Berserker)
                     {
-                        CharacterSkill.Source = BattlePlayer.FirstSkill;
+                        CharacterSkill.Source = BattlePlayer.SecondSkill;
                         CastSkill(2);
                         if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "SoundSword.mp3");
                     }
@@ -331,7 +346,7 @@ namespace RPG_LP2
                 case "ThirdSkill":
                     if (BattlePlayer is Berserker)
                     {
-                        CharacterSkill.Source = BattlePlayer.FirstSkill;
+                        CharacterSkill.Source = BattlePlayer.ThirdSkill;
                         CastSkill(3);
                     }
 
@@ -345,23 +360,6 @@ namespace RPG_LP2
                     }
                     break;
 
-                case "LifePot":
-
-                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill))
-                    {
-                        BattlePlayer.inventory.removeAndUseLifePot(BattlePlayer);
-                    }
-
-                    break;
-
-                case "ManaPot":
-
-                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill))
-                    {
-                        BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
-                    }
-
-                    break;
             }
         }
 

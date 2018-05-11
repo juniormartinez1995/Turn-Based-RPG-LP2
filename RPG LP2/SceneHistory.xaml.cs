@@ -23,6 +23,7 @@ namespace RPG_LP2
     public sealed partial class SceneHistory : Page
     {
         int btn = 0;
+        bool SkipPageAllowed = false;
 
         public SceneHistory()
         {
@@ -31,10 +32,18 @@ namespace RPG_LP2
 
         private void btn_go_event(object sender, TappedRoutedEventArgs e)
         {
+            //Mudar pra apresentaçao amanha. nao mexe nisso plz
+            //if (SkipPageAllowed)
+            //{
+            //}
+                if (btn == 0) { text_block_scene_history.Text = "Então seu nome é Caio?"; btn++; }
+                else if (btn == 1) { text_block_scene_history.Text = "Caio Mendes?"; btn++; }
+                else this.Frame.Navigate(typeof(SelecClass));
+        }
 
-            if (btn == 0) { text_block_scene_history.Text = "Então seu nome é Caio?"; btn++; }
-            else if (btn == 1) { text_block_scene_history.Text = "Caio Mendes?"; btn++; }
-            else this.Frame.Navigate(typeof(SelecClass));
+        private void History_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            //SkipPageAllowed = true;
         }
     }
 }
