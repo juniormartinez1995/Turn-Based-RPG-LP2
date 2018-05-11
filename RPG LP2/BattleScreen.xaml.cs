@@ -446,6 +446,8 @@ namespace RPG_LP2
         private void Book_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             _Canvas.Children.Add(SkillBackground);
+            if (BattlePlayer is Berserker) SkillBackground.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/background_spells_berserker.png"));
+            else if (BattlePlayer is Dicer) SkillBackground.Source =  new BitmapImage(new Uri(@"ms-appx:///Assets/background_spells_dicer.png")); ;
             SoundController.PlayDynamicSound("book.mp3");
         }
 

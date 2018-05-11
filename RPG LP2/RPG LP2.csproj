@@ -152,6 +152,8 @@
     <Content Include="Assets\AttackGifs\Dicer\water_spellq.gif" />
     <Content Include="Assets\AttackGifs\teste.gif" />
     <Content Include="Assets\background_spells.png" />
+    <Content Include="Assets\background_spells_berserker.png" />
+    <Content Include="Assets\background_spells_dicer.png" />
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\BattleAnimations\mimic.gif" />
@@ -168,6 +170,7 @@
     <Content Include="Assets\CaioYouDied.mp4" />
     <Content Include="Assets\CaioYouWin.mp4" />
     <Content Include="Assets\cheese.png" />
+    <Content Include="Assets\defending.gif" />
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
     <Content Include="Assets\Double_Edge.mp3" />
