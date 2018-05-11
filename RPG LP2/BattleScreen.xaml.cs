@@ -146,8 +146,8 @@ namespace RPG_LP2
 
             if (BattlePlayer is Berserker)
             {
-                btnSkillBasic.Content = "Caio trouxa";
-                btnSkillOne.Content = "Mamosa infinita";
+                btnSkillBasic.Content = "Sword Basic";
+                btnSkillOne.Content = "";
                 btnSkillTwo.Content = "Infinity Edge";
             }
             if (BattlePlayer is Dicer)
@@ -211,7 +211,7 @@ namespace RPG_LP2
         private void LifePotButton(object sender, RoutedEventArgs e)
         {
             
-            if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) {
+            if (BattlePlayer.inventory.checkPotCount("LifePot")) {
 
                 BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
             }
@@ -222,7 +222,7 @@ namespace RPG_LP2
         private void ManaPotButton(object sender, RoutedEventArgs e)
         {
 
-            if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) {
+            if (BattlePlayer.inventory.checkPotCount("ManaPot")) {
 
                 BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
             }
