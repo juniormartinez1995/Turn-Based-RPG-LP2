@@ -125,39 +125,11 @@ namespace RPG_LP2
                     if (person is Dicer)
                     {
 
-                        if (person.ManaCountDown(100))
+                        if (person.ManaCountDown(0))
                         {
-                            dmgturn = person.Skill1();
-                            multicast = dmgturn / 30;
-                            dmg = CheckArmorDamage(dmgturn - mob.currentArmor);
-                            person.CurrentMana -= 100;
-                            DealMobDamage(dmg, mob);
-                            //Checagem se houve multicast
-                            if (multicast > 1)
-                            {
-                                if (multicast == 2)
-                                {
-                                    SoundController.PlayDynamicSound("Multicast_x2.mp3");
-                                }
-                                if (multicast == 3)
-                                {
-                                    SoundController.PlayDynamicSound("Multicast_x3.mp3");
-                                }
-                                if (multicast == 4)
-                                {
-                                    SoundController.PlayDynamicSound("Multicast_x4.mp3");
-                                }
-                                if (multicast == 5)
-                                {
-                                    SoundController.PlayDynamicSound("Multicast_x3.mp3");
-                                    SoundController.PlayDynamicSound("Multicast_x4.mp3");
-                                }
-                            }
+                           person.Skill1();                                     
                         }
-                        else
-                        {
-                            SoundController.PlayDynamicSound("DicerNoMana.mp3");
-                        }
+                        
                     }
                     break;
 
