@@ -23,7 +23,7 @@ namespace RPGlib.Characters
             this.CriticRate = 10;
             this.EvasionRate = 0;
             this.CurrentArmor = 10;
-            this.Damage = 50;
+            this.Damage = 10;
             this.Lifesteal = 0;
 
             Attacking = new BitmapImage(new Uri(@"ms-appx:///Assets/AttackGifs/datk.gif"));
@@ -82,16 +82,23 @@ namespace RPGlib.Characters
         //Skill a ser pensada
         public override int Skill1()
         {
-            int damageTurn = 30 * Passive();
-
+            int damageTurn = 0;
+            if((this.CurrentMana+= 50) >= this.MaxMana)
+            {
+                this.CurrentMana = this.MaxMana;
+            }
+            else
+            {
+            this.CurrentMana += 50;
+            }
             return damageTurn;
         }
 
         //SKill consome 20 de vida para ser castada
         public override int Skill2()
         {
-            int damageTurn = 80 * Passive();
-            this.CurrentHP -= 20;
+            int damageTurn = 100 * Passive();
+            this.CurrentHP -= 50;
 
             return damageTurn;
         }
