@@ -34,7 +34,6 @@ namespace RPG_LP2
         {
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
-            Mob1.Source = Ninja;
             heart_icon.Source = heart_stopped;
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
@@ -158,6 +157,7 @@ namespace RPG_LP2
                 btnSkillTwo.Content = "Nether Blast";
             }
 
+            Mob1.Source = Mob_.GifBattle;
             SignPageEvents();
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
 
