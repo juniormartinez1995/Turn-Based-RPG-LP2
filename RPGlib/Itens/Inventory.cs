@@ -61,36 +61,36 @@ namespace RPGlib.Itens
             return false;
         }
 
-        public void removeOrUsePotion (Item Potion)
+        public void removeOrUsePotion(Item Potion)
         {
-            if (Potion is PotionLife )
+            if (Potion is PotionLife)
             {
                 PotionLife p = Potion as PotionLife;
                 inventoryPotionLife.Remove(p);
-                
+
             }
-            else if (Potion is PotionMana )
+            else if (Potion is PotionMana)
             {
                 PotionMana p = Potion as PotionMana;
                 inventoryPotionMana.Remove(p);
-                
+
             }
 
         }
 
-        public void removeAndUseLifePot (Character player)
+        public void removeAndUseLifePot(Character player)
         {
-            this.inventoryPotionLife[this.inventoryPotionLife.Count-1].Effect(player);
+            this.inventoryPotionLife[this.inventoryPotionLife.Count - 1].Effect(player);
             this.inventoryPotionLife.Remove(this.inventoryPotionLife[this.inventoryPotionLife.Count - 1] as PotionLife);
         }
 
-        public void removeAndUseManaPot (Character player)
+        public void removeAndUseManaPot(Character player)
         {
             this.inventoryPotionMana[this.inventoryPotionMana.Count - 1].Effect(player);
             this.inventoryPotionMana.Remove(this.inventoryPotionMana[this.inventoryPotionMana.Count - 1] as PotionMana);
         }
 
-        public Boolean checkPotCount (String Potion)
+        public Boolean checkPotCount(String Potion)
         {
             if (Potion is "LifePot" && this.inventoryPotionLife.Count() > 0) return true;
             else if (Potion is "ManaPot" && this.inventoryPotionMana.Count() > 0) return true;
@@ -107,7 +107,7 @@ namespace RPGlib.Itens
             {
                 ItensMap.Add(item);
                 var2 = true;
-                
+
             }
             if (var == false && var2 == false)
             {

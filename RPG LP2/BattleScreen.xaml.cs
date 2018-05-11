@@ -158,12 +158,14 @@ namespace RPG_LP2
             }
 
             btnLifePot.IsEnabled = false;
-            if (BattlePlayer.inventory.checkPotCount("LifePot")) {
+            if (BattlePlayer.inventory.checkPotCount("LifePot"))
+            {
                 btnLifePot.IsEnabled = true;
             }
 
             BtnManaPot.IsEnabled = false;
-            if (BattlePlayer.inventory.checkPotCount("ManaPot")) {
+            if (BattlePlayer.inventory.checkPotCount("ManaPot"))
+            {
                 BtnManaPot.IsEnabled = true;
             }
 
@@ -220,19 +222,21 @@ namespace RPG_LP2
 
         private void LifePotButton(object sender, RoutedEventArgs e)
         {
-            
-            if (BattlePlayer.inventory.checkPotCount("LifePot")) {
+
+            if (BattlePlayer.inventory.checkPotCount("LifePot"))
+            {
 
                 BattlePlayer.inventory.removeAndUseLifePot(BattlePlayer);
             }
 
-           
+
         }
 
         private void ManaPotButton(object sender, RoutedEventArgs e)
         {
 
-            if (BattlePlayer.inventory.checkPotCount("ManaPot")) {
+            if (BattlePlayer.inventory.checkPotCount("ManaPot"))
+            {
 
                 BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
             }
@@ -270,7 +274,7 @@ namespace RPG_LP2
                 AttackingAnimation(true);
 
             }
-        
+
 
             else if (ControllerGame.IsSkillHitting(CharacterSkill, Mob1))
             {
@@ -447,7 +451,7 @@ namespace RPG_LP2
             SoundController.PlayDynamicSound("book.mp3");
         }
 
-      
+
 
         private void Book_PointerExited(object sender, PointerRoutedEventArgs e)
         {
