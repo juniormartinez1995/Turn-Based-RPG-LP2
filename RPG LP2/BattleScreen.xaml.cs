@@ -422,7 +422,8 @@ namespace RPG_LP2
 
         private void Book_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            _Canvas.Children.Add(SkillsDetails);
+            SoundController.PlayDynamicSound("book.mp3");
         }
 
         //Evento para tratar quando o jogador está sem mana
