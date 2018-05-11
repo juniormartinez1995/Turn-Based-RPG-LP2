@@ -157,6 +157,16 @@ namespace RPG_LP2
                 btnSkillTwo.Content = "Nether Blast";
             }
 
+            btnLifePot.IsEnabled = false;
+            if (BattlePlayer.inventory.checkPotCount("LifePot")) {
+                btnLifePot.IsEnabled = true;
+            }
+
+            BtnManaPot.IsEnabled = false;
+            if (BattlePlayer.inventory.checkPotCount("ManaPot")) {
+                BtnManaPot.IsEnabled = true;
+            }
+
             Mob1.Source = Mob_.GifBattle;
             SignPageEvents();
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
