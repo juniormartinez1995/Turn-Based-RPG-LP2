@@ -223,7 +223,7 @@ namespace RPG_LP2
             
             if (BattlePlayer.inventory.checkPotCount("LifePot")) {
 
-                BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
+                BattlePlayer.inventory.removeAndUseLifePot(BattlePlayer);
             }
 
            
