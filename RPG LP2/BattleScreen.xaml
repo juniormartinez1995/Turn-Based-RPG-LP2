@@ -8,9 +8,10 @@
     mc:Ignorable="d" Height="600" Width="797"   MinWidth="800" MinHeight="600"  FontFamily="Segoe UI" Background="#464646">
     <Canvas x:Name="_Canvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
 
-        <Canvas Opacity="1" Name="SkillsDetails" Height="312" Width="414" Canvas.Left="170" Canvas.Top="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="10">
-            <Image x:Name="SkillBackground" Source="Assets/background_spells.png" Height="312" Width="414" Canvas.Left="52" Canvas.ZIndex="10"  HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" />
-        </Canvas>
+        <Image x:Name="SkillBackground" Source="Assets/background_spells.png" Height="189" Width="266" Canvas.Left="445" Canvas.ZIndex="10"  HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Canvas.Top="225">
+         
+        
+        </Image>
 
         <Image Height="600" Canvas.Left="1" Canvas.Top="-71" Width="800" Source="Assets/BattleBackground.gif"/>
         <Image x:Name="Person1" Height="100" Canvas.Left="99" Canvas.Top="330" Width="100" />

@@ -39,7 +39,7 @@ namespace RPG_LP2
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
-            _Canvas.Children.Remove(SkillsDetails);
+            _Canvas.Children.Remove(SkillBackground);
             InitialKnifePosition = 534 * WidthRatio;
         }
 
@@ -424,13 +424,13 @@ namespace RPG_LP2
 
         private void Book_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            _Canvas.Children.Add(SkillsDetails);
+            _Canvas.Children.Add(SkillBackground);
             SoundController.PlayDynamicSound("book.mp3");
         }
 
         private void Book_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            _Canvas.Children.Remove(SkillsDetails);
+            _Canvas.Children.Remove(SkillBackground);
         }
 
 

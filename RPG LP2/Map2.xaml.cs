@@ -35,8 +35,10 @@ namespace RPG_LP2
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
             StartAnimation();
             SetCollision();
+            SetEnemies();
+            SetChests();
             AddImageOnList();
-            
+
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
@@ -74,9 +76,22 @@ namespace RPG_LP2
 
         public void SetCollision()
         {
-            Collision.Add(LockedChest);
-            Collision.Add(OpenedChest);
+            Collision.Add(Collision0);
+            Collision.Add(Collision1);
+            Collision.Add(MapExit);
+        }
 
+        public void SetEnemies()
+        {
+            Enemies.Add(OpenedChest);
+            Enemies.Add(Enemy0);
+            Enemies.Add(Enemy1);
+            Enemies.Add(Enemy2);
+        }
+
+        public void SetChests()
+        {
+            LockedChests.Add(LockedChest);
         }
 
         private void AddImageOnList()
@@ -97,7 +112,7 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            if(!ControllerGame.CheckListCollision(Player, Person1, Collision))
+            if (ControllerGame.IsMovimentAllowed(Player, Person1, LockedChests, Enemies, Collision, Keys))
             {
 
                 if (YSpeed < 0 && PosY > 115 * HeightRatio)  //Movimento, checagem e animação para cima
@@ -126,14 +141,12 @@ namespace RPG_LP2
 
             }
 
-            //else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
-            //{
-            //    if (Ninja.IsDead() && PablloVittar.IsDead())
-            //    {
-            //        this.Frame.Navigate(typeof(Map2), Player);
-            //    }
+            else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
+            {
+                    this.Frame.Navigate(typeof(Map), Player);
 
-            //}
+
+            }
         }
 
         private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)
