@@ -39,8 +39,8 @@ namespace RPGlib.Characters
             IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/brs.gif"));
 
             FirstSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/SwordFinal.png"));
-            SecondSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/SwordFinal.png"));
-            ThirdSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/SwordFinal.png"));
+            SecondSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/2ndBerserker.gif"));
+            ThirdSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/3rdBerserker.gif"));
         }
 
 
