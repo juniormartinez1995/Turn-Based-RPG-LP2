@@ -178,7 +178,7 @@ namespace RPG_LP2
 
             }
 
-            if (ControllerGame.CheckLastPage(typeof(Map), this))
+            if (ControllerGame.CheckLastPage(typeof(Map2), this))
             {
                 Player = e.Parameter as Character;
                 Person1.Source = Player.IdleRight;
@@ -276,7 +276,7 @@ namespace RPG_LP2
 
             else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
             {
-                if (/*Ninja.IsDead() && PablloVittar.IsDead())*/true)  { this.Frame.Navigate(typeof(Map2), Player); }
+                if (/*Ninja.IsDead() && PablloVittar.IsDead())*/true)  { IsAnotherPage = true; this.Frame.Navigate(typeof(Map2), Player); }
             }
 
         }

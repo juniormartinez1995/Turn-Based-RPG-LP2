@@ -23,9 +23,9 @@
 
         <!--Lista de Inimigos-->
         <Image x:Name="OpenedChest" Height="17" Width="20" Canvas.Left="138" Canvas.Top="166"/>
-        <Image x:Name="Enemy0" Height="31" Width="14" Canvas.Left="371" Canvas.Top="275"/>
-        <Image x:Name="Enemy1" Height="13" Width="10" Canvas.Left="511" Canvas.Top="289"/>
-        <Image x:Name="Enemy2" Height="13" Width="10" Canvas.Left="417" Canvas.Top="456"/>
+        <Image x:Name="Salamander" Height="31" Width="14" Canvas.Left="371" Canvas.Top="275"/>
+        <Image x:Name="FirstRat" Height="13" Width="10" Canvas.Left="511" Canvas.Top="289"/>
+        <Image x:Name="SecondRat" Height="13" Width="10" Canvas.Left="417" Canvas.Top="456"/>
 
 
 
@@ -227,7 +227,7 @@
         <Image x:Name="life_mana" Canvas.Left="432" Canvas.Top="547" Width="50" Height="50" Source="Assets/potion_mana.png" />
 
         <!--Baú aberto imagem-->
-        <Image x:Name="open_chest" VerticalAlignment="Top" HorizontalAlignment="Left"  Canvas.Left="125" Canvas.Top="411" Height="50" Width="50" Stretch="UniformToFill"/>
+        <Image x:Name="open_chest" VerticalAlignment="Top" HorizontalAlignment="Left"  Canvas.Left="170" Canvas.Top="159" Height="50" Width="50" Stretch="UniformToFill"/>
 
     </Canvas>
 

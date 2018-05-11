@@ -76,7 +76,10 @@ namespace RPG_LP2
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
             UnsignPageEvents();
-            this.Frame.Navigate(typeof(Map), CharList);
+
+            if (ControllerGame.CheckLastPage(typeof(Map2), this)) this.Frame.Navigate(typeof(Map2), CharList);
+            else if (ControllerGame.CheckLastPage(typeof(Map), this)) this.Frame.Navigate(typeof(Map), CharList);
+
         }
 
         //Setar animação de ataque ou idle
@@ -107,6 +110,24 @@ namespace RPG_LP2
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (ControllerGame.CheckLastPage(typeof(Map), this))
+            {
+                CharList = e.Parameter as List<Object>;
+
+                BattlePlayer = CharList.ElementAt(0) as Character;
+                Mob_ = CharList.ElementAt(1) as Mob;
+                CharList.Clear();
+
+                Debug.WriteLine("DANO MOB: " + Mob_.Damage);
+                Debug.WriteLine("Dano Player " + BattlePlayer.Damage);
+                Debug.WriteLine("EU SOU " + Mob_.name);
+
+                AdjustProgessBar();
+
+                Person1.Source = BattlePlayer.IdleUp;
+
+            }
+
+            if (ControllerGame.CheckLastPage(typeof(Map2), this))
             {
                 CharList = e.Parameter as List<Object>;
 
