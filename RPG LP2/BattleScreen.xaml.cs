@@ -50,7 +50,7 @@ namespace RPG_LP2
         List<Object> CharList;
         DispatcherTimer timer = new DispatcherTimer();
 
-        BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
+        BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/newninja.gif"));
 
         BitmapImage heart_stopped = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_png.png"));
         BitmapImage heart_goON = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_gif.gif"));

@@ -202,6 +202,7 @@
     <Content Include="Assets\Multicast_x2.mp3" />
     <Content Include="Assets\Multicast_x3.mp3" />
     <Content Include="Assets\Multicast_x4.mp3" />
+    <Content Include="Assets\newninja.gif" />
     <Content Include="Assets\open_chest.png" />
     <Content Include="Assets\open_chest3.png" />
     <Content Include="Assets\hermesboots.png" />
