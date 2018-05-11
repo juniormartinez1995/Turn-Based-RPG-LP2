@@ -34,12 +34,11 @@ namespace RPG_LP2
         {
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
-            Mob1.Source = Ninja;
             heart_icon.Source = heart_stopped;
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
-            _Canvas.Children.Remove(SkillsDetails);
+            _Canvas.Children.Remove(SkillBackground);
             InitialKnifePosition = 534 * WidthRatio;
         }
 
@@ -50,7 +49,7 @@ namespace RPG_LP2
         List<Object> CharList;
         DispatcherTimer timer = new DispatcherTimer();
 
-        BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/NinjaServa.gif"));
+        BitmapImage Ninja = new BitmapImage(new Uri(@"ms-appx:///Assets/newninja.gif"));
 
         BitmapImage heart_stopped = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_png.png"));
         BitmapImage heart_goON = new BitmapImage(new Uri(@"ms-appx:///Assets/heart_gif.gif"));
@@ -76,7 +75,10 @@ namespace RPG_LP2
 
             ContentDialogResult result = await BattleEnded.ShowAsync();
             UnsignPageEvents();
-            this.Frame.Navigate(typeof(Map), CharList);
+
+            if (ControllerGame.CheckLastPage(typeof(Map2), this)) this.Frame.Navigate(typeof(Map2), CharList);
+            else if (ControllerGame.CheckLastPage(typeof(Map), this)) this.Frame.Navigate(typeof(Map), CharList);
+
         }
 
         //Setar animação de ataque ou idle
@@ -124,6 +126,24 @@ namespace RPG_LP2
 
             }
 
+            if (ControllerGame.CheckLastPage(typeof(Map2), this))
+            {
+                CharList = e.Parameter as List<Object>;
+
+                BattlePlayer = CharList.ElementAt(0) as Character;
+                Mob_ = CharList.ElementAt(1) as Mob;
+                CharList.Clear();
+
+                Debug.WriteLine("DANO MOB: " + Mob_.Damage);
+                Debug.WriteLine("Dano Player " + BattlePlayer.Damage);
+                Debug.WriteLine("EU SOU " + Mob_.name);
+
+                AdjustProgessBar();
+
+                Person1.Source = BattlePlayer.IdleUp;
+
+            }
+
             if (BattlePlayer is Berserker)
             {
                 btnSkillBasic.Content = "Caio trouxa";
@@ -137,6 +157,7 @@ namespace RPG_LP2
                 btnSkillTwo.Content = "Nether Blast";
             }
 
+            Mob1.Source = Mob_.GifBattle;
             SignPageEvents();
             turn = BattleController.InicializeBattle(BattlePlayer, Mob_, button);
 
@@ -186,22 +207,20 @@ namespace RPG_LP2
 
         }
 
-        private void LifePotButton(object sender, RoutedEvent e)
+        private void LifePotButton(object sender, RoutedEventArgs e)
         {
             ChosenSkill = "LifePot";
 
             AnimationKnifeMob();
             MakeFalseButtons();
-
         }
 
-        private void ManaPotButton(object sender, RoutedEvent e)
+        private void ManaPotButton(object sender, RoutedEventArgs e)
         {
             ChosenSkill = "ManaPot";
 
             AnimationKnifeMob();
             MakeFalseButtons();
-
         }
 
         private void MakeFalseButtons()
@@ -209,8 +228,6 @@ namespace RPG_LP2
             btnSkillBasic.IsEnabled = false;
             btnSkillOne.IsEnabled = false;
             btnSkillTwo.IsEnabled = false;
-            btnLifePot.IsEnabled = false;
-            BtnManaPot.IsEnabled = false;
 
         }
 
@@ -423,13 +440,15 @@ namespace RPG_LP2
 
         private void Book_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            _Canvas.Children.Add(SkillsDetails);
+            _Canvas.Children.Add(SkillBackground);
             SoundController.PlayDynamicSound("book.mp3");
         }
 
+      
+
         private void Book_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            _Canvas.Children.Remove(SkillsDetails);
+            _Canvas.Children.Remove(SkillBackground);
         }
 
 

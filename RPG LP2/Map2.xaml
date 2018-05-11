@@ -11,8 +11,21 @@
         <Image x:Name="MainDungeon" HorizontalAlignment="Left" VerticalAlignment="Top" Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/Dungeons/gifmapa2.gif" Stretch="Fill"/>
         <Image x:Name="Person1" Height="55" Width="55" Canvas.Left="80" Canvas.Top="310" Canvas.ZIndex="1"/>
 
-        <Image x:Name="OpenedChest" Height="17" Width="20" Canvas.Left="138" Canvas.Top="166"/>
         <Image x:Name="LockedChest" Height="17" Width="20" Canvas.Left="184" Canvas.Top="166"/>
+
+
+        <!--Lista de Colisão-->
+        <Image x:Name="Collision0" Height="27" Width="12" Canvas.Left="284" Canvas.Top="232"/>
+        <Image x:Name="Collision1" Height="28" Width="13" Canvas.Left="620" Canvas.Top="373"/>
+
+        <!--Saída do mapa-->
+        <Image x:Name="MapExit" Height="28" Width="14" Canvas.Left="51" Canvas.Top="313"/>
+
+        <!--Lista de Inimigos-->
+        <Image x:Name="OpenedChest" Height="17" Width="20" Canvas.Left="138" Canvas.Top="166"/>
+        <Image x:Name="Salamander" Height="31" Width="14" Canvas.Left="371" Canvas.Top="275"/>
+        <Image x:Name="FirstRat" Height="13" Width="10" Canvas.Left="511" Canvas.Top="289"/>
+        <Image x:Name="SecondRat" Height="13" Width="10" Canvas.Left="417" Canvas.Top="456"/>
 
 
 
@@ -214,7 +227,7 @@
         <Image x:Name="life_mana" Canvas.Left="432" Canvas.Top="547" Width="50" Height="50" Source="Assets/potion_mana.png" />
 
         <!--Baú aberto imagem-->
-        <Image x:Name="open_chest" VerticalAlignment="Top" HorizontalAlignment="Left"  Canvas.Left="125" Canvas.Top="411" Height="50" Width="50" Stretch="UniformToFill"/>
+        <Image x:Name="open_chest" VerticalAlignment="Top" HorizontalAlignment="Left"  Canvas.Left="170" Canvas.Top="159" Height="50" Width="50" Stretch="UniformToFill"/>
 
     </Canvas>
 

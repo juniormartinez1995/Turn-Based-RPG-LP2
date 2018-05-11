@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
@@ -35,8 +36,12 @@ namespace RPG_LP2
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
             StartAnimation();
             SetCollision();
+            SetEnemies();
+            SetChests();
             AddImageOnList();
-            
+
+            Generator.ChestPopulate(ChestControl);
+
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
@@ -54,6 +59,10 @@ namespace RPG_LP2
         Character Player; //Personagem que estará no mapa
         PablloVittar PablloVittar = new PablloVittar();
         Ninja Ninja = new Ninja();
+        Salamander Salamander_ = new Salamander();
+        Mouse Mouse = new Mouse();
+        Mouse SecondMouse = new Mouse();
+        Mimic Mimic = new Mimic();
         Chest ChestControl = new Chest(); //Gerenciamento do baú
 
         double WidthRatio, HeightRatio;
@@ -72,11 +81,29 @@ namespace RPG_LP2
             }
         }
 
+        public void StoreChars(Mob EnemyMob)
+        {
+            MobAndChar.Add(EnemyMob);
+        }
+
         public void SetCollision()
         {
-            Collision.Add(LockedChest);
-            Collision.Add(OpenedChest);
+            Collision.Add(Collision0);
+            Collision.Add(Collision1);
+            Collision.Add(MapExit);
+        }
 
+        public void SetEnemies()
+        {
+            Enemies.Add(OpenedChest);
+            Enemies.Add(Salamander);
+            Enemies.Add(FirstRat);
+            Enemies.Add(SecondRat);
+        }
+
+        public void SetChests()
+        {
+            LockedChests.Add(LockedChest);
         }
 
         private void AddImageOnList()
@@ -97,7 +124,7 @@ namespace RPG_LP2
             PosY = Canvas.GetTop(Person1); //Armazena a posição Y do personagem em uma variavel
             PosX = Canvas.GetLeft(Person1); //Armazena a posição X do personagem em uma variavel
 
-            if(!ControllerGame.CheckListCollision(Player, Person1, Collision))
+            if (ControllerGame.IsMovimentAllowed(Player, Person1, LockedChests, Enemies, Collision, Keys))
             {
 
                 if (YSpeed < 0 && PosY > 115 * HeightRatio)  //Movimento, checagem e animação para cima
@@ -126,14 +153,65 @@ namespace RPG_LP2
 
             }
 
-            //else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
-            //{
-            //    if (Ninja.IsDead() && PablloVittar.IsDead())
-            //    {
-            //        this.Frame.Navigate(typeof(Map2), Player);
-            //    }
+            //Checa se o player está na frente do bau, para poder lootear
+            else if (ControllerGame.CheckListCollision(Player, Person1, LockedChests))
+            {
+                foreach (Image Hit in LockedChests)
+                {
+                    if (ControllerGame.Collision(Person1, Hit) == "Bottom")
+                    {
+                        if (!ChestControl.isOpen)
+                        {
+                            ControllerGame.LootVault(Player, ChestControl, qt_lifePot, qt_manaPot, ListInvetoryImage);
+                            open_chest.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/open_chest3.png"));
+                        }
 
-            //}
+                    }
+                }
+            }
+
+            if (ControllerGame.CheckCollision(Player, Person1, Enemies.Find(x => x.Name == "OpenedChest")) && !Mimic.IsDead())
+            {
+                if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
+                StoreChars(Mimic as Mob);
+                IsAnotherPage = true;
+                this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+
+            }
+
+            if (ControllerGame.CheckCollision(Player, Person1, Enemies.Find(x => x.Name == "Salamander")) && !Salamander_.IsDead())
+            {
+                if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
+                StoreChars(Salamander_ as Mob);
+                IsAnotherPage = true;
+                this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+
+            }
+
+            //Checar se o personagem encontra o Pabblo
+            if (ControllerGame.CheckCollision(Player, Person1, Enemies.Find(x => x.Name == "FirstRat")) && !Mouse.IsDead())
+            {
+                if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
+                StoreChars(Mouse as Mob);
+                IsAnotherPage = true;
+                this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+            }
+
+            if (ControllerGame.CheckCollision(Player, Person1, Enemies.Find(x => x.Name == "SecondRat")) && !SecondMouse.IsDead())
+            {
+                if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
+                StoreChars(SecondMouse as Mob);
+                IsAnotherPage = true;
+                this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+            }
+
+
+            else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
+            {
+                    this.Frame.Navigate(typeof(Map), Player);
+
+
+            }
         }
 
         private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)
@@ -156,7 +234,6 @@ namespace RPG_LP2
             if (ControllerGame.CheckLastPage(typeof(BattleScreen), this))
             {
                 MobAndChar = e.Parameter as List<Object>;
-
                 Player = MobAndChar.ElementAt(0) as Character;
 
                 if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;

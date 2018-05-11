@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace RPGlib.Mobs
 {
-    class Mimic : Boss
+    public class Mimic : Boss
     {
         public Mimic()
         {

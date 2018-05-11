@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace RPGlib.Mobs
 {
-    class Mouse : Mob
+    public class Mouse : Mob
     {
         public Mouse()
         {

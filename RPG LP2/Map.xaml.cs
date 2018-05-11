@@ -177,6 +177,17 @@ namespace RPG_LP2
                 SoundController.PlaySound(VoiceSound, "CaioInimigosAFrente.mp4");
 
             }
+
+            if (ControllerGame.CheckLastPage(typeof(Map2), this))
+            {
+                Player = e.Parameter as Character;
+                Person1.Source = Player.IdleRight;
+                MobAndChar.Clear();
+                MobAndChar.Add(Player);
+
+            }
+
+            ControllerGame.RefreshItems(Player, qt_lifePot, qt_manaPot, ListInvetoryImage);
             IsAnotherPage = false;
         }
 
@@ -265,7 +276,7 @@ namespace RPG_LP2
 
             else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
             {
-                if (Ninja.IsDead() && PablloVittar.IsDead()) { this.Frame.Navigate(typeof(Map2), Player); }
+                if (/*Ninja.IsDead() && PablloVittar.IsDead())*/true)  { IsAnotherPage = true; this.Frame.Navigate(typeof(Map2), Player); }
             }
 
         }
