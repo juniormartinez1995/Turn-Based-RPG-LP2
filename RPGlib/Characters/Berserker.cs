@@ -15,7 +15,7 @@ namespace RPGlib.Characters
         {
             this.CurrentHP = 250;
             this.MaxHealth = 250;
-            this.MaxMana = 100;
+            this.MaxMana = 150;
             this.CurrentMana = 100;
             this.CurrentXP = 0;
             this.Level = 0;
@@ -39,7 +39,7 @@ namespace RPGlib.Characters
             IdleRight = new BitmapImage(new Uri(@"ms-appx:///Assets/AnimaçãoCharacters/brs.gif"));
 
             FirstSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/SwordFinal.png"));
-            SecondSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/Sword2New.gif"));
+            SecondSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/Sword2New2.gif"));
             ThirdSkill = new BitmapImage(new Uri(@"ms-appx:///Assets/3rdBerserker.gif"));
         }
 
