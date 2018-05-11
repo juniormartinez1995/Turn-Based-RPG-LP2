@@ -68,8 +68,9 @@ namespace RPG_LP2
 
 
         Character Player; //Personagem que estará no mapa
-        PablloVittar PablloVittar;
+        //PablloVittar PablloVittar;
         Ninja Ninja;
+        Ninja Ninja2;
         Chest ChestControl = new Chest(); //Gerenciamento do baú
 
         //Ninja Ninja = new Ninja();
@@ -157,7 +158,7 @@ namespace RPG_LP2
                 Player = e.Parameter as Character;
                 Person1.Source = Player.IdleRight;
                 MobAndChar.Clear();
-                PablloVittar = new PablloVittar();
+                Ninja2 = new Ninja();
                 Ninja = new Ninja();
                 MobAndChar.Add(Player);
 
@@ -172,7 +173,7 @@ namespace RPG_LP2
                 Player.UpLevel += Player_UpLevel;
 
                 if (MobAndChar.ElementAt(1) is Ninja) Ninja = MobAndChar.ElementAt(1) as Ninja;
-                else if (MobAndChar.ElementAt(1) is PablloVittar) PablloVittar = MobAndChar.ElementAt(1) as PablloVittar;
+                else if (MobAndChar.ElementAt(1) is Ninja) Ninja2 = MobAndChar.ElementAt(1) as Ninja;
                 MobAndChar.RemoveAt(MobAndChar.Count - 1);
                 SoundController.PlaySound(VoiceSound, "CaioInimigosAFrente.mp4");
 
@@ -265,10 +266,11 @@ namespace RPG_LP2
             }
 
             //Checar se o personagem encontra o Pabblo
-            if (ControllerGame.CheckCollision(Player, Person1, Enemies.Find(x => x.Name == "PabbloVitarIMG")) && !PablloVittar.IsDead())
+            if (ControllerGame.CheckCollision(Player, Person1, Enemies.Find(x => x.Name == "PabbloVitarIMG")) && !Ninja2.IsDead())
             {
                 if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
-                StoreChars(PablloVittar as Mob);
+                
+                StoreChars(Ninja2 as Mob);
                 IsAnotherPage = true;
                 this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
             }

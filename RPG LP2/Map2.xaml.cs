@@ -61,6 +61,7 @@ namespace RPG_LP2
         Ninja Ninja = new Ninja();
         Salamander Salamander_ = new Salamander();
         Mouse Mouse = new Mouse();
+        //PablloVittar PablloVittar = new PablloVittar();
         Mouse SecondMouse = new Mouse();
         Mimic Mimic = new Mimic();
         Chest ChestControl = new Chest(); //Gerenciamento do baú
@@ -91,6 +92,8 @@ namespace RPG_LP2
             Collision.Add(Collision0);
             Collision.Add(Collision1);
             Collision.Add(MapExit);
+            Collision.Add(MapExit1);
+            Collision.Add(MapExit2);
         }
 
         public void SetEnemies()
@@ -208,10 +211,22 @@ namespace RPG_LP2
 
             else if (ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit")))
             {
-                    this.Frame.Navigate(typeof(Map), Player);
+                this.Frame.Navigate(typeof(Map), Player);
 
 
             }
+
+            else if ((ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit1")) || ControllerGame.CheckCollision(Player, Person1, Collision.Find(x => x.Name == "MapExit2"))) &&
+                Mouse.IsDead() && SecondMouse.IsDead() && Salamander_.IsDead())
+            {
+                if (MobAndChar.Count >= 2) MobAndChar.RemoveAt(MobAndChar.Count - 1);
+                StoreChars(PablloVittar as Mob);
+                IsAnotherPage = true;
+                this.Frame.Navigate(typeof(BattleScreen), MobAndChar);
+
+
+            }
+
         }
 
         private void btn_close_Tapped(object sender, TappedRoutedEventArgs e)

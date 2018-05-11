@@ -20,6 +20,8 @@
 
         <!--Saída do mapa-->
         <Image x:Name="MapExit" Height="28" Width="14" Canvas.Left="51" Canvas.Top="313"/>
+        <Image x:Name="MapExit1" Height="28" Width="14" Canvas.Left="740" Canvas.Top="309"/>
+        <Image x:Name="MapExit2" Height="19" Width="49" Canvas.Left="309" Canvas.Top="108"/>
 
         <!--Lista de Inimigos-->
         <Image x:Name="OpenedChest" Height="17" Width="20" Canvas.Left="138" Canvas.Top="166"/>
