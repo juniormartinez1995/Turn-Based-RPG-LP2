@@ -146,9 +146,9 @@ namespace RPG_LP2
 
             if (BattlePlayer is Berserker)
             {
-                btnSkillBasic.Content = "Sword Basic";
-                btnSkillOne.Content = "";
-                btnSkillTwo.Content = "Infinity Edge";
+                btnSkillBasic.Content = "Basic Attack";
+                btnSkillOne.Content = "Corrupted Strike";
+                btnSkillTwo.Content = "Double Edged Sword";
             }
             if (BattlePlayer is Dicer)
             {
@@ -348,6 +348,7 @@ namespace RPG_LP2
                     {
                         CharacterSkill.Source = BattlePlayer.ThirdSkill;
                         CastSkill(3);
+                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Double_Edge.mp3");
                     }
 
                     if (BattlePlayer is Dicer)
