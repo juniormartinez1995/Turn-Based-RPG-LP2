@@ -111,7 +111,8 @@ namespace RPG_LP2
 
                         if (person.ManaCountDown(100))
                         {
-                            
+
+                            mob.currentArmor -= 5;
                             dmg = CheckArmorDamage(person.Skill1() - mob.currentArmor);
                             DealMobDamage(dmg, mob);
 
