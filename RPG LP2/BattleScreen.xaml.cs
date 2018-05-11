@@ -251,28 +251,6 @@ namespace RPG_LP2
             BattleController.FinishBattle(BattlePlayer, Mob_);
         }
 
-        public void CastSkill2Berserker(int Button)
-        {
-            if (!ControllerGame.IsSkillHitting(CharacterSkill, Mob1))
-            {
-                Canvas.SetLeft(CharacterSkill, Canvas.GetLeft(CharacterSkill) + 45);
-                AttackingAnimation(true);
-
-            }
-
-            else if (ControllerGame.IsSkillHitting(CharacterSkill, Mob1))
-            {
-                BattleController.CheckTurn(BattlePlayer, Mob_, Button);
-                PaintDamageGiven(1);
-                AttackingAnimation(false);
-                Canvas.SetLeft(CharacterSkill, Canvas.GetLeft(Person1) + 82);
-                CharacterSkill.Source = null;
-                ChosenSkill = null;
-            }
-
-            BattleController.FinishBattle(BattlePlayer, Mob_);
-        }
-
         //Evento para atualizar o progress bar
         private void AnimationHandler(object sender, object e)
         {

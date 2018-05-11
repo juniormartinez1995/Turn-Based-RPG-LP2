@@ -13,5 +13,6 @@
         <TextBox x:Name="text_box_scene_history" HorizontalAlignment="Right" Margin="0,0,10,77" VerticalAlignment="Bottom" Height="28" Width="254" FontFamily="Segoe UI" d:LayoutOverrides="Height"/>
         <TextBlock x:Name="text_block_scene_history" HorizontalAlignment="Right" Margin="0,0,12,50" TextWrapping="Wrap" VerticalAlignment="Bottom"  Height="26" Width="250" FontSize="24" FontFamily="Bebas Neue" />
         <Image x:Name="btn_go" Source="Assets/btn_startCUTTED.png" HorizontalAlignment="Right" Height="47" VerticalAlignment="Bottom" Width="71" Margin="0,0,100,4" Tapped="btn_go_event"/>
+        <MediaElement x:Name="History" IsLooping="False" Source="Assets/HistoryVitorHugo.mp4" Volume="0.5" AutoPlay="True"/>
     </Grid>
 </Page>
