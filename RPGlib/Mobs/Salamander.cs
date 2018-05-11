@@ -16,7 +16,7 @@ namespace RPGlib.Mobs
             this.evasionRate = 20;
             this.currentArmor = 0;
             this.Damage = 15;
-            this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/BattleAnimations/salamander.png")); 
+            this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/charizard.jpg")); 
             this.castBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/salamanderfire.gif")); 
 
         }
