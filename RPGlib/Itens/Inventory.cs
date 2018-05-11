@@ -16,6 +16,7 @@ namespace RPGlib.Itens
         public List<Item> ItensMap = new List<Item>();
 
         //PENSAR UM POUCO AQUI
+
         public Boolean Add_Item(Item item_current, Character player)
         {
             if (inventoryList.Count() >= 6)
@@ -79,16 +80,14 @@ namespace RPGlib.Itens
 
         public void removeAndUseLifePot (Character player)
         {
-            PotionLife p = new PotionLife();
-            p.Effect(player);
-            this.inventoryPotionLife.Remove(p as PotionLife);
+            this.inventoryPotionLife[this.inventoryPotionLife.Count-1].Effect(player);
+            this.inventoryPotionLife.Remove(this.inventoryPotionLife[this.inventoryPotionLife.Count - 1] as PotionLife);
         }
 
         public void removeAndUseManaPot (Character player)
         {
-            PotionMana p = new PotionMana();
-            p.Effect(player);
-            this.inventoryPotionMana.Remove(p as PotionMana);
+            this.inventoryPotionMana[this.inventoryPotionMana.Count - 1].Effect(player);
+            this.inventoryPotionMana.Remove(this.inventoryPotionMana[this.inventoryPotionMana.Count - 1] as PotionMana);
         }
 
         public Boolean checkPotCount (String Potion)

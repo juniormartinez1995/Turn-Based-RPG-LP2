@@ -148,14 +148,17 @@
     <Content Include="Assets\AttackGifs\Dicer\water_spell.gif" />
     <Content Include="Assets\AttackGifs\Dicer\water_spellq.gif" />
     <Content Include="Assets\AttackGifs\teste.gif" />
+    <Content Include="Assets\background_spells.png" />
     <Content Include="Assets\backpack.png" />
     <Content Include="Assets\backpack_cutted.png" />
     <Content Include="Assets\BattleAnimations\mimic.gif" />
     <Content Include="Assets\BattleAnimations\mouse.png" />
     <Content Include="Assets\BattleAnimations\salamander.png" />
+    <Content Include="Assets\BattleBackground.gif" />
     <Content Include="Assets\Battle_Trance.mp3" />
     <Content Include="Assets\BerserkerIMG.png" />
     <Content Include="Assets\Book.gif" />
+    <Content Include="Assets\book.mp3" />
     <Content Include="Assets\CaioAbraOBaivis.mp4" />
     <Content Include="Assets\CaioInimigosAFrente.mp4" />
     <Content Include="Assets\CaioItem.mp4" />

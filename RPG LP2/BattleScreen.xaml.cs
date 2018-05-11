@@ -35,10 +35,11 @@ namespace RPG_LP2
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
             Mob1.Source = Ninja;
-            heart_icon.Source = heart_stopped;           
+            heart_icon.Source = heart_stopped;
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
+            _Canvas.Children.Remove(SkillsDetails);
             InitialKnifePosition = 534 * WidthRatio;
         }
 
@@ -57,10 +58,10 @@ namespace RPG_LP2
 
         int button = 0;
         int turn;
-        
+
         double WidthRatio, HeightRatio, InitialKnifePosition;
         String ChosenSkill;
-        bool AnimationEnabled, MobsDefeated;
+        bool AnimationEnabled, MobsDefeated, IsSkillDetailsOpened = false;
 
         private async void DisplayEndedBattleDialog()
         {
@@ -210,7 +211,7 @@ namespace RPG_LP2
             btnSkillTwo.IsEnabled = false;
             btnLifePot.IsEnabled = false;
             BtnManaPot.IsEnabled = false;
-            
+
         }
 
         public async void AnimationKnifeMob()
@@ -276,7 +277,8 @@ namespace RPG_LP2
         private void AnimationHandler(object sender, object e)
         {
 
-            if (hpBarCharacter.Value >= 0) {
+            if (hpBarCharacter.Value >= 0)
+            {
                 hpBarCharacter.Value = BattlePlayer.CurrentHP;
                 TextBlockHP.Text = BattlePlayer.CurrentHP.ToString();
             }
@@ -338,17 +340,17 @@ namespace RPG_LP2
 
                     if (BattlePlayer is Dicer)
                     {
-                     
-                            CharacterSkill.Source = BattlePlayer.ThirdSkill;
-                            CastSkill(3);
-                            if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
-        
+
+                        CharacterSkill.Source = BattlePlayer.ThirdSkill;
+                        CastSkill(3);
+                        if (BattleSounds.CurrentState != MediaElementState.Playing) SoundController.PlaySound(BattleSounds, "Satanic.mp3");
+
                     }
                     break;
 
                 case "LifePot":
 
-                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) 
+                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill))
                     {
                         BattlePlayer.inventory.removeAndUseLifePot(BattlePlayer);
                     }
@@ -357,7 +359,7 @@ namespace RPG_LP2
 
                 case "ManaPot":
 
-                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) 
+                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill))
                     {
                         BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
                     }
@@ -393,13 +395,13 @@ namespace RPG_LP2
             switch (Attacker)
             {
                 case 1:
-                  
+
                     Hitbox.Opacity = 100;
                     Hitbox.Text = BattleController.ReturnDmgTurn().ToString();
                     if (BattlePlayer is Dicer)
                     {
                         Multicast.Opacity = 100;
-                        Multicast.Text = "MULTICAST X"+ BattleController.ReturnMulticastTurn().ToString();
+                        Multicast.Text = "MULTICAST X" + BattleController.ReturnMulticastTurn().ToString();
                     }
                     await Task.Delay(700);
                     Hitbox.Opacity = 0;
@@ -441,24 +443,33 @@ namespace RPG_LP2
             this.Frame.Navigate(typeof(LosePage), BattlePlayer);
         }
 
-        private void Book_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Book_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-
+            _Canvas.Children.Add(SkillsDetails);
+            SoundController.PlayDynamicSound("book.mp3");
         }
+
+        private void Book_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            _Canvas.Children.Remove(SkillsDetails);
+        }
+
+
 
         //Evento para tratar quando o jogador está sem mana
         private void BattlePlayer_NoMana(object sender, EventArgs args)
         {
 
             btnSkillOne.Opacity = 0;
-            btnSkillOne.Visibility = 0;          
+            btnSkillOne.Visibility = 0;
             btnSkillTwo.Opacity = 0;
-            btnSkillTwo.Visibility = 0;      
-            if(BattlePlayer is Dicer)
+            btnSkillTwo.Visibility = 0;
+            if (BattlePlayer is Dicer)
             {
-                SoundController.PlaySound(BattleSounds, "DicerNoMana.mp3");         
+                SoundController.PlaySound(BattleSounds, "DicerNoMana.mp3");
             }
-            if(BattlePlayer is Berserker) {
+            if (BattlePlayer is Berserker)
+            {
                 SoundController.PlaySound(BattleSounds, "BerserkerNoMana.mp3");
             }
         }

@@ -8,9 +8,13 @@
     mc:Ignorable="d" Height="600" Width="797"   MinWidth="800" MinHeight="600"  FontFamily="Segoe UI" Background="#464646">
     <Canvas x:Name="_Canvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
 
-        <Image Height="600" Canvas.Left="0" Canvas.Top="0" Width="800" Source="Assets/MapsBackground/BattleScreen.png"/>
-        <Image x:Name="Person1" Height="100" Canvas.Left="100" Canvas.Top="300" Width="100" />
-        <Image x:Name="Mob1" Height="150" Canvas.Left="600" Canvas.Top="250" Width="150" RenderTransformOrigin="0.5,0.5">
+        <Canvas Opacity="1" Name="SkillsDetails" Height="312" Width="414" Canvas.Left="170" Canvas.Top="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="10">
+            <Image x:Name="SkillBackground" Source="Assets/background_spells.png" Height="312" Width="414" Canvas.Left="52" Canvas.ZIndex="10"  HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" />
+        </Canvas>
+
+        <Image Height="600" Canvas.Left="1" Canvas.Top="-71" Width="800" Source="Assets/BattleBackground.gif"/>
+        <Image x:Name="Person1" Height="100" Canvas.Left="99" Canvas.Top="330" Width="100" />
+        <Image x:Name="Mob1" Height="150" Canvas.Left="609" Canvas.Top="295" Width="150" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -25,13 +29,13 @@
         <MediaElement x:Name="BattleSounds" Volume="0.6" />
 
 
-        <Image x:Name="Book" Source="Assets/Book.gif" Canvas.Left="264" Canvas.Top="457" Height="123" Width="117" Canvas.ZIndex="5" Tapped="Book_Tapped"/>
+        <Image x:Name="Book" Source="Assets/Book.gif" Canvas.Left="634" Canvas.Top="422" Height="191" Width="161" Canvas.ZIndex="5" Stretch="Fill" PointerEntered="Book_PointerEntered" PointerExited="Book_PointerExited" />
 
         <!--SKILL BOX COM OS BUTTONS-->
-        <Image x:Name="SkillBox" Source="Assets/textbox.gif" Canvas.Left="-68" Canvas.Top="460" Height="129" Width="524" />
-        <Button x:Name="btnSkillBasic"  Content="Basic Skill" Canvas.Left="66" Canvas.Top="509" Height="25" Width="53" FontSize="12" BorderThickness="2,2,2,2" Click="FirstButton" Background="#847545" VerticalAlignment="Top"/>
-        <Button x:Name="btnSkillOne"  Canvas.Left="149" Canvas.Top="510" Height="25" Width="53" FontSize="12" Content="2nd Skill" BorderThickness="2,2,2,2" Click="SecondButton" Background="#847545" VerticalAlignment="Top"/>
-        <Button x:Name="btnSkillTwo"  Canvas.Left="227" Canvas.Top="510" Height="25" Width="53" FontSize="12" Content="3rd Skill" BorderThickness="2,2,2,2" Click="ThirdButton" Background="#847545" VerticalAlignment="Top" RenderTransformOrigin="0.434,0.56"/>
+        <Image x:Name="SkillBox" Source="Assets/textbox.gif" Canvas.Left="5" Canvas.Top="473" Height="131" Width="352" Stretch="Fill" />
+        <Button x:Name="btnSkillBasic"  Content="Basic Skill" Canvas.Left="66" Canvas.Top="520" Height="32" Width="61" FontSize="12" BorderThickness="2,2,2,2" Click="FirstButton" Background="#847545" VerticalAlignment="Top"/>
+        <Button x:Name="btnSkillOne"  Canvas.Left="153" Canvas.Top="520" Height="32" Width="61" FontSize="12" Content="2nd Skill" BorderThickness="2,2,2,2" Click="SecondButton" Background="#847545" VerticalAlignment="Top"/>
+        <Button x:Name="btnSkillTwo"  Canvas.Left="239" Canvas.Top="520" Height="32" Width="61" FontSize="12" Content="3rd Skill" BorderThickness="2,2,2,2" Click="ThirdButton" Background="#847545" VerticalAlignment="Top" RenderTransformOrigin="0.434,0.56"/>
 
 
         <!--RUN BUTTON-->
