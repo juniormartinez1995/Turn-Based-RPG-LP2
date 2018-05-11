@@ -5,7 +5,7 @@
     xmlns:local="using:RPG_LP2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Height="600" Width="797"   MinWidth="800" MinHeight="600"  FontFamily="Segoe UI" Background="#464646">
+    mc:Ignorable="d" Height="600" Width="797"   MinWidth="800" MinHeight="600"  FontFamily="Segoe UI" Background="#000000">
     <Canvas x:Name="_Canvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800">
 
         <Canvas Opacity="1" Name="SkillsDetails" Height="312" Width="414" Canvas.Left="170" Canvas.Top="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="10">
