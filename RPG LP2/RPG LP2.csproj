@@ -167,6 +167,7 @@
     <Content Include="Assets\cheese.png" />
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
+    <Content Include="Assets\Double_Edge.mp3" />
     <Content Include="Assets\Dungeons\gifmapa2.gif" />
     <Content Include="Assets\Dungeons\SecondDungeon.gif" />
     <Content Include="Assets\DyingGifs\b_dy.gif" />
