@@ -19,6 +19,7 @@ namespace RPGlib.Mobs
             this.currentArmor = 20;
             this.Damage = 30;
             this.GifBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/Jynx3.gif"));
+            this.castBattle = new BitmapImage(new Uri(@"ms-appx:///Assets/jynxheart.gif")); 
         }
 
         public override void Skill_Normal()

@@ -197,7 +197,7 @@ namespace RPG_LP2
         {
             ChosenSkill = "FirstSkill";
 
-            AnimationKnifeMob(Mob_.GifBattle);
+            AnimationKnifeMob(Mob_.castBattle);
             MakeFalseButtons();
 
         }
@@ -205,7 +205,7 @@ namespace RPG_LP2
         {
             ChosenSkill = "SecondSkill";
 
-            AnimationKnifeMob(Mob_.GifBattle);
+            AnimationKnifeMob(Mob_.castBattle);
             MakeFalseButtons();
 
         }
@@ -213,7 +213,7 @@ namespace RPG_LP2
         {
             ChosenSkill = "ThirdSkill";
 
-            AnimationKnifeMob(Mob_.GifBattle);
+            AnimationKnifeMob(Mob_.castBattle);
             MakeFalseButtons();
 
         }

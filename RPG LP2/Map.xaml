@@ -26,7 +26,6 @@
 
         <Image x:Name="FirstMapKey" Height="30" Width="30" Source="Assets/key.png" Canvas.Left="452" Canvas.Top="323"/>
 
-
         <!-- Lista de inimigos  -->
         <Image x:Name="NinjaIMG" Height="28" Canvas.Left="230" Canvas.Top="347" Width="10"/>
         <Image x:Name="PabbloVitarIMG" Height="27" Canvas.Left="230" Canvas.Top="235" Width="10"/>
@@ -34,8 +33,8 @@
         <!-- Lista de Sons  -->
         <MediaElement x:Name="AmbienceSound" IsLooping="True" Source="Assets/SoundAmbienceMap2.mp3" Volume="0.5" AutoPlay="True"/>
         <MediaElement x:Name="VoiceSound"  Volume="0.6"/>
-        
-        
+
+
         <!--Seção dos retângulos-->
 
         <!--56x, 547y-->
@@ -116,11 +115,11 @@
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
                     <TextBlock Name="ItemStatus1" FontSize="15"/>
-                   
+
                 </Flyout>
-                
+
             </FlyoutBase.AttachedFlyout>
-            
+
         </Image>
 
         <Image x:Name="Item2" Canvas.Left="108" Canvas.Top="547" Width="50" Height="50" Tag="1" Tapped="ShowItemStatus2">
