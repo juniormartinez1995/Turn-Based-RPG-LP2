@@ -164,6 +164,7 @@
     <Content Include="Assets\CaioItem.mp4" />
     <Content Include="Assets\CaioYouDied.mp4" />
     <Content Include="Assets\CaioYouWin.mp4" />
+    <Content Include="Assets\cheese.png" />
     <Content Include="Assets\DemonicRapier.png" />
     <Content Include="Assets\Dicer.png" />
     <Content Include="Assets\Double_Edge.mp3" />
@@ -175,6 +176,8 @@
     <Content Include="Assets\Jynx.gif" />
     <Content Include="Assets\Jynx2.gif" />
     <Content Include="Assets\Jynx3.gif" />
+    <Content Include="Assets\jynxheart.gif" />
+    <Content Include="Assets\salamanderfire.gif" />
     <Content Include="Assets\Sword2New2.gif" />
     <Content Include="Assets\Sword2New.gif" />
     <Content Include="Assets\FireBall.gif" />

@@ -17,6 +17,7 @@ namespace RPGlib.Mobs
         public int evasionRate { get; set; }
         public int Damage { get; set; }
         public BitmapImage GifBattle { get; set; }
+        public BitmapImage castBattle { get; set; }
         public BitmapImage RightMoviment { get; set; }
         public BitmapImage LeftMoviment { get; set; }
         public BitmapImage UpMoviment { get; set; }
