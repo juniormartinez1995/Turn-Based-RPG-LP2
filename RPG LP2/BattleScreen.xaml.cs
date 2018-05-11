@@ -187,7 +187,7 @@ namespace RPG_LP2
         {
             ChosenSkill = "FirstSkill";
 
-            AnimationKnifeMob();
+            AnimationKnifeMob(Mob_.GifBattle);
             MakeFalseButtons();
 
         }
@@ -195,7 +195,7 @@ namespace RPG_LP2
         {
             ChosenSkill = "SecondSkill";
 
-            AnimationKnifeMob();
+            AnimationKnifeMob(Mob_.GifBattle);
             MakeFalseButtons();
 
         }
@@ -203,25 +203,30 @@ namespace RPG_LP2
         {
             ChosenSkill = "ThirdSkill";
 
-            AnimationKnifeMob();
+            AnimationKnifeMob(Mob_.GifBattle);
             MakeFalseButtons();
 
         }
 
         private void LifePotButton(object sender, RoutedEventArgs e)
         {
-            ChosenSkill = "LifePot";
+            
+            if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) {
 
-            AnimationKnifeMob();
-            MakeFalseButtons();
+                BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
+            }
+
+           
         }
 
         private void ManaPotButton(object sender, RoutedEventArgs e)
         {
-            ChosenSkill = "ManaPot";
 
-            AnimationKnifeMob();
-            MakeFalseButtons();
+            if (BattlePlayer.inventory.checkPotCount(ChosenSkill)) {
+
+                BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
+            }
+
         }
 
         private void MakeFalseButtons()
@@ -232,12 +237,13 @@ namespace RPG_LP2
 
         }
 
-        public async void AnimationKnifeMob()
+        public async void AnimationKnifeMob(BitmapImage Attack)
         {
             await Task.Delay(2800);
 
             if (MobsDefeated) return;
 
+            Knife.Source = Attack;
             Knife.Opacity = 100;
 
             if (!MobAttackTimer.IsEnabled) MobAttackTimer.Start();
@@ -345,23 +351,6 @@ namespace RPG_LP2
                     }
                     break;
 
-                case "LifePot":
-
-                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill))
-                    {
-                        BattlePlayer.inventory.removeAndUseLifePot(BattlePlayer);
-                    }
-
-                    break;
-
-                case "ManaPot":
-
-                    if (BattlePlayer.inventory.checkPotCount(ChosenSkill))
-                    {
-                        BattlePlayer.inventory.removeAndUseManaPot(BattlePlayer);
-                    }
-
-                    break;
             }
         }
 
