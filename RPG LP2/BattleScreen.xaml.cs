@@ -179,7 +179,8 @@ namespace RPG_LP2
             }
 
             UnsignPageEvents();
-            this.Frame.Navigate(typeof(Map), CharList);
+            if (ControllerGame.CheckLastPage(typeof(Map2), this)) this.Frame.Navigate(typeof(Map2), CharList);
+            else if (ControllerGame.CheckLastPage(typeof(Map), this)) this.Frame.Navigate(typeof(Map), CharList);
         }
 
         private void FirstButton(object sender, RoutedEventArgs e)
