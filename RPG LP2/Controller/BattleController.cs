@@ -205,7 +205,7 @@ namespace RPG_LP2
         {
             return dmgMob;
         }
-
+        //Caio é trouxa xd xd xd
         public static bool FinishBattle(Character person, Mob mob)
         {
 
