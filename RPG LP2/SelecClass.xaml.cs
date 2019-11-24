@@ -12,22 +12,24 @@ namespace RPG_LP2
     /// </summary>
     public sealed partial class SelecClass : Page
     {
+        CharacterFactory CharCreator = new CharacterFactory();
         public SelecClass()
         {
             this.InitializeComponent();
             ControllerGame.AdjustFullScreenMode(_Canvas, this);
+            
         }
         //ao user clickar nesse buttom, cria o personagem berserker 
         private void B_Berserker_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Berserker p1 = new Berserker();//cria o obj berserker
+            Character p1 = CharCreator.CreateCharacter("Berserker");
             this.Frame.Navigate(typeof(Map), p1); //vai para proxima tela
         }
 
         private void B_Dicer_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Dicer p1 = new Dicer(); //cria o obj dicer
-           this.Frame.Navigate(typeof(Map), p1); //vai para proxima tela
+            Character p1 = CharCreator.CreateCharacter("Dicer");
+            this.Frame.Navigate(typeof(Map), p1); //vai para proxima tela
 
         }
     }

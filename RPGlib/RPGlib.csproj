@@ -11,8 +11,8 @@
     <AssemblyName>RPGlib</AssemblyName>
     <DefaultLanguage>pt-BR</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -108,6 +108,8 @@
   <ItemGroup>
     <Compile Include="Characters\Berserker.cs" />
     <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\CharacterFactory.cs" />
+    <Compile Include="Characters\CharacterFactoryAB.cs" />
     <Compile Include="Characters\Dicer.cs" />
     <Compile Include="Itens\Chest.cs" />
     <Compile Include="Itens\DemonicRapier.cs" />
@@ -127,6 +129,8 @@
     <Compile Include="Mobs\Boss.cs" />
     <Compile Include="Mobs\Mimic.cs" />
     <Compile Include="Mobs\Mob.cs" />
+    <Compile Include="Mobs\MobFactory.cs" />
+    <Compile Include="Mobs\MobFactoryAB.cs" />
     <Compile Include="Mobs\Mouse.cs" />
     <Compile Include="Mobs\Ninja.cs" />
     <Compile Include="Mobs\PablloVittar.cs" />

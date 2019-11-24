@@ -66,14 +66,11 @@ namespace RPG_LP2
         List<object> MobAndChar = new List<object>();
         List<InventoryBitImage> ListInvetoryImage = new List<InventoryBitImage>(); //Lista das Imagens de Inventário
 
-
+        MobFactory MobCreator = new MobFactory();
         Character Player; //Personagem que estará no mapa
-        //PablloVittar PablloVittar;
-        Ninja Ninja;
-        Ninja Ninja2;
+        Mob Ninja, Ninja2;
         Chest ChestControl = new Chest(); //Gerenciamento do baú
 
-        //Ninja Ninja = new Ninja();
 
         double WidthRatio, HeightRatio;
         double XSpeed, YSpeed;
@@ -158,8 +155,8 @@ namespace RPG_LP2
                 Player = e.Parameter as Character;
                 Person1.Source = Player.IdleRight;
                 MobAndChar.Clear();
-                Ninja2 = new Ninja();
-                Ninja = new Ninja();
+                Ninja2 = MobCreator.CreateMob("Ninja");//new Ninja();
+                Ninja = MobCreator.CreateMob("Ninja"); ;
                 MobAndChar.Add(Player);
 
             }
