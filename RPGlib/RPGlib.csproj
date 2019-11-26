@@ -129,8 +129,6 @@
     <Compile Include="Mobs\Boss.cs" />
     <Compile Include="Mobs\Mimic.cs" />
     <Compile Include="Mobs\Mob.cs" />
-    <Compile Include="Mobs\MobFactory.cs" />
-    <Compile Include="Mobs\MobFactoryAB.cs" />
     <Compile Include="Mobs\Mouse.cs" />
     <Compile Include="Mobs\Ninja.cs" />
     <Compile Include="Mobs\PablloVittar.cs" />

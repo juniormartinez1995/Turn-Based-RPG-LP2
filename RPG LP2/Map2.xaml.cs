@@ -45,6 +45,14 @@ namespace RPG_LP2
             WidthRatio = _Canvas.Width / 800;
             HeightRatio = _Canvas.Height / 600;
 
+            //Mob PablloVittar, Ninja, Salamander, Mouse, SecondMouse, Mimic;
+            PablloVittar = Creator.CreateMob("PablloVittar");
+            Ninja = Creator.CreateMob("Ninja");
+            Salamander_ = Creator.CreateMob("Salamander");
+            Mouse = Creator.CreateMob("Mouse");
+            SecondMouse = Creator.CreateMob("Mouse");
+            Mimic = Creator.CreateMob("Mimic");
+
         }
 
         DispatcherTimer timer = new DispatcherTimer(); //Timer da animação
@@ -56,14 +64,10 @@ namespace RPG_LP2
         List<object> MobAndChar = new List<object>();
         List<InventoryBitImage> ListInvetoryImage = new List<InventoryBitImage>(); //Lista das Imagens de Inventário
 
+
+        CharacterFactory Creator = new CharacterFactory();
         Character Player; //Personagem que estará no mapa
-        PablloVittar PablloVittar = new PablloVittar();
-        Ninja Ninja = new Ninja();
-        Salamander Salamander_ = new Salamander();
-        Mouse Mouse = new Mouse();
-        //PablloVittar PablloVittar = new PablloVittar();
-        Mouse SecondMouse = new Mouse();
-        Mimic Mimic = new Mimic();
+        Mob PablloVittar, Ninja, Salamander_, Mouse, SecondMouse, Mimic;
         Chest ChestControl = new Chest(); //Gerenciamento do baú
 
         double WidthRatio, HeightRatio;

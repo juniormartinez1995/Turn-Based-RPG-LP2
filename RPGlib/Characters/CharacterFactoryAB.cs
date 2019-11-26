@@ -10,5 +10,7 @@ namespace RPGlib.Characters
     public abstract class CharacterFactoryAB
     {
         public abstract Character CreateCharacter(String CharacterType);
+
+        public abstract Mob CreateMob(String MobType);
     }
 }
