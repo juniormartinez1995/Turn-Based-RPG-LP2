@@ -193,8 +193,12 @@ namespace RPG_LP2
 
         public static int MobTurn(Character person, Mob mob, int button)
         {
+            if (mob.HP < 50) mob.CurrentStrategy = new HardStrategy();
+            else if (mob.HP > 100) mob.CurrentStrategy = new MediumStrategy();
+            else mob.CurrentStrategy = new EasyStrategy();
 
-            dmgMob = CheckArmorDamage(mob.Skills() - person.CurrentArmor);
+
+            dmgMob = CheckArmorDamage(mob.Fight() - person.CurrentArmor);
             person.CurrentHP -= dmgMob;
             //MOSTRAR VALOR (INT) DO PERSONAGEM E DO MOB
             Debug.WriteLine("Life person = " + person.CurrentHP + "\n" + "Life mob = " + mob.HP);

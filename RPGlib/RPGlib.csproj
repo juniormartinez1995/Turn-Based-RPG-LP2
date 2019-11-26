@@ -127,6 +127,10 @@
     <Compile Include="Itens\PotionLife.cs" />
     <Compile Include="Itens\PotionMana.cs" />
     <Compile Include="Mobs\Boss.cs" />
+    <Compile Include="Mobs\EasyStrategy.cs" />
+    <Compile Include="Mobs\HardStrategy.cs" />
+    <Compile Include="Mobs\IFightStrategy.cs" />
+    <Compile Include="Mobs\MediumStrategy.cs" />
     <Compile Include="Mobs\Mimic.cs" />
     <Compile Include="Mobs\Mob.cs" />
     <Compile Include="Mobs\Mouse.cs" />
